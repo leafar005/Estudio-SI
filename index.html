@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudio SI — Portal de Estudio</title>
+  <meta name="description" content="Portal de estudio interactivo para Sistemas Inteligentes. Quizzes, estadísticas y banco de preguntas para preparar el examen.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/shared.css">
+  <script src="shared/shared.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #111827;
+      --bg-card: #1a1f35;
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --accent: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.3);
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+    }
+    html {
+      background: #0a0e17;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, system-ui, sans-serif;
+      background: linear-gradient(125deg, #0c1220, #1a2744, #0d3b66, #1b2838);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+    .bg-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-glow-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(16,185,129,0.25), transparent 70%);
+      top: -10%; right: -5%;
+    }
+    .bg-glow-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(52,211,153,0.2), transparent 70%);
+      bottom: -5%; left: -5%;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 24px 60px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, #10b981, #059669, #34d399);
+      box-shadow: 0 0 40px var(--accent-glow);
+      margin-bottom: 4px;
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+      50% { box-shadow: 0 0 50px var(--accent-glow); }
+    }
+    .hero-icon { font-size: 30px; }
+    .hero-title {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #f1f5f9, #a7f3d0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    /* Stats Widget Container */
+    .stats-container {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 25px;
+    }
+    .stats-widget {
+      display: inline-flex;
+      gap: 30px;
+      padding: 16px 32px;
+      background: rgba(17, 24, 39, 0.6);
+      border-radius: 20px;
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(10px);
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+    }
+    .stat-value {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #a7f3d0;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    /* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+    .bento-card {
+      background: rgba(20, 20, 20, 0.35);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      text-decoration: none;
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(16,185,129,0.15), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .bento-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px var(--accent-glow);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+    .bento-card:hover::before { opacity: 1; }
+    .bento-card > * { position: relative; z-index: 1; }
+    .bento-card-icon { font-size: 2.4rem; margin-bottom: 4px; }
+    .bento-card-title { font-size: 1.3rem; font-weight: 700; }
+    .bento-card-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+    .bento-card.featured {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(20,20,20,0.35));
+      border-color: rgba(16, 185, 129, 0.15);
+    }
+    .bento-card.featured .bento-card-title {
+      font-size: 1.5rem;
+    }
+    .bento-card-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(16,185,129,0.15);
+      color: #a7f3d0;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    @media (max-width: 640px) {
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-badge {
+        width: 70px; height: 70px;
+      }
+      .hero-icon { font-size: 32px; }
+      .bento-card { padding: 24px 20px; }
+      .container { padding: 40px 16px 60px; }
+    }
+    .section-title {
+      grid-column: 1 / -1;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin: 30px 0 5px 0;
+      color: #f8fafc;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <div class="container">
+    <div class="hero">
+      <div class="hero-badge"><span class="hero-icon">🧠</span></div>
+      <h1 class="hero-title">Estudio SI</h1>
+      <p class="hero-subtitle">Sistemas Inteligentes — Curso 2025/2026</p>
+    </div>
+
+    <div class="stats-container">
+      <div id="stats-widget"></div>
+    </div>
+
+    <div class="bento-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+      
+      <h2 class="section-title" style="margin-top: 0;">Contenido</h2>
+      <a href="apuntes/index.html" class="bento-card" style="border-color: rgba(99, 102, 241, 0.4);">
+        <span class="bento-card-icon">📚</span>
+        <span class="bento-card-title">Apuntes</span>
+        <span class="bento-card-desc">Guía definitiva de teoría, altamente visual y orientada al examen.</span>
+      </a>
+      <a href="shared/flashcards.html" class="bento-card" style="border-color: rgba(245, 158, 11, 0.4);">
+        <span class="bento-card-icon">📇</span>
+        <span class="bento-card-title">Todas las Flashcards</span>
+        <span class="bento-card-desc">Repasa todos los temas de forma continua.</span>
+      </a>
+
+      <h2 class="section-title">Parte Simbólica</h2>
+      <a href="estudio-si/index.html?mode=category&category=introduccion" class="bento-card">
+        <span class="bento-card-icon">🤖</span>
+        <span class="bento-card-title">1. Introducción a la IA</span>
+        <span class="bento-card-desc">Conceptos fundamentales de Inteligencia Artificial.</span>
+      </a>
+      <a href="estudio-si/index.html?mode=category&category=busqueda" class="bento-card">
+        <span class="bento-card-icon">🔍</span>
+        <span class="bento-card-title">2. Búsqueda</span>
+        <span class="bento-card-desc">Estrategias de búsqueda en espacio de estados.</span>
+      </a>
+      <a href="estudio-si/index.html?mode=category&category=representacion" class="bento-card">
+        <span class="bento-card-icon">🧠</span>
+        <span class="bento-card-title">3. Representación</span>
+        <span class="bento-card-desc">Representación del conocimiento y lógica.</span>
+      </a>
+      <a href="estudio-si/index.html?mode=category&category=razonamiento" class="bento-card">
+        <span class="bento-card-icon">⚖️</span>
+        <span class="bento-card-title">4. Razonamiento</span>
+        <span class="bento-card-desc">Inferencia y sistemas basados en reglas.</span>
+      </a>
+      <a href="estudio-si/index.html?mode=category&category=planificacion" class="bento-card">
+        <span class="bento-card-icon">📋</span>
+        <span class="bento-card-title">5. Planificación</span>
+        <span class="bento-card-desc">Resolución de problemas mediante planificación.</span>
+      </a>
+
+      <h2 class="section-title">Parte Subsimbólica</h2>
+      <a href="estudio-si/index.html?mode=category&category=conexionistas" class="bento-card">
+        <span class="bento-card-icon">🌐</span>
+        <span class="bento-card-title">6. Sistemas Conexionistas</span>
+        <span class="bento-card-desc">Fundamentos de los modelos de redes neuronales.</span>
+      </a>
+      <a href="estudio-si/index.html?mode=category&category=neurona" class="bento-card">
+        <span class="bento-card-icon">⚡</span>
+        <span class="bento-card-title">7. Neurona Formal y RNA</span>
+        <span class="bento-card-desc">Modelos de neuronas biológicas y artificiales.</span>
+      </a>
+      <a href="estudio-si/index.html?mode=category&category=feedforward" class="bento-card">
+        <span class="bento-card-icon">➡️</span>
+        <span class="bento-card-title">8. Redes Feedforward</span>
+        <span class="bento-card-desc">Perceptrón multicapa y retropropagación.</span>
+      </a>
+      <a href="estudio-si/index.html?mode=category&category=autoorganizacion" class="bento-card">
+        <span class="bento-card-icon">🔄</span>
+        <span class="bento-card-title">9. Redes Autoorganizativas</span>
+        <span class="bento-card-desc">Aprendizaje no supervisado y mapas autoorganizados.</span>
+      </a>
+      <a href="estudio-si/index.html?mode=category&category=evolutiva" class="bento-card">
+        <span class="bento-card-icon">🧬</span>
+        <span class="bento-card-title">10. Computación Evolutiva</span>
+        <span class="bento-card-desc">Algoritmos genéticos y optimización evolutiva.</span>
+      </a>
+
+      <h2 class="section-title">Quiz</h2>
+      <a href="estudio-si/index.html?mode=part&category=simbolica" class="bento-card featured" style="grid-column: 1 / -1; margin-bottom: 10px; border-color: rgba(59, 130, 246, 0.4); background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(20,20,20,0.35));">
+        <span class="bento-card-icon">🧩</span>
+        <span class="bento-card-title">Quiz Parte Simbólica</span>
+        <span class="bento-card-desc">Simulacro completo con preguntas aleatorias de los temas 1 al 5.</span>
+      </a>
+      <a href="estudio-si/index.html?mode=part&category=subsimbolica" class="bento-card featured" style="grid-column: 1 / -1; margin-bottom: 10px; border-color: rgba(236, 72, 153, 0.4); background: linear-gradient(135deg, rgba(236,72,153,0.15), rgba(20,20,20,0.35));">
+        <span class="bento-card-icon">🧠</span>
+        <span class="bento-card-title">Quiz Parte Subsimbólica</span>
+        <span class="bento-card-desc">Simulacro completo con preguntas aleatorias de los temas 6 al 10.</span>
+      </a>
+
+      <h2 class="section-title">Otros</h2>
+      <a href="banco-preguntas/index.html" class="bento-card" style="border-color: rgba(16, 185, 129, 0.4);">
+        <span class="bento-card-icon">📖</span>
+        <span class="bento-card-title">Banco de Preguntas</span>
+        <span class="bento-card-desc">Consulta el listado completo con las soluciones.</span>
+      </a>
+      <a href="estadisticas/index.html" class="bento-card" style="border-color: rgba(168, 85, 247, 0.4);">
+        <span class="bento-card-icon">📊</span>
+        <span class="bento-card-title">Estadísticas</span>
+        <span class="bento-card-desc">Revisa tu progreso y puntos débiles.</span>
+      </a></div>
+  </div>
+
+  <!-- Modal Chooser -->
+  <div id="choice-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div class="modal-badge"><span id="modal-icon">🤖</span></div>
+      <h2 class="modal-title" id="modal-title">Tema</h2>
+      <p class="modal-subtitle">¿Cómo quieres estudiar este tema?</p>
+      
+      <div class="modal-options">
+        <button class="modal-option-btn primary" id="btn-start-examen" style="display: none;">
+          <span class="btn-emoji">📄</span>
+          <div class="btn-text">
+            <strong>Examen Completo</strong>
+            <span>Ver la resolución completa del examen original.</span>
+          </div>
+        </button>
+        <button class="modal-option-btn primary" id="btn-start-quiz">
+          <span class="btn-emoji">📝</span>
+          <div class="btn-text">
+            <strong>Cuestionario</strong>
+            <span>Preguntas con opciones y justificación</span>
+          </div>
+        </button>
+        <button class="modal-option-btn secondary" id="btn-start-flashcards">
+          <span class="btn-emoji">📇</span>
+          <div class="btn-text">
+            <strong>Flashcards</strong>
+            <span>Tarjetas de memoria rápida por delante y por detrás</span>
+          </div>
+        </button>
+        <button class="modal-option-btn" id="btn-start-resumen">
+          <span class="btn-emoji">📚</span>
+          <div class="btn-text">
+            <strong>Apuntes</strong>
+            <span>Ver los apuntes teóricos de este tema</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center; z-index: 1000;
+      opacity: 1; transition: opacity 0.3s;
+    }
+    .modal-overlay.hidden { opacity: 0; pointer-events: none; }
+    .modal-content {
+      background: var(--bg-card); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl); padding: 40px; text-align: center;
+      max-width: 440px; width: 90%; position: relative;
+      transform: translateY(0) scale(1); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .modal-overlay.hidden .modal-content { transform: translateY(30px) scale(0.95); }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px; background: none; border: none;
+      color: var(--text-secondary); font-size: 1.2rem; cursor: pointer;
+    }
+    .modal-close:hover { color: var(--text-primary); }
+    .modal-badge {
+      width: 70px; height: 70px; border-radius: 50%; background: var(--accent-glow);
+      display: inline-flex; align-items: center; justify-content: center; font-size: 2rem;
+      margin-bottom: 16px; border: 1px solid rgba(16,185,129,0.3);
+    }
+    .modal-title { font-size: 1.8rem; margin-bottom: 8px; color: var(--text-primary); font-weight: 800; }
+    .modal-subtitle { color: var(--text-secondary); margin-bottom: 30px; font-size: 0.95rem; }
+    .modal-options { display: flex; flex-direction: column; gap: 12px; }
+    .modal-option-btn {
+      display: flex; align-items: center; gap: 16px; padding: 16px;
+      border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);
+      background: rgba(255,255,255,0.03); cursor: pointer; transition: all 0.2s; text-align: left; color: var(--text-primary); font-family: inherit;
+    }
+    .modal-option-btn:hover { background: rgba(255,255,255,0.08); border-color: var(--accent); transform: translateY(-2px); }
+    .modal-option-btn.primary:hover { border-color: #10b981; background: rgba(16,185,129,0.1); }
+    .modal-option-btn.secondary:hover { border-color: #3b82f6; background: rgba(59,130,246,0.1); }
+    .btn-emoji { font-size: 1.8rem; }
+    .btn-text { display: flex; flex-direction: column; }
+    .btn-text strong { font-size: 1.05rem; margin-bottom: 4px; }
+    .btn-text span { font-size: 0.8rem; color: var(--text-secondary); }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.QuizStats.load();
+      window.QuizStats.renderIndexWidget('stats-widget');
+
+      const modal = document.getElementById('choice-modal');
+      const closeBtn = document.getElementById('modal-close');
+      const titleEl = document.getElementById('modal-title');
+      const iconEl = document.getElementById('modal-icon');
+      const btnQuiz = document.getElementById('btn-start-quiz');
+      const btnExamen = document.getElementById('btn-start-examen');
+      const btnFlash = document.getElementById('btn-start-flashcards');
+      const btnResumen = document.getElementById('btn-start-resumen');
+
+      let currentCategory = null;
+
+      document.querySelectorAll('.bento-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          const href = card.getAttribute('href');
+          if (href && href.includes('?mode=category&category=')) {
+            e.preventDefault();
+            const urlParams = new URLSearchParams(href.split('?')[1]);
+            currentCategory = urlParams.get('category');
+            if (currentCategory.startsWith('examen')) {
+              btnFlash.style.display = 'none';
+              btnResumen.style.display = 'none';
+              btnExamen.style.display = 'flex';
+            } else {
+              btnFlash.style.display = 'flex';
+              btnResumen.style.display = 'flex';
+              btnExamen.style.display = 'none';
+            }
+            titleEl.textContent = card.querySelector('.bento-card-title').textContent;
+            iconEl.textContent = card.querySelector('.bento-card-icon').textContent;
+            modal.classList.remove('hidden');
+          }
+        });
+      });
+
+      closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.add('hidden');
+      });
+
+      btnQuiz.addEventListener('click', () => {
+        window.location.href = \`estudio-si/index.html?mode=category&category=\${currentCategory}\`;
+      });
+      
+      btnExamen.addEventListener('click', () => {
+        window.location.href = \`guia/\${currentCategory}.html\`;
+      });
+
+      btnFlash.addEventListener('click', () => {
+        window.location.href = \`shared/flashcards.html?topic=\${currentCategory}\`;
+      });
+      btnResumen.addEventListener('click', () => {
+        window.location.href = \`apuntes/index.html?topic=\${currentCategory}\`;
+      });
+    });
+  </script>
+</body>
+</html>

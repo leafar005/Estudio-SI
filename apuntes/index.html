@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apuntes | Estudio SI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/shared.css">
+  <script src="../shared/shared.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #111827;
+      --bg-card: #1a1f35;
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --accent: #10b981;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+    }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .sidebar {
+      width: 280px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-subtle);
+      display: flex; flex-direction: column;
+      height: 100%;
+    }
+    .sidebar-header {
+      padding: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500; transition: color 0.2s;
+    }
+    .back-btn:hover { color: var(--text-primary); }
+    .sidebar-title { margin: 15px 0 0; font-size: 1.2rem; font-weight: 700; }
+    .topic-list {
+      flex: 1; overflow-y: auto; padding: 10px 0;
+      list-style: none; margin: 0;
+    }
+    .topic-item {
+      padding: 10px 20px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      display: flex; align-items: center; gap: 10px;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .topic-item:hover {
+      background: rgba(255,255,255,0.03);
+      color: var(--text-primary);
+    }
+    .topic-item.active {
+      background: rgba(16,185,129,0.1);
+      color: var(--accent);
+      border-right: 3px solid var(--accent);
+    }
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 40px;
+      position: relative;
+    }
+    .content-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 40px;
+    }
+    .markdown-body {
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .markdown-body h1 { font-size: 2rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px; margin-top: 0; }
+    .markdown-body h2 { font-size: 1.5rem; margin-top: 30px; }
+    .markdown-body p { margin-bottom: 16px; }
+    .markdown-body pre { background: #000; padding: 15px; border-radius: 8px; overflow-x: auto; }
+    .markdown-body code { font-family: monospace; color: #a7f3d0; }
+    
+    @media (max-width: 768px) {
+      body { flex-direction: column; overflow: auto; }
+      .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-subtle); }
+      .topic-list { display: flex; overflow-x: auto; padding: 0; white-space: nowrap; }
+      .topic-item { padding: 15px; border-right: none; border-bottom: 3px solid transparent; }
+      .topic-item.active { border-right: none; border-bottom: 3px solid var(--accent); }
+      .main-content { padding: 20px; overflow-y: visible; }
+      .content-container { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="back-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Volver
+      </a>
+      <h2 class="sidebar-title">Temario SI</h2>
+    </div>
+    <ul class="topic-list" id="topic-list">
+      <!-- Se llena dinámicamente -->
+    </ul>
+  </div>
+  <div class="main-content">
+    <div class="content-container">
+      <div id="content-body" class="markdown-body">
+        <p>Selecciona un tema en el menú de la izquierda para comenzar a estudiar.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="../estudio-si/questions.js"></script>
+  <script>
+    const APUNTES_DATA = {
+      "introduccion":     "",
+      "busqueda":         "",
+      "representacion":   "",
+      "razonamiento":     "",
+      "planificacion":    "",
+      "conexionistas":    "",
+      "neurona":          "",
+      "feedforward":      "",
+      "autoorganizacion": "",
+      "evolutiva":        ""
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const topicList = document.getElementById('topic-list');
+      const contentBody = document.getElementById('content-body');
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialTopic = urlParams.get('topic');
+
+      let currentPart = null;
+
+      CATEGORIES.forEach(cat => {
+        if(cat.id === 'examen') return; // Exámenes no van aquí
+        
+        if (cat.part !== currentPart) {
+          currentPart = cat.part;
+          const header = document.createElement('li');
+          header.style.padding = '15px 20px 5px';
+          header.style.fontSize = '0.75rem';
+          header.style.textTransform = 'uppercase';
+          header.style.color = 'var(--text-secondary)';
+          header.style.fontWeight = '700';
+          header.style.letterSpacing = '0.05em';
+          header.textContent = currentPart === 'simbolica' ? 'Parte Simbólica' : 'Parte Subsimbólica';
+          topicList.appendChild(header);
+        }
+
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = \`?topic=\${cat.id}\`;
+        a.className = 'topic-item';
+        a.innerHTML = \`<span>\${cat.icon}</span> \${cat.name}\`;
+        
+        if(cat.id === initialTopic) {
+          a.classList.add('active');
+        }
+        
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.history.pushState({}, '', \`?topic=\${cat.id}\`);
+          document.querySelectorAll('.topic-item').forEach(el => el.classList.remove('active'));
+          a.classList.add('active');
+          loadTopic(cat);
+        });
+        
+        li.appendChild(a);
+        topicList.appendChild(li);
+      });
+
+      if (initialTopic) {
+        const cat = CATEGORIES.find(c => c.id === initialTopic);
+        if (cat) loadTopic(cat);
+      }
+
+      function loadTopic(cat) {
+        const content = APUNTES_DATA[cat.id];
+        
+        const menuHtml = `
+          <div style="display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap;">
+            <a href="../estudio-si/index.html?mode=category&category=${cat.id}" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); border-radius: 8px; color: #93c5fd; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.2s;">
+              <span>📝</span> Cuestionario
+            </a>
+            <a href="../shared/flashcards.html?topic=${cat.id}" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); border-radius: 8px; color: #fcd34d; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.2s;">
+              <span>📇</span> Flashcards
+            </a>
+          </div>
+        `;
+
+        if (content && content.trim() !== "") {
+          contentBody.innerHTML = menuHtml + marked.parse(content);
+        } else {
+          contentBody.innerHTML = `
+            <h1>${cat.icon} ${cat.name}</h1>
+            ${menuHtml}
+            <p>Apuntes de este tema próximamente.</p>
+          `;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
