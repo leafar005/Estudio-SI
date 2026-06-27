@@ -2,6 +2,7 @@
 
 Portal web estático de estudio interactivo para la asignatura de **Sistemas Inteligentes (SI)**. 
 Permite repasar conceptos teóricos, practicar con banco de preguntas, cuestionarios interactivos y flashcards.
+Como no apruebe esta oportunidad cortaré todo contacto y me ire a vivir a las montañas con monjes.
 
 ## 📚 Temario
 
@@ -33,4 +34,11 @@ Permite repasar conceptos teóricos, practicar con banco de preguntas, cuestiona
 - HTML5 / CSS3 Moderno (Glassmorphism, Bento Grid)
 - localStorage para guardar progreso
 - Responsive Design
-# Estudio-SI
+
+## 🚀 Cómo Empezar
+
+Esta ahi arriba el enlace😭😭😭
+
+## 👨‍💻 Autor
+
+Desarrollado por leafar005 con antigravity (estoy HARTO de esta asignatura no puedo mas).
