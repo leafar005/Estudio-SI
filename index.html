@@ -288,7 +288,7 @@
         <span class="bento-card-desc">Algoritmos genéticos y optimización evolutiva.</span>
       </a>
 
-      <h2 class="section-title">Resolución de Exámenes</h2>
+      <h2 class="section-title">Exámenes</h2>
       <a href="?mode=exam&category=examen_2023" class="bento-card">
         <span class="bento-card-icon">📄</span>
         <span class="bento-card-title">Examen 2023</span>
@@ -316,12 +316,27 @@
       </a>
 
       <h2 class="section-title">Quiz</h2>
-      <a href="estudio-si/index.html?mode=part&category=simbolica" class="bento-card featured" style="grid-column: 1 / -1; margin-bottom: 10px; border-color: rgba(59, 130, 246, 0.4); background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(20,20,20,0.35));">
+      <div class="source-selector" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; padding: 16px; background: rgba(20,20,20,0.4); border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);">
+        <span style="color: var(--text-primary); font-size: 0.95rem; font-weight: 600;">Filtrar preguntas por origen:</span>
+        <style>
+          .segmented-control { display: flex; background: rgba(10, 14, 26, 0.8); padding: 6px; border-radius: 12px; border: 1px solid var(--border-subtle); gap: 4px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); }
+          .segmented-control button { flex: 1; background: transparent; border: none; color: var(--text-secondary); padding: 10px 12px; font-family: inherit; font-size: 0.9rem; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 6px; }
+          .segmented-control button.active { color: #fff; background: var(--accent); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); }
+          .segmented-control button:not(.active):hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.05); }
+        </style>
+        <div id="quiz-source-switch" class="segmented-control" data-value="todas">
+          <button class="active" data-val="todas">🌟 Todas</button>
+          <button data-val="examen">🎓 Exámenes</button>
+          <button data-val="daypo">🧪 Daypo</button>
+        </div>
+      </div>
+
+      <a href="#" data-base-href="estudio-si/index.html?mode=part&category=simbolica" class="bento-card featured quiz-link" style="grid-column: 1 / -1; margin-bottom: 10px; border-color: rgba(59, 130, 246, 0.4); background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(20,20,20,0.35));">
         <span class="bento-card-icon">🧩</span>
         <span class="bento-card-title">Quiz Parte Simbólica</span>
         <span class="bento-card-desc">Simulacro completo con preguntas aleatorias de los temas 1 al 5.</span>
       </a>
-      <a href="estudio-si/index.html?mode=part&category=subsimbolica" class="bento-card featured" style="grid-column: 1 / -1; margin-bottom: 10px; border-color: rgba(236, 72, 153, 0.4); background: linear-gradient(135deg, rgba(236,72,153,0.15), rgba(20,20,20,0.35));">
+      <a href="#" data-base-href="estudio-si/index.html?mode=part&category=subsimbolica" class="bento-card featured quiz-link" style="grid-column: 1 / -1; margin-bottom: 10px; border-color: rgba(236, 72, 153, 0.4); background: linear-gradient(135deg, rgba(236,72,153,0.15), rgba(20,20,20,0.35));">
         <span class="bento-card-icon">🧠</span>
         <span class="bento-card-title">Quiz Parte Subsimbólica</span>
         <span class="bento-card-desc">Simulacro completo con preguntas aleatorias de los temas 6 al 10.</span>
@@ -509,6 +524,26 @@
       });
       btnResumen.addEventListener('click', () => {
         window.location.href = `apuntes/index.html`;
+      });
+      
+      const sourceSwitch = document.getElementById('quiz-source-switch');
+      if (sourceSwitch) {
+        sourceSwitch.querySelectorAll('button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            sourceSwitch.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            sourceSwitch.setAttribute('data-value', btn.getAttribute('data-val'));
+          });
+        });
+      }
+      
+      document.querySelectorAll('.quiz-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const baseHref = link.getAttribute('data-base-href');
+          const source = sourceSwitch ? sourceSwitch.getAttribute('data-value') : 'todas';
+          window.location.href = baseHref + (source !== 'todas' ? `&source=${source}` : '');
+        });
       });
     });
   </script>

@@ -50,10 +50,11 @@
     const modeParam = urlParams.get('mode');
     const catParam = urlParams.get('category');
     const partParam = urlParams.get('part');
+    const sourceParam = urlParams.get('source');
     if (modeParam) {
-      startQuiz(modeParam, catParam, partParam);
+      startQuiz(modeParam, catParam, partParam, sourceParam);
     } else {
-      window.location.href = '../index.html';
+      if (window.history.length > 1 && document.referrer.includes(window.location.host)) { window.history.back(); } else { window.location.href = '../index.html'; }
     }
   }
 
@@ -69,7 +70,7 @@
   // ========================
   // QUIZ START
   // ========================
-  function startQuiz(mode, categoryId, partId) {
+  function startQuiz(mode, categoryId, partId, sourceFilter) {
     // Si inicia un quiz explícitamente desde el portal, limpiamos el estado guardado automáticamente
     localStorage.removeItem('bda_paused_test');
 
@@ -100,6 +101,12 @@
            const subIds = CATEGORIES.filter(c => c.part === 'subsimbolica').map(c => c.id);
            pool = pool.filter(q => subIds.includes(q.category));
         }
+      }
+      
+      if (sourceFilter === 'examen') {
+        pool = pool.filter(q => (q.source && q.source.startsWith('examen')) || (q.category && q.category.startsWith('examen')));
+      } else if (sourceFilter === 'daypo') {
+        pool = pool.filter(q => q.source === 'daypo');
       }
 
       if (mode !== 'exam') {
@@ -148,6 +155,11 @@
       typeEl.textContent = '🎓 Examen';
       typeEl.style.background = 'rgba(250, 204, 21, 0.12)';
       typeEl.style.color = '#facc15';
+      typeEl.style.display = 'inline-block';
+    } else if (q.source === 'daypo') {
+      typeEl.textContent = '🧪 Daypo';
+      typeEl.style.background = 'rgba(16, 185, 129, 0.12)';
+      typeEl.style.color = '#10b981';
       typeEl.style.display = 'inline-block';
     } else {
       typeEl.style.display = 'none';
@@ -339,11 +351,16 @@
   }
 
   function formatJustification(text) {
-    return text
+    let formatted = text
       .replace(/FALSO/g, '<strong style="color:#ef4444">FALSO</strong>')
       .replace(/VERDADERO/g, '<strong style="color:#10b981">VERDADERO</strong>')
-      .replace(/(SGBD|SQL|SXBD|DDL|DML|DCL|ACID|WAL|MVCC|2PL|CBO|RBO|IOT|OLTP|OLAP|DW|FK|PK|B-Tree|B\+|COMMIT|ROLLBACK|UNDO|REDO|CHECKPOINT|DEFERRABLE|NOT NULL|UNIQUE|PRIMARY KEY|FOREIGN KEY|CHECK|CASCADE|RESTRICT|NO ACTION|SET NULL|MATCH SIMPLE|MATCH PARTIAL|MATCH FULL|GRANT|REVOKE|PUBLIC|INFORMATION_SCHEMA|BEFORE|AFTER|INSTEAD OF|FOR EACH ROW|FOR EACH STATEMENT|ORA-04091|READ COMMITTED|SERIALIZABLE|READ UNCOMMITTED|REPEATABLE READ)/g, '<strong>$1</strong>')
+      .replace(/(SGBD|SQL|SXBD|DDL|DML|DCL|ACID|WAL|MVCC|2PL|CBO|RBO|IOT|OLTP|OLAP|DW|FK|PK|B-Tree|B\\+|COMMIT|ROLLBACK|UNDO|REDO|CHECKPOINT|DEFERRABLE|NOT NULL|UNIQUE|PRIMARY KEY|FOREIGN KEY|CHECK|CASCADE|RESTRICT|NO ACTION|SET NULL|MATCH SIMPLE|MATCH PARTIAL|MATCH FULL|GRANT|REVOKE|PUBLIC|INFORMATION_SCHEMA|BEFORE|AFTER|INSTEAD OF|FOR EACH ROW|FOR EACH STATEMENT|ORA-04091|READ COMMITTED|SERIALIZABLE|READ UNCOMMITTED|REPEATABLE READ)/g, '<strong>$1</strong>')
       .replace(/(Oracle|PostgreSQL)/g, '<strong>$1</strong>');
+
+    if (window.marked) {
+      return marked.parse(formatted);
+    }
+    return formatted;
   }
 
   // ========================
@@ -423,7 +440,7 @@
            if (!$('#category-picker').classList.contains('hidden')) {
               $('#btn-back-categories').click();
            } else {
-              window.location.href = '../index.html';
+              if (window.history.length > 1 && document.referrer.includes(window.location.host)) { window.history.back(); } else { window.location.href = '../index.html'; }
            }
            return;
         }
@@ -636,7 +653,7 @@
   }
 
   function resetToLanding() {
-    window.location.href = '../index.html';
+    if (window.history.length > 1 && document.referrer.includes(window.location.host)) { window.history.back(); } else { window.location.href = '../index.html'; }
   }
 
   // ========================

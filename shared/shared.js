@@ -70,19 +70,22 @@ window.QuizStats = {
   
   ACHIEVEMENTS: {
     FIRST_BLOOD: { id: 'FIRST_BLOOD', icon: '🩸', title: 'Primera Sangre', desc: 'Responde tu primera pregunta.' },
-    WARM_UP: { id: 'WARM_UP', icon: '🏃', title: 'Calentamiento', desc: 'Completa tu primer simulacro.' },
-    CENTURION: { id: 'CENTURION', icon: '💯', title: 'Centurión', desc: 'Responde 100 preguntas en total.' },
+    AGENTE_REACTIVO: { id: 'AGENTE_REACTIVO', icon: '🤖', title: 'Agente Reactivo Simple', desc: 'Completa tu primer test o simulacro en el portal.' },
+    MINIMO_GLOBAL: { id: 'MINIMO_GLOBAL', icon: '🎯', title: 'Mínimo Global Alcanzado', desc: 'Obtén un 100% de aciertos en cualquier simulacro (cero error).' },
+    EVOLUCION_CONTINUA: { id: 'EVOLUCION_CONTINUA', icon: '🧬', title: 'Evolución Continua', desc: 'Responde un total de 100 preguntas en todo el portal.' },
     SCHOLAR: { id: 'SCHOLAR', icon: '🦉', title: 'Erudito', desc: 'Responde 500 preguntas en total.' },
-    PERFECT: { id: 'PERFECT', icon: '🏆', title: 'Perfeccionista', desc: 'Obtén un 100% de precisión en un simulacro.' },
     TEN_QUIZZES: { id: 'TEN_QUIZZES', icon: '🔟', title: 'Constante', desc: 'Completa 10 simulacros.' },
     FIFTY_QUIZZES: { id: 'FIFTY_QUIZZES', icon: '🔥', title: 'Máquina', desc: 'Completa 50 simulacros.' },
-    SNIPER: { id: 'SNIPER', icon: '🎯', title: 'Francotirador', desc: 'Acierta 50 preguntas en total.' },
+    SNIPER: { id: 'SNIPER', icon: '🔫', title: 'Francotirador', desc: 'Acierta 50 preguntas en total.' },
     SPEEDRUNNER: { id: 'SPEEDRUNNER', icon: '⚡', title: 'Speedrunner', desc: 'Completa un test de 10+ preguntas en menos de 1 minuto.' },
     NIGHT_OWL: { id: 'NIGHT_OWL', icon: '🦇', title: 'Búho Nocturno', desc: 'Completa un test entre medianoche y las 5 AM.' },
-    CONCURRENCY_MASTER: { id: 'CONCURRENCY_MASTER', icon: '🔒', title: 'Maestro Concurrencia', desc: 'Completa 5 tests sobre Concurrencia.' },
-    OPTIMIZATION_MASTER: { id: 'OPTIMIZATION_MASTER', icon: '⚡', title: 'Gurú Optimización', desc: 'Completa 5 tests sobre Optimización.' },
-    SECURITY_MASTER: { id: 'SECURITY_MASTER', icon: '🛡️', title: 'Experto Seguridad', desc: 'Completa 5 tests sobre Seguridad.' },
-    RECOVERY_MASTER: { id: 'RECOVERY_MASTER', icon: '💾', title: 'Maestro Recuperación', desc: 'Completa 5 tests sobre Recuperación.' }
+    MAESTRO_SIMBOLICO: { id: 'MAESTRO_SIMBOLICO', icon: '🧠', title: 'Maestro Simbólico', desc: 'Aprueba con más de un 80% el quiz de la Parte Simbólica (Temas 1 al 5).' },
+    CONEXIONISTA_EXPERTO: { id: 'CONEXIONISTA_EXPERTO', icon: '🌐', title: 'Conexionista Experto', desc: 'Aprueba con más de un 80% el quiz de la Parte Subsimbólica (Temas 6 al 10).' },
+    HEURISTICA_ADMISIBLE: { id: 'HEURISTICA_ADMISIBLE', icon: '🔍', title: 'Heurística Admisible', desc: 'Domina los algoritmos de Búsqueda sin cometer errores.' },
+    RAZONADOR_BAYESIANO: { id: 'RAZONADOR_BAYESIANO', icon: '⚖️', title: 'Razonador Bayesiano', desc: 'Domina los modelos de representación, frames y redes bayesianas.' },
+    NEURONA_GANADORA: { id: 'NEURONA_GANADORA', icon: '🏆', title: 'Neurona Ganadora (BMU)', desc: 'Destaca en aprendizaje no supervisado y Redes Autoorganizativas.' },
+    SUPERVIVENCIA_APTO: { id: 'SUPERVIVENCIA_APTO', icon: '🦍', title: 'Supervivencia del más Apto', desc: 'Domina los operadores de cruce y mutación en Computación Evolutiva.' },
+    TURING_SUPERADO: { id: 'TURING_SUPERADO', icon: '🎓', title: 'Test de Turing Superado', desc: 'Aprueba uno de los exámenes oficiales de años anteriores.' }
   },
 
   load() {
@@ -129,8 +132,8 @@ window.QuizStats = {
     this.save();
     
     if (this.data.questionsAnswered === 1) this.unlock('FIRST_BLOOD');
+    if (this.data.questionsAnswered === 100) this.unlock('EVOLUCION_CONTINUA');
     if (this.data.correctAnswers >= 50) this.unlock('SNIPER');
-    if (this.data.questionsAnswered === 100) this.unlock('CENTURION');
     if (this.data.questionsAnswered === 500) this.unlock('SCHOLAR');
   },
 
@@ -156,21 +159,25 @@ window.QuizStats = {
 
     this.save();
     
-    if (this.data.quizzesCompleted === 1) this.unlock('WARM_UP');
+    if (this.data.quizzesCompleted === 1) this.unlock('AGENTE_REACTIVO');
     if (this.data.quizzesCompleted === 10) this.unlock('TEN_QUIZZES');
     if (this.data.quizzesCompleted === 50) this.unlock('FIFTY_QUIZZES');
-    if (pct === 100) this.unlock('PERFECT');
+    if (pct === 100) this.unlock('MINIMO_GLOBAL');
     
     if (total >= 10 && elapsed < 60) this.unlock('SPEEDRUNNER');
     
     const hour = new Date().getHours();
     if (hour >= 0 && hour < 5) this.unlock('NIGHT_OWL');
     
-    const topicQuizzes = this.data.historyQuizzes.filter(q => q.topic === topic).length;
-    if (topic === 'concorrencia' && topicQuizzes >= 5) this.unlock('CONCURRENCY_MASTER');
-    if (topic === 'optimizacion' && topicQuizzes >= 5) this.unlock('OPTIMIZATION_MASTER');
-    if (topic === 'seguridade' && topicQuizzes >= 5) this.unlock('SECURITY_MASTER');
-    if (topic === 'recuperacion' && topicQuizzes >= 5) this.unlock('RECOVERY_MASTER');
+    if (topic === 'simbolica' && pct > 80) this.unlock('MAESTRO_SIMBOLICO');
+    if (topic === 'subsimbolica' && pct > 80) this.unlock('CONEXIONISTA_EXPERTO');
+    
+    if (topic === 'busqueda' && pct === 100) this.unlock('HEURISTICA_ADMISIBLE');
+    if (topic === 'representacion' && pct === 100) this.unlock('RAZONADOR_BAYESIANO');
+    if (topic === 'autoorganizacion' && pct === 100) this.unlock('NEURONA_GANADORA');
+    if (topic === 'evolutiva' && pct === 100) this.unlock('SUPERVIVENCIA_APTO');
+    
+    if (topic.startsWith('examen') && pct >= 50) this.unlock('TURING_SUPERADO');
   },
 
   reset() {

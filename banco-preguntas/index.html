@@ -206,7 +206,7 @@
 </head>
 <body>
   <div class="top-bar">
-    <a href="../index.html" class="back-btn">
+    <a href="#" onclick="if(window.history.length > 1 && document.referrer.includes(window.location.host)) { window.history.back(); return false; } else { window.location.href = '../index.html'; return false; }" class="back-btn">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       Volver al Portal
     </a>
@@ -232,6 +232,7 @@
 
   <script src="../estudio-si/questions.js"></script>
   <script src="../estudio-si/exams.js"></script>
+  <script src="../estudio-si/daypo.js"></script>
   <script>
     (function() {
       const catSelect = document.getElementById('filter-category');
@@ -258,6 +259,13 @@
           return true;
         });
 
+        // Ordenar las preguntas por el orden de los temas (CATEGORIES)
+        filtered.sort((a, b) => {
+          const indexA = CATEGORIES.findIndex(c => c.id === a.category);
+          const indexB = CATEGORIES.findIndex(c => c.id === b.category);
+          return indexA - indexB;
+        });
+
         document.getElementById('count-badge').textContent = `${filtered.length} pregunta${filtered.length !== 1 ? 's' : ''} encontrada${filtered.length !== 1 ? 's' : ''}`;
 
         const list = document.getElementById('questions-list');
@@ -273,6 +281,7 @@
               <span class="qcb-num">#${idx + 1}</span>
               <span class="qcb-category">${cat ? cat.name : q.category}</span>
               ${ ((q.source && q.source.startsWith('examen')) || (q.category && q.category.startsWith('examen'))) ? '<span class="qcb-exam" style="color:#facc15; font-weight:600; background:rgba(250,204,21,0.1); padding:2px 8px; border-radius:4px; font-size:0.8rem; margin-left:8px;">🎓 Examen</span>' : '' }
+              ${ (q.source === 'daypo') ? '<span class="qcb-daypo" style="color:#10b981; font-weight:600; background:rgba(16,185,129,0.1); padding:2px 8px; border-radius:4px; font-size:0.8rem; margin-left:8px;">🧪 Daypo</span>' : '' }
             </div>
             <div class="qcb-text">${window.marked ? marked.parse(q.question) : q.question}</div>
             <div class="qcb-detail">
