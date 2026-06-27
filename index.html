@@ -228,6 +228,11 @@
         <span class="bento-card-title">Apuntes</span>
         <span class="bento-card-desc">Guía definitiva de teoría, altamente visual y orientada al examen.</span>
       </a>
+      <a href="guia/index.html" class="bento-card" style="border-color: rgba(16, 185, 129, 0.4);">
+        <span class="bento-card-icon">🛠️</span>
+        <span class="bento-card-title">Guía de Ejercicios</span>
+        <span class="bento-card-desc">Resolución paso a paso de problemas reales de exámenes.</span>
+      </a>
       <a href="shared/flashcards.html" class="bento-card" style="border-color: rgba(245, 158, 11, 0.4);">
         <span class="bento-card-icon">📇</span>
         <span class="bento-card-title">Todas las Flashcards</span>
@@ -354,6 +359,11 @@
         <span class="bento-card-desc">Revisa tu progreso y puntos débiles.</span>
       </a></div>
   </div>
+
+  <footer style="text-align: center; padding: 30px 20px; color: var(--text-secondary); font-size: 0.85rem; opacity: 0.8; line-height: 1.8;">
+    <a href="https://github.com/leafar005" target="_blank" rel="noopener noreferrer" style="color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">github.com/leafar005</a><br>
+    <span style="opacity: 0.7; font-size: 0.8rem;">Agradecimientos a Suárez por los Daypos</span>
+  </footer>
 
   <!-- Modal Chooser -->
   <div id="choice-modal" class="modal-overlay hidden">
@@ -523,7 +533,7 @@
         window.location.href = `shared/flashcards.html?topic=${currentCategory}`;
       });
       btnResumen.addEventListener('click', () => {
-        window.location.href = `apuntes/index.html`;
+        window.location.href = `apuntes/index.html?topic=${currentCategory}`;
       });
       
       const sourceSwitch = document.getElementById('quiz-source-switch');

@@ -4,15 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const titleEl = document.getElementById('topic-title');
   const titles = {
-    'catalogo': 'Catálogo',
-    'vistas': 'Vistas',
-    'integridade': 'Integridad',
-    'seguridade': 'Seguridad',
-    'activas': 'Triggers',
-    'oorm': 'Diseño Físico / OORM',
-    'optimizacion': 'Optimización',
-    'recuperacion': 'Recuperación',
-    'concurrencia': 'Concurrencia'
+    'introduccion': 'T1: Introducción a la IA',
+    'busqueda': 'T2: Búsqueda',
+    'representacion': 'T3: Representación del conocimiento',
+    'razonamiento': 'T4: Razonamiento',
+    'planificacion': 'T5: Planificación',
+    'conexionistas': 'T6: Sistemas Conexionistas',
+    'neurona': 'T7: Neurona Formal y Arquitecturas RNA',
+    'aprendizaje': 'T8: Aprendizaje en Redes Neuronales',
+    'evolutiva': 'T9: Computación Evolutiva y AG',
+    'difusa': 'T10: Lógica y Conjuntos Difusos'
   };
   if(topic && titles[topic]) {
     titleEl.textContent = `Flashcards: ${titles[topic]}`;
@@ -73,15 +74,16 @@ document.addEventListener('DOMContentLoaded', () => {
       labelsEl.style.display = 'block';
       
       const topicColors = {
-        'catalogo': '#3b82f6',
-        'vistas': '#8b5cf6',
-        'integridade': '#10b981',
-        'seguridade': '#ef4444',
-        'activas': '#f59e0b',
-        'oorm': '#6366f1',
-        'optimizacion': '#ec4899',
-        'recuperacion': '#14b8a6',
-        'concurrencia': '#f97316'
+        'introduccion': '#3b82f6',
+        'busqueda': '#8b5cf6',
+        'representacion': '#10b981',
+        'razonamiento': '#ef4444',
+        'planificacion': '#f59e0b',
+        'conexionistas': '#06b6d4',
+        'neurona': '#ec4899',
+        'aprendizaje': '#14b8a6',
+        'evolutiva': '#f97316',
+        'difusa': '#8b5cf6'
       };
       
       let currentOffset = 0;
@@ -99,15 +101,16 @@ document.addEventListener('DOMContentLoaded', () => {
         
         
         const shortTitles = {
-          'catalogo': 'Catálogo',
-          'vistas': 'Vistas',
-          'integridade': 'Integridad',
-          'seguridade': 'Seguridad',
-          'activas': 'Triggers',
-          'oorm': 'Diseño Físico',
-          'optimizacion': 'Optimización',
-          'recuperacion': 'Recuperación',
-          'concurrencia': 'Concurrencia'
+          'introduccion': 'T1: Intro',
+          'busqueda': 'T2: Búsqueda',
+          'representacion': 'T3: Repres.',
+          'razonamiento': 'T4: Razonam.',
+          'planificacion': 'T5: Planific.',
+          'conexionistas': 'T6: Conexion.',
+          'neurona': 'T7: Neurona',
+          'aprendizaje': 'T8: Aprend.',
+          'evolutiva': 'T9: Evolutiva',
+          'difusa': 'T10: Difusa'
         };
         const labelText = shortTitles[t] || t;
 

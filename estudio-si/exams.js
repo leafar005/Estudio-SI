@@ -3428,4 +3428,3 @@ const EXAM_QUESTIONS = [
   }
 ];
 
-if (typeof QUESTIONS !== 'undefined') QUESTIONS.push(...EXAM_QUESTIONS);

@@ -3,9 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guía de Ejercicios — SI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Resolución de Ejercicios - SI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared/shared.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
   <style>
     :root {
       --bg-primary: #0a0e1a;
@@ -13,46 +32,1425 @@
       --bg-card: #1a1f35;
       --text-primary: #f3f4f6;
       --text-secondary: #9ca3af;
-      --accent: #10b981;
+      --accent: #10b981; 
       --border-subtle: rgba(255, 255, 255, 0.08);
     }
-    body {
-      margin: 0; padding: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
+    
+    body { margin: 0; padding: 0; display: flex; height: 100vh; overflow: hidden; font-family: 'Inter', sans-serif; background-color: var(--bg-primary); color: var(--text-primary); }
+    
+    #sidebar {
+      width: 280px;
+      min-width: 280px;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(15px);
+      border-right: 1px solid var(--border-subtle);
+      height: 100vh;
+      position: relative;
+      left: 0; top: 0;
+      overflow-y: auto;
+      transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
       display: flex;
       flex-direction: column;
+    }
+    #sidebar.hidden { margin-left: -280px; }
+    
+    .sidebar-header { padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .back-btn { display: flex; align-items: center; gap: 10px; color: var(--text-primary); text-decoration: none; font-weight: 600; font-size: 0.95rem; background: var(--bg-card); padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border-subtle); transition: all 0.2s; }
+    .back-btn:hover { background: var(--accent); border-color: var(--accent); }
+    .container { display: flex; max-width: 1200px; margin: 0 auto; height: 100%; position: relative; }
+    
+    .nav-h2 { display: block; padding: 12px 24px 4px 24px; font-size: 0.85rem; font-weight: 800; color: #ec4899; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
+    .nav-h3 { display: block; padding: 8px 24px 8px 36px; font-size: 0.8rem; color: var(--text-secondary); text-decoration: none; transition: all 0.2s; border-left: 3px solid transparent; }
+    .nav-h3:hover { color: var(--text-primary); background: rgba(255,255,255,0.03); }
+    
+    #main-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 60px 60px 60px;
+      position: relative;
+      scroll-behavior: smooth;
+    }
+
+    .toggle-btn {
+      position: sticky; top: 0px; z-index: 99; margin-bottom: 20px; margin-left: -40px;
+      background: var(--bg-card); border: 1px solid var(--border-subtle); color: var(--text-primary);
+      padding: 10px 15px; border-radius: 8px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; font-weight: 600; font-size: 0.9rem;
+    }
+    .toggle-btn:hover { background: var(--accent); border-color: var(--accent); }
+
+    .content-container { max-width: 900px; margin: 0 auto; }
+    .page-title { font-size: 3.2rem; font-weight: 900; margin-bottom: 15px; background: linear-gradient(135deg, #fff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1; text-align: center; }
+    .page-subtitle { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 60px; line-height: 1.6; text-align: center; max-width: 800px; margin-inline: auto; }
+    
+    .theme-title { font-size: 2.2rem; font-weight: 800; margin: 80px 0 30px 0; padding-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,0.1); color: #fff; scroll-margin-top: 100px; }
+    .subtheme-title { font-size: 1.4rem; font-weight: 700; margin: 45px 0 15px 0; color: #fbcfe8; scroll-margin-top: 100px; }
+    
+    .box { background: rgba(255,255,255,0.03); padding: 24px; border-radius: 12px; border: 1px solid var(--border-subtle); position: relative; overflow: hidden; }
+    
+    .recipe-step { display: flex; gap: 15px; margin-bottom: 20px; }
+    .recipe-number { flex-shrink: 0; width: 32px; height: 32px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; }
+    .recipe-content { flex: 1; }
+    .recipe-content p { margin-top: 0; line-height: 1.6; color: #d1d5db; }
+    
+    /* Code styling */
+    pre, code { font-family: 'Fira Code', 'JetBrains Mono', monospace !important; }
+    code:not([class*="language-"]) { background: rgba(0,0,0,0.4) !important; padding: 2px 6px; border-radius: 4px; color: #f3f4f6 !important; font-weight: 600; border: 1px solid rgba(255,255,255,0.05); }
+    
+    .sql-example {
+      background: #1e1e1e;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.05);
+      overflow: hidden;
+    }
+    .sql-example-header {
+      background: #2d2d2d;
+      padding: 10px 16px;
+      display: flex;
       align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-    .back-btn {
+    .mac-buttons { display: flex; gap: 8px; }
+    .mac-btn { width: 12px; height: 12px; border-radius: 50%; }
+    .mac-btn.close { background: #ff5f56; }
+    .mac-btn.minimize { background: #ffbd2e; }
+    .mac-btn.maximize { background: #27c93f; }
+    .sql-example h5 {
       position: absolute;
-      top: 20px; left: 20px;
-      display: inline-flex; align-items: center; gap: 8px;
-      color: var(--text-secondary); text-decoration: none;
-      font-weight: 500; padding: 10px 16px;
-      background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border-subtle);
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      color: #a0a0a0;
+      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
     }
-    .back-btn:hover { color: var(--text-primary); border-color: var(--accent); }
-    h1 { font-size: 2.5rem; margin-bottom: 10px; }
-    p { color: var(--text-secondary); font-size: 1.1rem; }
+    .sql-example-body { padding: 15px; overflow-x: auto; overflow-y: hidden; }
+    
+    /* Intro spacing */
+    .clasificacion-lista li { margin-bottom: 25px; }
+    .sql-example-body pre { margin: 0 !important; background: transparent !important; padding: 0 !important; font-family: 'JetBrains Mono', monospace !important; font-weight: bold !important; font-size: 0.95rem; line-height: 1.5; color: #f8f8f2; overflow-y: hidden !important; }
+    
+    .nav-h3.active { color: #fff; background: rgba(59, 130, 246, 0.15); border-left-color: var(--accent); font-weight: 600; }
+    .nav-h2.active { color: #fff; background: rgba(59, 130, 246, 0.15); font-weight: 600; }
+    
+    @media (max-width: 850px) {
+      body { flex-direction: column; height: auto; overflow-y: auto; }
+      #sidebar { width: 100%; min-width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-subtle); position: relative; z-index: 100; flex-direction: column; }
+      .sidebar-content { display: flex; flex-direction: row; overflow-x: auto; overflow-y: hidden; white-space: nowrap; padding: 10px 15px; -webkit-overflow-scrolling: touch; align-items: center; }
+      .nav-h2 { display: inline-block; padding: 8px 15px; margin-right: 10px; font-size: 0.8rem; background: rgba(16,185,129,0.1); border-radius: 8px; border-bottom: none; }
+      .nav-h3 { display: inline-block; padding: 8px 12px; font-size: 0.85rem; border-left: none; }
+      #main-content { overflow-y: visible; padding: 25px 15px; margin-left: 0; }
+      .toggle-btn { margin-left: 0; }
+    }
   </style>
 </head>
-<body>
-  <a href="#" onclick="if(window.history.length > 1 && document.referrer.includes(window.location.host)) { window.history.back(); return false; } else { window.location.href = '../index.html'; return false; }" class="back-btn">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    Volver al Portal
-  </a>
-  <h1>✍️ Guía de Ejercicios — SI</h1>
-  <div style="display:flex; flex-direction:column; gap:16px; margin-top: 30px; width: 100%; max-width: 400px;">
-  <a href="examen_junio_2026.html" style="background: var(--bg-card); padding: 16px; border-radius: 8px; color: var(--text-primary); text-decoration: none; border: 1px solid var(--border-subtle); transition: all 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border-subtle)'">EXAMEN SI Junio 2026</a>
-  <a href="examen_2023.html" style="background: var(--bg-card); padding: 16px; border-radius: 8px; color: var(--text-primary); text-decoration: none; border: 1px solid var(--border-subtle); transition: all 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border-subtle)'">Examen SI 2023</a>
-  <a href="examen_2024.html" style="background: var(--bg-card); padding: 16px; border-radius: 8px; color: var(--text-primary); text-decoration: none; border: 1px solid var(--border-subtle); transition: all 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border-subtle)'">Examen SI 2024</a>
-  <a href="examen_julio_2025.html" style="background: var(--bg-card); padding: 16px; border-radius: 8px; color: var(--text-primary); text-decoration: none; border: 1px solid var(--border-subtle); transition: all 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border-subtle)'">Examen SI Julio 2025</a>
-  <a href="examen_mayo_2025.html" style="background: var(--bg-card); padding: 16px; border-radius: 8px; color: var(--text-primary); text-decoration: none; border: 1px solid var(--border-subtle); transition: all 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border-subtle)'">Examen SI Mayo 2025</a>
+<body class="line-numbers">
+  
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Volver al Portal
+      </a>
+    </div>
+    <div class="sidebar-content" id="nav-links">
+      <!-- Generated automatically -->
+    </div>
+  </nav>
+
+  <main id="main-content">
+    
+    <button id="toggle-sidebar" class="toggle-btn">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+</button>
+
+<div class="content-container">
+  <div style="text-align: center; margin-bottom: 50px;">
+    <h1 class="page-title">Resolución de Ejercicios</h1>
+    <p style="font-size: 1.1rem; line-height: 1.8; color: #9ca3af; margin: 15px auto 0; max-width: 800px;">
+      <strong style="color: #e5e7eb;">Desglose paso a paso de problemas reales de convocatorias anteriores.</strong> Aprende a aplicar la teoría, reconoce los patrones del examinador y asegura la máxima puntuación en la parte práctica de Sistemas Inteligentes.
+    </p>
+  </div>
+
+<section id="clasificacion">
+  <h2 class="theme-title" style="border-bottom-color: var(--accent); color: var(--accent);">📊 1. CLASIFICACIÓN DE EJERCICIOS</h2>
+  <div class="box">
+    <p style="color: #d1d5db; line-height: 1.6; margin-bottom: 20px;">Tras diseccionar los 5 exámenes oficiales, los problemas prácticos de Sistemas Inteligentes se dividen en <strong>9 grandes tipos</strong>.</p>
+    <div class="grid-2" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 10px;">
+
+    <div class="box" style="border-top: 3px solid #14b8a6;">
+      <h4 style="color: #14b8a6; margin-top: 0;">Tipo A: Traza de algoritmo de búsqueda sobre grafo</h4>
+      <p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Dado un grafo con nodos (letra + valor h) y aristas (coste), aplicar un algoritmo (A*, Avara, UCS, IDS) y determinar: el camino solución, el coste total, la configuración de la frontera o qué nodos se expanden.</p>
+      <div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+        <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
+        <span style="font-size: 0.85rem;">Para A* en grafo, se descarta la reapertura de nodos cerrados aunque se encuentre un camino mejor (si la heurística no es consistente). El camino óptimo de A* ≠ camino de avara.</span>
+      </div>
+    </div>
+    
+    <div class="box" style="border-top: 3px solid #ef4444;">
+      <h4 style="color: #ef4444; margin-top: 0;">Tipo B: Verificación de admisibilidad y consistencia</h4>
+      <p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Dado el grafo, comprobar si h(n) ≤ h*(n) (admisibilidad) y si h(n) ≤ c(n,n') + h(n') para cada arista (consistencia). Concluir si A* garantiza el óptimo.</p>
+      <div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+        <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
+        <span style="font-size: 0.85rem;">Basta encontrar UNA arista que viole la desigualdad para demostrar inconsistencia. La admisibilidad se viola si para algún nodo h(n) > coste real al destino.</span>
+      </div>
+    </div>
+    
+    <div class="box" style="border-top: 3px solid #a855f7;">
+      <h4 style="color: #a855f7; margin-top: 0;">Tipo C: Identificación de algoritmo por tabla de explorados</h4>
+      <p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Dada la secuencia de nodos extraídos de la frontera, deducir qué algoritmo produjo esa traza (BFS, UCS, DFS).</p>
+      <div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+        <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
+        <span style="font-size: 0.85rem;">UCS puede dar la misma secuencia que BFS si todos los costes son iguales. La diferencia está en si extrae por coste o por orden de inserción.</span>
+      </div>
+    </div>
+    
+    <div class="box" style="border-top: 3px solid #f59e0b;">
+      <h4 style="color: #f59e0b; margin-top: 0;">Tipo D: Encadenamiento progresivo con reglas</h4>
+      <p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Dada una memoria activa inicial y reglas IF-THEN, trazar el ciclo de inferencia paso a paso hasta inferir la hipótesis objetivo.</p>
+      <div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+        <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
+        <span style="font-size: 0.85rem;">El orden de aplicación importa: si dos reglas se activan simultáneamente, se aplica la de mayor prioridad. Los hechos nuevos activan reglas que antes no disparaban.</span>
+      </div>
+    </div>
+    
+    <div class="box" style="border-top: 3px solid #10b981;">
+      <h4 style="color: #10b981; margin-top: 0;">Tipo E: Construcción de BLE y BLR + Inferencia</h4>
+      <p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Construir la BLE, aplicar las reglas categóricas para eliminar columnas y obtener la BLR. Luego inferir interpretaciones a partir de manifestaciones dadas.</p>
+      <div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+        <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
+        <span style="font-size: 0.85rem;">Una regla 'A → B' falla SOLAMENTE cuando A=1 y B=0. Si A=0, la regla se cumple automáticamente independientemente de B. La BLR puede quedar vacía.</span>
+      </div>
+    </div>
+    
+    <div class="box" style="border-top: 3px solid #3b82f6;">
+      <h4 style="color: #3b82f6; margin-top: 0;">Tipo F: Corrección bayesiana sobre BLR</h4>
+      <p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Dado el resultado del modelo categórico (BLR), aplicar P(m|i) y P(i) a priori para calcular P(i|m) y determinar la interpretación más probable mediante Bayes.</p>
+      <div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+        <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
+        <span style="font-size: 0.85rem;">Cuando el modelo categórico deja solo una interpretación posible, aplicar Bayes es inútil: la respuesta ya está determinada por exclusión.</span>
+      </div>
+    </div>
+    
+    <div class="box" style="border-top: 3px solid #8b5cf6;">
+      <h4 style="color: #8b5cf6; margin-top: 0;">Tipo G: Tamaño BLE/BLR y espacio de estados</h4>
+      <p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Con M manifestaciones e I interpretaciones, calcular el tamaño de la BLE = 2^(M+I). Calcular complejos que sobreviven (BLR).</p>
+      <div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+        <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
+        <span style="font-size: 0.85rem;">El tamaño de la BLE no es M×I sino 2^M × 2^I (todas las combinaciones binarias posibles).</span>
+      </div>
+    </div>
+    
+    <div class="box" style="border-top: 3px solid #ec4899;">
+      <h4 style="color: #ec4899; margin-top: 0;">Tipo H: Probabilidad en Computación Evolutiva (AG)</h4>
+      <p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Dado el tamaño de población y tasa de mutación/cruce, calcular individuos afectados (o viceversa).</p>
+      <div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+        <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
+        <span style="font-size: 0.85rem;">La tasa de mutación es por individuo, no por gen. Si Pm=0.1 y hay 1000 individuos, se esperan 100 mutados.</span>
+      </div>
+    </div>
+    
+    <div class="box" style="border-top: 3px solid #f97316;">
+      <h4 style="color: #f97316; margin-top: 0;">Tipo I: Análisis de árbol de Programación Genética</h4>
+      <p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Identificar nodos terminales (hojas), no terminales (operadores), profundidad máxima y comprobar si está equilibrado.</p>
+      <div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+        <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
+        <span style="font-size: 0.85rem;">Los terminales son las HOJAS (tanto variables como constantes). Los no terminales son siempre los OPERADORES. La profundidad suele contarse desde nivel 0 o 1.</span>
+      </div>
+    </div>
+    </div></div></section>
+
+
+<section id="metodo">
+  <h2 class="theme-title" style="border-bottom-color: var(--accent); color: var(--accent);">🛠️ 2. MÉTODO GENERAL DE RESOLUCIÓN (Recetas)</h2>
+
+    <h3 class="subtheme-title">Receta A: Traza de búsqueda sobre grafo</h3>
+    <div class="box">
+      <strong>Procedimiento Universal:</strong>
+    
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">1</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Inicializar:</strong> Frontera = {nodo_inicial con f = g + h}. Lista Cerrados = {}. Para IDS: profundidad_límite = 0.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">2</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Iterar:</strong> Extraer el nodo de menor f (A*), menor h (Avara), menor g (UCS), o FIFO/LIFO/DFS según el algoritmo. Moverlo a Cerrados.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">3</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Expandir:</strong> Calcular f(sucesor) = g(nodo) + coste_arista + h(sucesor). Si el sucesor ya está en Cerrados (búsqueda en grafo), descartarlo. Si ya está en Frontera con mayor f, actualizar.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">4</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Comprobar meta:</strong> Si el nodo extraído es la meta, reconstruir el camino hacia atrás siguiendo los nodos padre.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">5</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Registrar la traza:</strong> En cada paso anota el estado de la frontera con el formato: <code>{nodo(f=X), nodo(f=Y), ...}</code> ordenado de menor a mayor f.</p>
+          </div>
+        </div>
+        </div>
+
+    <h3 class="subtheme-title">Receta B: Verificación de admisibilidad y consistencia</h3>
+    <div class="box">
+      <strong>Procedimiento Universal:</strong>
+    
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">1</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Admisibilidad:</strong> Para cada nodo n, calcular h*(n) = coste real del camino óptimo desde n hasta la meta. Comprobar que h(n) ≤ h*(n). Basta un nodo donde h > h* para demostrar no admisibilidad.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">2</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Consistencia (nodo a nodo):</strong> Para cada arista n → n' con coste c(n,n'), verificar: h(n) ≤ c(n,n') + h(n'). Si alguna arista la viola: la heurística NO es consistente.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">3</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Conclusión:</strong> Consistente → admisible (pero no al revés). Si inconsistente: A* en grafo puede no ser óptimo sin reabrir nodos.</p>
+          </div>
+        </div>
+        </div>
+
+    <h3 class="subtheme-title">Receta C: Identificación de algoritmo por traza</h3>
+    <div class="box">
+      <strong>Procedimiento Universal:</strong>
+    
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">1</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;">Comprobar si la secuencia sigue orden BFS (nivel por nivel, alfabético dentro de cada nivel).</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">2</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;">Comprobar si la secuencia sigue orden de menor coste g(n) acumulado → UCS.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">3</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;">Comprobar si la secuencia va siempre al nodo más profundo → DFS.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">4</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;">Si los costes son todos iguales y la secuencia es por niveles → tanto BFS como UCS (indistinguibles).</p>
+          </div>
+        </div>
+        </div>
+
+    <h3 class="subtheme-title">Receta D: Encadenamiento progresivo (Forward Chaining)</h3>
+    <div class="box">
+      <strong>Procedimiento Universal:</strong>
+    
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">1</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Estado inicial:</strong> Memoria Activa (MA) = hechos dados.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">2</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Emparejamiento:</strong> Busca todas las reglas cuyas premisas estén completamente en MA → Conjunto Conflicto.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">3</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Resolución:</strong> Elige la regla con mayor prioridad (o la primera según el criterio dado).</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">4</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Acción:</strong> Añade el consecuente de la regla a MA. Repetir ciclo hasta inferir hipótesis o agotar reglas.</p>
+          </div>
+        </div>
+        </div>
+
+    <h3 class="subtheme-title">Receta E: Construcción de BLE y BLR</h3>
+    <div class="box">
+      <strong>Procedimiento Universal:</strong>
+    
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">1</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Paso 1 — BLE:</strong> Con M manifestaciones e I interpretaciones, la tabla tiene 2^M × 2^I columnas (todas las combinaciones binarias).</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">2</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Paso 2 — Aplicar reglas:</strong> Para cada regla 'A → B', evaluar en cada columna. Si A=1 y B=0 → la columna viola la regla → <strong>ELIMINAR</strong>. Si A=0, se cumple automáticamente.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">3</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Paso 3 — BLR:</strong> Las columnas no eliminadas forman la BLR.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">4</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Paso 4 — Inferencia:</strong> Dado un m_obs, buscar en la BLR las columnas donde las manifestaciones coinciden. Las interpretaciones de esas columnas son las compatibles.</p>
+          </div>
+        </div>
+        </div>
+
+    <h3 class="subtheme-title">Receta F: Corrección bayesiana</h3>
+    <div class="box">
+      <strong>Procedimiento Universal:</strong>
+    
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">1</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Aplicabilidad:</strong> Solo aplicar si hay varias interpretaciones supervivientes en la BLR tras la inferencia categórica.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">2</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Paso 1:</strong> Calcular $P(m_{obs} | i_k) = \prod_j P(m_j | i_k)^{x_j} \cdot (1-P(m_j|i_k))^{1-x_j}$</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">3</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Paso 2:</strong> Calcular la probabilidad conjunta $P(m_{obs} | i_k) \cdot P(i_k)$.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">4</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Paso 3:</strong> Normalizar sumando todas las probabilidades conjuntas para obtener $P(i_k | m_{obs})$.</p>
+          </div>
+        </div>
+        </div>
+
+    <h3 class="subtheme-title">Receta G: Tamaño BLE y espacio de estados</h3>
+    <div class="box">
+      <strong>Procedimiento Universal:</strong>
+    
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">1</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;">Tamaño de la BLE = $2^{\text{Total variables}} = 2^{M + I}$.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">2</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;">Espacio de estados STRIPS con N variables booleanas = $2^N$.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">3</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;">Complejos de la BLR = evaluar BLE y contar supervivientes.</p>
+          </div>
+        </div>
+        </div>
+
+    <h3 class="subtheme-title">Receta H: Probabilidades en AG</h3>
+    <div class="box">
+      <strong>Procedimiento Universal:</strong>
+    
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">1</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;">Individuos mutados = Tamaño_población × Pm.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">2</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;">Individuos cruzados = Tamaño_población × Pc.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">3</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;">Tasa de mutación Pm = mutados / población.</p>
+          </div>
+        </div>
+        </div>
+
+    <h3 class="subtheme-title">Receta I: Análisis de árbol GP</h3>
+    <div class="box">
+      <strong>Procedimiento Universal:</strong>
+    
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">1</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Identificar hojas:</strong> Variables y constantes. Son TODOS los nodos sin hijos.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">2</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Identificar operadores:</strong> Son TODOS los nodos con al menos un hijo (no terminales).</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">3</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Profundidad:</strong> Nivel de la raíz = 0 o 1. Profundidad máxima = nivel de la hoja más profunda.</p>
+          </div>
+        </div>
+        
+        <div class="recipe-step" style="margin-top:10px;">
+          <div class="recipe-number">4</div>
+          <div class="recipe-content">
+            <p style="color: #d1d5db; margin: 0;"><strong>Equilibrio:</strong> Un árbol está equilibrado si todas las hojas están al mismo nivel (o difieren a lo sumo en 1).</p>
+          </div>
+        </div>
+        </div>
+</section>
+
+<section id="examenes">
+<h2 class="theme-title" style="border-bottom-color: var(--accent); color: var(--accent);">📝 3. RESOLUCIÓN DE EXÁMENES OFICIALES</h2>
+
+        <h3 class="subtheme-title">Examen SI 2023 | Preguntas P1-3. [Tipo A: A* sobre grafo1]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 1. Búsqueda A* sobre Grafo
+
+Dado el siguiente grafo, en donde (i) el nodo inicial es $A$ y el nodo meta es $G$, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística $h$, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados:
+
+![[grafo1.png]]
+
+Aplicando el algoritmo A* basado en **grafo**, en algún paso, los nodos de la frontera vendrán dispuestos según la siguiente configuración (considerar precedencia izq a drch, que el número entre paréntesis representa el correspondiente valor $f$, $f=h+g$, y que en caso de empate en valor $f$, la precedencia de expansión vendrá dada por el orden alfabético de los nodos correspondientes):
+
+- [ ] a) E(20), D(22)
+    
+- [ ] b) B(20), E(20), D(22)
+    
+- [ ] c) E(20), D(21)
+    
+- [ ] d) B(20), E(21), D(22)
+    
+
+</h5>### 1. Búsqueda A* sobre Grafo<br><br>Dado el siguiente grafo, en donde (i) el nodo inicial es $A$ y el nodo meta es $G$, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística $h$, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados:<br><br><img src="../assets/images/grafo1.png" style="max-width:100%; border-radius:8px; margin:10px 0;"><br><br>Aplicando el algoritmo A* basado en <strong>grafo</strong>, en algún paso, los nodos de la frontera vendrán dispuestos según la siguiente configuración (considerar precedencia izq a drch, que el número entre paréntesis representa el correspondiente valor $f$, $f=h+g$, y que en caso de empate en valor $f$, la precedencia de expansión vendrá dada por el orden alfabético de los nodos correspondientes):<br><br><input type="radio" disabled> a) E(20), D(22)<br>    <br><input type="radio" disabled> b) B(20), E(20), D(22)<br>    <br><input type="radio" disabled> c) E(20), D(21)<br>    <br><input type="radio" disabled> d) B(20), E(21), D(22)<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 2. Optimalidad en el algoritmo A*
+
+En el mismo problema de la pregunta 1, ¿obtiene el algoritmo A* una solución óptima?
+
+- [ ] a) No, la heurística no es admisible.
+    
+- [ ] b) No, la heurística no es consistente.
+    
+- [ ] c) Si, ya que la heurística es admisible.
+    
+- [ ] d) Si, pero de casualidad, ya que la heurística no es consistente.
+    
+
+</h5>### 2. Optimalidad en el algoritmo A*<br><br>En el mismo problema de la pregunta 1, ¿obtiene el algoritmo A* una solución óptima?<br><br><input type="radio" disabled> a) No, la heurística no es admisible.<br>    <br><input type="radio" disabled> b) No, la heurística no es consistente.<br>    <br><input type="radio" disabled> c) Si, ya que la heurística es admisible.<br>    <br><input type="radio" disabled> d) Si, pero de casualidad, ya que la heurística no es consistente.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 3. Ejecución de la Búsqueda Avara
+
+En el mismo problema de la pregunta 1, indica la secuencia del camino devuelto utilizando, esta vez, la búsqueda avara:
+
+- [ ] a) A $\rightarrow$ B $\rightarrow$ D $\rightarrow$ G
+    
+- [ ] b) A $\rightarrow$ C $\rightarrow$ B $\rightarrow$ D $\rightarrow$ G
+    
+- [ ] c) A $\rightarrow$ C $\rightarrow$ E $\rightarrow$ G
+    
+- [ ] d) Ninguno de los anteriores
+    
+
+</h5>### 3. Ejecución de la Búsqueda Avara<br><br>En el mismo problema de la pregunta 1, indica la secuencia del camino devuelto utilizando, esta vez, la búsqueda avara:<br><br><input type="radio" disabled> a) A $\rightarrow$ B $\rightarrow$ D $\rightarrow$ G<br>    <br><input type="radio" disabled> b) A $\rightarrow$ C $\rightarrow$ B $\rightarrow$ D $\rightarrow$ G<br>    <br><input type="radio" disabled> c) A $\rightarrow$ C $\rightarrow$ E $\rightarrow$ G<br>    <br><input type="radio" disabled> d) Ninguno de los anteriores<br>    <br><br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 1.</h5><br><br><strong>Opción correcta: a)</strong><br><br>En el algoritmo A* basado en <strong>grafo</strong>, se mantiene una lista de nodos "Cerrados" (Explorados). Si la heurística no es consistente (como ocurre aquí, ya que $h(A)=25 \not\le c(A,C)+h(C) = 2+20=22$), la versión estricta del algoritmo en grafo <strong>no reabre nodos que ya han sido cerrados</strong>, aunque encuentre un camino mejor hacia ellos (este es el motivo por el que en la pregunta 2 del examen se afirma que A* en este problema encuentra el óptimo "de casualidad").<br><br>Realizamos la traza paso a paso usando la ecuación $f(n) = g(n) + h(n)$:<br><br>1. <strong>Paso 1:</strong> Se expande el inicial $A$.<br>    <br>    - Genera $B$ ($g=5, h=16 \rightarrow f=21$) y $C$ ($g=2, h=20 \rightarrow f=22$).<br>        <br>    - <strong>Frontera:</strong> `[B(21), C(22)]`. <strong>Cerrados:</strong> `{A}`.<br>        <br>2. <strong>Paso 2:</strong> Se expande $B$ (por tener el menor valor $f$).<br>    <br>    - Genera $D$ ($g=5+7=12, h=10 \rightarrow f=22$).<br>        <br>    - <strong>Frontera:</strong> `[C(22), D(22)]` (por empate $f$, orden alfabético). <strong>Cerrados:</strong> `{A, B}`.<br>        <br>3. <strong>Paso 3:</strong> Se expande $C$.<br>    <br>    - Genera $E$ ($g=2+10=12, h=8 \rightarrow f=20$).<br>        <br>    - También encuentra una nueva ruta hacia $B$ con menor coste ($g=2+2=4 \rightarrow f=20$).<br>        <br>    - <strong>Punto clave:</strong> Como estamos en búsqueda sobre <em>grafo</em>, el algoritmo comprueba si el nodo $B$ ya ha sido expandido. Como $B$ ya está en la lista de Cerrados `{A, B}`, la nueva ruta hacia él <strong>se descarta</strong> y el nodo no se reabre.<br>        <br>    - <strong>Frontera resultante:</strong> Tras añadir solo $E$, la frontera queda conformada por el nuevo nodo $E$ y el nodo $D$ que ya estaba esperando: <strong>`[E(20), D(22)]`</strong>.<br>        <br><br>Esta configuración coincide exactamente con la opción <strong>a</strong>.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 2.</h5><br><br><strong>Opción correcta: d)</strong><br><br>Para que el algoritmo A* garantice teóricamente una solución óptima al recorrer un grafo, su heurística debe ser consistente (monótona) y admisible. Una heurística es admisible si nunca sobreestima el coste real hacia la meta. Si observamos el grafo del ejercicio, desde el nodo $E$ hasta la meta $G$ el coste real es de $2$, pero su estimación heurística marca $h(E) = 8$. Como $8 2$, la heurística sobreestima flagrantemente el coste y <strong>no es admisible</strong> (y por consiguiente, tampoco es consistente). <br><br>Prueba adicional de que no es consistente (de A a C):<br><br>Una heurística es consistente si el coste estimado desde un nodo a la meta no es mayor que el coste de dar un salto físico hacia su vecino más la estimación de dicho vecino. La inecuación matemática que debes aplicar siempre es: $h(n)≤c(n,n′)+h(n′)$.<br><br>Para saber si C cumple la regla, calculamos lo mismo de siempre<br><br> - La estimación dentro del nodo A es h(A)=25.<br>  - El coste de la flecha para viajar de A hacia C es c(A,C)=2.<br>  - La estimación dentro del nodo C es h(C)=20.<br>  <br>>- <strong>El cálculo:</strong> Sustituimos los números en la inecuación: ¿Es 25≤2+20? Es decir, <strong>¿Es</strong> 25≤22<strong>?</strong> No, la inecuación es falsa porque 25 es mayor que 22.<br><br>A pesar de esto, si ejecutamos el algoritmo paso a paso, A* acaba encontrando la ruta óptima de coste 14. Al lograrlo con una heurística que rompe las reglas teóricas, lo hace estrictamente <strong>"de casualidad"</strong>. <em>(Nota: Descarta plantillas libres que marquen la opción 'c', ya que matemáticamente la heurística es inadmisible).</em><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 3.</h5><br><br><strong>Opción correcta: a)</strong><br><br>A diferencia de A*, el algoritmo de Búsqueda Avara (<em>Greedy Best-First</em>) es corto de miras y toma sus decisiones guiándose exclusivamente por el menor valor de la heurística $h(n)$ en la frontera, ignorando por completo el coste real acumulado $g(n)$.<br><br>Ejecutando el recorrido:<br><br>1. Desde $A$, se abren los caminos hacia $B$ ($h=16$) y $C$ ($h=20$). Como $16 < 20$, la búsqueda avara elige $B$.<br>    <br>2. Desde $B$, se abre el camino a $D$ ($h=10$). Elige $D$.<br>    <br>3. Desde $D$, se abren caminos a $E$ ($h=8$) y $G$ ($h=0$). Elige la meta $G$.<br>  <br><br>El camino devuelto ciegamente es <strong>A $\rightarrow$ B $\rightarrow$ D $\rightarrow$ G</strong>. <em>(Nota: Las plantillas no oficiales de Wuolah indican la opción C, pero ese es el camino que devuelve A</em>, no la búsqueda avara).*<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">Examen SI 2023 | Preguntas P4. [Tipo A: Búsqueda Avara sobre grafo1]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 4. Búsqueda de Coste Uniforme (UCS)
+
+En la búsqueda de coste uniforme:
+
+- [ ] a) Cada operador aplicable siempre tendrá el mismo coste.
+    
+- [ ] b) Cualquier camino solución encontrado tendrá siempre el mismo coste.
+    
+- [ ] c) Cualquier camino solución encontrado tendrá siempre el mismo número de pasos.
+    
+- [ ] d) Cualquier camino solución encontrado tendrá siempre el mínimo número de pasos.
+    
+- [ ] e) Ninguna de las anteriores.
+    
+
+</h5>### 4. Búsqueda de Coste Uniforme (UCS)<br><br>En la búsqueda de coste uniforme:<br><br><input type="radio" disabled> a) Cada operador aplicable siempre tendrá el mismo coste.<br>    <br><input type="radio" disabled> b) Cualquier camino solución encontrado tendrá siempre el mismo coste.<br>    <br><input type="radio" disabled> c) Cualquier camino solución encontrado tendrá siempre el mismo número de pasos.<br>    <br><input type="radio" disabled> d) Cualquier camino solución encontrado tendrá siempre el mínimo número de pasos.<br>    <br><input type="radio" disabled> e) Ninguna de las anteriores.<br>    <br><br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 4.</h5><br><br><strong>Opción correcta: e)</strong><br><br>La Búsqueda de Coste Uniforme (UCS) es un algoritmo óptimo guiado exclusivamente por la función $g(n)$ (coste acumulado del camino). Su garantía teórica es que encuentra el camino de <strong>mínimo coste absoluto</strong> hacia la meta.<br><br>• La a) es falsa, los operadores pueden (y suelen) tener costes distintos.<br>    <br>• La b) es falsa/ambigua: el algoritmo devolverá el camino de coste mínimo, no significa que todos los caminos imaginables del grafo midan lo mismo.<br>    <br>• Las c) y d) son falsas porque la optimización por pasos (mínimo número de saltos) es característica exclusiva de la <strong>Búsqueda en Amplitud (BFS)</strong>, no de UCS. Por ello, la opción e) es la única lógicamente rigurosa.<br>><hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">Examen SI 2023 | Preguntas P6. [Tipo A especial: Hill-Climbing y arbol1]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 6. Escalada (Hill-Climbing) y Árboles
+
+En el contexto del algoritmo de escalada en búsqueda local, el siguiente árbol de búsqueda se corresponde con una situación de: 
+![[arbol1.png]]
+- [ ] a) Mínimo local.
+    
+- [ ] b) Máximo local.
+    
+- [ ] c) Meseta.
+    
+- [ ] d) Cresta.
+    
+- [ ] e) Ninguna de las anteriores, ya que dicho desarrollo nunca podría darse aplicando la búsqueda de escalada.
+    
+
+</h5>### 6. Escalada (Hill-Climbing) y Árboles<br><br>En el contexto del algoritmo de escalada en búsqueda local, el siguiente árbol de búsqueda se corresponde con una situación de: <br><img src="../assets/images/arbol1.png" style="max-width:100%; border-radius:8px; margin:10px 0;"><br><input type="radio" disabled> a) Mínimo local.<br>    <br><input type="radio" disabled> b) Máximo local.<br>    <br><input type="radio" disabled> c) Meseta.<br>    <br><input type="radio" disabled> d) Cresta.<br>    <br><input type="radio" disabled> e) Ninguna de las anteriores, ya que dicho desarrollo nunca podría darse aplicando la búsqueda de escalada.<br>    <br><br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 6.</h5><br><br><strong>Opción correcta: e)</strong><br><br>Se trata de una "pregunta trampa" clásica. A diferencia de A* o Búsqueda en Anchura, el algoritmo de Escalada Simple (<em>Hill-Climbing</em>) pertenece a la familia de métodos de <strong>Búsqueda Local</strong>. La característica teórica definitoria de esta familia es que <strong>no conservan ni generan un "árbol de búsqueda" en memoria</strong> (operan sin historial). Solamente guardan el "estado actual" y evalúan a sus vecinos inmediatos para decidir el siguiente paso. Por lo tanto, es algorítmica y estructuralmente imposible que <em>Hill-Climbing</em> produzca la representación de un árbol de exploración.<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">Examen SI 2023 | Preguntas P20-22. [Tipo E: BLE/BLR con tabla de manifestaciones]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 20. Estructura Tradicional de Capas en SOM
+
+Los Mapas Autoorganizativos (SOM) tienen normalmente...
+
+- [ ] a) Una capa de entrada, tres o cuatro capas ocultas y una capa de salida
+    
+- [ ] b) Una única capa que es de entrada y salida
+    
+- [ ] c) Una capa de entrada y una capa de salida
+    
+- [ ] d) Una capa de neuronas recurrentes y autoorganizables
+    
+- [ ] e) Todas las anteriores son incorrectas
+    
+
+</h5>### 20. Estructura Tradicional de Capas en SOM<br><br>Los Mapas Autoorganizativos (SOM) tienen normalmente...<br><br><input type="radio" disabled> a) Una capa de entrada, tres o cuatro capas ocultas y una capa de salida<br>    <br><input type="radio" disabled> b) Una única capa que es de entrada y salida<br>    <br><input type="radio" disabled> c) Una capa de entrada y una capa de salida<br>    <br><input type="radio" disabled> d) Una capa de neuronas recurrentes y autoorganizables<br>    <br><input type="radio" disabled> e) Todas las anteriores son incorrectas<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 21. Aprendizaje No Supervisado
+
+En el aprendizaje no supervisado...
+
+- [ ] a) Se consiguen grupos con elementos similares dentro del mismo grupo.
+    
+- [ ] b) La autoorganización de la red permite hallar las clases supervisadas.
+    
+- [ ] c) Se trabaja con patrones etiquetados con tipo o clase.
+    
+- [ ] d) Si un patrón de entrada no pertenece a ningún grupo reconocido previamente, se descarta siempre.
+    
+- [ ] e) La B y la C son correctas.
+    
+
+</h5>### 21. Aprendizaje No Supervisado<br><br>En el aprendizaje no supervisado...<br><br><input type="radio" disabled> a) Se consiguen grupos con elementos similares dentro del mismo grupo.<br>    <br><input type="radio" disabled> b) La autoorganización de la red permite hallar las clases supervisadas.<br>    <br><input type="radio" disabled> c) Se trabaja con patrones etiquetados con tipo o clase.<br>    <br><input type="radio" disabled> d) Si un patrón de entrada no pertenece a ningún grupo reconocido previamente, se descarta siempre.<br>    <br><input type="radio" disabled> e) La B y la C son correctas.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 22. Representación en la Capa Competitiva (SOM)
+
+En un SOM...
+
+- [ ] a) Cada neurona de la capa competitiva representa siempre a un solo patrón de entrada.
+    
+- [ ] b) Cada neurona de la capa competitiva puede representar a un grupo de patrones de entrada.
+    
+- [ ] c) Cada neurona de la capa de entrada representa a un prototipo.
+    
+- [ ] d) Cada neurona de la capa de entrada se conecta con x neuronas y estas x conexiones constituyen un prototipo.
+    
+- [ ] e) La A y la C son correctas.
+    
+
+</h5>### 22. Representación en la Capa Competitiva (SOM)<br><br>En un SOM...<br><br><input type="radio" disabled> a) Cada neurona de la capa competitiva representa siempre a un solo patrón de entrada.<br>    <br><input type="radio" disabled> b) Cada neurona de la capa competitiva puede representar a un grupo de patrones de entrada.<br>    <br><input type="radio" disabled> c) Cada neurona de la capa de entrada representa a un prototipo.<br>    <br><input type="radio" disabled> d) Cada neurona de la capa de entrada se conecta con x neuronas y estas x conexiones constituyen un prototipo.<br>    <br><input type="radio" disabled> e) La A y la C son correctas.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 20.</h5><br><br><strong>Opción correcta: e)</strong> <em>(O la opción "c" si el docente la considera formal. Nota explicativa: En las plantillas oficiales de la UDC, la respuesta oficial validada es la "e").</em><br><br>Esta pregunta puede tener "truco" semántico, razón por la cual la plantilla oficial dictaminó la 'e'. A nivel estrictamente computacional, la red SOM solo posee <strong>1 única capa</strong> de células que procesan pesos (la capa competitiva topológica). La capa de "entrada" es un mero bus transparente que transmite las señales, no cuenta como capa de cálculo, por lo que llamarle arquitectura "de dos capas (entrada y salida)" es un error teórico en el conexionismo estricto de Kohonen.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 21.</h5><br><br><strong>Opción correcta: a)</strong><br><br>El objetivo principal del aprendizaje no supervisado (como el clustering o las redes SOM) es descubrir estructuras ocultas en datos no etiquetados. El sistema agrupa los patrones basándose exclusivamente en su similitud matemática (distancia euclídea), logrando que los elementos dentro de un mismo grupo (clúster) sean muy similares entre sí, y muy dispares respecto a los de otros grupos. (Las opciones B y C son falsas por definición al referirse a etiquetas/supervisión).<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 22.</h5><br><br><strong>Opción correcta: b)</strong><br><br>En los Mapas Auto-Organizativos de Kohonen, la matriz de pesos de cada neurona de la capa competitiva (salida) actúa como un centroide o prototipo. Dado que el número de neuronas del mapa suele ser muchísimo menor que el número total de datos del mundo real, múltiples patrones de entrada que sean topológicamente similares activarán (tendrán como BMU) a la misma neurona, haciendo que esta represente a todo ese clúster o "grupo" de patrones.<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">Examen SI 2023 | Preguntas P23. [Tipo F: Corrección bayesiana]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 23. Dimensionalidad en Redes Neuronales
+
+Si los patrones de entrada tienen diferentes dimensiones, la red más aconsejable para agruparlos es...
+
+- [ ] a) Un SOM.
+    
+- [ ] b) Una GNG.
+    
+- [ ] c) Un ADALINE.
+    
+- [ ] d) Una GCS.
+    
+- [ ] e) Ninguna de las anteriores.
+    
+
+</h5>### 23. Dimensionalidad en Redes Neuronales<br><br>Si los patrones de entrada tienen diferentes dimensiones, la red más aconsejable para agruparlos es...<br><br><input type="radio" disabled> a) Un SOM.<br>    <br><input type="radio" disabled> b) Una GNG.<br>    <br><input type="radio" disabled> c) Un ADALINE.<br>    <br><input type="radio" disabled> d) Una GCS.<br>    <br><input type="radio" disabled> e) Ninguna de las anteriores.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 23.</h5><br><br><strong>Opción correcta: e)</strong><br><br>Un axioma arquitectónico estricto de las Redes Neuronales Artificiales clásicas (incluyendo SOM, GNG, GCS y perceptrones) es que requieren tensores de entrada de tamaño fijo. La capa de entrada debe poseer exactamente un nodo por cada dimensión del patrón. Si los patrones del problema tienen "diferentes dimensiones" (vectores de tamaño variable), ninguna de estas redes puede procesarlos crudamente; requerirían algoritmos de preprocesamiento (como <em>padding</em>) o arquitecturas recurrentes (RNN) no contempladas en las opciones.<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">Examen SI 2024 | Preguntas P1-2. [Tipo A+B: Búsqueda avara + A* sobre grafo]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 1. Pregunta Omitida en el Original</h5>### 1. Pregunta Omitida en el Original<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 2. Búsqueda Avara (Greedy Best-First Search) - Concepto
+
+_(Enunciado reconstruido teóricamente debido a la ausencia del grafo original)_
+
+En un problema que aplica la Búsqueda Avara sobre un grafo, la pregunta final exige calcular la "longitud del camino" de la solución obtenida. ¿Cómo se determina dicha longitud?
+
+- [ ] a) Sumando los valores de la heurística $h(n)$ de los nodos visitados.
+    
+- [ ] b) Calculando la media entre $g(n)$ y $h(n)$.
+    
+- [ ] c) Sumando los costes reales $g(n)$ de la ruta obtenida.
+    
+- [ ] d) Contando simplemente el número de nodos visitados, asumiendo coste 1.
+    
+
+</h5>### 2. Búsqueda Avara (Greedy Best-First Search) - Concepto<br><br><em>(Enunciado reconstruido teóricamente debido a la ausencia del grafo original)</em><br><br>En un problema que aplica la Búsqueda Avara sobre un grafo, la pregunta final exige calcular la "longitud del camino" de la solución obtenida. ¿Cómo se determina dicha longitud?<br><br><input type="radio" disabled> a) Sumando los valores de la heurística $h(n)$ de los nodos visitados.<br>    <br><input type="radio" disabled> b) Calculando la media entre $g(n)$ y $h(n)$.<br>    <br><input type="radio" disabled> c) Sumando los costes reales $g(n)$ de la ruta obtenida.<br>    <br><input type="radio" disabled> d) Contando simplemente el número de nodos visitados, asumiendo coste 1.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 1. Representación del Conocimiento en RNA
+
+En una RNA, el conocimiento está en...
+
+- [ ] a) La función de transferencia.
+    
+- [ ] b) Los pesos y bias.
+    
+- [ ] c) Los valores dados por las salidas.
+    
+- [ ] d) El algoritmo de entrenamiento.
+    
+- [ ] e) La topología de la red.
+    
+
+</h5>### 1. Representación del Conocimiento en RNA<br><br>En una RNA, el conocimiento está en...<br><br><input type="radio" disabled> a) La función de transferencia.<br>    <br><input type="radio" disabled> b) Los pesos y bias.<br>    <br><input type="radio" disabled> c) Los valores dados por las salidas.<br>    <br><input type="radio" disabled> d) El algoritmo de entrenamiento.<br>    <br><input type="radio" disabled> e) La topología de la red.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 2. Conjuntos de Datos en el Aprendizaje
+
+El conjunto de datos utilizado para establecer el valor de los pesos de una RNA es conocido como...
+
+- [ ] a) Conjunto de prueba.
+    
+- [ ] b) Conjunto de validación.
+    
+- [ ] c) Conjunto de test.
+    
+- [ ] d) Conjunto de entrenamiento.
+    
+- [ ] e) Conjunto de normalización.
+    
+
+</h5>### 2. Conjuntos de Datos en el Aprendizaje<br><br>El conjunto de datos utilizado para establecer el valor de los pesos de una RNA es conocido como...<br><br><input type="radio" disabled> a) Conjunto de prueba.<br>    <br><input type="radio" disabled> b) Conjunto de validación.<br>    <br><input type="radio" disabled> c) Conjunto de test.<br>    <br><input type="radio" disabled> d) Conjunto de entrenamiento.<br>    <br><input type="radio" disabled> e) Conjunto de normalización.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 1.</h5>Resolución no disponible<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 2.</h5><br><br><strong>Opción correcta: c)</strong><br><br>En un ejercicio genérico de Búsqueda Avara, la respuesta final será la suma de los costes reales $g(n)$ de la ruta obtenida. El algoritmo evalúa los nodos de la frontera expandiendo siempre aquel que parece estar más cerca de la meta guiándose en exclusiva por el menor valor de la función heurística $h(n)$. Para resolver este tipo de preguntas visuales, se debe recorrer el grafo ciegamente hacia el nodo adyacente con menor $h(n)$ (ignorando el coste real $g(n)$ durante la toma de decisiones), pero, al llegar a la meta, se suman los costes de los arcos transitados ($g(n)$) para dar la longitud del camino real.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 1.</h5><br><br><strong>Opción correcta: b)</strong><br><br>A diferencia de los modelos de Inteligencia Artificial Simbólica (como los sistemas expertos o los árboles de búsqueda), que basan su inferencia en el almacenamiento de reglas o estados de conocimiento explícitos, el paradigma conexionista distribuye todo lo aprendido de forma puramente matemática. En las Redes Neuronales Artificiales (RNA), la huella del aprendizaje —la retención de la generalización del problema— reside intrínseca y exclusivamente en el valor paramétrico de la intensidad de sus conexiones sinápticas (los pesos) y en el de los niveles de activación base de la célula (los bias).<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 2.</h5><br><br><strong>Opción correcta: d)</strong><br><br>Durante el proceso de aprendizaje de una red neuronal, el volumen total de datos empíricos se divide. El "conjunto de entrenamiento" (<em>Training set</em>) es el único lote de datos que interactúa de manera directa con el algoritmo (por ejemplo, retropropagación) calculando los gradientes de error para actualizar y asentar matemáticamente las matrices de pesos y bias de la red.<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">Examen SI 2024 | Preguntas P4. [Tipo C: Identificación de algoritmo por tabla]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 4. Análisis de la Tabla de Exploración (Nodos Cerrados)
+
+A partir de la siguiente tabla de nodos explorados, ¿qué tipo de búsqueda fue utilizada?
+
+**Paso 1:** -
+
+**Paso 2:** A
+
+**Paso 3:** A, B
+
+**Paso 4:** A, B, C
+
+**Paso 5:** A, B, C, D
+
+**Paso 6:** A, B, C, D, E
+
+- [ ] a) Búsqueda de coste uniforme.
+    
+- [ ] b) Búsqueda en anchura.
+    
+- [ ] c) A*.
+    
+- [ ] d) Búsqueda en profundidad.
+    
+
+</h5>### 4. Análisis de la Tabla de Exploración (Nodos Cerrados)<br><br>A partir de la siguiente tabla de nodos explorados, ¿qué tipo de búsqueda fue utilizada?<br><br><strong>Paso 1:</strong> -<br><br><strong>Paso 2:</strong> A<br><br><strong>Paso 3:</strong> A, B<br><br><strong>Paso 4:</strong> A, B, C<br><br><strong>Paso 5:</strong> A, B, C, D<br><br><strong>Paso 6:</strong> A, B, C, D, E<br><br><input type="radio" disabled> a) Búsqueda de coste uniforme.<br>    <br><input type="radio" disabled> b) Búsqueda en anchura.<br>    <br><input type="radio" disabled> c) A*.<br>    <br><input type="radio" disabled> d) Búsqueda en profundidad.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 4. Limitaciones del Perceptrón Simple
+
+Un Perceptrón (sin capas ocultas) puede resolver problemas de clasificación con una precisión del 100% cuando las muestras...
+
+- [ ] a) Son clasificadas en sólo dos clases y no están entremezcladas.
+    
+- [ ] b) Son clasificadas en sólo dos clases y son linealmente separables.
+    
+- [ ] c) Son clasificadas en sólo dos clases, aunque estén mezcladas, no sean linealmente separables o tengan ruido.
+    
+- [ ] d) Son clasificadas en sólo dos clases y no tengan ruido.
+    
+- [ ] e) Son clasificadas en sólo dos clases y sigan una distribución normal.
+    
+
+</h5>### 4. Limitaciones del Perceptrón Simple<br><br>Un Perceptrón (sin capas ocultas) puede resolver problemas de clasificación con una precisión del 100% cuando las muestras...<br><br><input type="radio" disabled> a) Son clasificadas en sólo dos clases y no están entremezcladas.<br>    <br><input type="radio" disabled> b) Son clasificadas en sólo dos clases y son linealmente separables.<br>    <br><input type="radio" disabled> c) Son clasificadas en sólo dos clases, aunque estén mezcladas, no sean linealmente separables o tengan ruido.<br>    <br><input type="radio" disabled> d) Son clasificadas en sólo dos clases y no tengan ruido.<br>    <br><input type="radio" disabled> e) Son clasificadas en sólo dos clases y sigan una distribución normal.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 4.</h5><br><br><strong>Opción correcta: b) Búsqueda en anchura.</strong><br><br>Utiliza una cola <strong>FIFO</strong> (el primero que entra en la frontera, es el primero en salir y explorarse). Esto hace que explore el árbol "por capas <br>horizontales: primero el nivel 0, luego todo el nivel 1, luego todo el nivel 2.<br>><br>>- <strong>Paso 1:</strong> `-` <em>(Frontera: [A])</em><br>>- <strong>Paso 2:</strong> `A` <em>(Frontera: [B, C])</em> -Explora todo el nivel 0.<br>>- <strong>Paso 3:</strong> `A, B` <em>(Frontera: [C, D, E])</em> -Empieza el nivel 1. Saca a B porque entró antes que C.<br>>- <strong>Paso 4:</strong> `A, B, C` <em>(Frontera: [D, E, F, G])</em> -Termina el nivel 1.<br>>- <strong>Paso 5:</strong> `A, B, C, D` <em>(Frontera: [E, F, G, H, I])</em> -Empieza el nivel 2.<br>>- <strong>Paso 6:</strong> `A, B, C, D, E` <em>(Frontera: ...)</em><br>><br>>Como ves, <strong>esta traza coincide exactamente al milímetro con la tabla de tu enunciado</strong>. La búsqueda en anchura es la que genera una lista alfabética secuencial perfecta si el árbol está ordenado así.<br>><br>>2. Búsqueda en Profundidad<br>><br>>Utiliza una pila <strong>LIFO</strong> (el último que entra a la frontera, es el primero en salir). Esto obliga al algoritmo a ignorar a los hermanos y sumergirse ciegamente por una rama hasta chocar con el fondo.<br>><br>>- <strong>Paso 1:</strong> `-` <em>(Frontera: [A])</em><br>>- <strong>Paso 2:</strong> `A` <em>(Frontera: [B, C])</em><br>>- <strong>Paso 3:</strong> `A, B` <em>(Frontera: [D, E, C])</em> -Al explorar B, descubre D y E. Al ser LIFO, estos se ponen "encima" de C.<br>>- <strong>Paso 4:</strong> `A, B, D` <em>(Frontera: [H, I, E, C])</em> -<strong>¡Aquí se rompe la secuencia!</strong> El algoritmo ignora a C y explora D (el hijo de B) porque está yendo hacia lo profundo.<br>>- <strong>Paso 5:</strong> `A, B, D, H` <em>(Frontera: ...)</em><br>><br>>En profundidad, jamás verías los explorados `A, B, C, D, E`, porque eso implicaría haber explorado a `B` y a su hermano `C` antes de bajar a los hijos, lo cual viola la regla de ir hacia abajo.<br>><br>>3. Búsqueda de Coste Uniforme y A*<br>><br>>En estos algoritmos, el orden de los nodos explorados no sigue un patrón alfabético ni de capas predecible a simple vista, ya que la frontera <strong>se ordena por números</strong> (por el coste más barato g(n) o por la fórmula f(n)).<br>><br>>- Dependiendo de los costes de las flechas, la tabla de explorados daría saltos ilógicos como: `A`, luego `A, C`, luego `A, C, B`, luego `A, C, B, E`, etc., buscando siempre el camino más barato en cada momento.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 4.</h5><br><br><strong>Opción correcta: b)</strong><br><br>El teorema fundamental del Perceptrón simple (Rosenblatt) establece que una red sin capas ocultas solo es capaz de trazar un único hiperplano (una línea recta en 2D) en el espacio de decisión. Por lo tanto, solo puede alcanzar una convergencia total (100% de precisión) si el problema geométrico subyacente es <strong>linealmente separable</strong> (es decir, que una línea recta baste para separar la Clase A de la Clase B).<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">Examen SI 2024 | Preguntas P13. [Tipo D: Encadenamiento progresivo con reglas]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 13. Codificación de Salidas Categóricas (One-Hot)
+
+¿Cómo codificarías una salida categórica de una RNA, cuyos valores pueden ser "coche/motocicleta/bicicleta/avión"?
+
+- [ ] a) Como 2 valores booleanos, codificando cada una de las 4 categorías como "01/01/10/11".
+    
+- [ ] b) No es necesario codificarlo, la RNA puede generar esa salida categórica.
+    
+- [ ] c) Como 4 valores booleanos, codificando cada una de las 4 categorías como "1000/0100/0010/0001".
+    
+- [ ] d) Como un valor real, que toma 4 valores equiespaciados diferentes.
+    
+- [ ] e) Las respuestas c) y d) son correctas.
+    
+
+</h5>### 13. Codificación de Salidas Categóricas (One-Hot)<br><br>¿Cómo codificarías una salida categórica de una RNA, cuyos valores pueden ser "coche/motocicleta/bicicleta/avión"?<br><br><input type="radio" disabled> a) Como 2 valores booleanos, codificando cada una de las 4 categorías como "01/01/10/11".<br>    <br><input type="radio" disabled> b) No es necesario codificarlo, la RNA puede generar esa salida categórica.<br>    <br><input type="radio" disabled> c) Como 4 valores booleanos, codificando cada una de las 4 categorías como "1000/0100/0010/0001".<br>    <br><input type="radio" disabled> d) Como un valor real, que toma 4 valores equiespaciados diferentes.<br>    <br><input type="radio" disabled> e) Las respuestas c) y d) son correctas.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 13.</h5><br><br><strong>Opción correcta: c)</strong><br><br>Las redes neuronales solo entienden vectores numéricos. Para variables categóricas nominales sin un orden jerárquico inherente (un coche no vale matemáticamente el doble que una bicicleta), se emplea la técnica de codificación <strong>One-Hot Encoding</strong>. Consiste en crear un vector del mismo tamaño que el número de clases (4 clases = 4 neuronas de salida booleanas) donde solo se enciende (valor 1) la neurona correspondiente a la clase correcta, manteniendo el resto apagadas (valor 0).<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">Examen SI 2024 | Preguntas P18. [Tipo E+F: BLR con M(1) dada y reglas]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 18. Significado de la Capa de Salida en SOM
+
+¿Qué representa la ubicación en la capa de salida de una neurona (célula) en una red SOM?
+
+- [ ] a) El número de atributos de los patrones.
+    
+- [ ] b) El orden de presentación de cada patrón durante el proceso de entrenamiento.
+    
+- [ ] c) Una proyección bidimensional de los datos de entrada.
+    
+- [ ] d) Indica su relación con las neuronas de entrada.
+    
+- [ ] e) Ninguna de las anteriores es correcta.
+    
+
+</h5>### 18. Significado de la Capa de Salida en SOM<br><br>¿Qué representa la ubicación en la capa de salida de una neurona (célula) en una red SOM?<br><br><input type="radio" disabled> a) El número de atributos de los patrones.<br>    <br><input type="radio" disabled> b) El orden de presentación de cada patrón durante el proceso de entrenamiento.<br>    <br><input type="radio" disabled> c) Una proyección bidimensional de los datos de entrada.<br>    <br><input type="radio" disabled> d) Indica su relación con las neuronas de entrada.<br>    <br><input type="radio" disabled> e) Ninguna de las anteriores es correcta.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 18.</h5><br><br><strong>Opción correcta: c)</strong><br><br>La utilidad primordial de un SOM es la reducción de dimensionalidad espacial. Al entrenarse, la red abstrae un espacio de datos de altísima complejidad ($n$-dimensional) y lo proyecta sobre un mapa discreto, creando una <strong>proyección topológica bidimensional (2D)</strong>. De este modo, la ubicación en el mapa permite a los humanos visualizar e interpretar de un vistazo los clústeres y relaciones originales.<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">Examen SI Mayo 2025 | Preguntas P1-4. [Tipo A+B: A* sobre grafo3 + heurística]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 1. Búsqueda A* sobre espacio de estados
+
+Sobre el grafo del espacio de estados, ¿qué solución encuentra el algoritmo A*?
+
+- [ ] a) A → C → G → K
+    
+- [ ] b) A → C → F → J
+    
+- [ ] c) A → B → D → H → L → M
+    
+- [ ] d) A* no encuentra la solución
+    
+
+</h5>### 1. Búsqueda A* sobre espacio de estados<br><br>Sobre el grafo del espacio de estados, ¿qué solución encuentra el algoritmo A*?<br><br><input type="radio" disabled> a) A → C → G → K<br>    <br><input type="radio" disabled> b) A → C → F → J<br>    <br><input type="radio" disabled> c) A → B → D → H → L → M<br>    <br><input type="radio" disabled> d) A* no encuentra la solución<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 2. Búsqueda en profundidad iterativa (IDS)
+
+Sobre el mismo espacio de estados, ¿qué solución encuentra el algoritmo de búsqueda en profundidad iterativa?
+
+- [ ] a) A → C → G → K
+    
+- [ ] b) A → C → F → J
+    
+- [ ] c) A → B → D → H → L → M
+    
+- [ ] d) No encuentra la solución
+    
+
+</h5>### 2. Búsqueda en profundidad iterativa (IDS)<br><br>Sobre el mismo espacio de estados, ¿qué solución encuentra el algoritmo de búsqueda en profundidad iterativa?<br><br><input type="radio" disabled> a) A → C → G → K<br>    <br><input type="radio" disabled> b) A → C → F → J<br>    <br><input type="radio" disabled> c) A → B → D → H → L → M<br>    <br><input type="radio" disabled> d) No encuentra la solución<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 3. Número de expansiones en IDS
+
+Con el enunciado anterior, ¿cuántas veces se expandirá el nodo B?
+
+- [ ] a) 0
+    
+- [ ] b) 1
+    
+- [ ] c) 2
+    
+- [ ] d) 3
+    
+
+</h5>### 3. Número de expansiones en IDS<br><br>Con el enunciado anterior, ¿cuántas veces se expandirá el nodo B?<br><br><input type="radio" disabled> a) 0<br>    <br><input type="radio" disabled> b) 1<br>    <br><input type="radio" disabled> c) 2<br>    <br><input type="radio" disabled> d) 3<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 4. Redes semánticas y razonamiento por rastreo
+
+En las redes semánticas, el razonamiento por rastreo...
+
+- [ ] a) No puede asegurar la validez de las inferencias obtenidas
+    
+- [ ] b) emplea exclusivamente las relaciones de jerarquía de la red.
+    
+- [ ] c) evita la ambigüedad propia del lenguaje natural, al contrario que el razonamiento por emparejamiento.
+    
+- [ ] d) Ninguna de las anteriores es correcta.
+    
+
+</h5>### 4. Redes semánticas y razonamiento por rastreo<br><br>En las redes semánticas, el razonamiento por rastreo...<br><br><input type="radio" disabled> a) No puede asegurar la validez de las inferencias obtenidas<br>    <br><input type="radio" disabled> b) emplea exclusivamente las relaciones de jerarquía de la red.<br>    <br><input type="radio" disabled> c) evita la ambigüedad propia del lenguaje natural, al contrario que el razonamiento por emparejamiento.<br>    <br><input type="radio" disabled> d) Ninguna de las anteriores es correcta.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 2. Diferencias entre las dos ramas clásicas de la IA
+
+¿En qué se diferencian las dos ramas clásicas de la IA?
+
+- [ ] a) La rama subsimbólica tiene menos capacidad para explicar sus resultados
+    
+- [ ] b) Los sistemas expertos y las redes de neuronas artificiales son sus paradigmas
+    
+- [ ] c) Una se basa en la estimulación y la otra en la emulación
+    
+- [ ] d) Ninguna de las anteriores es correcta
+    
+- [ ] e) A y B son correctas
+    
+
+</h5>### 2. Diferencias entre las dos ramas clásicas de la IA<br><br>¿En qué se diferencian las dos ramas clásicas de la IA?<br><br><input type="radio" disabled> a) La rama subsimbólica tiene menos capacidad para explicar sus resultados<br>    <br><input type="radio" disabled> b) Los sistemas expertos y las redes de neuronas artificiales son sus paradigmas<br>    <br><input type="radio" disabled> c) Una se basa en la estimulación y la otra en la emulación<br>    <br><input type="radio" disabled> d) Ninguna de las anteriores es correcta<br>    <br><input type="radio" disabled> e) A y B son correctas<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 3. Sistemas subsimbólicos y la emulación de la IA
+
+¿Qué significa que los sistemas subsimbólicos pertenecen a la rama de la emulación de la IA?
+
+- [ ] a) Que la red aprenderá muy rápido las diferencias entre ellos.
+    
+- [ ] b) Que es necesario poner más capas intermedias en la Red para representar mejor su conocimiento.
+    
+- [ ] c) Que pretendemos reproducir la función del sistema biológico inteligente.
+    
+- [ ] d) Que pretendemos reproducir la estructura del sistema biológico inteligente.
+    
+- [ ] e) Que pretendemos reproducir tanto la estructura como la función del sistema biológico inteligente.
+    
+
+</h5>### 3. Sistemas subsimbólicos y la emulación de la IA<br><br>¿Qué significa que los sistemas subsimbólicos pertenecen a la rama de la emulación de la IA?<br><br><input type="radio" disabled> a) Que la red aprenderá muy rápido las diferencias entre ellos.<br>    <br><input type="radio" disabled> b) Que es necesario poner más capas intermedias en la Red para representar mejor su conocimiento.<br>    <br><input type="radio" disabled> c) Que pretendemos reproducir la función del sistema biológico inteligente.<br>    <br><input type="radio" disabled> d) Que pretendemos reproducir la estructura del sistema biológico inteligente.<br>    <br><input type="radio" disabled> e) Que pretendemos reproducir tanto la estructura como la función del sistema biológico inteligente.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 4. Definición y concepto de sinapsis
+
+¿Qué es una sinapsis?
+
+- [ ] a) El intercambio de energía entre neuronas.
+    
+- [ ] b) Procedimiento fisiológico por el cual mueren las neuronas.
+    
+- [ ] c) Intercambio de energía entre neuronas y astrocitos.
+    
+- [ ] d) Intercambio de información entre los elementos del sistema nervioso.
+    
+- [ ] e) Todas las anteriores son correctas.
+    
+
+</h5>### 4. Definición y concepto de sinapsis<br><br>¿Qué es una sinapsis?<br><br><input type="radio" disabled> a) El intercambio de energía entre neuronas.<br>    <br><input type="radio" disabled> b) Procedimiento fisiológico por el cual mueren las neuronas.<br>    <br><input type="radio" disabled> c) Intercambio de energía entre neuronas y astrocitos.<br>    <br><input type="radio" disabled> d) Intercambio de información entre los elementos del sistema nervioso.<br>    <br><input type="radio" disabled> e) Todas las anteriores son correctas.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 1.</h5><br><br><strong>Opción correcta: b)</strong><br><br>El algoritmo A* siempre expande el nodo con el menor valor $f(n) = g(n) + h(n)$. Si trazamos la ejecución desde A:<br>    1. Expandimos A. Sus sucesores son B ($f=1+5=6$) y C ($f=1+3=4$).<br>    2. El menor es C. Lo expandimos y obtenemos F ($f=2+6=8$) y G ($f=2+8=10$).<br>    3. La frontera tiene a B(6), F(8) y G(10). El menor es B. Al expandir B obtenemos D(9) y E(11).<br>    4. La frontera ahora es F(8), D(9), G(10), E(11). El menor es F. Lo expandimos y obtenemos I ($f=3+4=7$) y J ($f=3+2=5$).<br>    5. La frontera es J(5), I(7), D(9), G(10), E(11). El menor es J. Expandimos J y llegamos a K ($f=4+0=4$).<br>    El camino trazado por A* es indiscutiblemente `A → C → F → J → K`. La opción B es la única que marca este recorrido óptimo a través de F y J.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 2.</h5><br><br><strong>Opción correcta: a)</strong><br><br>La profundidad iterativa (IDS) explora el árbol nivel a nivel, pero dentro de cada nivel utiliza una estrategia de profundidad pura (normalmente guiada por orden alfabético de izquierda a derecha). <br>    * Límite 0 y 1: No llega a la meta.<br>    * Límite 2: Explora las ramas hasta profundidad 2 (A-B-D, A-B-E, A-C-F, A-C-G). Ninguno es meta.<br>    * Límite 3: Se sumerge a profundidad 3. Explora primero todo lo que cuelga de B, y luego lo que cuelga de C. Al bajar por C, explora `A → C → F → I` y `A → C → F → J` (ninguno es meta). Finalmente explora la siguiente rama: `A → C → G → K`. ¡K es un nodo meta ($h=0$) y lo acaba de encontrar a profundidad 3! Por tanto, este es el primer camino válido que el algoritmo devuelve.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 3.</h5><br><br><strong>Opción correcta: c)</strong><br><br>El comportamiento de IDS se basa en reiniciar la búsqueda desde cero cada vez que aumenta el límite de profundidad.<br>    * Límite 0: Se expande A.<br>    * Límite 1: Se expande A. Se generan B y C, pero <strong>no</strong> se expanden porque hemos chocado con el límite.<br>    * Límite 2: Se expande A. Luego se expande B (1ª vez) y C.<br>    * Límite 3: Se expande A. Luego se expande B (2ª vez) para llegar a sus nietos.<br>    Por lo tanto, a lo largo de toda la ejecución para llegar a la profundidad 3, el nodo B se ha llegado a expandir exactamente 2 veces.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 4.</h5><br><br><strong>Opción correcta: b)</strong><br><br>Según la teoría de los modelos declarativos estructurados, el mecanismo de inferencia fundamental de una red semántica es la "herencia de propiedades". Este proceso algorítmico, también llamado rastreo, consiste en que cualquier propiedad cierta para un nodo superior "cae por gravedad" hacia sus ejemplares. Para lograr esto, el algoritmo rastrea y navega exclusivamente a través de los arcos de jerarquía taxonómica (como `ES<em>UN` o `SUBCOJUNTO</em>DE`).<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 2.</h5><br><br><strong>Opción correcta: e)</strong><br><br>Según los fundamentos introductorios, la IA Simbólica tiene una alta explicabilidad (es transparente), mientras que la Subsimbólica es una "caja negra" con menor capacidad para explicar cómo ha llegado a sus resultados (opción A correcta). Además, se diferencian en sus paradigmas fundacionales: la simbólica orbita en torno a los Sistemas Expertos y la lógica, mientras que la subsimbólica tiene a las Redes de Neuronas Articiales como su estandarte absoluto (opción B correcta).<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 3.</h5><br><br><strong>Opción correcta: e)</strong><br><br>La simulación (propia de la IA simbólica) busca replicar el comportamiento exterior o la función sin importar cómo esté construido el programa por dentro. La emulación, por el contrario, va un paso más allá y a un nivel más profundo: intenta reproducir de manera fidedigna la "arquitectura o estructura" subyacente (creando neuronas y sinapsis artificiales) para que, de esa estructura biomimética, nazca orgánicamente la "función" inteligente.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 4.</h5><br><br><strong>Opción correcta: d)</strong><br><br>A nivel neurobiológico básico y trasladado a los sistemas conexionistas, las sinapsis son los enlaces funcionales unidireccionales que permiten la comunicación y el trasvase de señales o información entre las distintas células del sistema nervioso, alterando el potencial de la neurona receptora.<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">Examen SI Mayo 2025 | Preguntas P7. [Tipo E: BLR con manifestación m4]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 7. Cálculo de la Base Lógica Reducida (BLR)
+
+Sea un dominio con tres manifestaciones posibles [M(1), M(2), M(3)] y dos interpretaciones [I(1), I(2)]. Desde una perspectiva categórica, y asumiendo el siguiente criterio:
+
+#</h5>### 7. Cálculo de la Base Lógica Reducida (BLR)<br><br>Sea un dominio con tres manifestaciones posibles [M(1), M(2), M(3)] y dos interpretaciones [I(1), I(2)]. Desde una perspectiva categórica, y asumiendo el siguiente criterio:<br><br>#<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 7. Causas del interés actual por los sistemas subsimbólicos
+
+¿Causas del interés actual por los Sistemas Inteligentes Subsimbólicos?
+
+- [ ] a) El interés existente por la búsqueda de arquitecturas de computadoras que permitan el procesamiento en paralelo.
+    
+- [ ] b) La habilidad de estos sistemas para aprender automáticamente.
+    
+- [ ] c) La habilidad para poder funcionar de forma aceptable tanto en presencia de información inexacta como cuando se producen deterioros o fallos en sus componentes.
+    
+- [ ] d) Su similitud con los modelos neurofisiológicos del cerebro, pudiéndose de este modo intercambiar modelos e investigaciones entre los de RNA y Neurociencias, potenciándose ambas.
+    
+- [ ] e) Todas las anteriores son correctas
+    
+
+</h5>### 7. Causas del interés actual por los sistemas subsimbólicos<br><br>¿Causas del interés actual por los Sistemas Inteligentes Subsimbólicos?<br><br><input type="radio" disabled> a) El interés existente por la búsqueda de arquitecturas de computadoras que permitan el procesamiento en paralelo.<br>    <br><input type="radio" disabled> b) La habilidad de estos sistemas para aprender automáticamente.<br>    <br><input type="radio" disabled> c) La habilidad para poder funcionar de forma aceptable tanto en presencia de información inexacta como cuando se producen deterioros o fallos en sus componentes.<br>    <br><input type="radio" disabled> d) Su similitud con los modelos neurofisiológicos del cerebro, pudiéndose de este modo intercambiar modelos e investigaciones entre los de RNA y Neurociencias, potenciándose ambas.<br>    <br><input type="radio" disabled> e) Todas las anteriores son correctas<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 7.</h5>Resolución no disponible<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 7.</h5><br><br><strong>Opción correcta: e)</strong><br><br>Los sistemas conexionistas (rama subsimbólica) han experimentado un inmenso resurgir en las últimas décadas gracias a sus innegables ventajas. Estas redes neuronales destacan por su capacidad intrínseca para aprender y extraer patrones automáticamente de grandes volúmenes de datos (sin necesidad de reglas explícitas programadas). Además, a diferencia de la IA simbólica clásica, su conocimiento se distribuye en los pesos de las conexiones, otorgándoles una gran robustez y tolerancia a fallos, permitiéndoles operar eficazmente frente a ruido o componentes dañados. Asimismo, el auge del procesamiento paralelo encaja perfectamente con su arquitectura. Finalmente, la retroalimentación y similitud con la fisiología humana permite grandes sinergias científicas con las Neurociencias.<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">Examen SI Julio 2025 | Preguntas P7-9. [Tipo E+G: BLE/BLR con 5 variables]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 7. Cálculo de la Base Lógica Reducida (BLR)
+
+Sea un dominio con tres manifestaciones posibles $\{M(1), M(2), M(3)\}$ y dos interpretaciones posibles $\{I(1), I(2)\}$. Desde una perspectiva categórica, y dadas las reglas del dominio:
+
+> R1: $M(1) \lor M(2) \lor M(3) \implies I(1) \lor I(2)$
+> 
+> R2: $I(1) \implies \neg M(1) \land M(2)$
+> 
+> R3: $I(2) \land \neg I(1) \implies M(1) \land M(3)$
+
+¿Cuántos posibles conjuntos manifestación-interpretación contiene la Base Lógica Reducida?
+
+- [ ] a) 7
+    
+- [ ] b) 32
+    
+- [ ] c) 16
+    
+- [ ] d) 11
+    
+
+</h5>### 7. Cálculo de la Base Lógica Reducida (BLR)<br><br>Sea un dominio con tres manifestaciones posibles $\{M(1), M(2), M(3)\}$ y dos interpretaciones posibles $\{I(1), I(2)\}$. Desde una perspectiva categórica, y dadas las reglas del dominio:<br><br>> R1: $M(1) \lor M(2) \lor M(3) \implies I(1) \lor I(2)$<br>> <br>> R2: $I(1) \implies \neg M(1) \land M(2)$<br>> <br>> R3: $I(2) \land \neg I(1) \implies M(1) \land M(3)$<br><br>¿Cuántos posibles conjuntos manifestación-interpretación contiene la Base Lógica Reducida?<br><br><input type="radio" disabled> a) 7<br>    <br><input type="radio" disabled> b) 32<br>    <br><input type="radio" disabled> c) 16<br>    <br><input type="radio" disabled> d) 11<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 8. Inferencia a Partir de Manifestaciones Verdaderas
+
+Asumiendo $M(1)$ verdadero, la solución será...
+
+- [ ] a) $I(1) \land I(2)$
+    
+- [ ] b) $I(1) \land \neg I(2)$
+    
+- [ ] c) Ambas las anteriores
+    
+- [ ] d) Ninguna de las anteriores
+    
+
+</h5>### 8. Inferencia a Partir de Manifestaciones Verdaderas<br><br>Asumiendo $M(1)$ verdadero, la solución será...<br><br><input type="radio" disabled> a) $I(1) \land I(2)$<br>    <br><input type="radio" disabled> b) $I(1) \land \neg I(2)$<br>    <br><input type="radio" disabled> c) Ambas las anteriores<br>    <br><input type="radio" disabled> d) Ninguna de las anteriores<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 9. Análisis Probabilístico en Lógica Categórica
+
+Partiendo del problema original, ¿qué manifestación es más probable cuando ambas interpretaciones son verdaderas?
+
+- [ ] a) $M(1)$
+    
+- [ ] b) $M(2)$
+    
+- [ ] c) $M(3)$
+    
+- [ ] d) Son equiprobables
+    
+
+</h5>### 9. Análisis Probabilístico en Lógica Categórica<br><br>Partiendo del problema original, ¿qué manifestación es más probable cuando ambas interpretaciones son verdaderas?<br><br><input type="radio" disabled> a) $M(1)$<br>    <br><input type="radio" disabled> b) $M(2)$<br>    <br><input type="radio" disabled> c) $M(3)$<br>    <br><input type="radio" disabled> d) Son equiprobables<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 7. Objetivos de la IA
+
+¿Qué pretende la IA como ciencia y como ingeniería?
+
+- [ ] a) Conocer cómo funcionan los seres inteligentes y qué pueden hacer con la ayuda de computadores.
+    
+- [ ] b) Cómo hacer que los computadores hagan las cosas que hacen las personas inteligentes.
+    
+- [ ] c) Cómo superar el Régimen de Lovelace.
+    
+- [ ] d) Construir o implementar "Sistemas Inteligentes": SCX, SS.EE, ...
+    
+- [ ] e) Todas las anteriores son correctas.
+    
+
+</h5>### 7. Objetivos de la IA<br><br>¿Qué pretende la IA como ciencia y como ingeniería?<br><br><input type="radio" disabled> a) Conocer cómo funcionan los seres inteligentes y qué pueden hacer con la ayuda de computadores.<br>    <br><input type="radio" disabled> b) Cómo hacer que los computadores hagan las cosas que hacen las personas inteligentes.<br>    <br><input type="radio" disabled> c) Cómo superar el Régimen de Lovelace.<br>    <br><input type="radio" disabled> d) Construir o implementar "Sistemas Inteligentes": SCX, SS.EE, ...<br>    <br><input type="radio" disabled> e) Todas las anteriores son correctas.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 8. Características de los Sistemas Inteligentes
+
+¿Características específicas de los sistemas inteligentes?
+
+- [ ] a) Intencionalidad: comportamiento guiado por metas.
+    
+- [ ] b) Incapacidad de conocer y proyectar el "hoy sostenido".
+    
+- [ ] c) Ser metódico, no innovador.
+    
+- [ ] d) Tener efecto serendipico.
+    
+- [ ] e) Ninguna de las anteriores está relacionada.
+    
+
+</h5>### 8. Características de los Sistemas Inteligentes<br><br>¿Características específicas de los sistemas inteligentes?<br><br><input type="radio" disabled> a) Intencionalidad: comportamiento guiado por metas.<br>    <br><input type="radio" disabled> b) Incapacidad de conocer y proyectar el "hoy sostenido".<br>    <br><input type="radio" disabled> c) Ser metódico, no innovador.<br>    <br><input type="radio" disabled> d) Tener efecto serendipico.<br>    <br><input type="radio" disabled> e) Ninguna de las anteriores está relacionada.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 9. Trabajo Científico Fundacional
+
+¿Cuál es el principal trabajo científico en el que se basa la IA?
+
+- [ ] a) "The Nature of Explanation" (W. Craik).
+    
+- [ ] b) "Behaviour, purpose and teleology" (Wiener, Rosenblueth y Bigelow).
+    
+- [ ] c) "A logical calculus of the ideas immanent in nervous activity" (McCulloch y Pitts).
+    
+- [ ] d) Todas las anteriores son correctas.
+    
+- [ ] e) Ninguna de las anteriores es correcta.
+    
+
+</h5>### 9. Trabajo Científico Fundacional<br><br>¿Cuál es el principal trabajo científico en el que se basa la IA?<br><br><input type="radio" disabled> a) "The Nature of Explanation" (W. Craik).<br>    <br><input type="radio" disabled> b) "Behaviour, purpose and teleology" (Wiener, Rosenblueth y Bigelow).<br>    <br><input type="radio" disabled> c) "A logical calculus of the ideas immanent in nervous activity" (McCulloch y Pitts).<br>    <br><input type="radio" disabled> d) Todas las anteriores son correctas.<br>    <br><input type="radio" disabled> e) Ninguna de las anteriores es correcta.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 7.</h5><br><br><strong>Opción correcta: a)</strong><br><br>La Base Lógica Expandida (BLE) contiene todas las combinaciones posibles de variables, que son $2^5 = 32$ complejos. Para obtener la Base Lógica Reducida (BLR), aplicamos las restricciones que dictan las reglas, eliminando los complejos absurdos:<br><br>• <strong>R2 exige que:</strong> Si $I(1) = 1$, entonces obligatoriamente $M(1) = 0$ y $M(2) = 1$. Esto elimina cualquier combinación donde $I(1)=1$ y no se cumplan esos valores. De los 16 casos iniciales donde $I(1)=1$, nos quedamos solo con <strong>4 casos válidos</strong> (ya que solo varían $I(2)$ y $M(3)$, dando $2 \times 2 = 4$).<br>    <br>• <strong>R3 exige que:</strong> Si $I(2)=1$ e $I(1)=0$, entonces obligatoriamente $M(1)=1$ y $M(3)=1$. De los 8 casos iniciales con estas condiciones, nos quedamos solo con los <strong>2 casos válidos</strong> donde $M(2)$ vale 0 o 1.<br>    <br>• <strong>R1 exige que:</strong> Si existe alguna manifestación activa, debe existir alguna interpretación. Nos quedan por evaluar los casos donde $I(1)=0$ e $I(2)=0$. Si ambas interpretaciones son $0$, ninguna manifestación puede ser $1$. Esto nos deja con <strong>1 único caso válido</strong>: todos los valores a 0.<br>    <br><br>Sumando los complejos válidos: $4 + 2 + 1 = 7$ conjuntos posibles en la BLR.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 8.</h5><br><br><strong>Opción correcta: d)</strong><br><br>Del cálculo anterior, sabemos que si $I(1)$ es verdadero, $M(1)$ es forzosamente falso (por la regla R2). Es decir, en la BLR no existe ningún caso válido en el que $I(1)$ y $M(1)$ sean verdaderos al mismo tiempo.<br><br>Si observamos los 7 casos de la BLR elaborados en la pregunta anterior, los únicos donde $M(1)$ es verdadero son aquellos 2 casos derivados de la regla R3, y en ambos escenarios las interpretaciones toman el valor de $I(1)=0$ e $I(2)=1$. Por tanto, la solución que se inferiría al ser cierta $M(1)$ es estrictamente $\neg I(1) \land I(2)$. Al no aparecer esta expresión exacta en las opciones a) y b), la correcta es la d).<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 9.</h5><br><br><strong>Opción correcta: b)</strong><br><br>Si asumimos que ambas interpretaciones son verdaderas, es decir, ocurre el caso $I(1)=1$ e $I(2)=1$, estaremos circunscritos a los casos derivados de que $I(1)$ es cierto. Según la regla R2 ($I(1) \implies \neg M(1) \land M(2)$), siempre que $I(1)$ se cumple, $M(2)$ debe darse inexcusablemente (probabilidad 1.0) y $M(1)$ jamás puede darse (probabilidad 0). $M(3)$ no está restringida por ninguna regla en este subescenario, por lo que su aparición es aleatoria. Por tanto, la manifestación absolutamente segura (y por ende más probable) bajo estas condiciones es $M(2)$.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 7.</h5><br><br><strong>Opción correcta: e)</strong><br><br>La IA se articula sobre un doble objetivo: como "Ciencia" persigue el entendimiento empírico de la mente y la superación del Régimen de Lovelace (lograr que una máquina origine ideas, no solo que repita código); y como "Ingeniería" busca la automatización práctica y construcción física de dichos sistemas (Sistemas Conexionistas, Sistemas Expertos, etc.).<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 8.</h5><br><br><strong>Opción correcta: a)</strong><br><br>A diferencia de los programas informáticos tradicionales que siguen una serie de algoritmos fijos, los sistemas inteligentes (típicamente formulados como Agentes) se caracterizan fundamentalmente por su intencionalidad. Esto significa que perciben su entorno, evalúan un estado interno y toman decisiones ponderando acciones con el objetivo final de lograr y maximizar la satisfacción de una serie de metas u objetivos concretos.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 9.</h5><br><br><strong>Opción correcta: d)</strong><br><br>El nacimiento formal de la inteligencia artificial y de los sistemas conexionistas como disciplina científica no bebe de una única fuente, sino de tres pilares multidisciplinares fundamentales de 1943: la propuesta cibernética sobre las máquinas teleológicas de Wiener, la capacidad de los sistemas para usar modelos lógicos de Craik, y la representación matemática-booleana de la neurona humana planteada por McCulloch y Pitts.<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">Examen SI Julio 2025 | Preguntas P30. [Tipo I: Árbol GP arbol2]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 30. Innovación del GCS
+
+¿Qué característica distingue al algoritmo GCS frente al SOM clásico?
+
+- [ ] a) No puede eliminar nodos durante el entrenamiento.
+    
+- [ ] b) Permite añadir neuronas según el error acumulado.
+    
+- [ ] c) Funciona únicamente con etiquetas conocidas.
+    
+- [ ] d) Solo se usa para clasificación binaria.
+    
+- [ ] e) No necesita una capa de entrada.
+    
+
+</h5>### 30. Innovación del GCS<br><br>¿Qué característica distingue al algoritmo GCS frente al SOM clásico?<br><br><input type="radio" disabled> a) No puede eliminar nodos durante el entrenamiento.<br>    <br><input type="radio" disabled> b) Permite añadir neuronas según el error acumulado.<br>    <br><input type="radio" disabled> c) Funciona únicamente con etiquetas conocidas.<br>    <br><input type="radio" disabled> d) Solo se usa para clasificación binaria.<br>    <br><input type="radio" disabled> e) No necesita una capa de entrada.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 30.</h5><br><br><strong>Opción correcta: b)</strong><br><br>La característica fundacional del GCS (<em>Growing Cell Structures</em>) frente al SOM clásico de Kohonen es su naturaleza evolutiva. Mientras que el SOM exige predefinir de antemano cuántas neuronas (ej. $10 \times 10$) compondrán el mapa y ese número permanece inmutable, el GCS comienza con una estructura mínima (un solo triángulo) y permite <strong>añadir progresivamente nuevas neuronas</strong> insertándolas justo en aquellas regiones topológicas concretas donde la red está acumulando un mayor error de representación.<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">EXAMEN SI Junio 2026 | Preguntas P1-3. [Tipo A+B: A* e IDS sobre grafo2]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 1. Coste de la Solución A*
+
+Dado el siguiente grafo, donde el nodo inicial es A, el valor numérico de cada nodo indica el resultado de evaluar una función heurística $h$, y el valor numérico de cada arista indica el coste de transición entre estados... ¿Cuál sería el coste de la solución devuelta por el algoritmo $A^*$?
+
+- [ ] a) 22
+    
+- [ ] b) 26
+    
+- [ ] c) 35
+    
+- [ ] d) 39
+    
+
+</h5>### 1. Coste de la Solución A*<br><br>Dado el siguiente grafo, donde el nodo inicial es A, el valor numérico de cada nodo indica el resultado de evaluar una función heurística $h$, y el valor numérico de cada arista indica el coste de transición entre estados... ¿Cuál sería el coste de la solución devuelta por el algoritmo $A^*$?<br><br><input type="radio" disabled> a) 22<br>    <br><input type="radio" disabled> b) 26<br>    <br><input type="radio" disabled> c) 35<br>    <br><input type="radio" disabled> d) 39<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 2. Búsqueda por Profundidad Iterativa
+
+En el mismo grafo de la pregunta anterior, ¿cuál sería la solución de aplicar el algoritmo de búsqueda por profundidad iterativa, usando la precedencia lexicográfica como mecanismo de resolución de conflictos?
+
+- [ ] a) $A \to C \to G \to I$
+    
+- [ ] b) $A \to B \to E \to H \to I$
+    
+- [ ] c) $A \to B \to A \to B \to E \to A \to B \to E \to H \to A \to B \to E \to H \to I$
+    
+- [ ] d) El algoritmo iterativo no encuentra una solución, pero sí lo haría una búsqueda en profundidad estándar
+    
+
+</h5>### 2. Búsqueda por Profundidad Iterativa<br><br>En el mismo grafo de la pregunta anterior, ¿cuál sería la solución de aplicar el algoritmo de búsqueda por profundidad iterativa, usando la precedencia lexicográfica como mecanismo de resolución de conflictos?<br><br><input type="radio" disabled> a) $A \to C \to G \to I$<br>    <br><input type="radio" disabled> b) $A \to B \to E \to H \to I$<br>    <br><input type="radio" disabled> c) $A \to B \to A \to B \to E \to A \to B \to E \to H \to A \to B \to E \to H \to I$<br>    <br><input type="radio" disabled> d) El algoritmo iterativo no encuentra una solución, pero sí lo haría una búsqueda en profundidad estándar<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 3. Propiedades de la Heurística
+
+En el mismo grafo, la heurística proporcionada...
+
+- [ ] a) Es admisible y consistente
+    
+- [ ] b) No es admisible, pero sí consistente
+    
+- [ ] c) Es admisible, pero no consistente en algunos nodos
+    
+- [ ] d) No es admisible ni consistente
+    
+
+</h5>### 3. Propiedades de la Heurística<br><br>En el mismo grafo, la heurística proporcionada...<br><br><input type="radio" disabled> a) Es admisible y consistente<br>    <br><input type="radio" disabled> b) No es admisible, pero sí consistente<br>    <br><input type="radio" disabled> c) Es admisible, pero no consistente en algunos nodos<br>    <br><input type="radio" disabled> d) No es admisible ni consistente<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 1. Diferencias entre las dos ramas clásicas de la Inteligencia Artificial
+
+¿En qué se diferencian las dos ramas clásicas de la Inteligencia Artificial?
+
+- [ ] a) La rama subsimbólica tiene menos capacidades
+    
+- [ ] b) Una tiene los sistemas expertos y la otra a las redes de neuronas artificiales como paradigmas
+    
+- [ ] c) Una se basa en la estimulación y la otra en la recursividad
+    
+- [ ] d) Ninguna de las anteriores es correcta
+    
+- [ ] e) Todas son correctas
+    
+
+</h5>### 1. Diferencias entre las dos ramas clásicas de la Inteligencia Artificial<br><br>¿En qué se diferencian las dos ramas clásicas de la Inteligencia Artificial?<br><br><input type="radio" disabled> a) La rama subsimbólica tiene menos capacidades<br>    <br><input type="radio" disabled> b) Una tiene los sistemas expertos y la otra a las redes de neuronas artificiales como paradigmas<br>    <br><input type="radio" disabled> c) Una se basa en la estimulación y la otra en la recursividad<br>    <br><input type="radio" disabled> d) Ninguna de las anteriores es correcta<br>    <br><input type="radio" disabled> e) Todas son correctas<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 2. Autores y trabajos sobre cibernética
+
+¿Qué autores con sus trabajos sobre cibernética sientan las bases de la IA?
+
+- [ ] a) Rosenblueth, Wiener y Bigelow.
+    
+- [ ] b) Cajal.
+    
+- [ ] c) Craik.
+    
+- [ ] d) Todos los anteriores.
+    
+- [ ] e) A y C son ciertas.
+    
+
+</h5>### 2. Autores y trabajos sobre cibernética<br><br>¿Qué autores con sus trabajos sobre cibernética sientan las bases de la IA?<br><br><input type="radio" disabled> a) Rosenblueth, Wiener y Bigelow.<br>    <br><input type="radio" disabled> b) Cajal.<br>    <br><input type="radio" disabled> c) Craik.<br>    <br><input type="radio" disabled> d) Todos los anteriores.<br>    <br><input type="radio" disabled> e) A y C son ciertas.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 3. Precursores biológicos
+
+En la evolución histórica de los sistemas conexionistas, ¿cuáles son precursores biológicos?
+
+- [ ] a) Minsky.
+    
+- [ ] b) McCulloch.
+    
+- [ ] c) Papert.
+    
+- [ ] d) Todos los anteriores.
+    
+- [ ] e) Ninguno de los anteriores.
+    
+
+</h5>### 3. Precursores biológicos<br><br>En la evolución histórica de los sistemas conexionistas, ¿cuáles son precursores biológicos?<br><br><input type="radio" disabled> a) Minsky.<br>    <br><input type="radio" disabled> b) McCulloch.<br>    <br><input type="radio" disabled> c) Papert.<br>    <br><input type="radio" disabled> d) Todos los anteriores.<br>    <br><input type="radio" disabled> e) Ninguno de los anteriores.<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 1.</h5><br><br><strong>Opción correcta: c)</strong><br><br>• El algoritmo $A^*$ expande los nodos basándose en la función de evaluación $f(n) = g(n) + h(n)$, donde $g(n)$ es el coste acumulado desde el inicio hasta $n$, y $h(n)$ es el valor heurístico estimado hasta la meta.<br>• <strong>Inicialización:</strong> Cola de prioridad = `[A(g=0, h=60, f=60)]`<br>• <strong>Paso 1:</strong> Se extrae A y se expande:<br>  - B: $g(B) = 5, h(B) = 50 \implies f(B) = 55$<br>  - C: $g(C) = 6, h(C) = 10 \implies f(C) = 16$<br>  - Cola = `[C(f=16), B(f=55)]`<br>• <strong>Paso 2:</strong> Se extrae C y se expande:<br>  - F: $g(F) = 6 + 5 = 11, h(F) = 5 \implies f(F) = 16$<br>  - G: $g(G) = 6 + 10 = 16, h(G) = 1 \implies f(G) = 17$<br>  - Cola = `[F(f=16), G(f=17), B(f=55)]`<br>• <strong>Paso 3:</strong> Se extrae F y se expande:<br>  - G: $g(G) = 11 + 1 = 12, h(G) = 1 \implies f(G) = 13$ (actualiza la entrada anterior de G al ser menor que $17$)<br>  - Cola = `[G(f=13), B(f=55)]`<br>• <strong>Paso 4:</strong> Se extrae G y se expande:<br>  - I: $g(I) = 12 + 23 = 35, h(I) = 0 \implies f(I) = 35$<br>  - Cola = `[I(f=35), B(f=55)]`<br>• <strong>Paso 5:</strong> Se extrae I (meta). Como tiene el menor valor de la cola y es la meta, la búsqueda finaliza con coste <strong>35</strong>.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 2.</h5><br><br><strong>Opción correcta: a)</strong><br><br>La búsqueda por profundidad iterativa (IDDFS) incrementa secuencialmente el límite de profundidad $L$ en cada iteración ($L = 0, 1, 2, 3, \dots$). Los sucesores de cada nodo se exploran en orden lexicográfico (alfabético):<br><br>• <strong>Límite L=0:</strong> Se explora A. No es meta.<br>• <strong>Límite L=1:</strong> Se exploran A -B y A -C. Ninguno es meta.<br>• <strong>Límite L=2:</strong> Se exploran A -B -D, A -B -E, A -C -F, A -C -G. Ninguno es meta.<br>• <strong>Límite L=3:</strong> <br>  - Rama B: se explora A -B -D -E y A -B -D -H, y también A -B -E -H.<br>  - Rama C: se explora A -C -F -G, y finalmente <strong>A -C -G -I</strong>. Al ser I la meta a profundidad 3, se encuentra y se devuelve la solución <strong>$A \to C \to G \to I$</strong>.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 3.</h5><br><br><strong>Opción correcta: d)</strong><br><br>• <strong>Admisibilidad:</strong> Una heurística $h(n)$ es admisible si $h(n) \le h^*(n)$ (el coste real óptimo a la meta) para todo nodo $n$. <br>  - Desde el nodo H, el camino real óptimo a la meta es H -I con coste $1$. Sin embargo, la heurística asignada es $h(H) = 3$. Como $3 1$, la heurística sobreestima el coste, por lo que <strong>no es admisible</strong>.<br>• <strong>Consistencia:</strong> Exige que $h(n) \le c(n, a, n') + h(n')$. <br>  - Para la transición D -H: $h(D) = 60$, $c(D,H) = 1$, $h(H) = 3$. Esto requeriría $60 \le 1 + 3 \implies 60 \le 4$, lo cual es falso. Por tanto, <strong>no es consistente</strong>.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 1.</h5><br><br><strong>Opción correcta: b)</strong><br><br>La Inteligencia Artificial se divide históricamente en dos grandes corrientes complementarias. La rama Simbólica se fundamenta en modelos que contienen conocimiento explícito (como reglas, hechos y ontologías), siendo su mayor exponente los Sistemas Expertos (ej. MYCIN). Por el contrario, la rama Subsimbólica o Conexionista se basa en la emulación biológica, extrayendo conocimiento implícito aprendido automáticamente a partir de los datos, siendo las Redes de Neuronas Artificiales su paradigma central.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 2.</h5><br><br><strong>Opción correcta: e)</strong><br><br>El nacimiento de la Inteligencia Artificial y los sistemas conexionistas es multidisciplinar. Las bases cibernéticas fundamentales se establecieron en la década de 1940 gracias a trabajos como la "propuesta cibernética sobre las máquinas teleológicas" desarrollada por Norbert Wiener (junto a Arturo Rosenblueth y Julian Bigelow en su publicación *Behavior, Purpose and Teleology*), así como la capacidad de los sistemas para utilizar modelos lógicos propuesta por Kenneth Craik (*The Nature of Explanation*).<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 3.</h5><br><br><strong>Opción correcta: b)</strong><br><br>Los precursores biológicos sentaron las bases orgánicas que luego se trasladarían a las matemáticas. Santiago Ramón y Cajal describió la estructura de la neurona, Donald Hebb postuló el aprendizaje sináptico, y fue el investigador Warren McCulloch (junto a Walter Pitts) quien logró trasladar esa biología a un modelo lógico-matemático fundacional en 1943, convirtiéndose en un precursor biológico innegable de las redes neuronales. Minsky y Papert, por el contrario, fueron críticos posteriores que frenaron el avance del perceptrón.<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">EXAMEN SI Junio 2026 | Preguntas P7-8. [Tipo E+F: BLR con M(1)=1 + Bayes]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 7. Cálculo de la Base Lógica Reducida (BLR)
+
+Sea un dominio con tres manifestaciones posibles $\{M(1), M(2), M(3)\}$ y dos interpretaciones posibles $\{I(1), I(2)\}$. Desde una perspectiva categórica, y dadas las reglas del dominio:
+
+> R1: $M(1) \lor M(2) \lor M(3) \implies I(1) \lor I(2)$
+> 
+> R2: $I(2) \implies \neg M(2) \land M(1)$
+> 
+> R3: $I(1) \lor \neg I(2) \implies M(2) \land M(3)$
+
+¿Cuál de las siguientes combinaciones pertenece a la Base Lógica Reducida?
+
+- [ ] a) $m_4 i_1$
+    
+- [ ] b) $m_4 i_2$
+    
+- [ ] c) $m_4 i_3$
+    
+- [ ] d) Ninguna es correcta
+    
+
+</h5>### 7. Cálculo de la Base Lógica Reducida (BLR)<br><br>Sea un dominio con tres manifestaciones posibles $\{M(1), M(2), M(3)\}$ y dos interpretaciones posibles $\{I(1), I(2)\}$. Desde una perspectiva categórica, y dadas las reglas del dominio:<br><br>> R1: $M(1) \lor M(2) \lor M(3) \implies I(1) \lor I(2)$<br>> <br>> R2: $I(2) \implies \neg M(2) \land M(1)$<br>> <br>> R3: $I(1) \lor \neg I(2) \implies M(2) \land M(3)$<br><br>¿Cuál de las siguientes combinaciones pertenece a la Base Lógica Reducida?<br><br><input type="radio" disabled> a) $m<em>4 i</em>1$<br>    <br><input type="radio" disabled> b) $m<em>4 i</em>2$<br>    <br><input type="radio" disabled> c) $m<em>4 i</em>3$<br>    <br><input type="radio" disabled> d) Ninguna es correcta<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 8. Inferencia a Partir de Manifestaciones Verdaderas
+
+Con las mismas reglas del ejercicio anterior, y sabiendo que tenemos la manifestación $M(1)$, ¿cuál es el conjunto de interpretaciones más probable? Ten en cuenta las siguientes probabilidades:
+
+> $p(\neg I(1) \land \neg I(2)) = 0.2$
+> 
+> $p(\neg I(1) \land I(2)) = 0.08$
+> 
+> $p(I(1) \land \neg I(2)) = 0.34$
+> 
+> $p(I(1) \land I(2)) = 0.38$
+
+- [ ] a) $I - I(1) \land \neg I(2)$
+    
+- [ ] b) $\neg I(1) \land I(2)$
+    
+- [ ] c) $I(1) \land \neg I(2)$
+    
+- [ ] d) $I(1) \land I(2)$
+    
+
+</h5>### 8. Inferencia a Partir de Manifestaciones Verdaderas<br><br>Con las mismas reglas del ejercicio anterior, y sabiendo que tenemos la manifestación $M(1)$, ¿cuál es el conjunto de interpretaciones más probable? Ten en cuenta las siguientes probabilidades:<br><br>> $p(\neg I(1) \land \neg I(2)) = 0.2$<br>> <br>> $p(\neg I(1) \land I(2)) = 0.08$<br>> <br>> $p(I(1) \land \neg I(2)) = 0.34$<br>> <br>> $p(I(1) \land I(2)) = 0.38$<br><br><input type="radio" disabled> a) $I - I(1) \land \neg I(2)$<br>    <br><input type="radio" disabled> b) $\neg I(1) \land I(2)$<br>    <br><input type="radio" disabled> c) $I(1) \land \neg I(2)$<br>    <br><input type="radio" disabled> d) $I(1) \land I(2)$<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 7. Ideas centrales de Kohonen
+
+Las 2 ideas centrales en las que se basa Kohonen para desarrollar los SOM son...
+
+- [ ] a) La ubicación espacial de las neuronas y su crecimiento dinámico
+    
+- [ ] b) La autoorganización y el concepto de simetría
+    
+- [ ] c) La autoorganización y el crecimiento dinámico del nº de neuronas
+    
+- [ ] d) El proceso de adaptación de pesos y el concepto de geometría topológica de elementos de proceso
+    
+- [ ] e) Todas las anteriores son incorrectas
+    
+
+</h5>### 7. Ideas centrales de Kohonen<br><br>Las 2 ideas centrales en las que se basa Kohonen para desarrollar los SOM son...<br><br><input type="radio" disabled> a) La ubicación espacial de las neuronas y su crecimiento dinámico<br>    <br><input type="radio" disabled> b) La autoorganización y el concepto de simetría<br>    <br><input type="radio" disabled> c) La autoorganización y el crecimiento dinámico del nº de neuronas<br>    <br><input type="radio" disabled> d) El proceso de adaptación de pesos y el concepto de geometría topológica de elementos de proceso<br>    <br><input type="radio" disabled> e) Todas las anteriores son incorrectas<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>### 8. Patrones de entrada en SOM
+
+Si los patrones de entrada de un problema tienen 4 características o atributos, una SOM que lo resuelva tendrá...
+
+- [ ] a) 24 neuronas de entrada
+    
+- [ ] b) 8 neuronas de entrada
+    
+- [ ] c) 4 neuronas de entrada
+    
+- [ ] d) 16 neuronas de entrada
+    
+- [ ] e) Ninguna de las anteriores
+    
+
+</h5>### 8. Patrones de entrada en SOM<br><br>Si los patrones de entrada de un problema tienen 4 características o atributos, una SOM que lo resuelva tendrá...<br><br><input type="radio" disabled> a) 24 neuronas de entrada<br>    <br><input type="radio" disabled> b) 8 neuronas de entrada<br>    <br><input type="radio" disabled> c) 4 neuronas de entrada<br>    <br><input type="radio" disabled> d) 16 neuronas de entrada<br>    <br><input type="radio" disabled> e) Ninguna de las anteriores<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 7.</h5><br><br><strong>Opción correcta: b)</strong><br><br>Analizando la manifestación $m_4$, en la tabla dada sus valores son $M(1)=1, M(2)=0, M(3)=0$. Evaluemos cada opción:<br><br>• <strong>Para a) $m<em>4 i</em>1$ (donde $I(1)=0, I(2)=0$):</strong> <br>  - R1 establece que si hay manifestaciones activas (las hay porque $M(1)=1$), debe haber al menos una interpretación activa. Al ser ambas 0, <strong>R1 se viola</strong>. No pertenece a la BLR.<br>• <strong>Para b) $m<em>4 i</em>2$ (donde $I(1)=0, I(2)=1$):</strong><br>  - R1: Antecedente Verdadero, Consecuente Verdadero ($I(2)=1$). (Se cumple)<br>  - R2: Antecedente Verdadero ($I(2)=1$). Consecuente: $\neg M(2) \land M(1) = \neg 0 \land 1 = 1$. (Se cumple)<br>  - R3: Antecedente: $I(1) \lor \neg I(2) = 0 \lor \neg 1 = 0$ (Falso). Al ser el antecedente falso, la implicación se cumple automáticamente. (Se cumple)<br>  - Todas las reglas se satisfacen, por lo que <strong>pertenece a la BLR</strong>.<br>• <strong>Para c) $m<em>4 i</em>3$ (donde $I(1)=1, I(2)=0$):</strong><br>  - R3: Antecedente: $I(1) \lor \neg I(2) = 1 \lor \neg 0 = 1$ (Verdadero). Consecuente: $M(2) \land M(3) = 0 \land 0 = 0$ (Falso). <strong>R3 se viola</strong> ($1 \implies 0$ es falso). No pertenece a la BLR.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 8.</h5><br><br><strong>Opción correcta: c)</strong><br><br>Evaluemos la consistencia de las interpretaciones cuando $M(1)=1$:<br>1. $\neg I(1) \land \neg I(2)$ es inconsistente porque al estar activa $M(1)$, R1 obliga a que al menos una interpretación sea verdadera.<br>2. $I(1) \land I(2)$ es inconsistente porque R2 exige que si $I(2)=1 \implies M(2)=0$, mientras que R3 exige que si $I(1)=1 \implies M(2)=1$, provocando una contradicción.<br>3. Las únicas interpretaciones consistentes con $M(1)=1$ son:<br>   - $\neg I(1) \land I(2)$ (Probabilidad: 0.08)<br>   - $I(1) \land \neg I(2)$ (Probabilidad: 0.34)<br><br>Al comparar las probabilidades de los estados consistentes, la más probable es <strong>$I(1) \land \neg I(2)$</strong> con $0.34$.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 7.</h5><br><br><strong>Opción correcta: d)</strong><br><br>El fundamento primordial del mapa de Teuvo Kohonen radica en combinar el aprendizaje competitivo (donde las neuronas luchan y adaptan sus pesos para parecerse al vector de entrada) con una rigurosa restricción de vecindad espacial. Esto significa que la red mapea características abstrayendo una <strong>geometría topológica</strong>, logrando que neuronas físicamente cercanas en el mapa respondan a estímulos similares.<hr style='border-color:rgba(255,255,255,0.1);'><h5 style='color:#fff;'>Resolución de la 8.</h5><br><br><strong>Opción correcta: c)</strong><br><br>En una red neuronal de este tipo, la interfaz receptora (las neuronas de entrada) debe acoplarse exactamente a la dimensionalidad matemática de los datos a tratar. Si el patrón cuenta con 4 atributos independientes, es obligatorio disponer de exactamente 4 terminales (o neuronas) en la entrada para recibir cada uno de esos parámetros de forma paralela.<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        
+        <h3 class="subtheme-title">EXAMEN SI Junio 2026 | Preguntas P39. [Tipo H: Probabilidad en AG]</h3>
+        <div class="box" style="border-left: 4px solid #3b82f6;">
+          <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+            <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+            <div style="color:#d1d5db; line-height:1.6;"><h5 style='color:#fff;'>### 39. Vida artificial
+
+¿Cuál de las siguientes simulaciones es un ejemplo clásico de vida artificial?
+
+- [ ] a) El juego del laberinto
+    
+- [ ] b) El Juego de la Vida de Conway
+    
+- [ ] c) Hill Climbing
+    
+- [ ] d) La estrategia elitista
+    
+- [ ] e) Ninguna de las anteriores
+    
+
+</h5>### 39. Vida artificial<br><br>¿Cuál de las siguientes simulaciones es un ejemplo clásico de vida artificial?<br><br><input type="radio" disabled> a) El juego del laberinto<br>    <br><input type="radio" disabled> b) El Juego de la Vida de Conway<br>    <br><input type="radio" disabled> c) Hill Climbing<br>    <br><input type="radio" disabled> d) La estrategia elitista<br>    <br><input type="radio" disabled> e) Ninguna de las anteriores<br>    <br><br><hr style='border-color:rgba(255,255,255,0.1);'></div>
+          </div>
+          <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+          <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+            <h5 style='color:#fff;'>Resolución de la 39.</h5><br><br><strong>Opción correcta: b)</strong><br><br>Dentro de los enfoques experimentales inspirados biológicamente, los autómatas celulares son el máximo exponente matemático de la Vida Artificial (VA). Entre ellos, la obra magna más clásica es el "Juego de la Vida" formulado por el matemático John Conway: una malla bidimensional sin estado central donde "organismos" celulares simples subsisten, se reproducen o perecen guiados por reglas locales estrictas dependientes de sus vecinos.<hr style='border-color:rgba(255,255,255,0.1);'>
+          </div>
+        </div>
+        </section>
 </div>
+</main>
+<script>
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('main-content');
+    const toggleBtn = document.getElementById('toggle-sidebar');
+
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('hidden');
+    });
+
+    // Generar índice automático
+    const sidebarContent = document.getElementById('nav-links');
+    sidebarContent.innerHTML = '';
+    
+    document.querySelectorAll('.theme-title, .subtheme-title').forEach((el, index) => {
+      if (!el.id) el.id = 'sec-' + index;
+      
+      const link = document.createElement('a');
+      link.href = '#' + el.id;
+      link.textContent = el.textContent;
+      
+      if (el.tagName === 'H2') {
+        link.className = 'nav-h2';
+      } else if (el.tagName === 'H3') {
+        link.className = 'nav-h3';
+      }
+      
+      sidebarContent.appendChild(link);
+    });
+
+    // ScrollSpy para marcar la sección activa
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          const activeLink = document.querySelector(`.nav-h3[href="#${id}"], .nav-h2[href="#${id}"]`);
+          if (activeLink) {
+            document.querySelectorAll('.nav-h3, .nav-h2').forEach(l => l.classList.remove('active'));
+            activeLink.classList.add('active');
+            
+            // Auto scroll sidebar
+            const linkRect = activeLink.getBoundingClientRect();
+            const sidebarRect = sidebarContent.getBoundingClientRect();
+            if (linkRect.bottom > sidebarRect.bottom || linkRect.top < sidebarRect.top) {
+              activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+            }
+          }
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.theme-title, .subtheme-title').forEach((el) => {
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>

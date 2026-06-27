@@ -89,7 +89,7 @@ window.QuizStats = {
   },
 
   load() {
-    const saved = localStorage.getItem('bda_quiz_stats');
+    const saved = localStorage.getItem('si_quiz_stats');
     if (saved) {
       try {
         this.data = { ...this.data, ...JSON.parse(saved) };
@@ -98,7 +98,7 @@ window.QuizStats = {
   },
 
   save() {
-    localStorage.setItem('bda_quiz_stats', JSON.stringify(this.data));
+    localStorage.setItem('si_quiz_stats', JSON.stringify(this.data));
   },
 
   addAnswer(payload) {
@@ -251,7 +251,7 @@ window.QuizStats = {
 
 // --- PAUSED TEST MANAGEMENT ---
 function initResumeButton() {
-  const saved = localStorage.getItem('bda_paused_test');
+  const saved = localStorage.getItem('si_paused_test');
   if (saved) {
     try {
       const progress = JSON.parse(saved);
@@ -296,9 +296,9 @@ function initResumeButton() {
 }
 
 function checkPausedTestOnLoad() {
-  const saved = localStorage.getItem('bda_paused_test');
-  if (saved && !sessionStorage.getItem('bda_prompted_resume') && !window.location.search.includes('resume=true')) {
-    sessionStorage.setItem('bda_prompted_resume', 'true');
+  const saved = localStorage.getItem('si_paused_test');
+  if (saved && !sessionStorage.getItem('si_prompted_resume') && !window.location.search.includes('resume=true')) {
+    sessionStorage.setItem('si_prompted_resume', 'true');
     try {
       const progress = JSON.parse(saved);
       window.showCustomModal({
@@ -327,7 +327,7 @@ function checkPausedTestOnLoad() {
             text: 'No, descartar',
             style: 'danger',
             action: () => {
-              localStorage.removeItem('bda_paused_test');
+              localStorage.removeItem('si_paused_test');
               const existing = document.querySelector('.resume-test-btn');
               if (existing) existing.remove();
             }

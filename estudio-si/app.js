@@ -1,5 +1,5 @@
 /**
- * QUIZ APP — Bases de Datos Avanzadas
+ * QUIZ APP — Sistemas Inteligentes
  * Interactive quiz engine with justifications
  */
 
@@ -41,8 +41,8 @@
     bindQuizEvents();
     bindResultsEvents();
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('resume') === 'true' && localStorage.getItem('bda_paused_test')) {
-      const saved = JSON.parse(localStorage.getItem('bda_paused_test'));
+    if (urlParams.get('resume') === 'true' && localStorage.getItem('si_paused_test')) {
+      const saved = JSON.parse(localStorage.getItem('si_paused_test'));
       window.resumePausedTest(saved.state);
       window.history.replaceState({}, document.title, window.location.pathname);
       return;
@@ -72,7 +72,7 @@
   // ========================
   function startQuiz(mode, categoryId, partId, sourceFilter) {
     // Si inicia un quiz explícitamente desde el portal, limpiamos el estado guardado automáticamente
-    localStorage.removeItem('bda_paused_test');
+    localStorage.removeItem('si_paused_test');
 
     const doStart = () => {
       state.mode = mode;
@@ -84,7 +84,7 @@
       state.answered = false;
       state.startTime = Date.now();
 
-      let pool = [...QUESTIONS];
+      let pool = [...(typeof QUESTIONS !== 'undefined' ? QUESTIONS : []), ...(typeof EXAM_QUESTIONS !== 'undefined' ? EXAM_QUESTIONS : []), ...(typeof DAYPO_QUESTIONS !== 'undefined' ? DAYPO_QUESTIONS : [])];
       if (mode === 'category' && categoryId) {
         pool = pool.filter(q => q.category === categoryId);
       } else if (mode === 'part' && categoryId) {
@@ -400,7 +400,7 @@
                   path: window.location.pathname,
                   state: { ...state, accumulatedTime: (state.accumulatedTime || 0) + elapsed }
                 };
-                localStorage.setItem('bda_paused_test', JSON.stringify(progress));
+                localStorage.setItem('si_paused_test', JSON.stringify(progress));
                 resetToLanding();
               }
             },
@@ -408,7 +408,7 @@
               text: 'Salir sin guardar',
               style: 'danger',
               action: () => {
-                localStorage.removeItem('bda_paused_test');
+                localStorage.removeItem('si_paused_test');
                 resetToLanding();
               }
             },
@@ -487,7 +487,7 @@
     else if (state.mode === 'exams') quizName = 'Exámenes';
     else if (state.mode === 'exam') {
       const cat = CATEGORIES.find(c => c.id === state.categoryId);
-      quizName = cat ? cat.name : 'Examen';
+      quizName = cat ? cat.name : (state.categoryId || 'Examen');
     }
     else if (state.mode === 'random') quizName = 'Aleatorio';
     else if (state.mode === 'part') quizName = 'Parte ' + (state.categoryId === 'simbolica' ? 'Simbólica' : 'Subsimbólica');
@@ -513,7 +513,7 @@
       questions: questionsList
     });
 
-    localStorage.removeItem('bda_paused_test');
+    localStorage.removeItem('si_paused_test');
 
     addRingGradient();
 
@@ -684,7 +684,7 @@
     Object.values(screens).forEach(s => s?.classList?.remove('active'));
     if (screens.quiz) screens.quiz.classList.add('active');
     
-    localStorage.removeItem('bda_paused_test');
+    localStorage.removeItem('si_paused_test');
     const existingBtn = document.querySelector('.resume-test-btn');
     if (existingBtn) existingBtn.remove();
     
@@ -702,7 +702,7 @@
         path: window.location.pathname,
         state: { ...state, accumulatedTime: (state.accumulatedTime || 0) + elapsed }
       };
-      localStorage.setItem('bda_paused_test', JSON.stringify(progress));
+      localStorage.setItem('si_paused_test', JSON.stringify(progress));
     }
   });
 

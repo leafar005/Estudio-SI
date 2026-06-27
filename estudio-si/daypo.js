@@ -3744,4 +3744,3 @@ const DAYPO_QUESTIONS = [
   }
 ];
 
-if (typeof QUESTIONS !== 'undefined') QUESTIONS.push(...DAYPO_QUESTIONS);

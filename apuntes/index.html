@@ -83,16 +83,17 @@
       --accent: #3b82f6;
       --accent-hover: #2563eb;
       --border-subtle: rgba(255, 255, 255, 0.08);
-      /* Custom theme colors BDA */
-      --c-1: #3b82f6; /* Catálogo */
-      --c-2: #8b5cf6; /* Vistas */
-      --c-3: #10b981; /* Integridad */
-      --c-4: #ef4444; /* Seguridad */
-      --c-5: #f59e0b; /* Activas */
-      --c-6: #06b6d4; /* Diseño */
-      --c-7: #ec4899; /* Optimización */
-      --c-8: #14b8a6; /* Recuperación */
-      --c-9: #f97316; /* Concurrencia */
+      /* Custom theme colors SI */
+      --c-1: #3b82f6; /* 'introduccion': 't1-introducción-a-la-ia', */
+      --c-2: #8b5cf6; /* 'busqueda': 't2-búsqueda', */
+      --c-3: #10b981; /* 'representacion': 't3-representación-del-conocimiento', */
+      --c-4: #ef4444; /* 'razonamiento': 't4-razonamiento', */
+      --c-5: #f59e0b; /* 'planificacion': 't5-planificación', */
+      --c-6: #06b6d4; /* 'conexionistas': 't6-sistemas-conexionistas', */
+      --c-7: #ec4899; /* 'neurona': 't7-neurona-formal-y-arquitecturas-rna', */
+      --c-8: #14b8a6; /* 'aprendizaje': 't8-aprendizaje-en-redes-neuronales', */
+      --c-9: #f97316; /* 'evolutiva': 't9-computación-evolutiva-y-ag', */
+      --c-10: #8b5cf6; /* 'difusa': 't10-lógica-y-conjuntos-difusos' */
       --c-exam: #facc15; /* Examen */
     }
     
@@ -1338,15 +1339,16 @@
       const urlParams = new URLSearchParams(window.location.search);
       const topic = urlParams.get('topic');
       const topicMapping = {
-        'catalogo': 't-01',
-        'vistas': 't-02',
-        'integridade': 't-03',
-        'seguridade': 't-04',
-        'activas': 't-05',
-        'oorm': 't-06',
-        'optimizacion': 't-07',
-        'recuperacion': 't-08',
-        'concurrencia': 't-09'
+        'introduccion': 't1-introducción-a-la-ia',
+        'busqueda': 't2-búsqueda',
+        'representacion': 't3-representación-del-conocimiento',
+        'razonamiento': 't4-razonamiento',
+        'planificacion': 't5-planificación',
+        'subsimbolica': 't6-sistemas-conexionistas',
+        'neurona': 't7-neurona-formal-y-arquitecturas-rna',
+        'aprendizaje': 't8-aprendizaje-en-redes-neuronales',
+        'evolutiva': 't9-computación-evolutiva-y-ag',
+        'difusa': 't10-lógica-y-conjuntos-difusos'
       };
 
       if (topic && topicMapping[topic]) {
