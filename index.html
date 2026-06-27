@@ -288,6 +288,33 @@
         <span class="bento-card-desc">Algoritmos genéticos y optimización evolutiva.</span>
       </a>
 
+      <h2 class="section-title">Resolución de Exámenes</h2>
+      <a href="?mode=exam&category=examen_2023" class="bento-card">
+        <span class="bento-card-icon">📄</span>
+        <span class="bento-card-title">Examen 2023</span>
+        <span class="bento-card-desc">Resolución y justificaciones del examen oficial.</span>
+      </a>
+      <a href="?mode=exam&category=examen_2024" class="bento-card">
+        <span class="bento-card-icon">📄</span>
+        <span class="bento-card-title">Examen 2024</span>
+        <span class="bento-card-desc">Resolución y justificaciones del examen oficial.</span>
+      </a>
+      <a href="?mode=exam&category=examen_mayo_2025" class="bento-card">
+        <span class="bento-card-icon">📄</span>
+        <span class="bento-card-title">Examen Mayo 2025</span>
+        <span class="bento-card-desc">Resolución y justificaciones del examen oficial.</span>
+      </a>
+      <a href="?mode=exam&category=examen_julio_2025" class="bento-card">
+        <span class="bento-card-icon">📄</span>
+        <span class="bento-card-title">Examen Julio 2025</span>
+        <span class="bento-card-desc">Resolución y justificaciones del examen oficial.</span>
+      </a>
+      <a href="?mode=exam&category=examen_junio_2026" class="bento-card">
+        <span class="bento-card-icon">📄</span>
+        <span class="bento-card-title">Examen Junio 2026</span>
+        <span class="bento-card-desc">Resolución y justificaciones del examen oficial.</span>
+      </a>
+
       <h2 class="section-title">Quiz</h2>
       <a href="estudio-si/index.html?mode=part&category=simbolica" class="bento-card featured" style="grid-column: 1 / -1; margin-bottom: 10px; border-color: rgba(59, 130, 246, 0.4); background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(20,20,20,0.35));">
         <span class="bento-card-icon">🧩</span>
@@ -334,6 +361,20 @@
           <div class="btn-text">
             <strong>Cuestionario</strong>
             <span>Preguntas con opciones y justificación</span>
+          </div>
+        </button>
+        <button class="modal-option-btn primary" id="btn-exam-simbolica" style="display: none;">
+          <span class="btn-emoji">🧠</span>
+          <div class="btn-text">
+            <strong>Parte Simbólica</strong>
+            <span>Temas 1 a 5 del examen</span>
+          </div>
+        </button>
+        <button class="modal-option-btn primary" id="btn-exam-subsimbolica" style="display: none;">
+          <span class="btn-emoji">🌐</span>
+          <div class="btn-text">
+            <strong>Parte Subsimbólica</strong>
+            <span>Temas 6 a 10 del examen</span>
           </div>
         </button>
         <button class="modal-option-btn secondary" id="btn-start-flashcards">
@@ -409,24 +450,32 @@
       const btnExamen = document.getElementById('btn-start-examen');
       const btnFlash = document.getElementById('btn-start-flashcards');
       const btnResumen = document.getElementById('btn-start-resumen');
+      const btnExamSim = document.getElementById('btn-exam-simbolica');
+      const btnExamSub = document.getElementById('btn-exam-subsimbolica');
 
       let currentCategory = null;
 
       document.querySelectorAll('.bento-card').forEach(card => {
         card.addEventListener('click', (e) => {
           const href = card.getAttribute('href');
-          if (href && href.includes('?mode=category&category=')) {
+          if (href && (href.includes('?mode=category&category=') || href.includes('?mode=exam&category='))) {
             e.preventDefault();
             const urlParams = new URLSearchParams(href.split('?')[1]);
             currentCategory = urlParams.get('category');
             if (currentCategory.startsWith('examen')) {
               btnFlash.style.display = 'none';
               btnResumen.style.display = 'none';
-              btnExamen.style.display = 'flex';
+              btnQuiz.style.display = 'none';
+              btnExamen.style.display = 'none';
+              btnExamSim.style.display = 'flex';
+              btnExamSub.style.display = 'flex';
             } else {
               btnFlash.style.display = 'flex';
               btnResumen.style.display = 'flex';
+              btnQuiz.style.display = 'flex';
               btnExamen.style.display = 'none';
+              btnExamSim.style.display = 'none';
+              btnExamSub.style.display = 'none';
             }
             titleEl.textContent = card.querySelector('.bento-card-title').textContent;
             iconEl.textContent = card.querySelector('.bento-card-icon').textContent;
@@ -441,18 +490,25 @@
       });
 
       btnQuiz.addEventListener('click', () => {
-        window.location.href = \`estudio-si/index.html?mode=category&category=\${currentCategory}\`;
+        const mode = currentCategory.startsWith('examen') ? 'exam' : 'category';
+        window.location.href = `estudio-si/index.html?mode=${mode}&category=${currentCategory}`;
       });
       
       btnExamen.addEventListener('click', () => {
-        window.location.href = \`guia/\${currentCategory}.html\`;
+        window.location.href = `estudio-si/index.html?mode=exam&category=${currentCategory}`;
+      });
+      btnExamSim.addEventListener('click', () => {
+        window.location.href = `estudio-si/index.html?mode=exam&category=${currentCategory}&part=simbolica`;
+      });
+      btnExamSub.addEventListener('click', () => {
+        window.location.href = `estudio-si/index.html?mode=exam&category=${currentCategory}&part=subsimbolica`;
       });
 
       btnFlash.addEventListener('click', () => {
-        window.location.href = \`shared/flashcards.html?topic=\${currentCategory}\`;
+        window.location.href = `shared/flashcards.html?topic=${currentCategory}`;
       });
       btnResumen.addEventListener('click', () => {
-        window.location.href = \`apuntes/index.html?topic=\${currentCategory}\`;
+        window.location.href = `apuntes/index.html`;
       });
     });
   </script>

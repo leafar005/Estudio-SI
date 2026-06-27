@@ -49,8 +49,9 @@
     }
     const modeParam = urlParams.get('mode');
     const catParam = urlParams.get('category');
+    const partParam = urlParams.get('part');
     if (modeParam) {
-      startQuiz(modeParam, catParam);
+      startQuiz(modeParam, catParam, partParam);
     } else {
       window.location.href = '../index.html';
     }
@@ -68,7 +69,7 @@
   // ========================
   // QUIZ START
   // ========================
-  function startQuiz(mode, categoryId) {
+  function startQuiz(mode, categoryId, partId) {
     // Si inicia un quiz explícitamente desde el portal, limpiamos el estado guardado automáticamente
     localStorage.removeItem('bda_paused_test');
 
@@ -88,11 +89,22 @@
       } else if (mode === 'part' && categoryId) {
         const catIds = CATEGORIES.filter(c => c.part === categoryId).map(c => c.id);
         pool = pool.filter(q => catIds.includes(q.category));
-      } else if (mode === 'traps') {
-        pool = pool.filter(q => q.trap);
+      } else if (mode === 'exams') {
+        pool = pool.filter(q => (q.source && q.source.startsWith('examen')) || (q.category && q.category.startsWith('examen')));
+      } else if (mode === 'exam' && categoryId) {
+        pool = pool.filter(q => q.source === categoryId || q.category === categoryId);
+        if (partId === 'simbolica') {
+           const simbIds = CATEGORIES.filter(c => c.part === 'simbolica').map(c => c.id);
+           pool = pool.filter(q => simbIds.includes(q.category));
+        } else if (partId === 'subsimbolica') {
+           const subIds = CATEGORIES.filter(c => c.part === 'subsimbolica').map(c => c.id);
+           pool = pool.filter(q => subIds.includes(q.category));
+        }
       }
 
-      pool = shuffle(pool);
+      if (mode !== 'exam') {
+        pool = shuffle(pool);
+      }
 
       if (mode === 'random') {
         const urlParams = new URLSearchParams(window.location.search);
@@ -130,16 +142,15 @@
     const cat = CATEGORIES.find(c => c.id === q.category);
     $('#question-category').textContent = cat ? `${cat.icon} ${cat.name}` : q.category;
 
-    const typeLabel = q.type === 'vf' ? 'V / F' : 'Opción múltiple';
     const typeEl = $('#question-type');
-    typeEl.textContent = typeLabel;
-    if (q.trap) {
-      typeEl.textContent += ' ⚠️ Trampa';
-      typeEl.style.background = 'rgba(239, 68, 68, 0.12)';
-      typeEl.style.color = '#ef4444';
+    const isExam = (q.source && q.source.startsWith('examen')) || (q.category && q.category.startsWith('examen'));
+    if (isExam) {
+      typeEl.textContent = '🎓 Examen';
+      typeEl.style.background = 'rgba(250, 204, 21, 0.12)';
+      typeEl.style.color = '#facc15';
+      typeEl.style.display = 'inline-block';
     } else {
-      typeEl.style.background = '';
-      typeEl.style.color = '';
+      typeEl.style.display = 'none';
     }
 
     if (window.marked) {
@@ -167,9 +178,10 @@
       const btn = document.createElement('button');
       btn.className = 'option-btn';
       btn.dataset.index = i;
+      const parsedText = window.marked ? marked.parse(optObj.text) : optObj.text;
       btn.innerHTML = `
         <span class="option-letter">${letters[i]}</span>
-        <span class="option-text">${optObj.text}</span>
+        <div class="option-text">${parsedText}</div>
       `;
       btn.addEventListener('click', () => handleAnswer(i));
       container.appendChild(btn);
@@ -200,9 +212,10 @@
         } else {
           btn.classList.add('dimmed');
         }
+        const parsedText = window.marked ? marked.parse(optObj.text) : optObj.text;
         btn.innerHTML = `
           <span class="option-letter">${letters[i]}</span>
-          <span class="option-text">${optObj.text}</span>
+          <div class="option-text">${parsedText}</div>
         `;
         container.appendChild(btn);
       });
@@ -243,6 +256,7 @@
     card.style.animation = 'none';
     card.offsetHeight;
     card.style.animation = '';
+    if (window.MathJax && typeof MathJax.typesetPromise === 'function') { MathJax.typesetPromise([card]); }
   }
 
   // ========================
@@ -311,6 +325,7 @@
     }
 
     text.innerHTML = formatJustification(q.justification);
+    if (window.MathJax && typeof MathJax.typesetPromise === 'function') { MathJax.typesetPromise([$('#question-card')]); }
 
     $('#btn-next').style.display = 'inline-block';
     $('#question-actions').classList.remove('hidden');
@@ -452,7 +467,11 @@
     const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
     let quizName = 'Simulacro';
     if (state.mode === 'all') quizName = 'Completo';
-    else if (state.mode === 'traps') quizName = 'Solo Trampas';
+    else if (state.mode === 'exams') quizName = 'Exámenes';
+    else if (state.mode === 'exam') {
+      const cat = CATEGORIES.find(c => c.id === state.categoryId);
+      quizName = cat ? cat.name : 'Examen';
+    }
     else if (state.mode === 'random') quizName = 'Aleatorio';
     else if (state.mode === 'part') quizName = 'Parte ' + (state.categoryId === 'simbolica' ? 'Simbólica' : 'Subsimbólica');
     else if (state.mode === 'category') {
@@ -571,12 +590,12 @@
           ${!ans.isCorrect ? `
             <div class="review-detail-row">
               <span class="review-detail-label wrong">Tu respuesta:</span>
-              <span class="review-detail-value">${letters[ans.selectedOption]}. ${ans.displayOptions[ans.selectedOption].text}</span>
+              <div class="review-detail-value">${letters[ans.selectedOption]}. ${window.marked ? marked.parse(ans.displayOptions[ans.selectedOption].text) : ans.displayOptions[ans.selectedOption].text}</div>
             </div>
           ` : ''}
           <div class="review-detail-row">
             <span class="review-detail-label correct">Correcta:</span>
-            <span class="review-detail-value">${letters[correctIndex]}. ${ans.displayOptions[correctIndex].text}</span>
+            <div class="review-detail-value">${letters[correctIndex]}. ${window.marked ? marked.parse(ans.displayOptions[correctIndex].text) : ans.displayOptions[correctIndex].text}</div>
           </div>
           <div class="review-detail-justification">${formatJustification(q.justification)}</div>
         </div>
@@ -592,6 +611,7 @@
     if (list.children.length === 0) {
       list.innerHTML = '<p style="text-align:center;color:var(--text-tertiary);padding:20px;">No hay preguntas en esta categoría.</p>';
     }
+    if (window.MathJax && typeof MathJax.typesetPromise === 'function') { MathJax.typesetPromise([list]); }
   }
 
   function bindReviewFilters() {

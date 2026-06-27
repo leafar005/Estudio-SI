@@ -10,6 +10,17 @@
   <link rel="stylesheet" href="../shared/shared.css">
   <script src="../shared/shared.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
   <!-- Background Glows -->
@@ -127,6 +138,7 @@
   </div>
 
   <script src="questions.js"></script>
+  <script src="exams.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

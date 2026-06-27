@@ -603,6 +603,10 @@ body {
   flex: 1;
 }
 
+.option-text p {
+  margin: 0;
+}
+
 /* Answered states */
 .option-btn.answered {
   cursor: default;

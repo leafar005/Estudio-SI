@@ -1,13 +1,78 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apuntes | Estudio SI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../shared/shared.css">
-  <script src="../shared/shared.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apuntes Completos - SI 2026</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../shared/shared.css" rel="stylesheet"/>
+<script src="../shared/shared.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true, theme: 'dark'});</script>
+  <style>
+    /* New visual styles for SI Apuntes */
+    .mermaid-container {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 15px;
+      margin: 20px 0;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .code-window {
+      background: #1e1e1e;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.05);
+      overflow: hidden;
+    }
+    .code-window-header {
+      background: #2d2d2d;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .mac-buttons { display: flex; gap: 8px; }
+    .mac-btn { width: 12px; height: 12px; border-radius: 50%; }
+    .mac-btn.close { background: #ff5f56; }
+    .mac-btn.minimize { background: #ffbd2e; }
+    .mac-btn.maximize { background: #27c93f; }
+    .code-window h5 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      color: #a0a0a0;
+      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+    .code-window-body { padding: 15px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; line-height: 1.5; color: #f8f8f2; }
+    .code-window-body p { margin: 0 0 10px 0; }
+    .code-window-body p:last-child { margin: 0; }
+    
+    .img-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .img-container img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+  </style>
   <style>
     :root {
       --bg-primary: #0a0e1a;
@@ -15,204 +80,1348 @@
       --bg-card: #1a1f35;
       --text-primary: #f3f4f6;
       --text-secondary: #9ca3af;
-      --accent: #10b981;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
       --border-subtle: rgba(255, 255, 255, 0.08);
+      /* Custom theme colors BDA */
+      --c-1: #3b82f6; /* Catálogo */
+      --c-2: #8b5cf6; /* Vistas */
+      --c-3: #10b981; /* Integridad */
+      --c-4: #ef4444; /* Seguridad */
+      --c-5: #f59e0b; /* Activas */
+      --c-6: #06b6d4; /* Diseño */
+      --c-7: #ec4899; /* Optimización */
+      --c-8: #14b8a6; /* Recuperación */
+      --c-9: #f97316; /* Concurrencia */
+      --c-exam: #facc15; /* Examen */
     }
-    body {
-      margin: 0; padding: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      display: flex;
-      height: 100vh;
+    
+    body { margin: 0; padding: 0; display: flex; height: 100vh; overflow: hidden; font-family: 'Inter', sans-serif; background-color: var(--bg-primary); color: var(--text-primary); }
+    #sidebar { width: 320px; min-width: 320px; background: rgba(17, 24, 39, 0.95); border-right: 1px solid var(--border-subtle); display: flex; flex-direction: column; z-index: 50; transition: width 0.3s ease, min-width 0.3s ease, opacity 0.3s ease; }
+    #sidebar.collapsed { width: 0 !important; min-width: 0 !important; border: none !important; opacity: 0; overflow: hidden; padding: 0; margin: 0; }
+    .sidebar-header { padding: 24px; border-bottom: 1px solid var(--border-subtle); background: var(--bg-secondary); }
+    .back-btn { display: flex; align-items: center; gap: 10px; color: var(--text-primary); text-decoration: none; font-weight: 600; font-size: 0.95rem; background: var(--bg-card); padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border-subtle); transition: all 0.2s; }
+    .back-btn:hover { background: var(--accent); border-color: var(--accent); }
+    .sidebar-content { flex: 1; overflow-y: auto; padding: 20px 0; }
+    .nav-h2 { display: block; padding: 12px 24px 4px 24px; font-size: 0.85rem; font-weight: 800; color: #93c5fd; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
+    .nav-h3 { display: block; padding: 8px 24px 8px 36px; font-size: 0.8rem; color: var(--text-secondary); text-decoration: none; transition: all 0.2s; border-left: 3px solid transparent; }
+    .nav-h3.exam-link { color: #fef08a; font-weight: 600; }
+    .nav-h3:hover { color: var(--text-primary); background: rgba(255,255,255,0.03); }
+    .nav-h3.active { color: #fff; background: rgba(59, 130, 246, 0.15); border-left-color: var(--accent); font-weight: 600; }
+    #main-content { flex: 1; overflow-y: auto; padding: 20px 60px 60px 60px; scroll-behavior: smooth; position: relative; }
+    .toggle-btn {
+      position: sticky; top: 0px; z-index: 99; margin-bottom: 20px; margin-left: -40px;
+      background: var(--bg-card); border: 1px solid var(--border-subtle); color: var(--text-primary);
+      padding: 10px 15px; border-radius: 8px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; font-weight: 600; font-size: 0.9rem;
+    }
+    .toggle-btn:hover { background: var(--accent); border-color: var(--accent); }
+    .content-container { max-width: 900px; margin: 0 auto; }
+    .page-title { font-size: 3.2rem; font-weight: 900; margin-bottom: 15px; background: linear-gradient(135deg, #fff 0%, #60a5fa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1; }
+    .page-subtitle { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 60px; line-height: 1.6; }
+    h2.theme-title { font-size: 2.2rem; font-weight: 800; margin: 80px 0 30px 0; padding-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,0.1); color: #fff; }
+    h3.subtheme-title { font-size: 1.4rem; font-weight: 700; margin: 45px 0 15px 0; color: #bfdbfe; }
+    h3.exam-title { color: var(--c-exam); border-bottom: 1px dashed var(--c-exam); padding-bottom: 5px; display: inline-block; }
+    h4 { font-size: 1.15rem; font-weight: 600; margin: 25px 0 10px 0; color: #93c5fd; }
+    p { line-height: 1.8; color: #d1d5db; margin-bottom: 20px; font-size: 1.05rem; }
+    ul, ol { color: #d1d5db; line-height: 1.8; margin-bottom: 24px; padding-left: 24px; font-size: 1.05rem; }
+    li { margin-bottom: 10px; }
+    strong { color: #fff; font-weight: 600; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 30px 0; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin: 30px 0; }
+    .box { background: rgba(255,255,255,0.03); padding: 24px; border-radius: 12px; border: 1px solid var(--border-subtle); }
+    .box h4 { margin-top: 0; color: #fff; margin-bottom: 15px; }
+    .alert { background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--accent); padding: 20px; margin: 30px 0; border-radius: 0 12px 12px 0; }
+    .exam-guide { border: 1px solid rgba(250, 204, 21, 0.3); border-left: 4px solid var(--c-exam); background: linear-gradient(90deg, rgba(250, 204, 21, 0.05), transparent); }
+    .exam-guide h4 { color: #fef08a; }
+    table { width: 100%; border-collapse: collapse; margin: 30px 0; background: rgba(255,255,255,0.02); border-radius: 12px; overflow: hidden; }
+    th, td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border-subtle); line-height: 1.6; }
+    th { background: rgba(255,255,255,0.05); font-weight: 700; color: #fff; }
+    .tag { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; margin-bottom: 10px; }
+    
+    @media (max-width: 850px) {
+      body { flex-direction: column; height: auto; overflow-y: auto; }
+      #sidebar { width: 100%; min-width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-subtle); position: relative; z-index: 100; }
+      .sidebar-content { display: flex; flex-direction: row; overflow-x: auto; overflow-y: hidden; white-space: nowrap; padding: 10px 15px; -webkit-overflow-scrolling: touch; align-items: center; max-height: none; }
+      .nav-h2 { display: inline-block; padding: 8px 15px; margin-right: 10px; font-size: 0.8rem; background: rgba(59,130,246,0.1); border-radius: 8px; }
+      .nav-h3 { display: inline-block; padding: 8px 12px; font-size: 0.85rem; border-left: none; }
+      .nav-h3.active { background: rgba(59,130,246,0.2); border-radius: 8px; color: #fff; font-weight: 600; }
+      #main-content { overflow-y: visible; padding: 25px 15px; }
+      .toggle-btn {
+      position: sticky; top: 0px; z-index: 99; margin-bottom: 20px; margin-left: -40px;
+      background: var(--bg-card); border: 1px solid var(--border-subtle); color: var(--text-primary);
+      padding: 10px 15px; border-radius: 8px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; font-weight: 600; font-size: 0.9rem;
+    }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 15px; }
+      .page-title { font-size: 2rem; }
+      .page-subtitle { font-size: 1rem; margin-bottom: 30px; }
+      h2.theme-title { font-size: 1.8rem; margin: 40px 0 20px 0; }
+      h3.subtheme-title { font-size: 1.3rem; margin-top: 30px; }
+      .box { padding: 16px; }
+    }
+  
+    /* Code styling */
+    code:not([class*="language-"]) { font-family: 'JetBrains Mono', monospace !important; background: rgba(0,0,0,0.4) !important; padding: 2px 6px; border-radius: 4px; color: #f3f4f6 !important; font-weight: 600; border: 1px solid rgba(255,255,255,0.05); }
+    
+    .sql-example {
+      background: #1e1e1e; /* Darker background like the user wants */
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.05);
       overflow: hidden;
     }
-    .sidebar {
-      width: 280px;
-      background: var(--bg-secondary);
-      border-right: 1px solid var(--border-subtle);
-      display: flex; flex-direction: column;
-      height: 100%;
-    }
-    .sidebar-header {
-      padding: 20px;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .back-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      color: var(--text-secondary); text-decoration: none;
-      font-size: 0.9rem; font-weight: 500; transition: color 0.2s;
-    }
-    .back-btn:hover { color: var(--text-primary); }
-    .sidebar-title { margin: 15px 0 0; font-size: 1.2rem; font-weight: 700; }
-    .topic-list {
-      flex: 1; overflow-y: auto; padding: 10px 0;
-      list-style: none; margin: 0;
-    }
-    .topic-item {
-      padding: 10px 20px;
-      cursor: pointer;
-      color: var(--text-secondary);
-      display: flex; align-items: center; gap: 10px;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-    .topic-item:hover {
-      background: rgba(255,255,255,0.03);
-      color: var(--text-primary);
-    }
-    .topic-item.active {
-      background: rgba(16,185,129,0.1);
-      color: var(--accent);
-      border-right: 3px solid var(--accent);
-    }
-    .main-content {
-      flex: 1;
-      overflow-y: auto;
-      padding: 40px;
+    .sql-example-header {
+      background: #2d2d2d; /* Header for Mac buttons */
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
       position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-    .content-container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      padding: 40px;
+    .mac-buttons { display: flex; gap: 8px; }
+    .mac-btn { width: 12px; height: 12px; border-radius: 50%; }
+    .mac-btn.close { background: #ff5f56; }
+    .mac-btn.minimize { background: #ffbd2e; }
+    .mac-btn.maximize { background: #27c93f; }
+    .sql-example h5 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      color: #a0a0a0;
+      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
     }
-    .markdown-body {
-      font-size: 1.05rem;
-      line-height: 1.7;
-    }
-    .markdown-body h1 { font-size: 2rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px; margin-top: 0; }
-    .markdown-body h2 { font-size: 1.5rem; margin-top: 30px; }
-    .markdown-body p { margin-bottom: 16px; }
-    .markdown-body pre { background: #000; padding: 15px; border-radius: 8px; overflow-x: auto; }
-    .markdown-body code { font-family: monospace; color: #a7f3d0; }
-    
-    @media (max-width: 768px) {
-      body { flex-direction: column; overflow: auto; }
-      .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-subtle); }
-      .topic-list { display: flex; overflow-x: auto; padding: 0; white-space: nowrap; }
-      .topic-item { padding: 15px; border-right: none; border-bottom: 3px solid transparent; }
-      .topic-item.active { border-right: none; border-bottom: 3px solid var(--accent); }
-      .main-content { padding: 20px; overflow-y: visible; }
-      .content-container { padding: 20px; }
-    }
-  </style>
-</head>
-<body>
-  <div class="sidebar">
-    <div class="sidebar-header">
-      <a href="../index.html" class="back-btn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Volver
-      </a>
-      <h2 class="sidebar-title">Temario SI</h2>
-    </div>
-    <ul class="topic-list" id="topic-list">
-      <!-- Se llena dinámicamente -->
-    </ul>
-  </div>
-  <div class="main-content">
-    <div class="content-container">
-      <div id="content-body" class="markdown-body">
-        <p>Selecciona un tema en el menú de la izquierda para comenzar a estudiar.</p>
-      </div>
-    </div>
-  </div>
+    .sql-example-body { padding: 15px; overflow-x: auto; }
+    .sql-example-body pre { margin: 0 !important; background: transparent !important; padding: 0 !important; font-family: 'JetBrains Mono', monospace !important; font-weight: bold !important; font-size: 0.95rem; line-height: 1.5; color: #f8f8f2; overflow-y: hidden !important; }
 
-  <script src="../estudio-si/questions.js"></script>
-  <script>
-    const APUNTES_DATA = {
-      "introduccion":     "",
-      "busqueda":         "",
-      "representacion":   "",
-      "razonamiento":     "",
-      "planificacion":    "",
-      "conexionistas":    "",
-      "neurona":          "",
-      "feedforward":      "",
-      "autoorganizacion": "",
-      "evolutiva":        ""
+</style>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
     };
+  </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<style>
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const topicList = document.getElementById('topic-list');
-      const contentBody = document.getElementById('content-body');
-      
+    
+    
+    
+    
+
+
+
+    /* Code styling */
+    code:not([class*="language-"]) { font-family: 'JetBrains Mono', monospace !important; background: rgba(0,0,0,0.4) !important; padding: 2px 6px; border-radius: 4px; color: #f3f4f6 !important; font-weight: 600; border: 1px solid rgba(255,255,255,0.05); }
+    
+    .sql-example {
+      background: #1e1e1e; /* Darker background like the user wants */
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.05);
+      overflow: hidden;
+    }
+    .sql-example-header {
+      background: #2d2d2d; /* Header for Mac buttons */
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .mac-buttons { display: flex; gap: 8px; }
+    .mac-btn { width: 12px; height: 12px; border-radius: 50%; }
+    .mac-btn.close { background: #ff5f56; }
+    .mac-btn.minimize { background: #ffbd2e; }
+    .mac-btn.maximize { background: #27c93f; }
+    .sql-example h5 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      color: #a0a0a0;
+      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+    .sql-example-body { padding: 15px; overflow-x: auto; }
+    .sql-example-body pre { margin: 0 !important; background: transparent !important; padding: 0 !important; font-family: 'JetBrains Mono', monospace !important; font-weight: bold !important; font-size: 0.95rem; line-height: 1.5; color: #f8f8f2; overflow-y: hidden !important; }
+
+</style>
+</head>
+<body class="line-numbers">
+<nav id="sidebar">
+<div class="sidebar-header">
+<a class="back-btn" href="../index.html">
+<svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>
+        Volver al Portal
+      </a>
+</div>
+<div class="sidebar-content" id="nav-links"></div>
+</nav>
+<main id="main-content">
+<button class="toggle-btn" id="toggle-sidebar">
+<svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+</button>
+<div class="content-container">
+<div style="text-align: center; margin-bottom: 50px;">
+<h1 class="page-title">Guía Definitiva SI</h1>
+<p class="page-subtitle" style="max-width: 600px; margin: 0 auto;">Resumen de alto rendimiento para dominar Sistemas Inteligentes. Diseñado para memorizar, estructurar y evitar trampas de examen.</p>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- TEMA 1 --><section class="theme-section">
+<h2 class="theme-title" id="t1-introducción-a-la-ia" style="border-bottom-color: var(--c-1); color: var(--c-1);">T1: Introducción a la IA</h2>
+<h3 class="subtheme-title" id="definiciones-y-fundamentos">Definiciones y Fundamentos</h3>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-1);">
+<h4>Definición IA (RAE)</h4>
+<p>Disciplina científica que se ocupa de crear programas informáticos que ejecutan operaciones comparables a las que realiza la mente humana, como el aprendizaje o el razonamiento lógico.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-1);">
+<h4>Definición IA (UE / Minsky)</h4>
+<ul>
+<li><strong>Unión Europea:</strong> Sistemas diseñados por humanos que perciben su entorno, interpretan datos, razonan sobre el conocimiento y deciden las mejores acciones para cumplir metas complejas.</li>
+<li><strong>Marvin Minsky:</strong> "Capacidad para resolver problemas que aún no se entienden".</li>
+</ul>
+</div>
+</div>
+<div class="box">
+<h3 class="subtheme-title" id="ia-vs-programa-convencional">Programa de IA vs Programa Convencional</h3>
+<table>
+<thead><tr><th>Programa de IA</th><th>Programa Convencional</th></tr></thead>
+<tbody>
+<tr><td>Procesos heurísticos</td><td>Procesos algorítmicos</td></tr>
+<tr><td>Pasos implícitos</td><td>Pasos explícitos</td></tr>
+<tr><td>Información y control separados</td><td>Información y control integrados</td></tr>
+</tbody>
+</table>
+<p><em>Analogía:</em> El programa convencional es como un tren sobre raíles (sigue una ruta fija). El programa de IA es como un coche con GPS: se le da un destino pero calcula su ruta adaptándose a los obstáculos.</p>
+</div>
+<h3 class="subtheme-title" id="paradigmas-de-la-ia">Paradigmas de la IA</h3>
+<div class="grid-3">
+<div class="box" style="border-top: 3px solid var(--c-1);">
+<h4>Paradigma Simbólico</h4>
+<p>Basado en <strong>conocimiento explícito</strong> (símbolos, reglas, hechos). Separa conocimiento y razonamiento (inferencia lógica). Tiene alta explicabilidad pero es frágil ante la incertidumbre.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-1);">
+<h4>Paradigma Conexionista</h4>
+<p>Basado en <strong>conocimiento implícito</strong> (IA subsimbólica). Aprende patrones automáticamente a partir de datos masivos. Su principal desventaja es la baja explicabilidad (caja negra).</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-1);">
+<h4>Paradigma Evolutivo</h4>
+<p>Enfoque bioinspirado que emula los procesos de evolución natural (selección, mutación y cruce) para encontrar soluciones de optimización o adaptación en espacios de búsqueda complejos.</p>
+</div>
+</div>
+<h3 class="subtheme-title" id="agentes-inteligentes">Agentes Inteligentes</h3>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-1);">
+<h4>Reactivo Simple</h4>
+<p>Selecciona la acción en base a percepciones actuales únicamente, ignorando el resto del historial. Su comportamiento está basado en simples reflejos (reglas condición-acción).</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-1);">
+<h4>Basado en Modelo</h4>
+<p>Mantiene un estado interno que almacena cómo evoluciona el mundo independientemente del agente, y cómo afectan al mundo las acciones que ejecuta.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-1);">
+<h4>Basado en Metas</h4>
+<p>Además del modelo, conoce una serie de objetivos a alcanzar y planifica la secuencia de acciones evaluando el futuro para lograr sus metas.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-1);">
+<h4>Basado en Utilidad</h4>
+<p>Cada estado tiene asociado un valor numérico (utilidad) que representa su bondad. El agente busca alcanzar los estados que maximicen esta utilidad esperada.</p>
+</div>
+</div>
+
+<div class="box">
+<h3 class="subtheme-title" id="tipos-de-entornos-ejemplos">Tipos de Entornos y Ejemplos</h3>
+<table>
+<thead><tr><th>Problema</th><th>Determinismo</th><th>Observabilidad</th><th>Nº agentes</th></tr></thead>
+<tbody>
+<tr><td>Crucigrama</td><td>Determinista</td><td>Completa</td><td>Único</td></tr>
+<tr><td>Ajedrez</td><td>Determinista</td><td>Completa</td><td>Multiagente</td></tr>
+<tr><td>Solitario (cartas boca abajo)</td><td>Determinista</td><td>Parcial</td><td>Único</td></tr>
+<tr><td>Conducción autónoma</td><td>Estocástico</td><td>Parcial</td><td>Multiagente</td></tr>
+<tr><td>Clasificación de imágenes</td><td>Determinista</td><td>Completa</td><td>Único</td></tr>
+</tbody>
+</table>
+</div>
+<h3 class="subtheme-title" id="test-de-turing-y-regimen-lovelace">El Test de Turing y el Régimen de Lovelace</h3>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-1);">
+<h4>El Régimen de Lovelace y su refutación</h4>
+<p>Ada Lovelace argumentaba que las máquinas solo ejecutan lo que se les programa, sin iniciativa ni creatividad propias. El gran objetivo de la IA es <em>superarlo</em>: lograr que la máquina origine ideas, no solo repita código.</p>
+<p><strong>Refutación histórica:</strong></p>
+<ul>
+<li><em>"Teórico Lógico"</em> (Ernst, Newell y Simon, 1957) probó un teorema que Russell y Whitehead no habían visto.</li>
+<li><em>"General Problem Solver"</em> (1963) usó análisis medios-fines.</li>
+<li><em>"Juego de las Damas"</em> (Samuel, 1959) aprendió hasta vencer a su creador.</li>
+</ul>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-1);">
+<h4>El Test de Turing (1950)</h4>
+<p>Comportamiento inteligente = capacidad de engañar a un humano haciéndole creer que habla con otro humano. Ejemplo clásico: ELIZA/DOCTOR (Weizenbaum), programa conversacional que llegó a confundir a un vicepresidente de "Bolt Beranek and Newman".</p>
+<p><strong>Dicotomía Ciencia vs Ingeniería:</strong></p>
+<ul>
+<li><strong>Como Ciencia:</strong> Busca entender cómo funcionan los seres inteligentes.</li>
+<li><strong>Como Ingeniería:</strong> Busca que los computadores hagan lo que hacen las personas inteligentes (superar el Test).</li>
+</ul>
+</div>
+</div>
+<div class="alert">
+<div class="alert-content">
+<div class="alert-title">¡Atención! Trampas de Examen</div>
+<ul>
+<li><strong>Precursores Biológicos vs Padres Computación:</strong> Cuidado al asignar roles. Turing y Shannon son <em>precursores/padres de la computación</em> y teóricos de la inteligencia. Minsky, McCarthy, Newell, Simon (Dartmouth 1956) son los auténticos fundadores oficiales de la <em>Inteligencia Artificial</em> como disciplina.</li>
+</ul>
+</div>
+</div>
+</section><!-- TEMA 2 --><section class="theme-section">
+<h2 class="theme-title" id="t2-búsqueda" style="border-bottom-color: var(--c-2); color: var(--c-2);">T2: Búsqueda</h2>
+<h3 class="subtheme-title" id="formulación-de-búsqueda">Formulación de Búsqueda</h3>
+<div class="box">
+<h4>Los 5 componentes formales de un problema de búsqueda</h4>
+<ol>
+<li><strong>Estado Inicial:</strong> Situación de partida del agente.</li>
+<li><strong>Acciones:</strong> <code>ACCIONES(s)</code> devuelve las acciones legales aplicables en <code>s</code>.</li>
+<li><strong>Modelo de Transición:</strong> <code>RESULT(s, a)</code> determina el nuevo estado al aplicar <code>a</code> en <code>s</code>.</li>
+<li><strong>Prueba de Meta:</strong> Condición que verifica si un estado <code>s</code> es el estado objetivo.</li>
+<li><strong>Función de Coste:</strong> <code>C(s, a, s')</code> asigna un coste numérico (no negativo) al camino. Se busca minimizarlo.</li>
+</ol>
+</div>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-2);">
+<h4>Estado</h4>
+<p>Una <strong>configuración física o conceptual</strong> del entorno de nuestro problema (ej. tablero de ajedrez, coordenadas x-y). Pertenece al espacio de estados.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-2);">
+<h4>Nodo</h4>
+<p>Una <strong>estructura de datos</strong> que pertenece al árbol de búsqueda. Además del <em>Estado</em>, contiene metadatos como el <em>Nodo Padre</em>, la <em>Acción</em> que generó el nodo, el <em>Coste</em> de ruta hasta él (g) y la <em>Profundidad</em>.</p>
+</div>
+</div>
+<h3 class="subtheme-title" id="árbol-vs-grafo">Árbol vs Grafo</h3>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-2);">
+<h4>Búsqueda en Árbol</h4>
+<p>Se exploran los caminos sin recordar por dónde hemos pasado. Consume menos memoria, pero el tiempo de ejecución se dispara e incluso puede ser infinito si existen bucles (caminos redundantes).</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-2);">
+<h4>Búsqueda en Grafo</h4>
+<p>Mantiene un conjunto (generalmente Hash) de nodos <strong>explorados</strong> o cerrados. Evita expandir estados ya visitados, previniendo bucles. Requiere más memoria espacial.</p>
+</div>
+</div>
+<div class="box">
+<h4>Proceso de Búsqueda (Árbol vs Grafo)</h4>
+<p>El mecanismo general de los algoritmos de búsqueda se desarrolla en los siguientes pasos lógicos:</p>
+<ol>
+<li>Se inicializa la <strong>Frontera</strong> (nodos pendientes de visitar) insertando el estado inicial del problema.</li>
+<li>Si se usa búsqueda en grafo, se inicializa un conjunto de <strong>Explorados</strong> vacío para recordar por dónde hemos pasado.</li>
+<li>Mientras haya nodos en la frontera, se extrae uno dependiendo de la estrategia (FIFO para amplitud, LIFO para profundidad, prioridad para A*, etc.).</li>
+<li>Si el nodo extraído es la <strong>Meta</strong>, la búsqueda termina y devuelve el camino hacia la solución.</li>
+<li>Si no es meta, se generan sus sucesores. En la búsqueda en grafo, solo se añaden a la frontera los sucesores que <em>no han sido explorados previamente</em> ni están esperando en la frontera.</li>
+</ol>
+</div>
+<h3 class="subtheme-title" id="comparativa-de-algoritmos">Comparativa de Algoritmos</h3>
+<table>
+<thead>
+<tr>
+<th>Algoritmo</th>
+<th>Completo</th>
+<th>Óptimo</th>
+<th>Tiempo</th>
+<th>Espacio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Amplitud (BFS)</strong></td>
+<td>Sí (si b es finito)</td>
+<td>Sí (SOLO si los costes de transición son iguales/constantes)</td>
+<td>$O(b^d)$</td>
+<td>$O(b^d)$</td>
+</tr>
+<tr>
+<td><strong>Coste Uniforme (UCS)</strong></td>
+<td>Sí (si coste $\ge \epsilon &gt; 0$)</td>
+<td>Sí</td>
+<td>$O(b^{1+\lfloor C^*/\epsilon \rfloor})$</td>
+<td>$O(b^{1+\lfloor C^*/\epsilon \rfloor})$</td>
+</tr>
+<tr>
+<td><strong>Profundidad (DFS)</strong></td>
+<td>No (en árbol) / Sí (en grafo finito)</td>
+<td>No</td>
+<td>$O(b^m)$</td>
+<td>$O(bm)$</td>
+</tr>
+<tr>
+<td><strong>Limitada (DLS)</strong></td>
+<td>Sí (solo si límite $l \ge d$)</td>
+<td>No</td>
+<td>$O(b^l)$</td>
+<td>$O(bl)$</td>
+</tr>
+<tr>
+<td><strong>Profundización Iterativa (IDS)</strong></td>
+<td>Sí (si b es finito)</td>
+<td>Sí (SOLO si los costes de transición son iguales/constantes)</td>
+<td>$O(b^d)$</td>
+<td>$O(bd)$</td>
+</tr>
+</tbody>
+</table>
+<p style="font-size: 0.85em; color: var(--text-secondary); margin-top: -15px; margin-bottom: 30px;">(a) si <i>b</i> es finito; (b) SOLO si los costes de paso son iguales/constantes.</p>
+<div class="grid-2">
+<div class="box">
+<h4>Estrategia BFS (Amplitud)</h4>
+<p><strong>Frontera:</strong> Utiliza una cola FIFO (el primero en entrar es el primero en salir). Expande siempre el nodo más antiguo.</p>
+<ul>
+<li><strong>Uso ideal:</strong> Cuando se sabe que la solución está a poca profundidad y los costes son unitarios.</li>
+<li><strong>Limitación:</strong> El consumo de memoria es extremo, ya que debe mantener todo el nivel del árbol en memoria.</li>
+</ul>
+</div>
+<div class="box">
+<h4>Estrategia UCS (Coste Uniforme)</h4>
+<p><strong>Frontera:</strong> Utiliza una cola de prioridad basada en el coste real acumulado $g(n)$. Expande siempre el nodo más barato.</p>
+<ul>
+<li><strong>Uso ideal:</strong> Cuando los pasos/acciones tienen diferentes costes entre sí.</li>
+<li><strong>Limitación:</strong> Puede volverse muy lento si el árbol tiene muchas ramas con costes muy bajos (se estanca explorando caminos pequeños).</li>
+</ul>
+</div>
+<div class="box">
+<h4>Estrategia DFS (Profundidad)</h4>
+<p><strong>Frontera:</strong> Utiliza una pila LIFO (el último en entrar es el primero en salir). Expande siempre el nodo más profundo generado.</p>
+<ul>
+<li><strong>Uso ideal:</strong> Cuando hay restricciones severas de memoria espacial y se sabe que la profundidad es finita.</li>
+<li><strong>Limitación:</strong> No garantiza encontrar la solución óptima, puede atascarse en la primera rama infinita.</li>
+</ul>
+</div>
+<div class="box">
+<h4>Estrategia IDS (Profundización Iterativa)</h4>
+<p><strong>Mecanismo:</strong> Lanza búsquedas en profundidad limitada (DLS) repetidamente, aumentando el límite de profundidad en 1 en cada ciclo, hasta hallar la meta.</p>
+<ul>
+<li><strong>Uso ideal:</strong> Espacios de búsqueda enormes donde la profundidad de la solución 'd' es DESCONOCIDA (si se conoce, se usaría directamente DLS).</li>
+<li><strong>Ventaja:</strong> Combina el bajísimo coste de memoria de DFS con la garantía de optimalidad de BFS.</li>
+<li><strong>Limitación:</strong> Recalcula niveles superiores en cada iteración (aunque matemáticamente no afecta la complejidad asintótica).</li>
+</ul>
+</div>
+</div>
+<h3 class="subtheme-title" id="búsqueda-informada-heurística">Búsqueda Informada (Heurística)</h3>
+<div class="box">
+<h4>Heurística: Definición Formal</h4>
+<p>Una función matemática $h(n)$ que estima el coste del camino menos costoso desde el estado en el nodo $n$ hasta el estado meta. Integra conocimiento específico del dominio para guiar la búsqueda.<br/><br/><strong>Restricción fundamental:</strong> Si $n$ es un nodo meta, debe cumplirse forzosamente que $h(n) = 0$.</p>
+</div>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-2);">
+<h4>Búsqueda Avara</h4>
+<p><strong>Fórmula:</strong> $f(n) = h(n)$</p>
+<p>Expande siempre el nodo que parece estar más cerca del objetivo según la heurística. <br/><strong>Por qué NO es óptima:</strong> Ignora el coste del camino ya recorrido ($g(n)$). Puede seleccionar un atajo aparente que acabe costando muchísimo más, o incluso caer en bucles cerrados si se hace en árbol.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-2);">
+<h4>Búsqueda A*</h4>
+<p><strong>Fórmula:</strong> $f(n) = g(n) + h(n)$</p>
+<p>Combina el coste real acumulado ($g$) con la estimación al final ($h$). Es <strong>óptima y completa</strong> si la heurística no sobreestima (admisible) y se maneja correctamente.</p>
+</div>
+</div>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-2);">
+<h4>Admisibilidad (para Búsqueda en Árbol)</h4>
+<p>Una heurística es <strong>optimista</strong>: <em>Nunca sobreestima</em> el coste real para alcanzar la meta. <br/>Fórmula: $h(n) \le CosteReal(n \rightarrow Meta)$. Si esto se cumple, A* en árbol siempre halla la solución óptima.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-2);">
+<h4>Consistencia (para Búsqueda en Grafo)</h4>
+<p>También llamada monotonía. Implica que el valor estimado de un nodo no es mayor que el coste de ir al sucesor más su estimación. <br/>Fórmula: $h(n) \le c(n, a, n') + h(n')$. Obliga a que $f(n)$ sea no decreciente a lo largo de un camino.</p>
+</div>
+</div>
+<div class="box">
+<h4>Equivalencias de A*</h4>
+<ul>
+<li>Si $h(n) = 0$ para todo $n$ $\rightarrow$ A* se convierte en <strong>Búsqueda de Coste Uniforme (UCS)</strong>.</li>
+<li>Si $g(n) = 0$ para todo $n$ $\rightarrow$ A* se convierte en <strong>Búsqueda Avara</strong>.</li>
+<li>Si $h(n) = 0$ y todos los costes de paso son unitarios ($c = 1$) $\rightarrow$ A* se convierte en <strong>Búsqueda en Amplitud (BFS)</strong>.</li>
+</ul>
+</div>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-2);">
+<h4>Relajación de problemas</h4>
+<p>Se obtiene una heurística admisible eliminando restricciones del problema original para crear un problema "relajado" más fácil de resolver matemáticamente.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-2);">
+<h4>Ejemplo del 8-puzzle</h4>
+<ul>
+<li><em>Distancia Manhattan:</em> Permite mover piezas a casillas ocupadas y en diagonal (relaja que el hueco deba estar adyacente y libre).</li>
+<li><em>Piezas mal colocadas:</em> Permite teletransportar cualquier pieza a su destino (relaja todo el tablero).</li>
+</ul>
+</div>
+</div>
+<div class="box">
+<h4>Dominancia de heurísticas</h4>
+<p>Si la heurística $h_2$ es mayor o igual que $h_1$ para todo nodo $n$ ($h_2(n) \ge h_1(n)$) sin pasarse del coste real, decimos que <strong>$h_2$ domina a $h_1$</strong>. <br/>En consecuencia, A* usando la heurística dominante ($h_2$) expandirá <strong>MENOS</strong> nodos en su búsqueda que usando $h_1$, siendo más eficiente.</p>
+</div>
+<h3 class="subtheme-title" id="búsqueda-local">Búsqueda Local</h3>
+<div class="grid-2">
+<div class="box">
+<h4>Funcionamiento del Ascenso de Colinas</h4>
+<p>Es un algoritmo de búsqueda local muy sencillo e intuitivo:</p>
+<ol>
+<li>Se parte de un estado inicial aleatorio o dado.</li>
+<li>Se evalúan todos los vecinos inmediatos posibles y se elige el mejor.</li>
+<li>Si este vecino tiene mejor puntuación (valor) que el estado actual, el agente se mueve hacia él.</li>
+<li>El proceso se repite hasta llegar a un punto donde <strong>ningún vecino mejora</strong> la situación actual. En ese momento, el algoritmo se detiene y devuelve ese nodo.</li>
+</ol>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-2);">
+<h4>Problemas del Ascenso de Colinas</h4>
+<ul>
+<li><strong>Máximos Locales:</strong> Picos aislados que son mejores que sus vecinos directos, pero peores que el máximo global. El algoritmo se queda estancado allí.</li>
+<li><strong>Crestas:</strong> Elevaciones delgadas donde las transiciones directas (horizontales/verticales) bajan el valor, impidiendo avanzar por la diagonal óptima.</li>
+<li><strong>Mesetas:</strong> Zonas planas (hombros o cimas anchas) donde todos los vecinos tienen igual valor, impidiendo decidir hacia dónde seguir.</li>
+</ul>
+</div>
+</div>
+<div class="alert">
+<div class="alert-content">
+<div class="alert-title">¡Atención! Trampas de Búsqueda</div>
+<ul>
+<li><strong>A* en Grafo:</strong> NO basta con que la heurística sea admisible; para garantizar optimalidad sin reabrir nodos en grafo, requiere que sea <strong>CONSISTENTE</strong>.</li>
+<li><strong>Hill-Climbing:</strong> NO genera ni guarda un árbol de búsqueda; solo recuerda el nodo actual (estado e info). Su uso de memoria es constante $O(1)$.</li>
+<li><strong>IDS (Prof. Iterativa):</strong> Utilízala cuando el espacio de estados es muy grande y NO conoces la profundidad $d$ de la solución.</li>
+<li><strong>Dominancia:</strong> Una heurística dominante $h_2 \ge h_1$ hará que A* expanda <strong>MENOS</strong> nodos, al cortar antes ramas improductivas.</li>
+</ul>
+</div>
+</div>
+</section><!-- TEMA 3 --><section class="theme-section">
+<h2 class="theme-title" id="t3-representación-del-conocimiento" style="border-bottom-color: var(--c-3); color: var(--c-3);">T3: Representación del conocimiento</h2>
+<h3 class="subtheme-title" id="lógicas-de-representación">Lógicas de Representación</h3>
+<div class="grid-3">
+<div class="box" style="border-top: 3px solid var(--c-3);">
+<h4>Lógica Proposicional</h4>
+<p>Utiliza proposiciones atómicas (hechos indivisibles) que solo pueden ser True o False. Se relacionan con conectores lógicos ($\land, \lor, \Rightarrow, \Leftrightarrow, \neg$). Es decidible pero poco expresiva (no escala para entornos infinitos).</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-3);">
+<h4>Lógica de Primer Orden</h4>
+<p>Extiende la proposicional añadiendo variables, predicados, constantes, funciones y cuantificadores ($\forall, \exists$). Permite razonar sobre clases de objetos, pero la inferencia es semidecidible.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-3);">
+<h4>Lógica de Orden Superior</h4>
+<p>Permite cuantificar sobre predicados o conjuntos de conjuntos. Es la más expresiva, permitiendo afirmaciones como "Existen relaciones que son transitivas", pero su comprobación es intratable matemáticamente.</p>
+</div>
+</div>
+<h3 class="subtheme-title" id="agente-basado-en-conocimiento">Agente basado en Conocimiento</h3>
+<div class="box">
+<h4>KB-Agent y el Ciclo Percepción-Actuación</h4>
+<p>Mantiene una Base de Conocimiento (KB) con reglas del mundo.</p>
+<ul>
+<li><strong>TELL(KB, percepción):</strong> El agente informa a la base de conocimiento de lo que acaba de percibir en el entorno.</li>
+<li><strong>ASK(KB, acción?):</strong> El motor de inferencia procesa la KB y las percepciones previas para deducir (preguntarse) cuál es la acción óptima que debe ejecutar.</li>
+<li><strong>TELL(KB, acción):</strong> Actualiza la KB registrando la acción que se va a llevar a cabo.</li>
+</ul>
+</div>
+<div class="box">
+<h3 class="subtheme-title" id="el-mundo-de-wumpus">Ejemplo: El Mundo de Wumpus</h3>
+<ul>
+<li><strong>Entorno:</strong> Cuadrícula 4×4. Agente inicia en [1,1]. Hay fosas (generan Brisa adyacente), un Wumpus (genera Hedor adyacente) y oro (genera Brillo en su casilla).</li>
+<li><strong>Sensores:</strong> Hedor, Brisa, Brillo, Golpe, Grito.</li>
+<li><strong>Propiedades del entorno:</strong> Parcialmente observable (solo percepción local), determinista, secuencial, estático, discreto, agente único.</li>
+<li><strong>Cómo aplica KB-agent:</strong> El agente hace <em>TELL</em> de sus percepciones y <em>ASK</em> para deducir qué casillas son seguras. Ejemplo: si no hay Brisa en [1,1] → TELL(¬Brisa[1,1]) → ASK(¿hay fosa en [1,2]?) → inferencia: ¬Fosa[1,2].</li>
+</ul>
+</div>
+<h3 class="subtheme-title" id="sistemas-de-producción">Sistemas de Producción</h3>
+<div class="box">
+<h4>Componentes de un Sistema de Producción</h4>
+<ul>
+<li><strong>Memoria Activa:</strong> Almacén del estado actual del sistema (hechos activos en cada momento). Contiene los datos iniciales, hechos incorporados dinámicamente, hipótesis y metas a probar.</li>
+<li><strong>Base de Reglas (Conocimiento):</strong> Conjunto de reglas estáticas de tipo IF-THEN que representan el conocimiento del experto.</li>
+<li><strong>Motor de Inferencia:</strong> Intérprete y estrategia de control que decide qué reglas evaluar, resuelve conflictos y aplica las acciones.</li>
+</ul>
+</div>
+<div class="box">
+<h4>Ciclo de Inferencia</h4>
+<p>El motor de inferencias opera en un bucle que repite las siguientes fases:</p>
+<ol>
+<li><strong>Fase de Decisión / Selección:</strong>
+<ul>
+<li><em>Restricción:</em> Filtra macrogrupos de reglas irrelevantes usando metaconocimiento.</li>
+<li><em>Equiparación (Emparejamiento):</em> Verifica qué reglas encajan con la Memoria Activa, formando el <strong>conjunto conflicto</strong>.</li>
+<li><em>Resolución de Conflictos:</em> Elige una única regla a aplicar usando criterios (prioridad, especificidad, novedad, metarreglas).</li>
+</ul>
+</li>
+<li><strong>Fase de Acción:</strong> Ejecuta el consecuente de la regla elegida, actualizando la memoria activa (añadiendo hechos), y verifica si se ha llegado a la meta o al final.</li>
+</ol>
+</div>
+<h3 class="subtheme-title" id="mecanismos-de-razonamiento">Mecanismos de Razonamiento</h3>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Dirigido por Datos (Encadenamiento Progresivo)</th>
+<th>Dirigido por Metas (Encadenamiento Regresivo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Punto de partida</strong></td>
+<td>Hechos iniciales conocidos</td>
+<td>Meta o hipótesis a demostrar</td>
+</tr>
+<tr>
+<td><strong>Dirección</strong></td>
+<td>Hacia adelante (conclusiones)</td>
+<td>Hacia atrás (submetas/condiciones)</td>
+</tr>
+<tr>
+<td><strong>Flujo</strong></td>
+<td>Automático, sistemático y lineal</td>
+<td>Guiado, retropropagación de hipótesis</td>
+</tr>
+<tr>
+<td><strong>Uso típico</strong></td>
+<td>Sistemas reactivos, descubrimientos donde no se conoce la meta (ej. monitorización)</td>
+<td>Resolución de problemas de diagnóstico, donde la meta está clara pero las causas no</td>
+</tr>
+</tbody>
+</table>
+<p style="font-size: 0.85em; color: var(--text-secondary); margin-top: -15px; margin-bottom: 30px;">(a) si <i>b</i> es finito; (b) SOLO si los costes de paso son iguales/constantes.</p>
+<h3 class="subtheme-title" id="representaciones-estructuradas-declarativas">Representaciones Estructuradas Declarativas</h3>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-3);">
+<h4>Redes Semánticas</h4>
+<p>Grafos donde los nodos son entidades/conceptos y los arcos dirigidos indican relaciones binarias (IS-A, PART-OF, etc.).<br/><br/>
+<strong>Razonamiento por rastreo:</strong> Navegar los arcos de jerarquía (IS-A) para <em>heredar</em> propiedades (si Vaca IS-A Mamífero, hereda sus rasgos).<br/>
+<strong>Emparejamiento de patrones:</strong> Buscar un subgrafo específico dentro de la red completa para responder consultas.</p>
+<div class="mermaid-container">
+  <div class="mermaid">
+  graph LR
+    P[Pato] -- IS-A --> A[Ave]
+    P -- Tienen --> Pl[Plumas]
+    A -- Pueden --> V[Volar]
+    A -- IS-A --> M[Animal]
+    style P fill:#3b82f6,stroke:#fff,stroke-width:2px
+    style A fill:#6366f1,stroke:#fff,stroke-width:2px
+  </div>
+</div>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-3);">
+<h4>Frames (Marcos)</h4>
+<p>Estructuras centradas en clases o categorías que engloban conocimiento estereotipado. Cada objeto tiene <em>slots</em> (atributos) y facetas. <strong>Herencia de valores por defecto:</strong> cuando falta información específica, el objeto asume/hereda el valor por defecto definido en su prototipo/clase superior.</p>
+<p>Incluyen <strong>Demons</strong> (conocimiento procedimental adherido): <em>if_needed</em> (se dispara si hace falta un valor) o <em>if_added</em> (se dispara al actualizar un valor).</p>
+</div>
+</div>
+<h3 class="subtheme-title" id="taxonomias-ontologias">Taxonomías, Ontologías y Grafos de conocimiento</h3>
+<div class="grid-3">
+<div class="box" style="border-top: 3px solid var(--c-3);">
+<h4>Taxonomías</h4>
+<p>Son únicamente jerarquías estructuradas bajo relaciones IS-A (es-un). Clasifican entidades pero no expresan relaciones complejas entre ellas.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-3);">
+<h4>Ontologías</h4>
+<p>Extensión formal de taxonomías. Añaden conceptos, relaciones admitidas (HAS-A, PART-OF), propiedades y restricciones. Definen un vocabulario compartido con significado explícito. Permiten interoperabilidad, razonamiento automático y consistencia conceptual.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-3);">
+<h4>Grafos de conocimiento</h4>
+<p>Construidos sobre ontologías subyacentes. Integran grandes bases de datos heterogéneas poblando la ontología con datos instanciados. Son la base de los motores de búsqueda modernos y de la integración con IA subsimbólica.</p>
+</div>
+</div>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-3);">
+<h4>Paradigma Declarativo</h4>
+<p>Define <em>qué</em> es el problema (Redes semánticas, Frames, Lógica). <br/><strong>Ventajas:</strong> Altamente escalable de forma modular. Facilita la reutilización del conocimiento, la estructuración visual de jerarquías y permite razonamiento por herencia o rastreo natural.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-3);">
+<h4>Paradigma Procedimental</h4>
+<p>Define <em>cómo</em> solucionar el problema (Reglas de producción). <br/><strong>Ventajas:</strong> Muy explícito, modular, altamente explicable y trazable paso a paso (auditable en normativas). Su limitación es que se vuelve difícil de mantener y escalar si hay miles de reglas. Se evalúan mediante lógicas como <strong>IFALL</strong> (todas las cláusulas verdaderas), <strong>IFANY</strong> (primera cláusula verdadera) e <strong>IFSOME</strong> (todas las cláusulas verdaderas encontradas).</p>
+</div>
+</div>
+<div class="box">
+<h4>Model Checking (Comprobación de modelos)</h4>
+<p>Es un algoritmo de inferencia proposicional. Evalúa la fórmula lógica en todos los <em>modelos posibles</em> (combinaciones de True/False para las variables) verificando que el entorno satisface las reglas. Si hay $n$ símbolos lógicos, hay $2^n$ modelos. Su complejidad temporal es <strong>$O(2^n)$</strong>, lo que lo hace totalmente <strong>inviable (co-NP-completo)</strong> para mundos con muchas variables.</p>
+</div>
+<h3 class="subtheme-title" id="solidez-y-completitud">Cualidades de un Algoritmo Inferencial</h3>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-3);">
+<h4>Solidez (Soundness)</h4>
+<p>Un algoritmo es sólido si solo deriva sentencias que están verdaderamente implicadas. Si <code>KB ⊢ᵢ α</code> entonces <code>KB ⊨ α</code>.<br><em>Analogía:</em> detector de metales que nunca da falsas alarmas.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-3);">
+<h4>Completitud (Completeness)</h4>
+<p>Un algoritmo es completo si puede derivar cualquier sentencia implicada. Si <code>KB ⊨ α</code> entonces <code>KB ⊢ᵢ α</code>.<br><em>Analogía:</em> detector que garantiza encontrar todas las monedas.</p>
+</div>
+</div>
+<div class="alert" style="background:rgba(59,130,246,0.1); border-color:#3b82f6; color:#93c5fd;">
+<strong>Dato clave:</strong> El encadenamiento progresivo (forward chaining) es sólido y completo para bases de cláusulas de Horn. La comprobación de modelos (model checking) es sólida pero con complejidad O(2ⁿ).
+</div>
+<div class="alert">
+<div class="alert-content">
+<div class="alert-title">¡Atención! Redes Semánticas</div>
+<p>Debes diferenciar claramente los dos métodos de inferencia en Redes Semánticas:<br/>
+        1. <strong>Por Rastreo:</strong> Es navegar recursivamente por la <em>herencia</em>. Ej: Si Pato IS-A Ave, rastreas hacia arriba para heredar "Vuela".<br/>
+        2. <strong>Por Emparejamiento:</strong> Es superponer el grafo de una pregunta sobre la red entera para ver si "encaja". No implica herencia necesariamente, sino coincidencia topológica.</p>
+</div>
+</div>
+</section><!-- TEMA 4 --><section class="theme-section">
+<h2 class="theme-title" id="t4-razonamiento" style="border-bottom-color: var(--c-4); color: var(--c-4);">T4: Razonamiento</h2>
+<h3 class="subtheme-title" id="modelos-categórico-vs-bayesiano">Modelos Categórico vs Bayesiano</h3>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-4);">
+<h4>Razonamiento Categórico</h4>
+<p>Aplica en dominios donde el conocimiento y los datos son completos y certeros. Se manejan funciones lógicas que enlazan unívocamente Manifestaciones (X) con Interpretaciones (Y). Las respuestas son absolutas: Verdadero o Falso.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-4);">
+<h4>Razonamiento Bayesiano</h4>
+<p>Aplica en dominios reales con incertidumbre, sensores ruidosos o variables desconocidas. Utiliza la probabilidad como grado de creencia, actualizando dicha creencia al percibir nuevas evidencias observadas.</p>
+</div>
+</div>
+<h3 class="subtheme-title" id="el-modelo-categórico">El Modelo Categórico</h3>
+<div class="box">
+<h4>Base Lógica Expandida (BLE)</h4>
+<p>Es el conjunto teórico que contiene TODAS las combinaciones matemáticas posibles entre el conjunto de manifestaciones complejas $M$ y las interpretaciones complejas $I$. Es un producto cruzado exhaustivo ($BLE = M \times I$).<br/>
+      Si hay $n$ manifestaciones atómicas y $m$ interpretaciones atómicas, el tamaño de la BLE está dado por la fórmula <strong>$2^{n+m}$</strong> combinaciones.</p>
+</div>
+<div class="box">
+<h4>Base Lógica Reducida (BLR)</h4>
+<p>Dado que la inmensa mayoría de las combinaciones de la BLE no tienen sentido en el mundo real, aplicamos la Función de Conocimiento $E$ (conjunto de reglas lógicas del experto) para depurarla. La BLR es la BLE habiendo filtrado y eliminado todas aquellas columnas que incumplen alguna regla lógica del sistema.</p>
+</div>
+<div class="box">
+<h4>Proceso de Construcción de la BLR</h4>
+<p>La Base Lógica Reducida se obtiene depurando matemáticamente la Base Expandida:</p>
+<ol>
+<li>Se genera primero la <strong>BLE</strong>, una inmensa tabla de verdad con $2^{N+M}$ columnas representando todas las combinaciones binarias imaginables de manifestaciones e interpretaciones.</li>
+<li>Se toma el conjunto de <strong>Reglas del Experto (E)</strong>.</li>
+<li>Se evalúa cada regla frente a cada columna de la BLE.</li>
+<li>Si una columna <strong>viola matemáticamente</strong> la implicación lógica de cualquier regla (es decir, hace que la regla sea falsa), esa columna se <strong>elimina irreversiblemente</strong>.</li>
+<li>Lo que queda al final de filtrar todas las reglas es la BLR: el espacio real y consistente de soluciones.</li>
+</ol>
+</div>
+<h3 class="subtheme-title" id="el-modelo-bayesiano">El Modelo Bayesiano</h3>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-4);">
+<h4>Corrección Bayesiana</h4>
+<p>Fórmula de actualización de creencias:<br/><br/>
+        $P(H | e) \propto P(e | H) \cdot P(H)$<br/><br/>
+        Donde $P(H|e)$ es la probabilidad a posteriori proporcional a la verosimilitud $P(e|H)$ por la probabilidad a priori $P(H)$. Se debe <strong>normalizar</strong> dividiendo por la probabilidad total de la evidencia $P(e)$ para que los resultados formen una distribución de probabilidad válida (sumen 1).</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-4);">
+<h4>Redes Bayesianas</h4>
+<p>Evolución del modelo bayesiano nativo usando un <strong>Grafo Dirigido Acíclico (DAG)</strong>. Al codificar las dependencias causales en la estructura del grafo, aprovechamos la <em>independencia condicional</em> para no tener que calcular tablas probabilísticas gigantes. Evita la explosión combinatoria propia de un teorema de Bayes puro interconectado.</p>
+<div class="mermaid-container">
+  <div class="mermaid">
+  graph TD
+    N[Nublado] --> L[Lluvia]
+    N --> A[Aspersor]
+    L --> H[Hierba Mojada]
+    A --> H
+    style N fill:#8b5cf6,stroke:#fff
+    style H fill:#10b981,stroke:#fff
+  </div>
+</div>
+</div>
+</div>
+<h3 class="subtheme-title" id="redes-bayesianas-vs-redes-neuronales">Redes Bayesianas vs Redes Neuronales (Deep Learning)</h3>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-4);">
+<h4>Redes Neuronales</h4>
+<p>Aprenden un único set de valores estáticos (pesos como punto estimado). Funcionan esencialmente como cajas negras (baja explicabilidad).</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-4);">
+<h4>Redes Bayesianas</h4>
+<p>Representan los pesos con distribuciones probabilísticas completas, capturando la incertidumbre en sus predicciones. Son modelos explicables y transparentes.</p>
+</div>
+</div>
+<div class="box">
+<h4>¿Cuándo usar Redes Bayesianas en lugar de ML clásico?</h4>
+<ol>
+<li>Cuando importa la <strong>explicabilidad</strong> (medicina, abogacía, auditoría).</li>
+<li>Cuando hay <strong>conocimiento experto</strong> valioso que inyectar en el sistema.</li>
+<li>Cuando los <strong>datos son escasos o ruidosos</strong>.</li>
+<li>En <strong>modelos híbridos</strong> de IA simbólica + aprendizaje.</li>
+</ol>
+</div>
+<div class="box">
+<h4>Secuencialidad y Consistencia Matemática</h4>
+<p>Un modelo bayesiano debe respetar leyes de la probabilidad estricta para ser matemáticamente sólido y consistente.<br/>
+      La propiedad más importante frente a una hipótesis H tras percibir evidencia e, es:<br/><br/>
+      $$P(H | e) + P(\neg H | e) = 1$$<br/>
+      No respetar esto derivaría en cálculos absurdos o probabilidades superiores al 100%. Además, <strong>sirve para calcular la negación sin tener que repetir todo el cálculo bayesiano</strong>, simplemente restando 1 menos la probabilidad afirmativa.</p>
+</div>
+<div class="alert">
+<div class="alert-content">
+<div class="alert-title">¡Atención! Conceptos Vitales T4</div>
+<ul>
+<li><strong>BLE vs BLR:</strong> NO son lo mismo. La BLE contiene absolutamente todas las combinaciones teóricas $2^N$. La BLR es mucho menor, es la BLE tras podar con las reglas del conocimiento experto.</li>
+<li><strong>Trampa Secuencialidad:</strong> Recuerda que la consistencia indica que la probabilidad sumada a su suceso contrario debe dar exactamente 1 (ej. $P(\text{lluvia}| \text{nubes}) + P(\text{no lluvia}| \text{nubes}) = 1$). No te confundan con $P(\text{nubes}| \text{lluvia})$.</li>
+</ul>
+</div>
+</div>
+</section><!-- TEMA 5 --><section class="theme-section">
+<h2 class="theme-title" id="t5-planificación" style="border-bottom-color: var(--c-5); color: var(--c-5);">T5: Planificación</h2>
+<h3 class="subtheme-title" id="paradigma-de-planificación">Paradigma de Planificación</h3>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-5);">
+<h4>Búsqueda Clásica</h4>
+<p>Orientada a "<em>¿Cómo llego de A a B?</em>". Los estados son configuraciones explícitas de espacio. Las acciones son implícitas en el algoritmo (simples ramas del árbol). El problema es una instancia concreta y se buscan caminos entre nodos definidos.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-5);">
+<h4>Planificación Clásica</h4>
+<p>Orientada a "<em>¿Qué secuencias de acciones debo ejecutar para alcanzar el objetivo?</em>". Los estados están definidos <strong>simbólicamente</strong> por variables lógicas. Las acciones tienen conocimiento insertado explícitamente y se razona qué cambia el mundo al ejecutarlas.</p>
+</div>
+</div>
+<h3 class="subtheme-title" id="componentes-y-algoritmos-strips-y-pddl">Componentes y Algoritmos (STRIPS y PDDL)</h3>
+<div class="box">
+<h4>Componentes del modelo STRIPS</h4>
+<p>Stanford Research Institute Problem Solver utiliza un subconjunto de lógica para representar problemas de planificación clásica:</p>
+<ul>
+<li><strong>Estado Inicial:</strong> Representado como una lista finita de literales positivos (hechos que son ciertos).</li>
+<li><strong>Acciones:</strong> Se modelan como operadores que cambian el estado y se definen con:
+          <ul>
+<li><em>Precondiciones:</em> Literales que deben ser ciertos en el estado actual para poder aplicar la acción.</li>
+<li><em>Add-list:</em> Literales que pasan a ser ciertos tras aplicar la acción.</li>
+<li><em>Delete-list:</em> Literales que se eliminan/vuelven falsos tras aplicar la acción.</li>
+</ul>
+</li>
+<li><strong>Estado Meta:</strong> Un conjunto objetivo de literales que deben ser ciertos para dar por concluido y exitoso el plan.</li>
+</ul>
+</div>
+<div class="box">
+<h4>Modelado de una Acción en STRIPS</h4>
+<p>En el lenguaje de planificación, una acción se describe mediante su impacto lógico. Por ejemplo, para la acción <em>Mover Botella a Fuente</em>:</p>
+<ul>
+<li><strong>Precondiciones:</strong> Lo que debe ser verdad antes de actuar (Ej: <em>El Agente está en Posición Inicial</em> y <em>El Agente tiene la Botella</em>).</li>
+<li><strong>Delete-list (Borrados):</strong> Los hechos que dejan de ser verdad (Ej: <em>El Agente está en Posición Inicial</em> pasa a falso).</li>
+<li><strong>Add-list (Añadidos):</strong> Los hechos que pasan a ser verdad (Ej: <em>El Agente está en la Fuente</em> se vuelve verdadero).</li>
+</ul>
+</div>
+<div class="box">
+<h4>PDDL (Planning Domain Definition Language)</h4>
+<p>Estándar moderno para lenguajes de planificación derivado de STRIPS. Separa modularmente el código del sistema:</p>
+<ul>
+<li><strong>:domain</strong> Fichero que define las reglas estáticas del "mundo": <code>:predicates</code> (variables lógicas posibles) y <code>:action</code> (operadores con precondiciones y efectos).</li>
+<li><strong>:problem</strong> Fichero que define una instancia concreta para resolver: los objetos que existen, el <code>:init</code> (estado inicial en el momento 0) y la <code>:goal</code> (meta buscada).</li>
+</ul>
+</div>
+<h3 class="subtheme-title" id="dimensiones-y-limitaciones">Dimensiones y Limitaciones</h3>
+<div class="grid-2">
+<div class="box" style="border-top: 3px solid var(--c-5);">
+<h4>Espacio de Estados Simbólico</h4>
+<p>Dado que en planificación los estados se describen simbólicamente con variables en lugar de enumerar nodos, el tamaño del universo de estados estalla geométricamente. Si tenemos $N$ variables booleanas, el sistema puede generar automáticamente un total de <strong>$2^N$ estados distintos posibles</strong> en el espacio.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-5);">
+<h4>Cuándo NO aplicar Planificación Clásica</h4>
+<p>La Planificación Clásica exige un mundo totalmente <em>determinista, estático y observable</em>.</p>
+<ul>
+<li><strong>Si es Estocástico:</strong> (las acciones pueden fallar o tener un porcentaje de aleatoriedad). Dejar de usar clásica y emplear MDP (Procesos de Decisión de Markov).</li>
+<li><strong>Si es Parcialmente Observable:</strong> El agente no tiene visión completa del estado en todo momento. Se debe emplear POMDP.</li>
+</ul>
+</div>
+</div>
+<div class="alert">
+<div class="alert-content">
+<div class="alert-title">¡Atención! Diferencias Conceptuales</div>
+<p>No confundas <strong>Planificación con Búsqueda Clásica</strong>. La Búsqueda es el motor interno enumerativo (A*, BFS) que navega por el grafo. Pero la <strong>Planificación</strong> es la capa de representación (el "plano" lógico) que razona sobre acciones, inyectando significado simbólico a cada transición con precondiciones y postcondiciones, permitiendo resolver clases genéricas de problemas.</p>
+</div>
+</div>
+</section><!-- TEMA 6 --><section class="theme-section">
+<h2 class="theme-title" id="t6-sistemas-conexionistas" style="border-bottom-color: var(--c-6); color: var(--c-6);">T6: Sistemas Conexionistas</h2>
+<div class="grid-3">
+<div>
+<h3 class="subtheme-title" id="1ª-primavera-años-40-50">1ª Primavera (Años 40-50)</h3>
+<p><strong>Nacimiento de la IA:</strong> Arranca con aportes cibernéticos (1943) y neuronas formales. Hitos: Conferencia Dartmouth (1956), Perceptrón (1958), ADALINE (1959).</p>
+<p><strong>El Invierno de la IA (Años 70):</strong> El avance se frenó drásticamente debido a dos eventos documentados:</p>
+<ul>
+<li><strong>Minsky y Papert (1969):</strong> libro <em>"Perceptrons"</em> demostraron las limitaciones matemáticas del perceptrón monocapa (problema XOR).</li>
+<li><strong>Informe Lighthill (1973):</strong> desautorizó los objetivos de la IA usando los teoremas de Gödel, argumentando que formalizar una teoría automatizada de la inteligencia era inviable.</li>
+</ul>
+</div>
+<div>
+<h3 class="subtheme-title" id="2ª-primavera-años-70-80">2ª Primavera (Años 70-80)</h3>
+<p><strong>Renacimiento biológico:</strong> Impulsado por los "Modelos Biológicos" y sistemas de procesamiento paralelo. Hitos: Red de Hopfield, Máquina Conexionista de Hillis. Se frena debido a las limitaciones tecnológicas de hardware de la época para entrenar redes muy complejas y por los largos tiempos de respuesta.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="3ª-primavera-actualidad">3ª Primavera (Actualidad)</h3>
+<p><strong>Era de la explosión tecnológica:</strong> No se ha frenado. Impulsada por el aprendizaje profundo (Deep Learning), el Big Data, los avances en GPU/procesamiento paralelo y un alto interés en interconectar neurociencias e IA, logrando soluciones reales.</p>
+</div>
+</div>
+<div class="grid-2">
+<div>
+<h3 class="subtheme-title" id="rama-simbólica-clásica">Rama Simbólica (Clásica)</h3>
+<p>Basada en la <strong>simulación</strong> de la inteligencia. Destacan los <em>sistemas expertos</em> (como MYCIN). Utilizan reglas y bases de conocimiento, ofreciendo una alta <strong>capacidad de explicación</strong>, pero son más rígidos ante errores.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="rama-subsimbólica-conexionista">Rama Subsimbólica (Conexionista)</h3>
+<p>Basada en la <strong>emulación</strong> (redes de neuronas). Tienen la ventaja de ser <strong>robustas al "ruido" y tolerantes a fallos</strong> debido a su conocimiento distribuido, aunque actúan como una <em>caja negra</em> difícil de explicar.</p>
+</div>
+</div>
+<div class="grid-4">
+<div>
+<h3 class="subtheme-title" id="aprendizaje-automático">Aprendizaje Automático</h3>
+<p>Habilidad innata de las redes para crear sus propias representaciones aprendiendo directamente de ejemplos (entrenamiento).</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="tolerancia-a-fallos">Tolerancia a fallos</h3>
+<p>Capacidad de operar y ofrecer resultados aceptables ante datos ruidosos/inexactos o fallos físicos de elementos de la red.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="procesamiento-paralelo">Procesamiento paralelo</h3>
+<p>Gran interés en arquitecturas informáticas y algoritmos orientados al procesamiento masivamente paralelo y en tiempo real.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="similitud-neurobiológica">Similitud Neurobiológica</h3>
+<p>Potencia la investigación en IA y neurociencias cruzando modelos fisiológicos del cerebro y computacionales.</p>
+</div>
+</div>
+<div class="box">
+<h3 class="subtheme-title" id="precursores-de-la-ia-subsimbólica">Precursores de la IA Subsimbólica</h3>
+<ul>
+<li><strong>Neurona Biológica:</strong> Santiago Ramón y Cajal descubre la teoría sobre el funcionamiento de las neuronas, base fisiológica de la adaptación.</li>
+</ul>
+<h4>Los 3 hitos fundacionales de 1943</h4>
+<ul>
+<li><strong>Cibernética:</strong> Wiener, Rosenblueth y Bigelow. Máquinas teleológicas (<em>Behavior, Purpose and Teleology</em>). Establecen las bases de los sistemas con propósitos.</li>
+<li><strong>Abstracción y Lógica:</strong> Kenneth Craik (<em>The Nature of Explanation</em>). Propone máquinas con capacidad de abstracción y uso de modelos lógicos internos.</li>
+<li><strong>Neurona Formal:</strong> McCulloch y Pitts. Demuestran cómo modelizar con lógica booleana las redes neuronales artificiales.</li>
+</ul>
+</div>
+<div class="alert">
+<strong>¡Cuidado!</strong> Precursores biológicos y conexionistas (Cajal, McCulloch) ≠ padres clásicos de la computación o IA simbólica (Turing, Von Neumann).
+</div>
+<h3 class="subtheme-title" id="otras-aproximaciones-bioinspiradas">Otras aproximaciones de la IA inspiradas en la biología</h3>
+<div class="grid-4">
+<div class="box" style="border-top: 3px solid var(--c-6);">
+<h4>Bioevolutiva</h4>
+<p>Basada en capacidades de sistemas simples. Busca alta precisión y velocidad.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-6);">
+<h4>Neuroglial</h4>
+<p>Redes Neuronales y Gliales Artificiales (RRNNAA). Mayor capacidad adaptativa y eficiencia.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-6);">
+<h4>Genética</h4>
+<p>Algoritmos evolutivos y programación genética para optimización en espacios de búsqueda complejos.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-6);">
+<h4>Social</h4>
+<p>Ant-colony, coevolución y vida artificial. Comportamientos complejos emergentes a partir de reglas simples.</p>
+</div>
+</div>
+</section><!-- TEMA 7 --><section class="theme-section">
+<h2 class="theme-title" id="t7-neurona-formal-y-arquitecturas-rna" style="border-bottom-color: var(--c-7); color: var(--c-7);">T7: Neurona Formal y Arquitecturas RNA</h2>
+<div class="grid-3">
+<div>
+<h3 class="subtheme-title" id="zona-receptora">Zona Receptora</h3>
+<p><strong>Biológica:</strong> Árbol dendrítico.<br/><strong>Artificial:</strong> Entradas ($X_i$) y Pesos ($W_{ij}$), encargados de recibir la señal y ponderarla según el conocimiento aprendido.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="zona-integradora">Zona Integradora</h3>
+<p><strong>Biológica:</strong> Soma (cuerpo celular).<br/><strong>Artificial:</strong> El sumatorio ($\Sigma$) de las señales más el umbral/bias, procesado a través de la función de transferencia.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="zona-emisora">Zona Emisora</h3>
+<p><strong>Biológica:</strong> Axón.<br/><strong>Artificial:</strong> La Salida o <em>Output</em> ($Y_i$), que emite el estado de activación hacia otra capa o el exterior.</p>
+</div>
+</div>
+<div class="box">
+<h3 class="subtheme-title" id="ecuación-de-la-neurona-artificial">Ecuación de la Neurona Artificial</h3>
+<p>$$net_j = \sum(x_i \cdot w_{ij}) + \theta_j$$</p>
+<ul>
+<li><strong>$net_j$:</strong> Entrada neta que recibe la neurona $j$.</li>
+<li><strong>$x_i$:</strong> Señales de los diferentes transductores o neuronas de entrada.</li>
+<li><strong>$w_{ij}$:</strong> Pesos sinápticos de las conexiones que codifican el conocimiento de la red.</li>
+<li><strong>$\theta_j$:</strong> Bias o umbral; predisposición base de la neurona a activarse.</li>
+</ul>
+</div>
+<div class="grid-3">
+<div>
+<h3 class="subtheme-title" id="pesos-excitatorios">Pesos Excitatorios</h3>
+<p>Valores <strong>$w &gt; 0$</strong>. Su señal de entrada favorece e incrementa la posibilidad de activación de la neurona.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="pesos-inhibitorios">Pesos Inhibitorios</h3>
+<p>Valores <strong>$w &lt; 0$</strong>. Su señal de entrada penaliza y dificulta la activación final de la neurona.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="pesos-nulos">Pesos Nulos</h3>
+<p>Valores <strong>$w = 0$</strong>. Significan funcionalmente que no existe una conexión entre ese origen y la neurona.</p>
+</div>
+</div>
+<div class="grid-2">
+<div>
+<h3 class="subtheme-title" id="función-escalón-hardlimiter">Función Escalón (Hardlimiter)</h3>
+<p>Emite valores discretos (0 o 1 / -1 o 1). Se usa habitualmente en perceptrones simples, puertas lógicas y tareas de decisión/clasificación estrictamente binarias.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="función-lineal-purelin">Función Lineal (Purelin)</h3>
+<p>La salida es idéntica o proporcional a la entrada neta. Fundamental en ADALINE y en neuronas de la capa de salida para problemas de <strong>regresión</strong>.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="función-sigmoide-logsig">Función Sigmoide (Logsig)</h3>
+<p>Función continua, <strong>diferenciable</strong> y no lineal que aplasta la salida al rango $[0, 1]$. Esencial en capas ocultas de redes MLP o capas de salida para clasificación basada en probabilidades.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="función-tanh-tansig">Función Tanh (Tansig)</h3>
+<p>Similar a la sigmoide pero acota el resultado en el rango $[-1, 1]$. Excelente en capas ocultas para agilizar el aprendizaje general de la red neuronal.</p>
+</div>
+</div>
+<div class="grid-2">
+<div>
+<h3 class="subtheme-title" id="memoria-a-largo-plazo-ltm">Memoria a Largo Plazo (LTM)</h3>
+<p>El conocimiento profundo y duradero de la red se codifica distribuido en los <strong>pesos sinápticos</strong> ($W_{ij}$) formados a través de las iteraciones del entrenamiento.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="memoria-a-corto-plazo-stm">Memoria a Corto Plazo (STM)</h3>
+<p>Se manifiesta en las <strong>activaciones netas</strong> y estado actual de las neuronas que reaccionan de manera efímera a un patrón concreto de entrada.</p>
+</div>
+</div>
+<div class="grid-2">
+<div>
+<h3 class="subtheme-title" id="redes-feedforward">Redes Feedforward</h3>
+<p>La información fluye de manera estricta hacia adelante (entrada $\rightarrow$ ocultas $\rightarrow$ salida). No hay ciclos ni retroalimentación topológica. Son las arquitecturas estándar en ML clásico.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="redes-recurrentes">Redes Recurrentes</h3>
+<p>Presentan ciclos de retroalimentación (conexiones hacia atrás o hacia sí mismas). Se desdibuja el concepto de "capa". Poseen memoria temporal y son ideales para asociar/predecir secuencias.</p>
+</div>
+</div>
+<div class="box">
+<h3 class="subtheme-title" id="el-bias-theta">El Bias ($\theta$)</h3>
+<p>El bias actúa como un peso adicional para el cual la entrada siempre vale 1. Su función es determinar la <strong>predisposición intrínseca de una neurona a activarse</strong>. Geométricamente, <strong>desplaza el hiperplano de decisión</strong> en el espacio (moviendo la recta), permitiendo separar clases que no atraviesan el origen de coordenadas, y permitiendo que la neurona se active aunque ninguna entrada sea 1.</p>
+</div>
+<div class="alert">
+<strong>¡Atención!</strong> La capa de entrada NO computa (solo almacena y distribuye valores); el conocimiento de la red reside intrínsecamente en los PESOS, NO en las funciones de transferencia.
+</div>
+</section><!-- TEMA 8 --><section class="theme-section">
+<h2 class="theme-title" id="t8-redes-feedforward-perceptrón-y-adaline" style="border-bottom-color: var(--c-8); color: var(--c-8);">T8: Redes Feedforward (Perceptrón y ADALINE)</h2>
+<div class="grid-2">
+<div>
+<h3 class="subtheme-title" id="perceptrón-rosenblatt-1958">Perceptrón (Rosenblatt, 1958)</h3>
+<p>Posee una <strong>función de activación tipo umbral (escalón)</strong>. Emite y entrena a partir de respuestas discretas usando su regla de actualización únicamente cuando clasifica erróneamente el patrón. Pionero en clasificación binaria, pero con severas limitaciones ante espacios de decisión no lineales.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="adaline-widrow-hoff-1959-60">ADALINE (Widrow &amp; Hoff, 1959-60)</h3>
+<p>Emplea una <strong>función de activación puramente lineal</strong>. La regla de aprendizaje (LMS / Delta) minimiza el error cuadrático medio mediante derivadas (descenso de gradiente), lo cual resulta en una sintonización de pesos mucho más fina (basada en el error continuo y no en el error clasificador). Frecuente como filtro de ruido.</p>
+</div>
+</div>
+<div class="box">
+<h3 class="subtheme-title" id="regla-de-aprendizaje-del-perceptrón">Regla de aprendizaje del Perceptrón</h3>
+<p>$$w_i(t+1) = w_i(t) + \mu(d(t) - y(t))x_i(t)$$</p>
+<p>La red actualiza sus pesos solo si la predicción umbralizada $y(t)$ es distinta a la salida deseada $d(t)$. Es una regla de autoasociación discreta.</p>
+</div>
+<div class="box">
+<h3 class="subtheme-title" id="regla-delta-lms-adaline">Regla Delta (LMS - ADALINE)</h3>
+<p>$$\Delta w_j = \mu \cdot (d_k - y_k) \cdot x_{jk}$$</p>
+<p>A diferencia del perceptrón, calcula el error empleando la salida en estado continuo lineal (antes del filtro discreto), basándose en la derivada de la función de coste. Al usar el método de gradiente descendente, logra optimización del Error Cuadrático Medio de forma robusta.</p>
+</div>
+<div class="box">
+<h3 class="subtheme-title" id="limitación-del-perceptrón-simple">Limitación del Perceptrón simple</h3>
+<p>Minsky y Papert (1969) demostraron que los perceptrones monocapa son incapaces de resolver el problema <strong>XOR</strong>, ya que las regiones no son <strong>linealmente separables</strong> (no pueden ser divididas usando una única recta/hiperplano). Provocó el "Invierno de la IA".</p>
+</div>
+<div class="grid-3">
+<div>
+<h3 class="subtheme-title" id="entrenamiento">Entrenamiento</h3>
+<p>Subconjunto de patrones empleado de manera activa por el algoritmo (como retropropagación) para guiar la continua <strong>actualización de pesos</strong> de la red.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="validación">Validación</h3>
+<p>Evalúa el error durante las épocas de entrenamiento pero <strong>sin ajustar pesos</strong>. Permite optimizar la arquitectura e indicar la parada anticipada (<em>early stopping</em>).</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="test">Test</h3>
+<p>Conjunto independiente no visto nunca por el modelo, usado sólo como <strong>evaluación final</strong> para comprobar su capacidad de generalización real en escenarios nuevos.</p>
+</div>
+</div>
+<div class="box">
+<h3 class="subtheme-title" id="early-stopping-parada-temprana">Early Stopping (Parada temprana)</h3>
+<p>Técnica de regularización para evitar el sobreajuste. Consiste en monitorear el error del conjunto de <strong>validación</strong>. El entrenamiento se detiene en el punto donde este error comienza a subir (aunque el error de entrenamiento siga cayendo), y se devuelve la red congelada en ese ciclo óptimo.</p>
+</div>
+<div class="box">
+<h3 class="subtheme-title" id="sobreentrenamiento-overfitting">Sobreentrenamiento (Overfitting)</h3>
+<p>Situación donde la red memoriza en exceso el conjunto de entrenamiento, incluyendo el ruido estadístico. Ocurre cuando el error de entrenamiento se aproxima a $0$, pero el <strong>error de validación y test sube</strong> dramáticamente, reduciendo a nada la capacidad de generalización.</p>
+</div>
+<div class="grid-2">
+<div>
+<h3 class="subtheme-title" id="transferencia-en-capas-ocultas">Transferencia en Capas Ocultas</h3>
+<p>Resulta absolutamente <strong>necesario que sea no lineal</strong> (sigmoide, tanh). De ser lineal, las múltiples capas del MLP colapsarían matemáticamente comportándose como un perceptrón monocapa.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="transferencia-en-capa-de-salida">Transferencia en Capa de Salida</h3>
+<p>Viene <strong>dictada por el tipo de problema</strong>: función puramente lineal para algoritmos de regresión numérica, o funciones sigmoides/softmax para tareas de clasificación en clases limitadas.</p>
+</div>
+</div>
+<div class="alert">
+<strong>¡Aviso!</strong> ADALINE es un modelo <strong>POSTERIOR</strong> al Perceptrón; <em>Early Stopping</em> requiere el conjunto de VALIDACIÓN para frenar y jamás usa el de entrenamiento; la capa de entrada puramente recibe y almacena, pero NO computa.
+</div>
+</section><!-- TEMA 9 --><section class="theme-section">
+<h2 class="theme-title" id="t9-redes-autoorganizativas" style="border-bottom-color: var(--c-9); color: var(--c-9);">T9: Redes Autoorganizativas</h2>
+<div class="box">
+<h3 class="subtheme-title" id="aprendizaje-no-supervisado">Aprendizaje no supervisado</h3>
+<p>A diferencia del modelo supervisado, en este modelo <strong>no existe "salida deseada"</strong> ni un jefe que dicte el resultado. La red explora por sí sola la información buscando redundancia para agrupar (clustering) los datos en patrones o centroides usando simplemente distancias para auto-representar el espacio de las entradas.</p>
+</div>
+<div class="grid-2">
+<div>
+<h3 class="subtheme-title" id="proceso-de-adaptacion-de-pesos">Proceso de adaptación de pesos (Competición)</h3>
+<p>Las neuronas compiten para ser activadas. Sólo gana una, la cual acerca sus pesos y se adapta al patrón de entrada local, actuando como el prototipo del grupo.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="geometria-topologica-de-elementos-de-proceso">Concepto de geometría topológica de elementos de proceso (Vecindad)</h3>
+<p>Los nodos vecinos en la arquitectura de red se ven influenciados simultáneamente. Así, neuronas vecinas responderán de manera parecida a patrones muy similares, preservando el tejido topográfico espacial.</p>
+</div>
+</div>
+<div class="box">
+<h3 class="subtheme-title" id="algoritmo-som-paso-a-paso">Algoritmo SOM paso a paso</h3>
+<div class="box">
+<h4>Pasos del Algoritmo SOM</h4>
+<ol>
+<li><strong>Inicialización:</strong> Se asignan pequeños valores aleatorios a los pesos sinápticos de la capa de competición.</li>
+<li><strong>Presentación:</strong> Se introduce un patrón de datos en la entrada.</li>
+<li><strong>Competición:</strong> Se calcula la distancia euclídea entre el dato de entrada y los pesos de cada neurona.</li>
+<li><strong>Selección BMU:</strong> La neurona con la distancia mínima (más parecida a la entrada) es declarada ganadora o <em>Best Matching Unit</em>.</li>
+<li><strong>Adaptación:</strong> Se modifican los pesos de la neurona ganadora y de sus <strong>vecinas</strong> topológicas para acercarlos aún más al patrón de entrada.</li>
+<li>El proceso se repite, disminuyendo la tasa de aprendizaje y el radio del vecindario progresivamente hasta la convergencia final.</li>
+</ol>
+</div>
+</div>
+<h3 class="subtheme-title" id="aplicaciones-som">Aplicaciones: Tipos de problemas que resuelve el SOM</h3>
+<div class="grid-4">
+<div class="box" style="border-top: 3px solid var(--c-9);">
+<h4>Agrupamiento (Clustering)</h4>
+<p>Separar datos en grupos sin saber a priori cuántos existen. Se caracteriza cada grupo con los pesos de la BMU.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-9);">
+<h4>Prototipado</h4>
+<p>Igual que clustering pero el interés es el prototipo del grupo (ej. compresión de imágenes). Cada neurona representa el centroide matemático de su clúster.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-9);">
+<h4>Análisis de Componentes Principales</h4>
+<p>Detectar qué atributos caracterizan más los datos. Permite reducir la dimensionalidad eliminando entradas redundantes.</p>
+</div>
+<div class="box" style="border-top: 3px solid var(--c-9);">
+<h4>Extracción de características</h4>
+<p>Organizar datos para que entradas similares generen respuestas en zonas próximas del mapa, revelando relaciones ocultas.</p>
+</div>
+</div>
+<div class="box">
+<h3 class="subtheme-title" id="bmu-best-matching-unit">BMU (Best Matching Unit)</h3>
+<p>Es la "neurona ganadora" de la capa de competición cuyos pesos son los más parecidos a la entrada introducida. Se calcula encontrando el valor mínimo de la <strong>distancia euclídea</strong>: $$ \tau_j = \sqrt{\sum_{i=1}^{n}(e_i - \mu_{ij})^2} $$</p>
+</div>
+<div class="grid-2">
+<div>
+<h3 class="subtheme-title" id="fase-de-ordenación">Fase de ordenación</h3>
+<p>Se realiza en las etapas tempranas, empleando valores elevados de la tasa $\alpha$ y con <strong>vecindarios geométricos amplios</strong>. Permite estructurar de manera burda (a modo de paraguas) toda la red a la zona de datos.</p>
+</div>
+<div>
+<h3 class="subtheme-title" id="fase-de-convergencia">Fase de convergencia</h3>
+<p>Etapa final del aprendizaje en la que tanto $\alpha$ como el vecindario se vuelven <strong>pequeños</strong>. Resulta en el ajuste súper afinado en el que cada prototipo se clava en los centroides individuales de la zona.</p>
+</div>
+</div>
+<div class="box">
+<h3 class="subtheme-title" id="error-de-cuantización-medio">Error de cuantización medio</h3>
+<p>$$ E = \frac{1}{N} \sum_{i=1}^{N} \Vert e_i - w_{bmu} \Vert^2 $$</p>
+<p>Evalúa matemáticamente el grado de adaptación. <strong>Se calcula reprocesando todos los patrones de entrenamiento una vez que la red ya está entrenada:</strong> se obtiene la BMU de cada patrón y se halla la media de la discrepancia (distancia cuadrada) entre los datos y sus BMUs. Sirve para comparar distintas configuraciones de parámetros (tamaño, aprendizaje) y seleccionar la mejor.</p>
+</div>
+<div class="grid-2">
+<div>
+<h3 class="subtheme-title" id="som-de-kohonen">SOM de Kohonen</h3>
+<p>Posee una <strong>topología estática (fija predefinida)</strong>. Esto acarrea varios inconvenientes específicos:</p>
+<ul>
+<li><strong>Arquitectura estática:</strong> Tamaño y topología deben definirse antes de entrenar y no cambian.</li>
+<li><strong>Neuronas muertas:</strong> Células que inicializan lejos de los datos y nunca ganan la competición.</li>
+<li><strong>Efecto bordes y contracción:</strong> Las neuronas exteriores no representan fielmente la distribución y sufren atracción hacia el centro.</li>
+<li><strong>Neuronas interpolantes:</strong> Se sitúan en zonas de densidad de probabilidad nula.</li>
+<li><strong>Coste computacional y de inicialización crítico.</strong></li>
+</ul>
+</div>
+<div>
+<h3 class="subtheme-title" id="gcsgng-crecimiento-de-redes">GCS/GNG (Crecimiento de Redes)</h3>
+<p>Mejoran al SOM solucionando el problema de las neuronas muertas. Sus diferencias técnicas clave con SOM son:</p>
+<ul>
+<li><strong>Topología:</strong> Crece dinámicamente durante el entrenamiento (en SOM era fija). La capa de salida en GCS mantiene siempre una estructura k-dimensional (segmento, triángulo, tetraedro).</li>
+<li><strong>Tasas de aprendizaje:</strong> GCS emplea <strong>dos tasas constantes e invariantes en el tiempo</strong>: $\epsilon_b$ (mayor, para la neurona ganadora) y $\epsilon_n$ (menor, para sus vecinas topológicas). SOM usaba una gaussiana decreciente.</li>
+<li><strong>Mecanismo de crecimiento:</strong> Cada $\lambda$ iteraciones se inserta una nueva neurona allí donde hay mayor error de cuantización (<em>resource</em> acumulado).</li>
+</ul>
+</div>
+</div>
+<div class="alert">
+<strong>¡Cuidado!</strong> Las redes SOM de Kohonen se componen de <strong>UNA</strong> sola capa computacional de salida (la capa de entrada solo ejerce de buffer y no computa), y por operar con aprendizaje NO supervisado jamás disponen de salida deseada de ejemplo.
+</div>
+</section><!-- TEMA 10 --><section class="theme-section">
+<h2 class="theme-title" id="t10-computacion-evolutiva" style="border-bottom-color: var(--c-10); color: var(--c-10);">T10: Computación Evolutiva</h2>
+
+<h3 class="subtheme-title" id="componentes-algoritmo-genetico">Los 5 Componentes de un Algoritmo Genético</h3>
+<div class="box">
+<ol>
+<li><strong>Representación genética (Codificación):</strong> Transformar la solución matemática en una cadena de bits o caracteres (el cromosoma).</li>
+<li><strong>Población Inicial:</strong> Generada aleatoriamente para asegurar máxima diversidad en el espacio de búsqueda.</li>
+<li><strong>Función de Evaluación (Fitness):</strong> Actúa de "juez". Evalúa qué tan buena es cada solución en el entorno del problema. Premia a las buenas y castiga a las malas.</li>
+<li><strong>Operadores Genéticos:</strong> Mecanismos de evolución: Cruce (explotación) y Mutación (exploración).</li>
+<li><strong>Parámetros de control:</strong> Tamaño de la población, probabilidad de cruce (Pc ≈ 90%) y probabilidad de mutación (Pm ≈ 5-10%).</li>
+</ol>
+</div>
+<div class="code-window">
+  <div class="code-window-header">
+    <div class="mac-buttons">
+      <div class="mac-btn close"></div>
+      <div class="mac-btn minimize"></div>
+      <div class="mac-btn maximize"></div>
+    </div>
+    <h5>Ciclo de Vida del Algoritmo Genético</h5>
+  </div>
+  <div class="code-window-body" style="display: flex; justify-content: center; background: rgba(0,0,0,0.3);">
+    <div class="mermaid">
+    flowchart TD
+      A([Población Inicial]) --> B[Evaluación Fitness]
+      B --> C{¿Condición de Parada?}
+      C -- Sí --> D([Mejor Solución])
+      C -- No --> E[Selección]
+      E --> F[Cruce]
+      F --> G[Mutación]
+      G --> H[Nueva Población]
+      H --> B
+      style A fill:#ec4899,stroke:#fff,color:#fff
+      style D fill:#10b981,stroke:#fff,color:#fff
+      style C fill:#3b82f6,stroke:#fff,color:#fff
+    </div>
+  </div>
+</div>
+
+<h3 class="subtheme-title" id="criterios-de-seleccion">Criterios de Selección (Mecanismos)</h3>
+<div class="box">
+<table>
+<thead><tr><th>Algoritmo</th><th>Rol</th></tr></thead>
+<tbody>
+<tr><td>Torneo</td><td>Exploración — reparte la búsqueda por todo el espacio</td></tr>
+<tr><td>Sobrante estocástico</td><td>Búsqueda intermedia entre torneo y ruleta</td></tr>
+<tr><td>Universal estocástica</td><td>Búsqueda intermedia</td></tr>
+<tr><td>Muestreo determinístico</td><td>—</td></tr>
+<tr><td>Ruleta</td><td>Explotación — ejerce una fuerte presión selectiva sobre el mejor individuo</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="subtheme-title" id="cuando-no-usar-ag">¿Cuándo NO usar un Algoritmo Genético?</h3>
+<div class="alert">
+<div class="alert-content">
+<div class="alert-title">¡Atención! Inconvenientes de los AG</div>
+<ol>
+<li>Cuando necesitas <strong>garantizar matemáticamente</strong> que encontraste el óptimo global (los AG no lo garantizan, son estocásticos).</li>
+<li>Cuando la función de coste es <strong>suave, convexa y de pocos parámetros</strong> (los métodos analíticos con derivadas son infinitamente más rápidos).</li>
+<li>Cuando el <strong>espacio de búsqueda es pequeño</strong> (la fuerza bruta enumerativa es más segura y rápida).</li>
+</ol>
+</div>
+</div>
+</section><script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+  </script><script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script><style>
+</style></div>
+</main>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
       const urlParams = new URLSearchParams(window.location.search);
-      const initialTopic = urlParams.get('topic');
+      const topic = urlParams.get('topic');
+      const topicMapping = {
+        'catalogo': 't-01',
+        'vistas': 't-02',
+        'integridade': 't-03',
+        'seguridade': 't-04',
+        'activas': 't-05',
+        'oorm': 't-06',
+        'optimizacion': 't-07',
+        'recuperacion': 't-08',
+        'concurrencia': 't-09'
+      };
 
-      let currentPart = null;
-
-      CATEGORIES.forEach(cat => {
-        if(cat.id === 'examen') return; // Exámenes no van aquí
-        
-        if (cat.part !== currentPart) {
-          currentPart = cat.part;
-          const header = document.createElement('li');
-          header.style.padding = '15px 20px 5px';
-          header.style.fontSize = '0.75rem';
-          header.style.textTransform = 'uppercase';
-          header.style.color = 'var(--text-secondary)';
-          header.style.fontWeight = '700';
-          header.style.letterSpacing = '0.05em';
-          header.textContent = currentPart === 'simbolica' ? 'Parte Simbólica' : 'Parte Subsimbólica';
-          topicList.appendChild(header);
-        }
-
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = \`?topic=\${cat.id}\`;
-        a.className = 'topic-item';
-        a.innerHTML = \`<span>\${cat.icon}</span> \${cat.name}\`;
-        
-        if(cat.id === initialTopic) {
-          a.classList.add('active');
-        }
-        
-        a.addEventListener('click', (e) => {
-          e.preventDefault();
-          window.history.pushState({}, '', \`?topic=\${cat.id}\`);
-          document.querySelectorAll('.topic-item').forEach(el => el.classList.remove('active'));
-          a.classList.add('active');
-          loadTopic(cat);
+      if (topic && topicMapping[topic]) {
+        const mappedId = topicMapping[topic];
+        const sections = document.querySelectorAll('.theme-section');
+        sections.forEach(sec => {
+          if (!sec.querySelector('#' + mappedId)) {
+            sec.style.display = 'none';
+          }
         });
         
-        li.appendChild(a);
-        topicList.appendChild(li);
-      });
-
-      if (initialTopic) {
-        const cat = CATEGORIES.find(c => c.id === initialTopic);
-        if (cat) loadTopic(cat);
-      }
-
-      function loadTopic(cat) {
-        const content = APUNTES_DATA[cat.id];
-        
-        const menuHtml = `
-          <div style="display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap;">
-            <a href="../estudio-si/index.html?mode=category&category=${cat.id}" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); border-radius: 8px; color: #93c5fd; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.2s;">
-              <span>📝</span> Cuestionario
-            </a>
-            <a href="../shared/flashcards.html?topic=${cat.id}" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); border-radius: 8px; color: #fcd34d; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.2s;">
-              <span>📇</span> Flashcards
-            </a>
-          </div>
-        `;
-
-        if (content && content.trim() !== "") {
-          contentBody.innerHTML = menuHtml + marked.parse(content);
-        } else {
-          contentBody.innerHTML = `
-            <h1>${cat.icon} ${cat.name}</h1>
-            ${menuHtml}
-            <p>Apuntes de este tema próximamente.</p>
-          `;
+        const headerText = document.querySelector('.page-title');
+        if (headerText && headerText.parentElement) {
+          headerText.parentElement.style.display = 'none';
         }
       }
+
+      const toggleBtn = document.getElementById("toggle-sidebar");
+      const sidebar = document.getElementById("sidebar");
+      toggleBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("collapsed");
+      });
+
+      const navLinksContainer = document.getElementById("nav-links");
+      let headings = Array.from(document.querySelectorAll("#main-content h2.theme-title, #main-content h3.subtheme-title"));
+      headings = headings.filter(h => {
+        const sec = h.closest('.theme-section');
+        return sec && sec.style.display !== 'none';
+      });
+      
+      headings.forEach((heading) => {
+        const link = document.createElement("a");
+        link.href = "#" + heading.id;
+        if (heading.tagName.toLowerCase() === "h2") {
+          link.className = "nav-h2";
+          link.textContent = heading.textContent;
+        } else {
+          link.className = "nav-h3";
+          // Distinguish exam guides slightly in the sidebar
+          if (heading.classList.contains("exam-title")) {
+            link.className += " exam-link";
+            link.innerHTML = "🎓 " + heading.textContent.replace('🎓 ', '');
+          } else {
+            link.textContent = heading.textContent;
+          }
+        }
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = document.getElementById(heading.id);
+          const main = document.getElementById("main-content");
+          main.scrollTo({ top: target.offsetTop - 60, behavior: "smooth" });
+        });
+        navLinksContainer.appendChild(link);
+      });
+
+      const observerOptions = {
+        root: document.getElementById("main-content"),
+        rootMargin: "-10% 0px -75% 0px",
+        threshold: 0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            const activeLink = document.querySelector(`.nav-h3[href="#${id}"], .nav-h2[href="#${id}"]`);
+            document.querySelectorAll(".nav-h3, .nav-h2").forEach(l => l.classList.remove("active"));
+            if (activeLink && activeLink.classList.contains("nav-h3")) {
+              activeLink.classList.add("active");
+            }
+          }
+        });
+      }, observerOptions);
+
+      headings.forEach(h => observer.observe(h));
     });
   </script>
 </body>

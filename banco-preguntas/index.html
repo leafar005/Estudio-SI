@@ -161,6 +161,7 @@
       border-color: rgba(16,185,129,0.3);
       color: var(--correct);
     }
+    .qcb-option p { margin: 0; }
     .qcb-option-letter {
       font-weight: 700;
       font-size: 0.8rem;
@@ -190,6 +191,18 @@
       .question-card-banco { padding: 16px 18px; }
     }
   </style>
+
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
   <div class="top-bar">
@@ -206,15 +219,10 @@
       <select class="filter-select" id="filter-category">
         <option value="all">Todos los temas</option>
       </select>
-      <select class="filter-select" id="filter-type">
-        <option value="all">Todos los tipos</option>
-        <option value="multi">Opción múltiple</option>
-        <option value="vf">Verdadero / Falso</option>
-      </select>
-      <select class="filter-select" id="filter-trap">
-        <option value="all">Todas</option>
-        <option value="trap">Solo trampas</option>
-        <option value="normal">Sin trampas</option>
+      <select class="filter-select" id="filter-exam">
+        <option value="all">Todas las preguntas</option>
+        <option value="exam">Solo exámenes</option>
+        <option value="no-exam">Sin exámenes</option>
       </select>
       <input type="text" class="search-input" id="search-input" placeholder="🔍 Buscar pregunta...">
     </div>
@@ -223,10 +231,11 @@
   </div>
 
   <script src="../estudio-si/questions.js"></script>
+  <script src="../estudio-si/exams.js"></script>
   <script>
     (function() {
       const catSelect = document.getElementById('filter-category');
-      CATEGORIES.forEach(cat => {
+      CATEGORIES.filter(cat => cat.part !== 'examenes').forEach(cat => {
         const opt = document.createElement('option');
         opt.value = cat.id;
         opt.textContent = `${cat.icon} ${cat.name}`;
@@ -235,16 +244,17 @@
 
       function render() {
         const category = document.getElementById('filter-category').value;
-        const type = document.getElementById('filter-type').value;
-        const trap = document.getElementById('filter-trap').value;
+        const examFilter = document.getElementById('filter-exam').value;
         const search = document.getElementById('search-input').value.toLowerCase().trim();
 
         let filtered = QUESTIONS.filter(q => {
           if (category !== 'all' && q.category !== category) return false;
-          if (type !== 'all' && q.type !== type) return false;
-          if (trap === 'trap' && !q.trap) return false;
-          if (trap === 'normal' && q.trap) return false;
-          if (search && !q.question.toLowerCase().includes(search) && !q.justification.toLowerCase().includes(search)) return false;
+          const isExam = (q.source && q.source.startsWith('examen')) || (q.category && q.category.startsWith('examen'));
+          if (examFilter === 'exam' && !isExam) return false;
+          if (examFilter === 'no-exam' && isExam) return false;
+          const qText = q.question ? q.question.toLowerCase() : '';
+          const jText = q.justification ? q.justification.toLowerCase() : '';
+          if (search && !qText.includes(search) && !jText.includes(search)) return false;
           return true;
         });
 
@@ -262,31 +272,33 @@
             <div class="qcb-header">
               <span class="qcb-num">#${idx + 1}</span>
               <span class="qcb-category">${cat ? cat.name : q.category}</span>
-              <span class="qcb-type">${q.type === 'vf' ? 'V/F' : 'Multi'}</span>
-              ${q.trap ? '<span class="qcb-trap">⚠️ Trampa</span>' : ''}
+              ${ ((q.source && q.source.startsWith('examen')) || (q.category && q.category.startsWith('examen'))) ? '<span class="qcb-exam" style="color:#facc15; font-weight:600; background:rgba(250,204,21,0.1); padding:2px 8px; border-radius:4px; font-size:0.8rem; margin-left:8px;">🎓 Examen</span>' : '' }
             </div>
             <div class="qcb-text">${window.marked ? marked.parse(q.question) : q.question}</div>
             <div class="qcb-detail">
               <div class="qcb-options">
-                ${q.options.map((opt, i) => `
+                ${q.options.map((opt, i) => {
+                  const parsedOpt = window.marked ? marked.parse(opt) : opt;
+                  return `
                   <div class="qcb-option ${i === q.correct ? 'correct' : ''}">
                     <span class="qcb-option-letter">${letters[i]}</span>
-                    <span>${opt}</span>
+                    <div style="flex:1;">${parsedOpt}</div>
                     ${i === q.correct ? ' ✅' : ''}
                   </div>
-                `).join('')}
+                  `;
+                }).join('')}
               </div>
-              <div class="qcb-justification">${q.justification}</div>
+              <div class="qcb-justification">${window.marked ? marked.parse(q.justification) : q.justification}</div>
             </div>
           `;
           card.addEventListener('click', () => card.classList.toggle('expanded'));
           list.appendChild(card);
         });
+        if (window.MathJax && typeof MathJax.typesetPromise === 'function') { MathJax.typesetPromise(); }
       }
 
       document.getElementById('filter-category').addEventListener('change', render);
-      document.getElementById('filter-type').addEventListener('change', render);
-      document.getElementById('filter-trap').addEventListener('change', render);
+      document.getElementById('filter-exam').addEventListener('change', render);
 
       let debounce;
       document.getElementById('search-input').addEventListener('input', () => {

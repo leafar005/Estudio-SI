@@ -566,3 +566,24 @@ body.light-theme code:not([class*="language-"]) {
   background: rgba(0, 0, 0, 0.05) !important;
   color: #1f2937 !important;
 }
+
+/* Global Table Styles for Markdown Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px 0;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  overflow: hidden;
+}
+th, td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  line-height: 1.6;
+}
+th {
+  background: rgba(255, 255, 255, 0.05);
+  font-weight: 700;
+  color: #fff;
+}
