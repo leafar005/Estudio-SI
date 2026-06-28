@@ -2280,7 +2280,7 @@ const DAYPO_QUESTIONS = [
       "Las medidas de prevención topológica no encontrarán ninguna anomalía"
     ],
     "correct": 1,
-    "justification": "En el entrenamiento de una red SOM mediante aprendizaje competitivo, en cada iteración únicamente la neurona ganadora (BMU, *Best Matching Unit*) y sus vecinas topológicas directas actualizan sus pesos vectoriales. Si el mapa que hemos proyectado es muy extenso o los datos de entrada están altamente agrupados en regiones específicas del espacio, ocurrirá que un porcentaje de las neuronas del mapa nunca se posicionará como la ganadora para ningún patrón y quedará siempre fuera del radio de vecindad de las neuronas que sí ganan. El efecto de esto es la aparición de *\"neuronas muertas\"*, es decir, **neuronas que no han sido entrenadas** ni ajustadas. Por lo tanto, la respuesta correcta es la 1. El uso de grandes conjuntos de datos no impide inherentemente que esto ocurra si la red es desproporcionada.",
+    "justification": "En el entrenamiento de una red SOM mediante aprendizaje competitivo, en cada iteración únicamente la neurona ganadora (BMU, *Best Matching Unit*) y sus vecinas topológicas directas actualizan sus pesos vectoriales. Si el mapa que hemos proyectado es muy extenso o los datos de entrada están altamente agrupados en regiones específicas del espacio, ocurrirá que un porcentaje de las neuronas del mapa nunca se posicionará como la ganadora para ningún patrón y quedará siempre fuera del radio de vecindad de las neuronas que sí ganan. El efecto de esto es la aparición de *\"neuronas muertas\"*, es decir, **neuronas que no han sido entrenadas** ni ajustadas. Por lo tanto, la respuesta correcta es la B. El uso de grandes conjuntos de datos no impide inherentemente que esto ocurra si la red es desproporcionada.",
     "tags": [
       "SOM",
       "RNA"
@@ -3047,7 +3047,7 @@ const DAYPO_QUESTIONS = [
       "Su amplitud deriva de la cola FIFO, que expande el nodo menos profundo primero"
     ],
     "correct": 3,
-    "justification": "La respuesta correcta es la **3**. La búsqueda en amplitud (breadth-first) emplea una cola **FIFO** (First-In, First-Out) para gestionar su frontera (nodos abiertos). Esto garantiza que los nodos se expandan en el mismo orden en que fueron descubiertos, lo que produce una exploración exhaustiva nivel por nivel. Al expandir primero el nodo menos profundo (el más antiguo en la cola), se asegura de no bajar de nivel hasta haber evaluado todas las opciones del nivel actual. Las demás opciones son falsas: la profundidad sí afecta, sí encuentra la solución con menos pasos y es muy ineficiente en memoria ($O(b^d)$).",
+    "justification": "La respuesta correcta es la **D**. La búsqueda en amplitud (breadth-first) emplea una cola **FIFO** (First-In, First-Out) para gestionar su frontera (nodos abiertos). Esto garantiza que los nodos se expandan en el mismo orden en que fueron descubiertos, lo que produce una exploración exhaustiva nivel por nivel. Al expandir primero el nodo menos profundo (el más antiguo en la cola), se asegura de no bajar de nivel hasta haber evaluado todas las opciones del nivel actual. Las demás opciones son falsas: la profundidad sí afecta, sí encuentra la solución con menos pasos y es muy ineficiente en memoria ($O(b^d)$).",
     "tags": [
       "Búsqueda Ciega"
     ],
@@ -3064,7 +3064,7 @@ const DAYPO_QUESTIONS = [
       "Ninguna de las respuestas es correcta"
     ],
     "correct": 0,
-    "justification": "La respuesta correcta es la **0**. La búsqueda en amplitud es **completa** (siempre encuentra la solución si existe y el factor de ramificación es finito), pero **no siempre es óptima**. Solo garantiza la optimalidad estricta (el camino de menor coste) cuando todas las acciones tienen un coste unitario o idéntico. Si los costes de paso varían, la primera solución que encuentre (la de menos pasos) no tiene por qué ser la más barata. Por ello, la afirmación 'puede ser completa y no óptima' refleja perfectamente esta condicionalidad.",
+    "justification": "La respuesta correcta es la **A**. La búsqueda en amplitud es **completa** (siempre encuentra la solución si existe y el factor de ramificación es finito), pero **no siempre es óptima**. Solo garantiza la optimalidad estricta (el camino de menor coste) cuando todas las acciones tienen un coste unitario o idéntico. Si los costes de paso varían, la primera solución que encuentre (la de menos pasos) no tiene por qué ser la más barata. Por ello, la afirmación 'puede ser completa y no óptima' refleja perfectamente esta condicionalidad.",
     "tags": [
       "A*",
       "Búsqueda Ciega"
@@ -3082,7 +3082,7 @@ const DAYPO_QUESTIONS = [
       "El nodo meta más cercano es el óptimo para la solución en breadth-first"
     ],
     "correct": 2,
-    "justification": "La respuesta correcta es la **2**. Cuando las operaciones (o pasos) entre nodos tienen costes diferentes, la solución más corta en número de pasos no garantiza ser la de menor coste total. Para resolver esto, surge la Búsqueda de Coste Uniforme (Dijkstra), cuya mejora fundamental respecto a la búsqueda convencional (amplitud) es **almacenar y considerar el coste acumulado del camino ($g(n)$)** que lleva a un nodo, utilizando este valor para ordenar la frontera.",
+    "justification": "La respuesta correcta es la **C**. Cuando las operaciones (o pasos) entre nodos tienen costes diferentes, la solución más corta en número de pasos no garantiza ser la de menor coste total. Para resolver esto, surge la Búsqueda de Coste Uniforme (Dijkstra), cuya mejora fundamental respecto a la búsqueda convencional (amplitud) es **almacenar y considerar el coste acumulado del camino ($g(n)$)** que lleva a un nodo, utilizando este valor para ordenar la frontera.",
     "tags": [
       "Búsqueda Ciega"
     ],
@@ -3099,7 +3099,7 @@ const DAYPO_QUESTIONS = [
       "Si expandimos los nodos con menor coste, entonces la frontera se manejará con una cola LIFO"
     ],
     "correct": 0,
-    "justification": "La respuesta correcta es la **0**. En la búsqueda de coste uniforme, la estrategia consiste en expandir siempre el nodo con el menor coste de camino acumulado ($g(n)$). Para lograr esto de forma eficiente, la frontera no puede ser una simple pila (LIFO) ni una cola (FIFO), sino que debe implementarse como una **cola de prioridad ordenada** por el valor de $g(n)$, asegurando que el camino más barato conocido sea el siguiente en explorarse.",
+    "justification": "La respuesta correcta es la **A**. En la búsqueda de coste uniforme, la estrategia consiste en expandir siempre el nodo con el menor coste de camino acumulado ($g(n)$). Para lograr esto de forma eficiente, la frontera no puede ser una simple pila (LIFO) ni una cola (FIFO), sino que debe implementarse como una **cola de prioridad ordenada** por el valor de $g(n)$, asegurando que el camino más barato conocido sea el siguiente en explorarse.",
     "tags": [
       "A*"
     ],
@@ -3133,7 +3133,7 @@ const DAYPO_QUESTIONS = [
       "Todas son verdaderas"
     ],
     "correct": 1,
-    "justification": "La respuesta correcta es la **1**. Dado que la afirmación 'El coste de camino es el mismo que el coste de la solución óptima' es falsa en términos generales (el coste $g(n)$ de los nodos explorados va creciendo hasta alcanzar $C^*$), la opción 'Todas son verdaderas' es incorrecta. De las opciones restantes, la afirmación más sólida y representativa del algoritmo de coste uniforme es que **el primer nodo meta en ser expandido será el óptimo** (opción 1). Esto ocurre porque los nodos se extraen de la cola de prioridad en orden creciente de coste $g(n)$, garantizando la optimalidad al momento de la expansión.",
+    "justification": "La respuesta correcta es la **B**. Dado que la afirmación 'El coste de camino es el mismo que el coste de la solución óptima' es falsa en términos generales (el coste $g(n)$ de los nodos explorados va creciendo hasta alcanzar $C^*$), la opción 'Todas son verdaderas' es incorrecta. De las opciones restantes, la afirmación más sólida y representativa del algoritmo de coste uniforme es que **el primer nodo meta en ser expandido será el óptimo** (opción B). Esto ocurre porque los nodos se extraen de la cola de prioridad en orden creciente de coste $g(n)$, garantizando la optimalidad al momento de la expansión.",
     "tags": [
       "busqueda"
     ],
@@ -3150,7 +3150,7 @@ const DAYPO_QUESTIONS = [
       "El mayor número de nodos almacenados se alcanza en el nodo inferior más izquierdo"
     ],
     "correct": 3,
-    "justification": "La respuesta correcta es la **3**. La búsqueda en profundidad (depth-first) tiene como gran ventaja su baja complejidad espacial ($O(bm)$). El momento en el que la pila de la frontera alcanza su tamaño máximo es cuando el algoritmo ha descendido por una rama hasta la profundidad máxima sin hacer *backtracking*, lo cual típicamente ocurre en el **nodo inferior más izquierdo** (si se expanden los hijos de izquierda a derecha). Las otras opciones son falsas: no es completa en árboles infinitos, no es óptima y sus complejidades espaciales y temporales no coinciden ($O(bm)$ vs $O(b^m)$).",
+    "justification": "La respuesta correcta es la **D**. La búsqueda en profundidad (depth-first) tiene como gran ventaja su baja complejidad espacial ($O(bm)$). El momento en el que la pila de la frontera alcanza su tamaño máximo es cuando el algoritmo ha descendido por una rama hasta la profundidad máxima sin hacer *backtracking*, lo cual típicamente ocurre en el **nodo inferior más izquierdo** (si se expanden los hijos de izquierda a derecha). Las otras opciones son falsas: no es completa en árboles infinitos, no es óptima y sus complejidades espaciales y temporales no coinciden ($O(bm)$ vs $O(b^m)$).",
     "tags": [
       "Búsqueda Ciega"
     ],
@@ -3167,7 +3167,7 @@ const DAYPO_QUESTIONS = [
       "La función de sucesores de cada nodo expandirá a múltiples sucesores de cada vez"
     ],
     "correct": 0,
-    "justification": "La respuesta correcta es la **0**. La principal mejora de la búsqueda con *backtracking* (vuelta atrás) sobre la búsqueda en profundidad tradicional es la optimización drástica de la memoria. En lugar de generar y almacenar todos los nodos sucesores hermanos simultáneamente ($O(bm)$), el backtracking modifica el estado actual para generar un único sucesor, y deshace el cambio si no encuentra solución. Esto equivale a **descartar del almacenamiento** los caminos fallidos y los hermanos no explorados, reduciendo la complejidad espacial a simplemente $O(m)$ acciones.",
+    "justification": "La respuesta correcta es la **A**. La principal mejora de la búsqueda con *backtracking* (vuelta atrás) sobre la búsqueda en profundidad tradicional es la optimización drástica de la memoria. En lugar de generar y almacenar todos los nodos sucesores hermanos simultáneamente ($O(bm)$), el backtracking modifica el estado actual para generar un único sucesor, y deshace el cambio si no encuentra solución. Esto equivale a **descartar del almacenamiento** los caminos fallidos y los hermanos no explorados, reduciendo la complejidad espacial a simplemente $O(m)$ acciones.",
     "tags": [
       "Búsqueda Ciega"
     ],
@@ -3184,7 +3184,7 @@ const DAYPO_QUESTIONS = [
       "Todas son correctas"
     ],
     "correct": 3,
-    "justification": "La respuesta correcta es la **3** (Todas son correctas). La búsqueda de profundidad limitada soluciona el defecto principal de la búsqueda en profundidad (perderse en ramas o caminos infinitos) al **fijar un límite ($l$) a la profundidad máxima** permitida (opciones 0 y 2). Sin embargo, este límite introduce un riesgo: si la meta se encuentra a una profundidad mayor que el límite establecido ($l < d$), **el algoritmo nunca llegará a ella**, perdiendo su completitud (opción 1). Por tanto, todas las afirmaciones describen correctamente sus características.",
+    "justification": "La respuesta correcta es la **D** (Todas son correctas). La búsqueda de profundidad limitada soluciona el defecto principal de la búsqueda en profundidad (perderse en ramas o caminos infinitos) al **fijar un límite ($l$) a la profundidad máxima** permitida (opciones 0 y 2). Sin embargo, este límite introduce un riesgo: si la meta se encuentra a una profundidad mayor que el límite establecido ($l < d$), **el algoritmo nunca llegará a ella**, perdiendo su completitud (opción 1). Por tanto, todas las afirmaciones describen correctamente sus características.",
     "tags": [
       "A*",
       "BLE/BLR",
@@ -3203,7 +3203,7 @@ const DAYPO_QUESTIONS = [
       "Mejora la búsqueda breadth-first incluyendo un proceso de autoasignación iterativo"
     ],
     "correct": 0,
-    "justification": "La respuesta correcta es la **0**. La búsqueda de profundidad iterativa combina los beneficios de la búsqueda en amplitud y profundidad. Su mecanismo consiste en realizar múltiples búsquedas de profundidad limitada, **aumentando gradualmente el límite** ($l=0, l=1, l=2$, etc.) en cada iteración hasta encontrar la meta. Las demás opciones son inventadas o incorrectas: no emplea colas iterativas y no se aplica sobre la búsqueda en amplitud.",
+    "justification": "La respuesta correcta es la **A**. La búsqueda de profundidad iterativa combina los beneficios de la búsqueda en amplitud y profundidad. Su mecanismo consiste en realizar múltiples búsquedas de profundidad limitada, **aumentando gradualmente el límite** ($l=0, l=1, l=2$, etc.) en cada iteración hasta encontrar la meta. Las demás opciones son inventadas o incorrectas: no emplea colas iterativas y no se aplica sobre la búsqueda en amplitud.",
     "tags": [
       "Búsqueda Ciega"
     ],
@@ -3220,7 +3220,7 @@ const DAYPO_QUESTIONS = [
       "Se selecciona en base a una función heurística h(n) donde se elige el mayor mejor valor"
     ],
     "correct": 0,
-    "justification": "La respuesta correcta es la **0**. En las estrategias de búsqueda preferente por el mejor (Best-First Search), el nodo a expandir se selecciona utilizando una función de evaluación genérica **$f(n)$**. Para optimizar el camino hacia la meta, el algoritmo siempre elige el nodo que presente el **menor valor** de $f(n)$ (el coste más prometedor o estimado). La opción 2 se refiere específicamente a la búsqueda avara ($f(n) = h(n)$), que es solo un caso particular, no la definición general.",
+    "justification": "La respuesta correcta es la **A**. En las estrategias de búsqueda preferente por el mejor (Best-First Search), el nodo a expandir se selecciona utilizando una función de evaluación genérica **$f(n)$**. Para optimizar el camino hacia la meta, el algoritmo siempre elige el nodo que presente el **menor valor** de $f(n)$ (el coste más prometedor o estimado). La opción 2 se refiere específicamente a la búsqueda avara ($f(n) = h(n)$), que es solo un caso particular, no la definición general.",
     "tags": [
       "busqueda"
     ],
@@ -3255,7 +3255,7 @@ const DAYPO_QUESTIONS = [
       "Cuando la función de evaluación f(n) y la función de heurística h(n) valen lo mismo, entonces estamos en una búsqueda de árbol binario"
     ],
     "correct": 0,
-    "justification": "La respuesta correcta es la **0**. La búsqueda avara (Greedy Search) es una implementación de la búsqueda preferente por el mejor donde la función de evaluación se basa exclusivamente en la intuición o heurística hacia el futuro. Por lo tanto, se da cuando **$f(n) = h(n)$**. La búsqueda A*, por el contrario, suma el coste ya recorrido, siendo $f(n) = g(n) + h(n)$. La opción dada originalmente como correcta era errónea, ya que atribuía la equivalencia $f(n) = h(n)$ a A*.",
+    "justification": "La respuesta correcta es la **A**. La búsqueda avara (Greedy Search) es una implementación de la búsqueda preferente por el mejor donde la función de evaluación se basa exclusivamente en la intuición o heurística hacia el futuro. Por lo tanto, se da cuando **$f(n) = h(n)$**. La búsqueda A*, por el contrario, suma el coste ya recorrido, siendo $f(n) = g(n) + h(n)$. La opción dada originalmente como correcta era errónea, ya que atribuía la equivalencia $f(n) = h(n)$ a A*.",
     "tags": [
       "A*",
       "Heurística"
@@ -3290,7 +3290,7 @@ const DAYPO_QUESTIONS = [
       "La búsqueda avara implementa una cola FIFO que atiende al costo g(n)"
     ],
     "correct": 1,
-    "justification": "La respuesta correcta es la **1**. La búsqueda avara ordena su frontera utilizando únicamente la información sobre cuán cerca parece estar la meta. Por lo tanto, implementa una **cola de prioridad ordenada por la función heurística $h(n)$**. La opción 0 describe la búsqueda de coste uniforme (que prioriza $g(n)$), la opción 3 mezcla conceptos erróneos (FIFO con $g(n)$) y la opción 2, aunque cierta a nivel conceptual (usa $f(n)$), es menos específica y descriptiva que la 1, ya que la esencia de la búsqueda avara es precisamente que $f(n)$ es igual a $h(n)$.",
+    "justification": "La respuesta correcta es la **B**. La búsqueda avara ordena su frontera utilizando únicamente la información sobre cuán cerca parece estar la meta. Por lo tanto, implementa una **cola de prioridad ordenada por la función heurística $h(n)$**. La opción 0 describe la búsqueda de coste uniforme (que prioriza $g(n)$), la opción 3 mezcla conceptos erróneos (FIFO con $g(n)$) y la opción 2, aunque cierta a nivel conceptual (usa $f(n)$), es menos específica y descriptiva que la 1, ya que la esencia de la búsqueda avara es precisamente que $f(n)$ es igual a $h(n)$.",
     "tags": [
       "Heurística"
     ],
