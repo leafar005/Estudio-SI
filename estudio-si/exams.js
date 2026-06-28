@@ -72,7 +72,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_julio_2025",
-    "question": "Asumiendo $M(1)$ verdadero, la solución será...",
+    "question": "<div style=\"background:rgba(255,255,255,0.05); padding:10px; border-radius:5px; margin-bottom:15px; font-size: 0.9em; border-left: 3px solid #3b82f6; color: #9ca3af;\"><em>Contexto del ejercicio anterior:</em><br>\n<p style=\"margin:8px 0\">Sea un dominio con tres manifestaciones posibles $\\\\{M(1), M(2), M(3)\\\\}$ y dos interpretaciones posibles $\\\\{I(1), I(2)\\\\}$. Desde una perspectiva categórica, y dadas las reglas del dominio:</p>\n<div style=\"background:rgba(255,255,255,0.05);border-left:3px solid #10b981;padding:10px 15px;margin:8px 0;border-radius:4px;font-family:monospace;color:#d1d5db;\">\n  R1: $M(1) \\lor M(2) \\lor M(3) \\implies I(1) \\lor I(2)$<br>\n  R2: $I(1) \\implies \\neg M(1) \\land M(2)$<br>\n  R3: $I(2) \\land \\neg I(1) \\implies M(1) \\land M(3)$\n</div>\n</div>\n<p>Asumiendo $M(1)$ verdadero, la solución será...</p>",
     "options": [
       "a) $I(1) \\land I(2)$",
       "b) $I(1) \\land \\neg I(2)$",
@@ -90,7 +90,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_julio_2025",
-    "question": "Partiendo del problema original, ¿qué manifestación es más probable cuando ambas interpretaciones son verdaderas?",
+    "question": "<div style=\"background:rgba(255,255,255,0.05); padding:10px; border-radius:5px; margin-bottom:15px; font-size: 0.9em; border-left: 3px solid #3b82f6; color: #9ca3af;\"><em>Contexto del ejercicio anterior:</em><br>\n<p style=\"margin:8px 0\">Sea un dominio con tres manifestaciones posibles $\\\\{M(1), M(2), M(3)\\\\}$ y dos interpretaciones posibles $\\\\{I(1), I(2)\\\\}$. Desde una perspectiva categórica, y dadas las reglas del dominio:</p>\n<div style=\"background:rgba(255,255,255,0.05);border-left:3px solid #10b981;padding:10px 15px;margin:8px 0;border-radius:4px;font-family:monospace;color:#d1d5db;\">\n  R1: $M(1) \\lor M(2) \\lor M(3) \\implies I(1) \\lor I(2)$<br>\n  R2: $I(1) \\implies \\neg M(1) \\land M(2)$<br>\n  R3: $I(2) \\land \\neg I(1) \\implies M(1) \\land M(3)$\n</div>\n</div>\n<p>Partiendo del problema original, ¿qué manifestación es más probable cuando ambas interpretaciones son verdaderas?</p>",
     "options": [
       "a) $M(1)$",
       "b) $M(2)$",
@@ -882,25 +882,7 @@ const EXAM_QUESTIONS = [
     ],
     "trap": false
   },
-  {
-    "source": "examen_2024",
-    "question": "<div style=\"background:rgba(255,255,255,0.05); padding:10px; border-radius:5px; margin-bottom:15px; font-size: 0.9em; border-left: 3px solid #3b82f6; color: #9ca3af;\"><em>Contexto del ejercicio anterior:</em><br>\n_(Enunciado reconstruido teóricamente debido a la ausencia del grafo original)_  \nEn un problema que aplica la Búsqueda Avara sobre un grafo, la pregunta final exige calcular la \"longitud del camino\" de la solución obtenida.\n</div>\nPara el mismo grafo del ejercicio anterior: ¿el algoritmo A* obtiene una solución óptima?",
-    "options": [
-      "a) Sí, y es 12.",
-      "b) No, la heurística no es admisible.",
-      "c) No, la heurística no es consistente.",
-      "d) Sí, pero la heurística no es consistente."
-    ],
-    "justification": "Según la teoría clásica de resolución de problemas, el algoritmo A* ($f(n) = g(n) + h(n)$) garantiza matemáticamente la obtención de una ruta óptima siempre que se cumplan dos condiciones: si operamos sobre un árbol de búsqueda, la heurística debe ser admisible (nunca sobreestimar el coste real); pero al operar sobre un grafo (como especifica el bloque de esta pregunta), la heurística debe ser obligatoriamente <b>consistente</b> (o monótona), cumpliendo que la diferencia de las estimaciones heurísticas entre dos nodos no supere el coste real del paso entre ellos: $h(n) \\le c(n,a,n') + h(n')$. Si un algoritmo A* sobre un grafo devuelve un camino subóptimo, la justificación teórica es que la heurística no es consistente (apuntando a la opción <b>c</b> o <b>d</b> según el caso específico).",
-    "correct": 0,
-    "category": "busqueda",
-    "tags": [
-      "A*",
-      "BLE/BLR",
-      "Heurística"
-    ],
-    "trap": false
-  },
+
   {
     "source": "examen_2024",
     "question": "A partir de la siguiente tabla de nodos explorados, ¿qué tipo de búsqueda fue utilizada?  \n<b>Paso 1:</b> -  \n<b>Paso 2:</b> A  \n<b>Paso 3:</b> A, B  \n<b>Paso 4:</b> A, B, C  \n<b>Paso 5:</b> A, B, C, D  \n<b>Paso 6:</b> A, B, C, D, E",
@@ -911,7 +893,7 @@ const EXAM_QUESTIONS = [
       "d) Búsqueda en profundidad."
     ],
     "justification": "Utiliza una cola <b>FIFO</b> (el primero que entra en la frontera, es el primero en salir y explorarse). Esto hace que explore el árbol \"por capas  \nhorizontales: primero el nivel 0, luego todo el nivel 1, luego todo el nivel 2.\n\n- <b>Paso 1:</b> `-` _(Frontera: [A])_\n\n- <b>Paso 2:</b> `A` <i>(Frontera: [B, C])</i> -> Explora todo el nivel 0.\n\n- <b>Paso 3:</b> `A, B` <i>(Frontera: [C, D, E])</i> -> Empieza el nivel 1. Saca a B porque entró antes que C.\n\n- <b>Paso 4:</b> `A, B, C` <i>(Frontera: [D, E, F, G])</i> -> Termina el nivel 1.\n\n- <b>Paso 5:</b> `A, B, C, D` <i>(Frontera: [E, F, G, H, I])</i> -> Empieza el nivel 2.\n\n- <b>Paso 6:</b> `A, B, C, D, E` _(Frontera: ...)_  \n  \nComo ves, <b>esta traza coincide exactamente al milímetro con la tabla de tu enunciado</b>.  \n  \nLa búsqueda en anchura es la que genera una lista alfabética secuencial perfecta si el árbol está ordenado así.  \n  \n2. Búsqueda en Profundidad  \n  \nUtiliza una pila <b>LIFO</b> (el último que entra a la frontera, es el primero en salir). Esto obliga al algoritmo a ignorar a los hermanos y sumergirse ciegamente por una rama hasta chocar con el fondo.\n\n- <b>Paso 1:</b> `-` _(Frontera: [A])_\n\n- <b>Paso 2:</b> `A` _(Frontera: [B, C])_\n\n- <b>Paso 3:</b> `A, B` <i>(Frontera: [D, E, C])</i> -> Al explorar B, descubre D y E. Al ser LIFO, estos se ponen \"encima\" de C.\n\n- <b>Paso 4:</b> `A, B, D` <i>(Frontera: [H, I, E, C])</i> -> <b>¡Aquí se rompe la secuencia!</b> El algoritmo ignora a C y explora D (el hijo de B) porque está yendo hacia lo profundo.\n\n- <b>Paso 5:</b> `A, B, D, H` _(Frontera: ...)_  \n  \nEn profundidad, jamás verías los explorados `A, B, C, D, E`, porque eso implicaría haber explorado a `B` y a su hermano `C` antes de bajar a los hijos, lo cual viola la regla de ir hacia abajo.  \n  \n3. Búsqueda de Coste Uniforme y A*  \n  \nEn estos algoritmos, el orden de los nodos explorados no sigue un patrón alfabético ni de capas predecible a simple vista, ya que la frontera <b>se ordena por números</b> (por el coste más barato g(n) o por la fórmula f(n)).\n\n- Dependiendo de los costes de las flechas, la tabla de explorados daría saltos ilógicos como: `A`, luego `A, C`, luego `A, C, B`, luego `A, C, B, E`, etc., buscando siempre el camino más barato en cada momento.",
-    "correct": 0,
+    "correct": 1,
     "category": "busqueda",
     "tags": [
       "A*",

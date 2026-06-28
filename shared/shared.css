@@ -56,7 +56,6 @@ body:not(.light-theme) {
 }
 
 body:not(.light-theme) .mode-card, 
-body:not(.light-theme) .question-card, 
 body:not(.light-theme) .category-btn, 
 body:not(.light-theme) .justification-body,
 body:not(.light-theme) .custom-modal-box {

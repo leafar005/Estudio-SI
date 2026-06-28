@@ -1055,6 +1055,28 @@
 </div></div>
 <div class="def-card" style="--theme-color: var(--c-4);"><div class="def-term">Resolución y Factorización</div><div class="def-body">
 <p>La <strong>Resolución</strong> es una regla de inferencia única que proporciona un algoritmo de inferencia completo si se unifica con un algoritmo de búsqueda completo. Utiliza la <strong>factorización</strong>, el proceso lógico por el cual dos literales idénticos en una misma cláusula se unifican en uno solo.</p>
+<p>📌 <strong>Cierre de Resolución (RC) y Completitud:</strong></p>
+<ul>
+  <li>El <strong>Cierre de Resolución (RC)</strong> es el conjunto que agrupa a todas las cláusulas derivables mediante la aplicación repetida de la regla de resolución sobre el conjunto de cláusulas inicial. Este conjunto RC es siempre <strong>finito</strong>.</li>
+  <li>El <strong>Teorema Fundamental de la Resolución</strong> estipula que es un método completo por refutación: si un conjunto de cláusulas es <strong>insatisfacible</strong>, aplicando resolución sobre su cierre se derivará ineludiblemente la <strong>cláusula vacía</strong>.</li>
+</ul>
+</div></div>
+</div>
+<div class="grid-2">
+<div class="def-card" style="--theme-color: var(--c-4);"><div class="def-term">Cláusulas de Horn vs. Definidas</div><div class="def-body">
+<p>Diferencia fundamental y relación entre ambas:</p>
+<ul>
+  <li><strong>Cláusulas de Horn:</strong> Permiten tener <strong>como mucho un literal positivo</strong> (es decir, máximo uno, pudiendo tener cero).</li>
+  <li><strong>Cláusulas Definidas:</strong> Son un subconjunto más restrictivo de las de Horn, caracterizadas por tener <strong>exactamente un literal positivo</strong> (que representa la cabeza de la regla). Por tanto, todas las cláusulas definidas son inherentemente cláusulas de Horn, pero no al revés.</li>
+  <li><strong>Representación como Implicación:</strong> Toda cláusula definida se puede describir como una implicación de la forma <code>Premisas ⇒ Conclusión</code>. Si las premisas están vacías, representa un <strong>hecho</strong> (un literal positivo solo, sin precondiciones).</li>
+</ul>
+</div></div>
+<div class="def-card" style="--theme-color: var(--c-4);"><div class="def-term">Eficiencia e Inferencia con Horn</div><div class="def-body">
+<p>La restricción de la representación a cláusulas de Horn aporta una enorme ventaja computacional:</p>
+<ul>
+  <li><strong>Complejidad Lineal:</strong> Decidir la implicación lógica en bases de conocimiento grandes de cláusulas de Horn no es costoso, sino muy eficiente. Se puede resolver en <strong>tiempo lineal $O(N)$</strong> (siendo $N$ el tamaño de la KB).</li>
+  <li><strong>Algoritmos de Encadenamiento:</strong> La inferencia se puede realizar de forma muy rápida utilizando algoritmos de encadenamiento hacia adelante o hacia atrás, lo cual es ideal para bases de conocimiento extensas.</li>
+</ul>
 </div></div>
 </div>
 <h3 class="subtheme-title" id="modelos-categórico-vs-bayesiano">Modelos Categórico vs Bayesiano</h3>
