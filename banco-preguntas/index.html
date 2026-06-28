@@ -248,7 +248,9 @@
         const examFilter = document.getElementById('filter-exam').value;
         const search = document.getElementById('search-input').value.toLowerCase().trim();
 
-        let filtered = QUESTIONS.filter(q => {
+        let pool = [...(typeof QUESTIONS !== 'undefined' ? QUESTIONS : []), ...(typeof EXAM_QUESTIONS !== 'undefined' ? EXAM_QUESTIONS : []), ...(typeof DAYPO_QUESTIONS !== 'undefined' ? DAYPO_QUESTIONS : [])];
+
+        let filtered = pool.filter(q => {
           if (category !== 'all' && q.category !== category) return false;
           const isExam = (q.source && q.source.startsWith('examen')) || (q.category && q.category.startsWith('examen'));
           if (examFilter === 'exam' && !isExam) return false;
