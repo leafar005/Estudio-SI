@@ -424,7 +424,6 @@
       </a>
 </div>
 <div class="sidebar-content" id="nav-links">
-<!-- Generated automatically -->
 </div>
 </nav>
 <main id="main-content">
@@ -435,8 +434,7 @@
 <div style="text-align: center; margin-bottom: 50px;">
 <h1 class="page-title">Resolución de Ejercicios</h1>
 <p style="font-size: 1.1rem; line-height: 1.8; color: #9ca3af; margin: 15px auto 0; max-width: 800px;">
-<strong style="color: #e5e7eb;">Desglose paso a paso de problemas reales de convocatorias anteriores.</strong> Aprende a aplicar la teoría, reconoce los patrones del examinador y asegura la máxima puntuación en la parte práctica de Sistemas Inteligentes.
-    </p>
+<strong style="color: #e5e7eb;">Desglose paso a paso de problemas reales de convocatorias anteriores.</strong><br>    </p>
 </div>
 <section id="clasificacion">
 <h2 class="theme-title" style="border-bottom-color: var(--accent); color: var(--accent);">📊 1. CLASIFICACIÓN DE EJERCICIOS</h2>
@@ -445,752 +443,785 @@
 <div class="grid-2" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 10px;">
 <div class="box" style="border-top: 3px solid #14b8a6;">
 <h4 style="color: #14b8a6; margin-top: 0;">Tipo A: Traza de algoritmo de búsqueda sobre grafo</h4>
-<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Dado un grafo con nodos (letra + valor h) y aristas (coste), aplicar un algoritmo (A*, Avara, UCS, IDS) y determinar: el camino solución, el coste total, la configuración de la frontera o qué nodos se expanden.</p>
-<div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong><br><div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
 <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
 <span style="font-size: 0.85rem;">Para A* en grafo, se descarta la reapertura de nodos cerrados aunque se encuentre un camino mejor (si la heurística no es consistente). El camino óptimo de A* ≠ camino de avara.</span>
 </div>
 </div>
 <div class="box" style="border-top: 3px solid #ef4444;">
 <h4 style="color: #ef4444; margin-top: 0;">Tipo B: Verificación de admisibilidad y consistencia</h4>
-<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Dado el grafo, comprobar si h(n) ≤ h*(n) (admisibilidad) y si h(n) ≤ c(n,n') + h(n') para cada arista (consistencia). Concluir si A* garantiza el óptimo.</p>
-<div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong><br><div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
 <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
 <span style="font-size: 0.85rem;">Basta encontrar UNA arista que viole la desigualdad para demostrar inconsistencia. La admisibilidad se viola si para algún nodo h(n) &gt; coste real al destino.</span>
 </div>
 </div>
 <div class="box" style="border-top: 3px solid #a855f7;">
 <h4 style="color: #a855f7; margin-top: 0;">Tipo C: Identificación de algoritmo por tabla de explorados</h4>
-<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Dada la secuencia de nodos extraídos de la frontera, deducir qué algoritmo produjo esa traza (BFS, UCS, DFS).</p>
-<div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong><br><div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
 <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
 <span style="font-size: 0.85rem;">UCS puede dar la misma secuencia que BFS si todos los costes son iguales. La diferencia está en si extrae por coste o por orden de inserción.</span>
 </div>
 </div>
 <div class="box" style="border-top: 3px solid #f59e0b;">
 <h4 style="color: #f59e0b; margin-top: 0;">Tipo D: Encadenamiento progresivo con reglas</h4>
-<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Dada una memoria activa inicial y reglas IF-THEN, trazar el ciclo de inferencia paso a paso hasta inferir la hipótesis objetivo.</p>
-<div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong><br><div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
 <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
 <span style="font-size: 0.85rem;">El orden de aplicación importa: si dos reglas se activan simultáneamente, se aplica la de mayor prioridad. Los hechos nuevos activan reglas que antes no disparaban.</span>
 </div>
 </div>
 <div class="box" style="border-top: 3px solid #10b981;">
 <h4 style="color: #10b981; margin-top: 0;">Tipo E: Construcción de BLE y BLR + Inferencia</h4>
-<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Construir la BLE, aplicar las reglas categóricas para eliminar columnas y obtener la BLR. Luego inferir interpretaciones a partir de manifestaciones dadas.</p>
-<div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong><br><div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
 <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
 <span style="font-size: 0.85rem;">Una regla 'A → B' falla SOLAMENTE cuando A=1 y B=0. Si A=0, la regla se cumple automáticamente independientemente de B. La BLR puede quedar vacía.</span>
 </div>
 </div>
 <div class="box" style="border-top: 3px solid #3b82f6;">
 <h4 style="color: #3b82f6; margin-top: 0;">Tipo F: Corrección bayesiana sobre BLR</h4>
-<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Dado el resultado del modelo categórico (BLR), aplicar P(m|i) y P(i) a priori para calcular P(i|m) y determinar la interpretación más probable mediante Bayes.</p>
-<div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong><br><div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
 <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
 <span style="font-size: 0.85rem;">Cuando el modelo categórico deja solo una interpretación posible, aplicar Bayes es inútil: la respuesta ya está determinada por exclusión.</span>
 </div>
 </div>
 <div class="box" style="border-top: 3px solid #8b5cf6;">
 <h4 style="color: #8b5cf6; margin-top: 0;">Tipo G: Tamaño BLE/BLR y espacio de estados</h4>
-<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Con M manifestaciones e I interpretaciones, calcular el tamaño de la BLE = 2^(M+I). Calcular complejos que sobreviven (BLR).</p>
-<div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong><br><div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
 <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
 <span style="font-size: 0.85rem;">El tamaño de la BLE no es M×I sino 2^M × 2^I (todas las combinaciones binarias posibles).</span>
 </div>
 </div>
 <div class="box" style="border-top: 3px solid #ec4899;">
 <h4 style="color: #ec4899; margin-top: 0;">Tipo H: Probabilidad en Computación Evolutiva (AG)</h4>
-<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Dado el tamaño de población y tasa de mutación/cruce, calcular individuos afectados (o viceversa).</p>
-<div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong><br><div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
 <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
 <span style="font-size: 0.85rem;">La tasa de mutación es por individuo, no por gen. Si Pm=0.1 y hay 1000 individuos, se esperan 100 mutados.</span>
 </div>
 </div>
 <div class="box" style="border-top: 3px solid #f97316;">
 <h4 style="color: #f97316; margin-top: 0;">Tipo I: Análisis de árbol de Programación Genética</h4>
-<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong> Identificar nodos terminales (hojas), no terminales (operadores), profundidad máxima y comprobar si está equilibrado.</p>
-<div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+<p style="font-size: 0.9rem; margin-top: 10px;"><strong>Qué se pide:</strong><br><div class="alert" style="margin: 10px 0 0 0; padding: 15px; border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
 <strong style="color: #fca5a5; font-size: 0.9rem;">⚠️ Trampa principal:</strong><br>
 <span style="font-size: 0.85rem;">Los terminales son las HOJAS (tanto variables como constantes). Los no terminales son siempre los OPERADORES. La profundidad suele contarse desde nivel 0 o 1.</span>
 </div>
 </div>
 </div></div></section>
+
 <section id="metodo">
 <h2 class="theme-title" style="border-bottom-color: var(--accent); color: var(--accent);">🛠️ 2. MÉTODO GENERAL DE RESOLUCIÓN (Recetas)</h2>
-<!-- RECETA A -->
+
 <h3 class="subtheme-title">Receta A: Traza de búsqueda sobre grafo</h3>
 <div class="box">
-<div class="recipe-header">
-<div class="recipe-icon">🗺️</div>
-<div class="recipe-meta">
-<span class="recipe-label">Tipos A · B · C</span>
-<span class="recipe-title-text">Traza de algoritmo de búsqueda sobre grafo</span>
+  <div class="recipe-header">
+    <div class="recipe-icon">🗺️</div>
+    <div class="recipe-meta">
+      <span class="recipe-label">Tipos A · B · C</span>
+      <span class="recipe-title-text">Traza de algoritmo de búsqueda sobre grafo</span>
+    </div>
+  </div>
+  <div class="algo-variants">
+    <div class="algo-chip"><strong>A* (f = g + h)</strong>Extrae el menor f. Grafo: no reabre cerrados.</div>
+    <div class="algo-chip"><strong>Avara (f = h)</strong>Extrae el menor h. Ignora g.</div>
+    <div class="algo-chip"><strong>UCS (f = g)</strong>Extrae el menor g. Óptimo si costes ≥ 0.</div>
+    <div class="algo-chip"><strong>IDS</strong>DFS con límite creciente. Reinicia cada nivel.</div>
+  </div>
+  <div class="recipe-step" style="margin-top:16px;">
+    <div class="recipe-number">1</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Inicializar:</strong> Añadir el nodo origen a la frontera (cola de prioridad) con su coste inicial.</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">2</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Extraer:</strong> Sacar de la frontera el nodo con el menor valor según la función de evaluación del algoritmo.</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">3</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Expandir:</strong> Generar los sucesores del nodo extraído y calcular sus nuevos costes.</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">4</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Meta:</strong> Comprobar si el nodo extraído es el objetivo. Si lo es, termina la ejecución.</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">5</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Registrar:</strong> Añadir el nodo explorado a la lista de cerrados y meter los sucesores en la frontera.</p></div>
+  </div>
+  <div class="trap-box">
+    <span class="trap-icon">⚠️</span>
+    <div class="trap-body"><strong>A* en grafo:</strong> Recuerda que si la heurística no es consistente, NO se reabren nodos en la lista de cerrados aunque encuentres un camino mejor.</div>
+  </div>
 </div>
-</div>
-<div class="algo-variants">
-<div class="algo-chip"><strong>A* (f = g + h)</strong>Extrae el menor f. Grafo: no reabre cerrados.</div>
-<div class="algo-chip"><strong>Avara (f = h)</strong>Extrae el menor h. Ignora g.</div>
-<div class="algo-chip"><strong>UCS (f = g)</strong>Extrae el menor g. Óptimo si costes ≥ 0.</div>
-<div class="algo-chip"><strong>IDS</strong>DFS con límite creciente. Reinicia cada nivel.</div>
-</div>
-<div class="recipe-step" style="margin-top:16px;">
-<div class="recipe-number">1</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Inicializar:</strong> Frontera = <code>{nodo_inicial(f=g+h)}</code>. Cerrados = {}. Para IDS: límite = 0.</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">2</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Extraer:</strong> El nodo de menor f (A*), menor h (Avara), menor g (UCS) o FIFO/LIFO según el algoritmo. Moverlo a Cerrados.</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">3</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Expandir:</strong> Para cada sucesor: <code>f = g(actual) + coste_arista + h(sucesor)</code>. Si ya está en Cerrados → descartar. Si ya está en Frontera con mayor f → actualizar.</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">4</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Meta:</strong> Si el nodo extraído es la meta → reconstruir camino hacia atrás por los nodos padre.</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">5</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Registrar:</strong> En cada paso: <code>Frontera: [nodo(f=X), nodo(f=Y)]</code> ordenado de menor a mayor. <code>Cerrados: {A, B, ...}</code></p></div>
-</div>
-<div class="trap-box">
-<span class="trap-icon">⚠️</span>
-<div class="trap-body"><strong>A* en grafo</strong> no reabre nodos cerrados aunque encuentre un camino mejor — si la heurística es inconsistente puede no ser óptimo. El camino de A* ≠ camino de Avara sobre el mismo grafo.</div>
-</div>
-</div>
-<!-- RECETA B -->
+
 <h3 class="subtheme-title">Receta B: Verificación de admisibilidad y consistencia</h3>
 <div class="box">
-<div class="recipe-header">
-<div class="recipe-icon blue">📐</div>
-<div class="recipe-meta">
-<span class="recipe-label blue">Tipo B</span>
-<span class="recipe-title-text">Admisibilidad y consistencia de la heurística</span>
+  <div class="recipe-header">
+    <div class="recipe-icon blue">📐</div>
+    <div class="recipe-meta">
+      <span class="recipe-label blue">Tipo B</span>
+      <span class="recipe-title-text">Admisibilidad y consistencia de la heurística</span>
+    </div>
+  </div>
+  <div class="recipe-step" style="margin-top:8px;">
+    <div class="recipe-number">1</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Admisibilidad:</strong> Comprueba que $h(n)$ nunca sobrestime el coste real al objetivo.</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">2</div>
+    <div class="recipe-content">
+      <p style="color:#d1d5db;margin:0;"><strong>Consistencia:</strong> Verifica la desigualdad triangular para cada arista del grafo:</p>
+      <div class="formula-highlight">$h(n) \leq c(n, n') + h(n')$</div>
+      <p style="color:#d1d5db;margin:0;">Una sola arista que lo viole → NO consistente.</p>
+    </div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">3</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Conclusión:</strong> Si es consistente, automáticamente es admisible (pero no al revés).</p></div>
+  </div>
+  <div class="tip-box">
+    <span class="trap-icon">💡</span>
+    <div class="tip-body">Comprueba siempre la consistencia arista a arista. El nodo más sospechoso suele ser el que tiene $h$ alto y está cerca de la meta.</div>
+  </div>
 </div>
-</div>
-<div class="recipe-step" style="margin-top:8px;">
-<div class="recipe-number">1</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Admisibilidad:</strong> Para cada nodo n, calcular h*(n) = coste real del camino óptimo desde n hasta la meta. Verificar <code>h(n) ≤ h*(n)</code>. Un solo nodo donde h &gt; h* → NO admisible.</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">2</div>
-<div class="recipe-content">
-<p style="color:#d1d5db;margin:0;"><strong>Consistencia:</strong> Para cada arista n → n' con coste c(n,n'), verificar:</p>
-<div class="formula-highlight">$h(n) \leq c(n, n') + h(n')$</div>
-<p style="color:#d1d5db;margin:0;">Una sola arista que lo viole → NO consistente.</p>
-</div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">3</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Conclusión:</strong> Consistente ⟹ Admisible (pero no al revés). Si inconsistente: A* en grafo puede no devolver el óptimo.</p></div>
-</div>
-<div class="tip-box">
-<span class="trap-icon">💡</span>
-<div class="tip-body">Comprueba siempre la consistencia arista a arista. El nodo más sospechoso suele ser el que tiene h alto y está cerca de la meta.</div>
-</div>
-</div>
-<!-- RECETA C -->
+
 <h3 class="subtheme-title">Receta C: Identificación de algoritmo por traza</h3>
 <div class="box">
-<div class="recipe-header">
-<div class="recipe-icon purple">🔍</div>
-<div class="recipe-meta">
-<span class="recipe-label purple">Tipo C</span>
-<span class="recipe-title-text">Deducir el algoritmo a partir de la tabla de explorados</span>
+  <div class="recipe-header">
+    <div class="recipe-icon purple">🔍</div>
+    <div class="recipe-meta">
+      <span class="recipe-label purple">Tipo C</span>
+      <span class="recipe-title-text">Deducir el algoritmo a partir de la tabla de explorados</span>
+    </div>
+  </div>
+  <div class="recipe-step" style="margin-top:8px;">
+    <div class="recipe-number">1</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>¿Va nivel a nivel en orden alfabético?</strong> Suele ser indicativo de Búsqueda en Anchura (BFS).</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">2</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>¿El orden sigue el menor coste g acumulado?</strong> Corresponde a Coste Uniforme (UCS).</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">3</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>¿Se sumerge siempre en la rama más profunda?</strong> Estás ante una Búsqueda en Profundidad (DFS).</p></div>
+  </div>
+  <div class="trap-box">
+    <span class="trap-icon">⚠️</span>
+    <div class="trap-body">Si todos los costes son iguales, BFS y UCS producen la misma traza y son <strong>indistinguibles</strong>.</div>
+  </div>
 </div>
-</div>
-<div class="recipe-step" style="margin-top:8px;">
-<div class="recipe-number">1</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>¿Va nivel a nivel en orden alfabético?</strong> → <strong>BFS</strong> (cola FIFO, explora por capas horizontales).</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">2</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>¿El orden sigue el menor coste g acumulado?</strong> → <strong>UCS</strong> (cola de prioridad por g).</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">3</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>¿Se sumerge siempre en la rama más profunda?</strong> → <strong>DFS</strong> (pila LIFO, nunca vuelve hasta agotar la rama).</p></div>
-</div>
-<div class="trap-box">
-<span class="trap-icon">⚠️</span>
-<div class="trap-body">Si todos los costes son iguales, BFS y UCS producen la misma traza y son <strong>indistinguibles</strong> por la tabla de explorados.</div>
-</div>
-</div>
-<!-- RECETA D -->
+
 <h3 class="subtheme-title">Receta D: Encadenamiento progresivo (Forward Chaining)</h3>
 <div class="box">
-<div class="recipe-header">
-<div class="recipe-icon amber">⚙️</div>
-<div class="recipe-meta">
-<span class="recipe-label amber">Tipo D</span>
-<span class="recipe-title-text">Ciclo de inferencia con reglas IF-THEN</span>
+  <div class="recipe-header">
+    <div class="recipe-icon amber">⚙️</div>
+    <div class="recipe-meta">
+      <span class="recipe-label amber">Tipo D</span>
+      <span class="recipe-title-text">Ciclo de inferencia con reglas IF-THEN</span>
+    </div>
+  </div>
+  <div class="recipe-step" style="margin-top:8px;">
+    <div class="recipe-number">1</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Estado inicial:</strong> Carga los hechos conocidos en la Memoria Activa (MA).</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">2</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Emparejamiento:</strong> Busca qué reglas tienen sus premisas satisfechas con los hechos de la MA.</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">3</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Resolución de conflicto:</strong> Si hay varias reglas activas, aplica el criterio de desempate (orden alfabético, novedad, etc.).</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">4</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Acción:</strong> Dispara la regla ganadora y añade su consecuente a la MA.</p></div>
+  </div>
+  <div class="trap-box">
+    <span class="trap-icon">⚠️</span>
+    <div class="trap-body">Los hechos <strong>nuevos añadidos a MA</strong> pueden activar inmediatamente nuevas reglas en el siguiente ciclo. ¡Cuidado con el orden de ejecución!</div>
+  </div>
 </div>
-</div>
-<div class="recipe-step" style="margin-top:8px;">
-<div class="recipe-number">1</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Estado inicial:</strong> Memoria Activa (MA) = hechos dados en el enunciado.</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">2</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Emparejamiento:</strong> Buscar todas las reglas cuyas premisas estén completamente en MA → forman el Conjunto Conflicto.</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">3</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Resolución de conflicto:</strong> Elegir la regla de mayor prioridad (o la primera, según el criterio del enunciado).</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">4</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Acción:</strong> Añadir el consecuente de la regla a MA. Volver al paso 2 y repetir hasta inferir la hipótesis objetivo o agotar reglas.</p></div>
-</div>
-<div class="trap-box">
-<span class="trap-icon">⚠️</span>
-<div class="trap-body">Los hechos <strong>nuevos añadidos a MA</strong> pueden activar reglas que antes no se disparaban. Revisa siempre el conjunto conflicto completo tras cada ciclo.</div>
-</div>
-</div>
-<!-- RECETA E -->
+
 <h3 class="subtheme-title">Receta E: Construcción de BLE y BLR</h3>
 <div class="box">
-<div class="recipe-header">
-<div class="recipe-icon cyan">🧮</div>
-<div class="recipe-meta">
-<span class="recipe-label cyan">Tipos E · G</span>
-<span class="recipe-title-text">Base Lógica Expandida → Reducida → Inferencia</span>
+  <div class="recipe-header">
+    <div class="recipe-icon cyan">🧮</div>
+    <div class="recipe-meta">
+      <span class="recipe-label cyan">Tipos E · G</span>
+      <span class="recipe-title-text">Base Lógica Expandida → Reducida → Inferencia</span>
+    </div>
+  </div>
+  <div class="recipe-step" style="margin-top:8px;">
+    <div class="recipe-number">1</div>
+    <div class="recipe-content">
+      <p style="color:#d1d5db;margin:0;"><strong>BLE:</strong> Construye todas las combinaciones posibles de Manifestaciones e Interpretaciones.</p>
+      <div class="formula-highlight">$|BLE| = 2^M \times 2^I = 2^{M+I}$</div>
+    </div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">2</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Aplicar reglas:</strong> Elimina de la tabla las filas que violen las reglas lógicas del sistema.</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">3</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>BLR:</strong> El conjunto de filas supervivientes constituye tu Base Lógica Reducida.</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">4</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Inferencia:</strong> Dada una evidencia empírica, filtra la BLR para ver qué interpretaciones quedan.</p></div>
+  </div>
+  <div class="trap-box">
+    <span class="trap-icon">⚠️</span>
+    <div class="trap-body"><code>A → B</code> solo se viola (es decir, eliminas la fila) cuando $A=1$ y $B=0$. En cualquier otro caso, la regla se cumple.</div>
+  </div>
 </div>
-</div>
-<div class="recipe-step" style="margin-top:8px;">
-<div class="recipe-number">1</div>
-<div class="recipe-content">
-<p style="color:#d1d5db;margin:0;"><strong>BLE:</strong> Con M manifestaciones e I interpretaciones, generar todas las combinaciones binarias posibles.</p>
-<div class="formula-highlight">$|BLE| = 2^M \times 2^I = 2^{M+I}$</div>
-</div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">2</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Aplicar reglas:</strong> Para cada regla <code>A → B</code>, evaluar columna a columna. La columna se <strong>elimina</strong> si y solo si <code>A=1</code> y <code>B=0</code>. Si <code>A=0</code>, la regla se cumple automáticamente.</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">3</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>BLR:</strong> Las columnas que sobreviven tras aplicar todas las reglas forman la Base Lógica Reducida.</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">4</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Inferencia:</strong> Dado un patrón de manifestaciones observado, buscar en la BLR las columnas donde coincida. Las interpretaciones de esas columnas son las compatibles.</p></div>
-</div>
-<div class="trap-box">
-<span class="trap-icon">⚠️</span>
-<div class="trap-body"><code>A → B</code> falla <strong>únicamente</strong> cuando A=1 y B=0. Si A=0, la regla es verdadera sin importar B. La BLR puede quedar vacía si las reglas son muy restrictivas.</div>
-</div>
-</div>
-<!-- RECETA F -->
+
 <h3 class="subtheme-title">Receta F: Corrección bayesiana</h3>
 <div class="box">
-<div class="recipe-header">
-<div class="recipe-icon pink">📊</div>
-<div class="recipe-meta">
-<span class="recipe-label pink">Tipo F</span>
-<span class="recipe-title-text">Calcular P(interpretación | manifestaciones observadas)</span>
+  <div class="recipe-header">
+    <div class="recipe-icon pink">📊</div>
+    <div class="recipe-meta">
+      <span class="recipe-label pink">Tipo F</span>
+      <span class="recipe-title-text">Calcular P(interpretación | manifestaciones observadas)</span>
+    </div>
+  </div>
+  <div class="recipe-step" style="margin-top:8px;">
+    <div class="recipe-number">1</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Aplicabilidad:</strong> Comprueba qué interpretaciones son lógicamente posibles en la BLR antes de hacer cuentas.</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">2</div>
+    <div class="recipe-content">
+      <p style="color:#d1d5db;margin:0;"><strong>Verosimilitud:</strong> Calcula la probabilidad condicional de la evidencia para cada interpretación posible.</p>
+      <div class="formula-highlight">$P(m_{obs} \mid i_k) = \prod_j P(m_j \mid i_k)^{x_j} \cdot (1 - P(m_j \mid i_k))^{1-x_j}$</div>
+    </div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">3</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Conjunta:</strong> Multiplica la verosimilitud por la probabilidad a priori $P(i_k)$.</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">4</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Normalizar:</strong> Divide entre la probabilidad total de la evidencia para obtener la probabilidad final.</p></div>
+  </div>
 </div>
-</div>
-<div class="recipe-step" style="margin-top:8px;">
-<div class="recipe-number">1</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Aplicabilidad:</strong> Solo si la BLR deja varias interpretaciones compatibles. Si queda una sola, ya está — Bayes es innecesario.</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">2</div>
-<div class="recipe-content">
-<p style="color:#d1d5db;margin:0;"><strong>Verosimilitud:</strong> Para cada interpretación superviviente $i_k$:</p>
-<div class="formula-highlight">$P(m_{obs} \mid i_k) = \prod_j P(m_j \mid i_k)^{x_j} \cdot (1 - P(m_j \mid i_k))^{1-x_j}$</div>
-</div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">3</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Conjunta:</strong> Calcular $P(m_{obs} \mid i_k) \cdot P(i_k)$ para cada interpretación.</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">4</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Normalizar:</strong> Dividir cada conjunta entre la suma de todas → obtener $P(i_k \mid m_{obs})$. La mayor es la interpretación más probable.</p></div>
-</div>
-</div>
-<!-- RECETA G -->
+
 <h3 class="subtheme-title">Receta G: Tamaño BLE y espacio de estados</h3>
 <div class="box">
-<div class="recipe-header">
-<div class="recipe-icon cyan">🔢</div>
-<div class="recipe-meta">
-<span class="recipe-label cyan">Tipo G</span>
-<span class="recipe-title-text">Calcular el tamaño de la BLE y del espacio de estados</span>
+  <div class="recipe-header">
+    <div class="recipe-icon cyan">🔢</div>
+    <div class="recipe-meta">
+      <span class="recipe-label cyan">Tipo G</span>
+      <span class="recipe-title-text">Calcular el tamaño de la BLE y del espacio de estados</span>
+    </div>
+  </div>
+  <div class="recipe-step" style="margin-top:8px;">
+    <div class="recipe-number">1</div>
+    <div class="recipe-content">
+      <p style="color:#d1d5db;margin:0;"><strong>Tamaño BLE</strong></p>
+      <div class="formula-highlight">$|BLE| = 2^{M+I}$</div>
+    </div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">2</div>
+    <div class="recipe-content">
+      <p style="color:#d1d5db;margin:0;"><strong>Espacio de estados STRIPS</strong></p>
+      <div class="formula-highlight">$|Estados| = 2^N$</div>
+    </div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">3</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Complejos BLR:</strong> Los que quedan tras aplicar las reglas.</p></div>
+  </div>
+  <div class="trap-box">
+    <span class="trap-icon">⚠️</span>
+    <div class="trap-body">El tamaño de la BLE <strong>no es M×I</strong>, sino $2^{M+I}$. Son todas las combinaciones binarias posibles de las variables.</div>
+  </div>
 </div>
-</div>
-<div class="recipe-step" style="margin-top:8px;">
-<div class="recipe-number">1</div>
-<div class="recipe-content">
-<p style="color:#d1d5db;margin:0;"><strong>Tamaño BLE</strong> con M manifestaciones e I interpretaciones:</p>
-<div class="formula-highlight">$|BLE| = 2^{M+I}$</div>
-</div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">2</div>
-<div class="recipe-content">
-<p style="color:#d1d5db;margin:0;"><strong>Espacio de estados STRIPS</strong> con N variables booleanas:</p>
-<div class="formula-highlight">$|Estados| = 2^N$</div>
-</div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">3</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Complejos BLR:</strong> Evaluar la BLE aplicando todas las reglas y contar las columnas supervivientes.</p></div>
-</div>
-<div class="trap-box">
-<span class="trap-icon">⚠️</span>
-<div class="trap-body">El tamaño de la BLE <strong>no es M×I</strong>, sino $2^M \times 2^I = 2^{M+I}$. Son todas las combinaciones binarias posibles de las variables.</div>
-</div>
-</div>
-<!-- RECETA H -->
-<h3 class="subtheme-title">Receta H: Probabilidades en AG</h3>
+
+<h3 class="subtheme-title">Receta H: Análisis Visual de Búsqueda Local</h3>
 <div class="box">
-<div class="recipe-header">
-<div class="recipe-icon pink">🧬</div>
-<div class="recipe-meta">
-<span class="recipe-label pink">Tipo H</span>
-<span class="recipe-title-text">Cálculo de tasas de mutación y cruce en Algoritmos Genéticos</span>
+  <div class="recipe-header">
+    <div class="recipe-icon pink">📈</div>
+    <div class="recipe-meta">
+      <span class="recipe-label pink">Tipo H</span>
+      <span class="recipe-title-text">Análisis Visual de Búsqueda Local</span>
+    </div>
+  </div>
+  <div class="recipe-step" style="margin-top:16px;">
+    <div class="recipe-number">1</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Evaluar Vecinos:</strong> El algoritmo solo "ve" las soluciones adyacentes inmediatas al estado actual.</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">2</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Tomar Decisión:</strong> Se mueve hacia el vecino que mejora (o maximiza/minimiza) más rápidamente el valor heurístico.</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">3</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Condición de Parada:</strong> Termina cuando ningún vecino mejora el estado actual.</p></div>
+  </div>
+  <div class="trap-box">
+    <span class="trap-icon">⚠️</span>
+    <div class="trap-body"><strong>Sin Backtracking:</strong> Hill-Climbing no tiene memoria. Si se queda atrapado en un máximo local, no puede "volver atrás" para buscar rutas mejores.</div>
+  </div>
 </div>
-</div>
-<div class="algo-variants" style="margin:12px 0 16px 0;">
-<div class="algo-chip"><strong>Individuos mutados</strong>Población × Pm</div>
-<div class="algo-chip"><strong>Individuos cruzados</strong>Población × Pc</div>
-<div class="algo-chip"><strong>Tasa Pm</strong>Mutados ÷ Población</div>
-</div>
-<div class="trap-box">
-<span class="trap-icon">⚠️</span>
-<div class="trap-body">La tasa de mutación es <strong>por individuo</strong>, no por gen. Con Pm=0.1 y 1000 individuos → se esperan 100 individuos mutados, no 100 genes.</div>
-</div>
-</div>
-<!-- RECETA I -->
+
 <h3 class="subtheme-title">Receta I: Análisis de árbol GP</h3>
 <div class="box">
-<div class="recipe-header">
-<div class="recipe-icon" style="background:rgba(249,115,22,0.15);border-color:rgba(249,115,22,0.3);">🌳</div>
-<div class="recipe-meta">
-<span class="recipe-label" style="color:#fb923c;">Tipo I</span>
-<span class="recipe-title-text">Análisis de árbol de Programación Genética</span>
+  <div class="recipe-header">
+    <div class="recipe-icon" style="background:rgba(249,115,22,0.15);border-color:rgba(249,115,22,0.3);">🌳</div>
+    <div class="recipe-meta">
+      <span class="recipe-label" style="color:#fb923c;">Tipo I</span>
+      <span class="recipe-title-text">Análisis de árbol de Programación Genética</span>
+    </div>
+  </div>
+  <div class="recipe-step" style="margin-top:8px;">
+    <div class="recipe-number">1</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Terminales (hojas):</strong> Son siempre los operandos (constantes numéricas o variables de entrada).</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">2</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>No terminales (operadores):</strong> Son siempre los nodos internos del árbol (funciones, +, -, *, AND, etc.).</p></div>
+  </div>
+  <div class="recipe-step">
+    <div class="recipe-number">3</div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Profundidad:</strong> Cuenta el número de aristas (o niveles) desde la raíz hasta la hoja más profunda.</p></div>
+  </div>
+  <div class="trap-box">
+    <span class="trap-icon">⚠️</span>
+    <div class="trap-body">La raíz del árbol siempre es un <strong>no terminal</strong> (un operador), nunca una hoja.</div>
+  </div>
+  <div class="recipe-step" style="margin-top:10px;">
+    <div class="recipe-number">4</div>
+    <div class="recipe-content">
+      <p style="color: #d1d5db; margin: 0;"><strong>Equilibrio:</strong> Evalúa la distribución de los subárboles para comprobar si es un individuo sintácticamente válido.</p>
+    </div>
+  </div>
 </div>
-</div>
-<div class="recipe-step" style="margin-top:8px;">
-<div class="recipe-number">1</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Terminales (hojas):</strong> Todos los nodos <em>sin hijos</em> — variables y constantes.</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">2</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>No terminales (operadores):</strong> Todos los nodos <em>con al menos un hijo</em> — funciones matemáticas o lógicas.</p></div>
-</div>
-<div class="recipe-step">
-<div class="recipe-number">3</div>
-<div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Profundidad:</strong> Raíz = nivel 0 (o 1 si el enunciado lo indica). Profundidad máxima = nivel de la hoja más profunda.</p></div>
-</div>
-<div class="trap-box">
-<span class="trap-icon">⚠️</span>
-<div class="trap-body">La raíz del árbol siempre es un <strong>no terminal</strong> (operador). Los terminales son <em>siempre</em> las hojas, tanto si son variables (x, y) como constantes (3, π).</div>
-</div>
-<div class="recipe-step" style="margin-top:10px;">
-<div class="recipe-number">4</div>
-<div class="recipe-content">
-<p style="color: #d1d5db; margin: 0;"><strong>Equilibrio:</strong> Un árbol está equilibrado si todas las hojas están al mismo nivel (o difieren a lo sumo en 1).</p>
-</div>
-</div>
-</div>
-</section></div>
-<section id="examenes"><h2 class="theme-title" style="border-bottom-color: var(--accent); color: var(--accent);">📝 3. RESOLUCIÓN DE EXÁMENES OFICIALES</h2><h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 2: Búsqueda y Exploración</h3><h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Examen SI 2023 | Preguntas P1-3. [Tipo A: A* sobre grafo1]</h4><div class="box" style="border-left: 4px solid #3b82f6;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
-<div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">1. Búsqueda A* sobre Grafo</strong><br><br>
-Dado el siguiente grafo, en donde (i) el nodo inicial es $A$ y el nodo meta es $G$, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística $h$, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados:  <br><img src="../assets/images/grafo1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;"> <br>Aplicando el algoritmo A* basado en <b>grafo</b>, en algún paso, los nodos de la frontera vendrán dispuestos según la siguiente configuración (considerar precedencia izq a drch, que el número entre paréntesis representa el correspondiente valor $f$, $f=h+g$, y que en caso de empate en valor $f$, la precedencia de expansión vendrá dada por el orden alfabético de los nodos correspondientes):<br><br>
-</div>
-</div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
 
-En el algoritmo A* basado en <b>grafo</b>, se mantiene una lista de nodos "Cerrados" (Explorados). Si la heurística no es consistente (como ocurre aquí, ya que $h(A)=25 \not\le c(A,C)+h(C) = 2+20=22$), la versión estricta del algoritmo en grafo <b>no reabre nodos que ya han sido cerrados</b>, aunque encuentre un camino mejor hacia ellos (este es el motivo por el que en la pregunta 2 del examen se afirma que A* en este problema encuentra el óptimo "de casualidad").  <br>  <br>Realizamos la traza paso a paso usando la ecuación $f(n) = g(n) + h(n)$:  <br>  <br>1. <b>Paso 1:</b> Se expande el inicial $A$.<br><br>- Genera $B$ ($g=5, h=16 \rightarrow f=21$) y $C$ ($g=2, h=20 \rightarrow f=22$).<br><br>- <b>Frontera:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[B(21), C(22)]</code>. <b>Cerrados:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">{A}</code>.  <br>  <br>2. <b>Paso 2:</b> Se expande $B$ (por tener el menor valor $f$).<br><br>- Genera $D$ ($g=5+7=12, h=10 \rightarrow f=22$).<br><br>- <b>Frontera:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[C(22), D(22)]</code> (por empate $f$, orden alfabético). <b>Cerrados:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">{A, B}</code>.  <br>  <br>3. <b>Paso 3:</b> Se expande $C$.<br><br>- Genera $E$ ($g=2+10=12, h=8 \rightarrow f=20$).<br><br>- También encuentra una nueva ruta hacia $B$ con menor coste ($g=2+2=4 \rightarrow f=20$).<br><br>- <b>Punto clave:</b> Como estamos en búsqueda sobre <i>grafo</i>, el algoritmo comprueba si el nodo $B$ ya ha sido expandido.  <br>  <br>Como $B$ ya está en la lista de Cerrados <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">{A, B}</code>, la nueva ruta hacia él <b>se descarta</b> y el nodo no se reabre.<br><br>- <b>Frontera resultante:</b> Tras añadir solo $E$, la frontera queda conformada por el nuevo nodo $E$ y el nodo $D$ que ya estaba esperando: <b><code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[E(20), D(22)]</code></b>.  <br>  <br>Esta configuración coincide exactamente con la opción <b>a</b>.
-            </div>
-<hr style="margin: 30px 0; border-color: rgba(59, 130, 246, 0.3); border-style: dashed;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
-<div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">2. Optimalidad en el algoritmo A</strong><br><br>
-En el mismo problema de la pregunta 1, ¿obtiene el algoritmo A* una solución óptima?<br><br>
-</div>
-</div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+</section>
 
-Para que el algoritmo A* garantice teóricamente una solución óptima al recorrer un grafo, su heurística debe ser consistente (monótona) y admisible.  <br>  <br>Una heurística es admisible si nunca sobreestima el coste real hacia la meta.  <br>  <br>Si observamos el grafo del ejercicio, desde el nodo $E$ hasta la meta $G$ el coste real es de $2$, pero su estimación heurística marca $h(E) = 8$. Como $8 &gt; 2$, la heurística sobreestima flagrantemente el coste y <b>no es admisible</b> (y por consiguiente, tampoco es consistente).  <br>  <br>Prueba adicional de que no es consistente (de A a C):  <br>  <br>Una heurística es consistente si el coste estimado desde un nodo a la meta no es mayor que el coste de dar un salto físico hacia su vecino más la estimación de dicho vecino.  <br>  <br>La inecuación matemática que debes aplicar siempre es: $h(n)≤c(n,n′)+h(n′)$.  <br>  <br>Para saber si C cumple la regla, calculamos lo mismo de siempre<br><br>- La estimación dentro del nodo A es h(A)=25.<br><br>- El coste de la flecha para viajar de A hacia C es c(A,C)=2.<br><br>- La estimación dentro del nodo C es h(C)=20.<br><br>- <b>El cálculo:</b> Sustituimos los números en la inecuación: ¿Es 25≤2+20? Es decir, <b>¿Es</b> 25≤22<b>?</b> No, la inecuación es falsa porque 25 es mayor que 22.  <br>  <br>A pesar de esto, si ejecutamos el algoritmo paso a paso, A* acaba encontrando la ruta óptima de coste 14. Al lograrlo con una heurística que rompe las reglas teóricas, lo hace estrictamente <b>"de casualidad"</b>. _(Nota: Descarta plantillas libres que marquen la opción 'c', ya que matemáticamente la heurística es inadmisible)._
-            </div>
-<hr style="margin: 30px 0; border-color: rgba(59, 130, 246, 0.3); border-style: dashed;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
-<div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">3. Ejecución de la Búsqueda Avara</strong><br><br>
-En el mismo problema de la pregunta 1, indica la secuencia del camino devuelto utilizando, esta vez, la búsqueda avara:<br><br>
-</div>
-</div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+<section id="examenes">
+<h2 class="theme-title" style="border-bottom-color: var(--accent); color: var(--accent);">📝 3. RESOLUCIÓN DE EXÁMENES OFICIALES</h2>
 
-A diferencia de A*, el algoritmo de Búsqueda Avara (<i>Greedy Best-First</i>) es corto de miras y toma sus decisiones guiándose exclusivamente por el menor valor de la heurística $h(n)$ en la frontera, ignorando por completo el coste real acumulado $g(n)$.  <br>  <br>Ejecutando el recorrido:  <br>  <br>1. Desde $A$, se abren los caminos hacia $B$ ($h=16$) y $C$ ($h=20$). Como $16 &lt; 20$, la búsqueda avara elige $B$.  <br>  <br>2. Desde $B$, se abre el camino a $D$ ($h=10$). Elige $D$.  <br>  <br>3. Desde $D$, se abren caminos a $E$ ($h=8$) y $G$ ($h=0$). Elige la meta $G$.  <br>  <br>El camino devuelto ciegamente es <b>A $\rightarrow$ B $\rightarrow$ D $\rightarrow$ G</b>. <i>(Nota: Las plantillas no oficiales de Wuolah indican la opción C, pero ese es el camino que devuelve A</i>, no la búsqueda avara).*
-            </div>
-</div><h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Examen SI 2023 | Preguntas P6. [Tipo A especial: Hill-Climbing y arbol1]</h4><div class="box" style="border-left: 4px solid #3b82f6;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
-<div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">6. Escalada (Hill-Climbing) y Árboles</strong><br><br>
-En el contexto del algoritmo de escalada en búsqueda local, el siguiente árbol de búsqueda se corresponde con una situación de:  <br><img src="../assets/images/arbol1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;"><br><br>
-</div>
-</div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+<h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 2: Búsqueda y Exploración</h3>
 
-Se trata de una "pregunta trampa" clásica.  <br>  <br>A diferencia de A* o Búsqueda en Anchura, el algoritmo de Escalada Simple (<i>Hill-Climbing</i>) pertenece a la familia de métodos de <b>Búsqueda Local</b>.  <br>  <br>La característica teórica definitoria de esta familia es que <b>no conservan ni generan un "árbol de búsqueda" en memoria</b> (operan sin historial). Solamente guardan el "estado actual" y evalúan a sus vecinos inmediatos para decidir el siguiente paso.  <br>  <br>Por lo tanto, es algorítmica y estructuralmente imposible que <i>Hill-Climbing</i> produzca la representación de un árbol de exploración.
-            </div>
-</div><h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Examen SI 2024 | Preguntas P4. [Tipo C: Identificación de algoritmo por tabla]</h4><div class="box" style="border-left: 4px solid #3b82f6;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
-<div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">4. Análisis de la Tabla de Exploración (Nodos Cerrados)</strong><br><br>
-A partir de la siguiente tabla de nodos explorados, ¿qué tipo de búsqueda fue utilizada?  <br><b>Paso 1:</b> -  <br><b>Paso 2:</b> A  <br><b>Paso 3:</b> A, B  <br><b>Paso 4:</b> A, B, C  <br><b>Paso 5:</b> A, B, C, D  <br><b>Paso 6:</b> A, B, C, D, E<br><br>
-</div>
-</div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-
-Utiliza una cola <b>FIFO</b> (el primero que entra en la frontera, es el primero en salir y explorarse). Esto hace que explore el árbol "por capas  <br>horizontales: primero el nivel 0, luego todo el nivel 1, luego todo el nivel 2.<br><br>- <b>Paso 1:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">-</code> _(Frontera: [A])_<br><br>- <b>Paso 2:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A</code> <i>(Frontera: [B, C])</i> -&gt; Explora todo el nivel 0.<br><br>- <b>Paso 3:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A, B</code> <i>(Frontera: [C, D, E])</i> -&gt; Empieza el nivel 1. Saca a B porque entró antes que C.<br><br>- <b>Paso 4:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A, B, C</code> <i>(Frontera: [D, E, F, G])</i> -&gt; Termina el nivel 1.<br><br>- <b>Paso 5:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A, B, C, D</code> <i>(Frontera: [E, F, G, H, I])</i> -&gt; Empieza el nivel 2.<br><br>- <b>Paso 6:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A, B, C, D, E</code> _(Frontera: ...)_  <br>  <br>Como ves, <b>esta traza coincide exactamente al milímetro con la tabla de tu enunciado</b>.  <br>  <br>La búsqueda en anchura es la que genera una lista alfabética secuencial perfecta si el árbol está ordenado así.  <br>  <br>2. Búsqueda en Profundidad  <br>  <br>Utiliza una pila <b>LIFO</b> (el último que entra a la frontera, es el primero en salir). Esto obliga al algoritmo a ignorar a los hermanos y sumergirse ciegamente por una rama hasta chocar con el fondo.<br><br>- <b>Paso 1:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">-</code> _(Frontera: [A])_<br><br>- <b>Paso 2:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A</code> _(Frontera: [B, C])_<br><br>- <b>Paso 3:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A, B</code> <i>(Frontera: [D, E, C])</i> -&gt; Al explorar B, descubre D y E. Al ser LIFO, estos se ponen "encima" de C.<br><br>- <b>Paso 4:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A, B, D</code> <i>(Frontera: [H, I, E, C])</i> -&gt; <b>¡Aquí se rompe la secuencia!</b> El algoritmo ignora a C y explora D (el hijo de B) porque está yendo hacia lo profundo.<br><br>- <b>Paso 5:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A, B, D, H</code> _(Frontera: ...)_  <br>  <br>En profundidad, jamás verías los explorados <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A, B, C, D, E</code>, porque eso implicaría haber explorado a <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">B</code> y a su hermano <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">C</code> antes de bajar a los hijos, lo cual viola la regla de ir hacia abajo.  <br>  <br>3. Búsqueda de Coste Uniforme y A*  <br>  <br>En estos algoritmos, el orden de los nodos explorados no sigue un patrón alfabético ni de capas predecible a simple vista, ya que la frontera <b>se ordena por números</b> (por el coste más barato g(n) o por la fórmula f(n)).<br><br>- Dependiendo de los costes de las flechas, la tabla de explorados daría saltos ilógicos como: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A</code>, luego <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A, C</code>, luego <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A, C, B</code>, luego <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A, C, B, E</code>, etc., buscando siempre el camino más barato en cada momento.
-            </div>
-
-
-
-
-</div><h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Examen SI Mayo 2025 | Preguntas P1-4. [Tipo A+B: A* sobre grafo3 + heurística]</h4><div class="box" style="border-left: 4px solid #3b82f6;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
-<div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">1. Búsqueda A sobre espacio de estados</strong><br><br>
-Sobre el grafo del espacio de estados, ¿qué solución encuentra el algoritmo A*?  <br><img src="../assets/images/grafo3.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;"><br><br>
-</div>
-</div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-
-El algoritmo A* siempre expande el nodo con el menor valor $f(n) = g(n) + h(n)$. Si trazamos la ejecución desde A:  <br>1. Expandimos A. Sus sucesores son B ($f=1+5=6$) y C ($f=1+3=4$).  <br>2. El menor es C. Lo expandimos y obtenemos F ($f=2+6=8$) y G ($f=2+8=10$).  <br>3. La frontera tiene a B(6), F(8) y G(10). El menor es B. Al expandir B obtenemos D(9) y E(11).  <br>4. La frontera ahora es F(8), D(9), G(10), E(11). El menor es F. Lo expandimos y obtenemos I ($f=3+4=7$) y J ($f=3+2=5$).  <br>5. La frontera es J(5), I(7), D(9), G(10), E(11). El menor es J. Expandimos J y llegamos a K ($f=4+0=4$).  <br>El camino trazado por A* es indiscutiblemente <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A → C → F → J → K</code>. La opción B es la única que marca este recorrido óptimo a través de F y J.
-            </div>
-<hr style="margin: 30px 0; border-color: rgba(59, 130, 246, 0.3); border-style: dashed;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
-<div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">2. Búsqueda en profundidad iterativa (IDS)</strong><br><br>
-Sobre el mismo espacio de estados, ¿qué solución encuentra el algoritmo de búsqueda en profundidad iterativa?  <br><img src="../assets/images/grafo3.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;"><br><br>
-</div>
-</div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-
-La profundidad iterativa (IDS) explora el árbol nivel a nivel, pero dentro de cada nivel utiliza una estrategia de profundidad pura (normalmente guiada por orden alfabético de izquierda a derecha).<br><br>* Límite 0 y 1: No llega a la meta.<br><br>* Límite 2: Explora las ramas hasta profundidad 2 (A-B-D, A-B-E, A-C-F, A-C-G). Ninguno es meta.<br><br>* Límite 3: Se sumerge a profundidad 3. Explora primero todo lo que cuelga de B, y luego lo que cuelga de C. Al bajar por C, explora <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A → C → F → I</code> y <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A → C → F → J</code> (ninguno es meta). Finalmente explora la siguiente rama: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A → C → G → K</code>. ¡K es un nodo meta ($h=0$) y lo acaba de encontrar a profundidad 3! Por tanto, este es el primer camino válido que el algoritmo devuelve.
-            </div>
-<hr style="margin: 30px 0; border-color: rgba(59, 130, 246, 0.3); border-style: dashed;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
-<div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">3. Número de expansiones en IDS</strong><br><br>
-Con el enunciado anterior, ¿cuántas veces se expandirá el nodo B?<br><br>
-</div>
-</div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-
-El comportamiento de IDS se basa en reiniciar la búsqueda desde cero cada vez que aumenta el límite de profundidad.<br><br>* Límite 0: Se expande A.<br><br>* Límite 1: Se expande A. Se generan B y C, pero <b>no</b> se expanden porque hemos chocado con el límite.<br><br>* Límite 2: Se expande A. Luego se expande B (1ª vez) y C.<br><br>* Límite 3: Se expande A. Luego se expande B (2ª vez) para llegar a sus nietos.  <br>Por lo tanto, a lo largo de toda la ejecución para llegar a la profundidad 3, el nodo B se ha llegado a expandir exactamente 2 veces.
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div><h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">EXAMEN SI Junio 2026 | Preguntas P1-3. [Tipo A+B: A* e IDS sobre grafo2]</h4><div class="box" style="border-left: 4px solid #3b82f6;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
-<div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">1. Coste de la Solución A*</strong><br><br>
-Dado el siguiente grafo, donde el nodo inicial es A, el valor numérico de cada nodo indica el resultado de evaluar una función heurística $h$, y el valor numérico de cada arista indica el coste de transición entre estados... ¿Cuál sería el coste de la solución devuelta por el algoritmo $A^*$?  <br><img src="../assets/images/grafo2 1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;"><br><br>
-</div>
-</div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-
-- El algoritmo $A^*$ expande los nodos basándose en la función de evaluación $f(n) = g(n) + h(n)$, donde $g(n)$ es el coste acumulado desde el inicio hasta $n$, y $h(n)$ es el valor heurístico estimado hasta la meta.<br><br>- <b>Inicialización:</b> Cola de prioridad = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[A(g=0, h=60, f=60)]</code><br><br>- <b>Paso 1:</b> Se extrae A y se expande:<br><br>- B: $g(B) = 5, h(B) = 50 \implies f(B) = 55$<br><br>- C: $g(C) = 6, h(C) = 10 \implies f(C) = 16$<br><br>- Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[C(f=16), B(f=55)]</code><br><br>- <b>Paso 2:</b> Se extrae C y se expande:<br><br>- F: $g(F) = 6 + 5 = 11, h(F) = 5 \implies f(F) = 16$<br><br>- G: $g(G) = 6 + 10 = 16, h(G) = 1 \implies f(G) = 17$<br><br>- Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[F(f=16), G(f=17), B(f=55)]</code><br><br>- <b>Paso 3:</b> Se extrae F y se expande:<br><br>- G: $g(G) = 11 + 1 = 12, h(G) = 1 \implies f(G) = 13$ (actualiza la entrada anterior de G al ser menor que $17$)<br><br>- Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[G(f=13), B(f=55)]</code><br><br>- <b>Paso 4:</b> Se extrae G y se expande:<br><br>- I: $g(I) = 12 + 23 = 35, h(I) = 0 \implies f(I) = 35$<br><br>- Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[I(f=35), B(f=55)]</code><br><br>- <b>Paso 5:</b> Se extrae I (meta). Como tiene el menor valor de la cola y es la meta, la búsqueda finaliza con coste <b>35</b>.
-            </div>
-<hr style="margin: 30px 0; border-color: rgba(59, 130, 246, 0.3); border-style: dashed;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
-<div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">2. Búsqueda por Profundidad Iterativa</strong><br><br>
-En el mismo grafo de la pregunta anterior, ¿cuál sería la solución de aplicar el algoritmo de búsqueda por profundidad iterativa, usando la precedencia lexicográfica como mecanismo de resolución de conflictos?  <br><img src="../assets/images/grafo2 1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;"><br><br>
-</div>
-</div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-
-La búsqueda por profundidad iterativa (IDDFS) incrementa secuencialmente el límite de profundidad $L$ en cada iteración ($L = 0, 1, 2, 3, \dots$). Los sucesores de cada nodo se exploran en orden lexicográfico (alfabético):<br><br>- <b>Límite L=0:</b> Se explora A. No es meta.<br><br>- <b>Límite L=1:</b> Se exploran A -&gt; B y A -&gt; C. Ninguno es meta.<br><br>- <b>Límite L=2:</b> Se exploran A -&gt; B -&gt; D, A -&gt; B -&gt; E, A -&gt; C -&gt; F, A -&gt; C -&gt; G. Ninguno es meta.<br><br>- <b>Límite L=3:</b><br><br>- Rama B: se explora A -&gt; B -&gt; D -&gt; E y A -&gt; B -&gt; D -&gt; H, y también A -&gt; B -&gt; E -&gt; H.<br><br>- Rama C: se explora A -&gt; C -&gt; F -&gt; G, y finalmente <b>A -&gt; C -&gt; G -&gt; I</b>.  <br>  <br>Al ser I la meta a profundidad 3, se encuentra y se devuelve la solución <b>$A \to C \to G \to I$</b>.
-            </div>
-<hr style="margin: 30px 0; border-color: rgba(59, 130, 246, 0.3); border-style: dashed;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
-<div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">3. Propiedades de la Heurística</strong><br><br>
-En el mismo grafo, la heurística proporcionada...  <br><img src="../assets/images/grafo2 1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;"><br><br>
-</div>
-</div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-
-- <b>Admisibilidad:</b> Una heurística $h(n)$ es admisible si $h(n) \le h^*(n)$ (el coste real óptimo a la meta) para todo nodo $n$.<br><br>- Desde el nodo H, el camino real óptimo a la meta es H -&gt; I con coste $1$. Sin embargo, la heurística asignada es $h(H) = 3$. Como $3 &gt; 1$, la heurística sobreestima el coste, por lo que <b>no es admisible</b>.<br><br>- <b>Consistencia:</b> Exige que $h(n) \le c(n, a, n') + h(n')$.<br><br>- Para la transición D -&gt; H: $h(D) = 60$, $c(D,H) = 1$, $h(H) = 3$. Esto requeriría $60 \le 1 + 3 \implies 60 \le 4$, lo cual es falso.  <br>  <br>Por tanto, <b>no es consistente</b>.
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-</div><h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 3: Representación del Conocimiento</h3>
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Examen SI | Ejercicios Prácticos</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 1. A* sobre grafo1</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">Inferir meta en Base de Reglas</strong><br><br>
-Dado la siguiente base de reglas:  <br><br><code>R1: IF (X AND Y) THEN Z</code>  <br><br><code>R2: IF (C OR D) THEN G</code>  <br><br><code>R3: IF (E AND V) THEN H</code>  <br><br><code>R4: IF (A AND B) THEN C</code>  <br><br><code>R5: IF (F OR G) THEN X</code>  <br><br><code>R6: IF (Z AND B) THEN V</code>  <br><br><code>R7: IF (E AND C) THEN F</code>  <br><br>Queremos inferir <code>H</code> mediante encadenamiento progresivo, y sabiendo que: la primera de las reglas activadas será ejecutada (si R3 y R4 son activadas, se ejecutará primero R3); y en la memoria activa tenemos <code>A</code>, <code>B</code>, <code>D</code> y <code>Y</code>. Entonces:
+Dado el siguiente grafo, en donde (i) el nodo inicial es $A$ y el nodo meta es $G$, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística $h$, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados:  <br><img src="../assets/images/grafo1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;"><br>Aplicando el algoritmo A* basado en <b>grafo</b>, en algún paso, los nodos de la frontera vendrán dispuestos según la siguiente configuración...
 </div>
 </div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-El razonamiento por encadenamiento progresivo iterará sobre las reglas buscando aquellas cuyas premisas se satisfagan con el contenido actual de la Memoria Activa (MA).<br><br><b>Estado inicial:</b> MA = <code>{A, B, D, Y}</code><br><br><b>Ciclo 1:</b><br>- Reglas evaluadas:<br>  - R2: <code>IF (C OR D) THEN G</code> $\implies$ Se activa porque <code>D</code> está en MA.<br>  - R4: <code>IF (A AND B) THEN C</code> $\implies$ Se activa porque <code>A</code> y <code>B</code> están en MA.<br>- Conjunto Conflicto (reglas activadas): {R2, R4}<br>- Resolución de conflicto: El enunciado indica que "la primera de las reglas activadas será ejecutada". En orden de aparición, R2 precede a R4.<br>- Ejecución: Se dispara R2. Se añade <code>G</code> a la MA.<br>- Nueva MA: <code>{A, B, D, Y, G}</code><br><br><b>Ciclo 2:</b><br>- Reglas evaluadas:<br>  - R4: Sigue activa.<br>  - R5: <code>IF (F OR G) THEN X</code> $\implies$ Se activa porque <code>G</code> está en MA.<br>- Conjunto Conflicto: {R4, R5}<br>- Ejecución: Se dispara R4. Se añade <code>C</code> a la MA.<br>- Nueva MA: <code>{A, B, D, Y, G, C}</code><br><br><b>Ciclo 3:</b><br>- Reglas evaluadas:<br>  - R5: Sigue activa.<br>  - R7: No se activa.<br>- Ejecución: Se dispara R5. Se añade <code>X</code> a la MA.<br>- Nueva MA: <code>{A, B, D, Y, G, C, X}</code><br><br><b>Ciclo 4:</b><br>- Ejecución: Se dispara R1. Se añade <code>Z</code> a la MA.<br>- Nueva MA: <code>{A, B, D, Y, G, C, X, Z}</code><br><br><b>Ciclo 5:</b><br>- Ejecución: Se dispara R6. Se añade <code>V</code> a la MA.<br>- Nueva MA: <code>{A, B, D, Y, G, C, X, Z, V}</code><br><br><b>Ciclo 6:</b><br>- R3: <code>IF (E AND V) THEN H</code> $\implies$ No se activa porque falta <code>E</code> en la MA.<br><br>El sistema se detiene ya que no hay más reglas activables.<br><b>Resultado:</b> Como se observa, el sistema nunca llega a inferir <code>H</code>. La secuencia real de reglas disparadas es: R2, R4, R5, R1, R6.
+En el algoritmo A* basado en <b>grafo</b>, se mantiene una lista de nodos "Cerrados" (Explorados). Si la heurística no es consistente (como ocurre aquí, ya que $h(A)=25 \not\le c(A,C)+h(C) = 2+20=22$), la versión estricta del algoritmo en grafo <b>no reabre nodos que ya han sido cerrados</b>, aunque encuentre un camino mejor hacia ellos.  
+Realizamos la traza paso a paso usando la ecuación $f(n) = g(n) + h(n)$:  <br>
+1. <b>Paso 1:</b> Genera $B$ ($g=5, h=16 \rightarrow f=21$) y $C$ ($g=2, h=20 \rightarrow f=22$).<br>
+2. <b>Paso 2:</b> Genera $D$ ($g=5+7=12, h=10 \rightarrow f=22$).<br>
+3. <b>Paso 3:</b> Genera $E$ ($g=2+10=12, h=8 \rightarrow f=20$).<br>
+- También encuentra una nueva ruta hacia $B$ con menor coste ($g=2+2=4 \rightarrow f=20$).<br>
+- <b>Punto clave:</b> Como $B$ ya está en la lista de Cerrados <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">{A, B}</code>, la nueva ruta hacia él <b>se descarta</b>.
 </div>
-<hr style="margin: 30px 0; border-color: rgba(59, 130, 246, 0.3); border-style: dashed;">
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 2. Búsqueda Avara sobre Grafo 1</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">Secuencia del Motor de Inferencias</strong><br><br>
-En el contexto de un sistema de producción, se parte de la siguiente base de reglas y estado de la Memoria Activa inicial ($M_0$):<br><br>- <b>R1:</b> $A \land B \implies C$<br>- <b>R2:</b> $E \lor F \implies D$<br>- <b>R3:</b> $D \land C \implies X$<br>- <b>R4:</b> $B \land D \implies R$<br>- <b>R5:</b> $X \land R \implies H$<br><br>- <b>$M_0$</b> = $\{A, B, E\}$ <i>(Nota: $H$ es la meta buscada)</i>.<br><br><b>Configuración del Motor:</b> Encadenamiento progresivo. Búsqueda en profundidad, con la ejecución de la regla cuya premisa contenga el elemento en orden alfabético mayor de las que hayan sido activadas más recientemente (asumiendo que $A &gt; B &gt; C \dots$). ¿Cuál es la secuencia de ejecución de las reglas?
+<div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:5px; margin-bottom:15px; font-size: 0.9em; border-left: 3px solid #3b82f6; color: #9ca3af;"><em>Contexto del ejercicio anterior:</em><br>
+Dado el siguiente grafo, en donde (i) el nodo inicial es $A$ y el nodo meta es $G$, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística $h$, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados:<br>
+<img src="../assets/images/grafo1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;">
+</div>
+En el mismo problema de la pregunta 1, indica la secuencia del camino devuelto utilizando, esta vez, la búsqueda avara:
 </div>
 </div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-Analizamos la traza del Motor de Inferencias paso a paso:<br><br><b>Estado Inicial:</b> $M_0 = \{A, B, E\}$<br><br><b>1. Primer Ciclo:</b><br>- Equiparación:<br>  - R1: $A \land B \implies C$ (Tenemos A y B)<br>  - R2: $E \lor F \implies D$ (Tenemos E)<br>- Conjunto de Resolución de Conflictos (CRC): {R1, R2}<br>- Criterio de Selección: La regla con el elemento de la premisa de mayor orden alfabético. $A &gt; E$ en el orden alfabético, la regla ganadora es <b>R1</b>.<br>- Acción: Se ejecuta R1 y se añade $C$ a la Memoria Activa.<br>- $M_1 = \{A, B, E, C\}$<br><br><b>2. Segundo Ciclo:</b><br>- Equiparación:<br>  - R2: Sigue activa.<br>- Selección: Solo queda <b>R2</b>.<br>- Acción: Se ejecuta R2 y se añade $D$.<br>- $M_2 = \{A, B, E, C, D\}$<br><br><b>3. Tercer Ciclo:</b><br>- Equiparación:<br>  - R3: $D \land C \implies X$ (Tenemos D y C)<br>  - R4: $B \land D \implies R$ (Tenemos B y D)<br>- CRC: {R3, R4}<br>- Criterio de Selección: $B &gt; C$, la regla ganadora es <b>R4</b>.<br>- Acción: Se ejecuta R4 y se añade $R$.<br>- $M_3 = \{A, B, E, C, D, R\}$<br><br><b>4. Cuarto Ciclo:</b><br>- Equiparación:<br>  - R3: Sigue activa<br>- Selección: Solo queda <b>R3</b>.<br>- Acción: Se ejecuta R3 y se añade $X$.<br>- $M_4 = \{A, B, E, C, D, R, X\}$<br><br><b>5. Quinto Ciclo:</b><br>- Selección: <b>R5</b>.<br>- Acción: Se ejecuta R5 y se añade la meta $H$.<br><br>La secuencia estricta de ejecución fue: <b>R1, R2, R4, R3, R5</b>.
+La Búsqueda Avara ordena los nodos de la frontera basándose <b>únicamente en el valor de la heurística</b> $f(n) = h(n)$, ignorando por completo el coste acumulado $g(n)$.<br><br>
+Traza del algoritmo:<br>
+1. <b>Paso 1:</b> Expandimos $A$. Genera $B$ ($h=16$) y $C$ ($h=20$). Frontera: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[B(16), C(20)]</code>.<br>
+2. <b>Paso 2:</b> Extraemos $B$ (el de menor $h$). Genera $D$ ($h=10$). Frontera: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[D(10), C(20)]</code>.<br>
+3. <b>Paso 3:</b> Extraemos $D$. Genera $G$ ($h=0$). Frontera: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[G(0), C(20)]</code>.<br>
+4. <b>Paso 4:</b> Extraemos $G$, que es la meta. Fin.<br><br>
+La secuencia de nodos explorados para formar el camino devuelto es <b>$A \rightarrow B \rightarrow D \rightarrow G$</b>.
 </div>
 </div>
 
-<h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 4: Razonamiento e Inferencia</h3><h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Examen SI Mayo 2025 | Preguntas P7. [Tipo E: BLR con manifestación m4]</h4><div class="box" style="border-left: 4px solid #3b82f6;">
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 3. Optimidad de A* sobre Grafo 1</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">7. Cálculo de la Base Lógica Reducida (BLR)</strong><br><br>
-Sea un dominio con tres manifestaciones posibles [M(1), M(2), M(3)] y dos interpretaciones [I(1), I(2)]. Desde una perspectiva categórica, y asumiendo el siguiente criterio:  <br><h5 style="color: #e2e8f0; margin-top: 25px; margin-bottom: 10px; font-size: 1.15rem; font-weight: 600;">Tabla de Manifestaciones:  </h5><br><div style="border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; margin: 15px 0;"><table style="width: 100%; border-collapse: collapse; text-align: center; font-size: 0.95rem; margin: 0;">
-<tbody><tr style="background: rgba(255,255,255,0.05);">
-<th style="padding: 12px 16px; color: #e2e8f0; font-weight: 600; text-align: left;"></th>
-<th style="padding: 12px 16px; color: #e2e8f0; font-weight: 600; text-align: center;"><b>a</b></th>
-<th style="padding: 12px 16px; color: #e2e8f0; font-weight: 600; text-align: center;"><b>b</b></th>
-<th style="padding: 12px 16px; color: #e2e8f0; font-weight: 600; text-align: center;"><b>c</b></th>
-<th style="padding: 12px 16px; color: #e2e8f0; font-weight: 600; text-align: center;"><b>d</b></th>
-<th style="padding: 12px 16px; color: #e2e8f0; font-weight: 600; text-align: center;"><b>e</b></th>
-<th style="padding: 12px 16px; color: #e2e8f0; font-weight: 600; text-align: center;"><b>f</b></th>
-<th style="padding: 12px 16px; color: #e2e8f0; font-weight: 600; text-align: center;"><b>g</b></th>
-<th style="padding: 12px 16px; color: #e2e8f0; font-weight: 600; text-align: center;"><b>h</b></th>
-</tr>
-<tr style="border-top: 1px solid rgba(255,255,255,0.05);">
-<td style="padding: 12px 16px; color: #fff; font-weight: 600; text-align: left;"><b>M(1)</b></td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-</tr>
-<tr style="border-top: 1px solid rgba(255,255,255,0.05);">
-<td style="padding: 12px 16px; color: #fff; font-weight: 600; text-align: left;"><b>M(2)</b></td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-</tr>
-<tr style="border-top: 1px solid rgba(255,255,255,0.05);">
-<td style="padding: 12px 16px; color: #fff; font-weight: 600; text-align: left;"><b>M(3)</b></td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-</tr>
-</tbody></table></div>
-<h5 style="color: #e2e8f0; margin-top: 25px; margin-bottom: 10px; font-size: 1.15rem; font-weight: 600;">Tabla de Interpretaciones:  </h5><br><div style="border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; margin: 15px 0;"><table style="width: 100%; border-collapse: collapse; text-align: center; font-size: 0.95rem; margin: 0;">
-<tbody><tr style="background: rgba(255,255,255,0.05);">
-<th style="padding: 12px 16px; color: #e2e8f0; font-weight: 600; text-align: left;"></th>
-<th style="padding: 12px 16px; color: #e2e8f0; font-weight: 600; text-align: center;"><b>x</b></th>
-<th style="padding: 12px 16px; color: #e2e8f0; font-weight: 600; text-align: center;"><b>y</b></th>
-<th style="padding: 12px 16px; color: #e2e8f0; font-weight: 600; text-align: center;"><b>z</b></th>
-<th style="padding: 12px 16px; color: #e2e8f0; font-weight: 600; text-align: center;"><b>t</b></th>
-</tr>
-<tr style="border-top: 1px solid rgba(255,255,255,0.05);">
-<td style="padding: 12px 16px; color: #fff; font-weight: 600; text-align: left;"><b>I(1)</b></td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-</tr>
-<tr style="border-top: 1px solid rgba(255,255,255,0.05);">
-<td style="padding: 12px 16px; color: #fff; font-weight: 600; text-align: left;"><b>I(2)</b></td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">0</td>
-<td style="padding: 12px 16px; color: #cbd5e1; font-weight: 400; text-align: center;">1</td>
-</tr>
-</tbody></table></div>
-<h5 style="color: #e2e8f0; margin-top: 25px; margin-bottom: 10px; font-size: 1.15rem; font-weight: 600;">Regla del Dominio:  </h5><br><code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">R1: M(1) V M(2) V M(3) ⇒ I(1) V I(2)</code><br><br>
+<div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:5px; margin-bottom:15px; font-size: 0.9em; border-left: 3px solid #3b82f6; color: #9ca3af;"><em>Contexto del ejercicio anterior:</em><br>
+Dado el siguiente grafo, en donde (i) el nodo inicial es $A$ y el nodo meta es $G$, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística $h$, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados:<br>
+<img src="../assets/images/grafo1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;">
+</div>
+En el mismo problema de la pregunta 1, ¿obtiene el algoritmo A* una solución óptima?
 </div>
 </div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+Para que el algoritmo A* sobre grafo garantice encontrar la solución óptima, la heurística $h(n)$ debe ser <b>admisible y consistente</b>.<br><br>
+- <b>Admisibilidad:</b> Evaluemos el nodo origen $A$. Su valor heurístico es $h(A) = 25$. Sin embargo, si miramos el grafo, existe un camino real $A \rightarrow C \rightarrow G$ cuyo coste exacto es $c(A,C) + c(C,G) = 2 + 20 = 22$. Como $h(A) > h^*(A)$ ($25 > 22$), la heurística sobreestima el coste real hacia la meta. Por tanto, <b>NO es admisible</b>.<br>
+- <b>Consistencia:</b> Revisemos la arista de $A$ a $C$. La desigualdad triangular exige que $h(A) \leq c(A,C) + h(C)$. Sustituyendo: $25 \leq 2 + 20 \Rightarrow 25 \leq 22$, lo cual es <b>falso</b>. La heurística <b>NO es consistente</b>.<br><br>
+<b>Conclusión:</b> Al no ser admisible ni consistente, el algoritmo A* <b>no garantiza</b> encontrar la solución óptima (aunque por el diseño particular de este grafo A* termine llegando a ella, a nivel matemático y algorítmico no es una garantía).
+</div>
+</div>
 
-
-Evaluemos si alguna de las interpretaciones para la manifestación $m_4$ logra sobrevivir a las reglas del dominio (es decir, si pertenece a la BLR).<br><br><em> Las reglas dadas en 2025 son: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">R1: M(1) v M(2) v M(3) =&gt; I(1) v I(2)<br><br>R2: I(1) =&gt; ~M(1) AND M(2)<br><br>R3: I(2) AND ~I(1) =&gt; M(1) AND M(3)</code><br><br></em> En $m_4$, tenemos $M(1)=1$, mientras que el resto de las manifestaciones son $0$.<br><br><em> Si probamos la opción A ($m_4 i_1$): Aquí $I(1)=0$ e $I(2)=0$. La regla R1 exige que si hay manifestaciones activas (tenemos un 1), debe haber al menos una interpretación activa.  <br> <br>Al ser ambas cero, R1 se rompe.  <br> <br>Descartada.<br><br></em> Si probamos la opción B ($m_4 i_2$): Aquí $I(1)=0$ e $I(2)=1$. Evaluamos R3: Su antecedente es cierto ($1$ y $\neg 0$). Pero su consecuente exige $M(1) \land M(3)$. Como $M(3)=0$, el consecuente es falso.  <br> <br>Implicar algo falso desde un antecedente verdadero rompe la regla R3. Descartada.<br><br>* Si probamos la opción C ($m_4 i_3$): Aquí $I(1)=1$. Evaluamos R2: Su antecedente es cierto ($1$). Su consecuente exige $\neg M(1) \land M(2)$. Como $M(1)=1$, $\neg 1$ es $0$. El consecuente es falso.  <br> <br>Se rompe R2. Descartada.  <br>Como todas las combinaciones con $m_4$ violan alguna regla, este complejo manifestación es un escenario absurdo o imposible, y ninguna de las opciones propuestas pertenece a la BLR.
-            </div>
-
-
-
-
-</div><h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Examen SI Julio 2025 | Preguntas P7-9. [Tipo E+G: BLE/BLR con 5 variables]</h4><div class="box" style="border-left: 4px solid #3b82f6;">
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 4. A* e IDS sobre grafo2</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">7. Cálculo de la Base Lógica Reducida (BLR)</strong><br><br>
-Sea un dominio con tres manifestaciones posibles $\{M(1), M(2), M(3)\}$ y dos interpretaciones posibles $\{I(1), I(2)\}$. Desde una perspectiva categórica, y dadas las reglas del dominio:  <br>R1: $M(1) \lor M(2) \lor M(3) \implies I(1) \lor I(2)$  <br><br>R2: $I(1) \implies \neg M(1) \land M(2)$  <br><br>R3: $I(2) \land \neg I(1) \implies M(1) \land M(3)$  <br>¿Cuántos posibles conjuntos manifestación-interpretación contiene la Base Lógica Reducida?<br><br>
-<br><br></div>
+Dado el siguiente grafo, donde el nodo inicial es A... ¿Cuál sería el coste de la solución devuelta por el algoritmo $A^*$? <img src="../assets/images/grafo2 1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;">
 </div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+El algoritmo $A^*$ expande los nodos basándose en $f(n) = g(n) + h(n)$.<br>
+- <b>Paso 1:</b> Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[C(f=16), B(f=55)]</code><br>
+- <b>Paso 2:</b> Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[F(f=16), G(f=17), B(f=55)]</code><br>
+- <b>Paso 3:</b> G actualiza la entrada al ser menor que $17$. Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[G(f=13), B(f=55)]</code><br>
+- <b>Paso 4:</b> Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[I(f=35), B(f=55)]</code>. Se encuentra la meta I con coste 35.
+</div>
+</div>
 
-
-La Base Lógica Expandida (BLE) contiene todas las combinaciones posibles de variables, que son $2^5 = 32$ complejos.  <br> <br>Para obtener la Base Lógica Reducida (BLR), aplicamos las restricciones que dictan las reglas, eliminando los complejos absurdos:<br><br>- <b>R2 exige que:</b> Si $I(1) = 1$, entonces obligatoriamente $M(1) = 0$ y $M(2) = 1$. Esto elimina cualquier combinación donde $I(1)=1$ y no se cumplan esos valores.  <br> <br>De los 16 casos iniciales donde $I(1)=1$, nos quedamos solo con <b>4 casos válidos</b> (ya que solo varían $I(2)$ y $M(3)$, dando $2 \times 2 = 4$).<br><br>- <b>R3 exige que:</b> Si $I(2)=1$ e $I(1)=0$, entonces obligatoriamente $M(1)=1$ y $M(3)=1$. De los 8 casos iniciales con estas condiciones, nos quedamos solo con los <b>2 casos válidos</b> donde $M(2)$ vale 0 o 1.<br><br>- <b>R1 exige que:</b> Si existe alguna manifestación activa, debe existir alguna interpretación.  <br> <br>Nos quedan por evaluar los casos donde $I(1)=0$ e $I(2)=0$. Si ambas interpretaciones son $0$, ninguna manifestación puede ser $1$. Esto nos deja con <b>1 único caso válido</b>: todos los valores a 0.  <br> <br>Sumando los complejos válidos: $4 + 2 + 1 = 7$ conjuntos posibles en la BLR.
-            </div>
-<hr style="margin: 30px 0; border-color: rgba(59, 130, 246, 0.3); border-style: dashed;">
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 5. A* sobre grafo3 + Propiedades Heurísticas</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">8. Inferencia a Partir de Manifestaciones Verdaderas</strong><br><br>
-Asumiendo $M(1)$ verdadero, la solución será...<br><br>
+Sobre el grafo del espacio de estados, ¿qué solución encuentra el algoritmo A*? <img src="../assets/images/grafo3.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;">
 </div>
 </div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+El algoritmo A* siempre expande el nodo con el menor valor $f(n) = g(n) + h(n)$. Si trazamos la ejecución desde A:  <br>
+1. Expandimos A. Sus sucesores son B ($f=1+5=6$) y C ($f=1+3=4$).  <br>
+2. El menor es C. Lo expandimos y obtenemos F ($f=2+6=8$) y G ($f=2+8=10$).  <br>
+3. La frontera tiene a B(6), F(8) y G(10). El menor es B...  <br>
+El camino trazado por A* es indiscutiblemente <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A → C → F → J → K</code>.
+</div>
+</div>
 
-Del cálculo anterior, sabemos que si $I(1)$ es verdadero, $M(1)$ es forzosamente falso (por la regla R2). Es decir, en la BLR no existe ningún caso válido en el que $I(1)$ y $M(1)$ sean verdaderos al mismo tiempo.  <br>  <br>Si observamos los 7 casos de la BLR elaborados en la pregunta anterior, los únicos donde $M(1)$ es verdadero son aquellos 2 casos derivados de la regla R3, y en ambos escenarios las interpretaciones toman el valor de $I(1)=0$ e $I(2)=1$. Por tanto, la solución que se inferiría al ser cierta $M(1)$ es estrictamente $\neg I(1) \land I(2)$. Al no aparecer esta expresión exacta en las opciones a) y b), la correcta es la d).
-            </div>
-<hr style="margin: 30px 0; border-color: rgba(59, 130, 246, 0.3); border-style: dashed;">
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 6. Identificación de algoritmo por traza</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">9. Análisis Probabilístico en Lógica Categórica</strong><br><br>
-Partiendo del problema original, ¿qué manifestación es más probable cuando ambas interpretaciones son verdaderas?<br><br>
+A partir de la siguiente tabla de nodos explorados, ¿qué tipo de búsqueda fue utilizada? (Paso 1, Paso 2, Paso 3... secuenciales alfabéticamente).
 </div>
 </div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+Utiliza una cola <b>FIFO</b>. La búsqueda en anchura es la que genera una lista alfabética secuencial perfecta si el árbol está ordenado así por capas (niveles horizontales).<br>
+En profundidad (LIFO), jamás verías los explorados en orden de capas. En A* o Coste Uniforme (UCS), la frontera se ordena por los costes numéricos, dando saltos ilógicos a la vista alfabética.
+</div>
+</div>
 
-Si asumimos que ambas interpretaciones son verdaderas, es decir, ocurre el caso $I(1)=1$ e $I(2)=1$, estaremos circunscritos a los casos derivados de que $I(1)$ es cierto.  <br>  <br>Según la regla R2 ($I(1) \implies \neg M(1) \land M(2)$), siempre que $I(1)$ se cumple, $M(2)$ debe darse inexcusablemente (probabilidad 1.0) y $M(1)$ jamás puede darse (probabilidad 0). $M(3)$ no está restringida por ninguna regla en este subescenario, por lo que su aparición es aleatoria.  <br>  <br>Por tanto, la manifestación absolutamente segura (y por ende más probable) bajo estas condiciones es $M(2)$.
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div><h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">EXAMEN SI Junio 2026 | Preguntas P7-8. [Tipo E+F: BLR con M(1)=1 + Bayes]</h4><div class="box" style="border-left: 4px solid #3b82f6;">
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 7. Hill-Climbing sobre Árbol M-ario</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">7. Cálculo de la Base Lógica Reducida (BLR)</strong><br><br>
-Sea un dominio con tres manifestaciones posibles $\{M(1), M(2), M(3)\}$ y dos interpretaciones posibles $\{I(1), I(2)\}$. Desde una perspectiva categórica, y dadas las reglas del dominio:  <br>R1: $M(1) \lor M(2) \lor M(3) \implies I(1) \lor I(2)$  <br><br>R2: $I(2) \implies \neg M(2) \land M(1)$  <br><br>R3: $I(1) \lor \neg I(2) \implies M(2) \land M(3)$  <br>¿Cuál de las siguientes combinaciones pertenece a la Base Lógica Reducida?<br><br>
+En el contexto del algoritmo de escalada en búsqueda local, el siguiente árbol de búsqueda se corresponde con una situación de: <img src="../assets/images/arbol1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;">
 </div>
 </div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+Se trata de una "pregunta trampa" clásica.  A diferencia de A* o Búsqueda en Anchura, el algoritmo de Escalada Simple (<i>Hill-Climbing</i>) pertenece a la familia de métodos de <b>Búsqueda Local</b>.<br>
+La característica teórica definitoria de esta familia es que <b>no conservan ni generan un "árbol de búsqueda" en memoria</b>. Por lo tanto, es algorítmica y estructuralmente imposible que <i>Hill-Climbing</i> forme un árbol como el de la imagen.
+</div>
+</div>
 
-
-Analizando la manifestación $m_4$, en la tabla dada sus valores son $M(1)=1, M(2)=0, M(3)=0$. Evaluemos cada opción:<br><br>- <b>Para a) $m_4 i_1$ (donde $I(1)=0, I(2)=0$):</b><br><br>- R1 establece que si hay manifestaciones activas (las hay porque $M(1)=1$), debe haber al menos una interpretación activa.  <br> <br>Al ser ambas 0, <b>R1 se viola</b>.  <br> <br>No pertenece a la BLR.<br><br>- <b>Para b) $m_4 i_2$ (donde $I(1)=0, I(2)=1$):</b><br><br>- R1: Antecedente Verdadero, Consecuente Verdadero ($I(2)=1$). (Se cumple)<br><br>- R2: Antecedente Verdadero ($I(2)=1$). Consecuente: $\neg M(2) \land M(1) = \neg 0 \land 1 = 1$. (Se cumple)<br><br>- R3: Antecedente: $I(1) \lor \neg I(2) = 0 \lor \neg 1 = 0$ (Falso). Al ser el antecedente falso, la implicación se cumple automáticamente. (Se cumple)<br><br>- Todas las reglas se satisfacen, por lo que <b>pertenece a la BLR</b>.<br><br>- <b>Para c) $m_4 i_3$ (donde $I(1)=1, I(2)=0$):</b><br><br>- R3: Antecedente: $I(1) \lor \neg I(2) = 1 \lor \neg 0 = 1$ (Verdadero). Consecuente: $M(2) \land M(3) = 0 \land 0 = 0$ (Falso). <b>R3 se viola</b> ($1 \implies 0$ es falso). No pertenece a la BLR.
-            </div>
-<hr style="margin: 30px 0; border-color: rgba(59, 130, 246, 0.3); border-style: dashed;">
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 8. Análisis Visual de Búsqueda Local</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-<strong style="color:#fff;">8. Inferencia a Partir de Manifestaciones Verdaderas</strong><br><br>
-Con las mismas reglas del ejercicio anterior, y sabiendo que tenemos la manifestación $M(1)$, ¿cuál es el conjunto de interpretaciones más probable? Ten en cuenta las siguientes probabilidades:  <br>$p(\neg I(1) \land \neg I(2)) = 0.2$  <br><br>$p(\neg I(1) \land I(2)) = 0.08$  <br><br>$p(I(1) \land \neg I(2)) = 0.34$  <br><br>$p(I(1) \land I(2)) = 0.38$<br><br>
-- I(1) \land \neg I(2)$<br> <br>
+Atendiendo a un espacio de estados representado visualmente como un relieve... si el algoritmo de Búsqueda Local (Ascensión de Colinas) se inicia en la base de un "valle" y está programado para MAXIMIZAR la función, ¿qué comportamiento exhibirá estrictamente?
 </div>
 </div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+El algoritmo de Ascensión de Colinas (Hill-Climbing) evalúa estrictamente a sus vecinos inmediatos y siempre se mueve en la dirección de la pendiente ascendente más pronunciada (si busca maximizar). <br><br>
+Sin embargo, su <b>trampa principal</b> es que, al carecer de memoria, se quedará atrapado en el primer máximo local que encuentre a lo largo de esa pendiente.
+</div>
+</div>
 
+<h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 3: Representación del Conocimiento</h3>
 
-Evaluemos la consistencia de las interpretaciones cuando $M(1)=1$:  <br>1. $\neg I(1) \land \neg I(2)$ es inconsistente porque al estar activa $M(1)$, R1 obliga a que al menos una interpretación sea verdadera.  <br>2. $I(1) \land I(2)$ es inconsistente porque R2 exige que si $I(2)=1 \implies M(2)=0$, mientras que R3 exige que si $I(1)=1 \implies M(2)=1$, provocando una contradicción.  <br>3. Las únicas interpretaciones consistentes con $M(1)=1$ son:<br><br>- $\neg I(1) \land I(2)$ (Probabilidad: 0.08)<br><br>- $I(1) \land \neg I(2)$ (Probabilidad: 0.34)  <br> <br>Al comparar las probabilidades de los estados consistentes, la más probable es <b>$I(1) \land \neg I(2)$</b> con $0.34$.
-            </div>
-
-
-
-
-
-
-
-
-</div><h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 10: Computación Evolutiva</h3><h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Examen SI 2024 | Pregunta P19. [Tipo I: Análisis de árbol de Programación Genética]</h4><div class="box" style="border-left: 4px solid #f97316;">
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 9. Encadenamiento en Sistema de Producción</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Dado la siguiente base de reglas:  <br><br><code>R1: IF (X AND Y) THEN Z</code><br><code>R2: IF (C OR D) THEN G</code><br><code>R3: IF (E AND V) THEN H</code><br><code>R4: IF (A AND B) THEN C</code><br><code>R5: IF (F OR G) THEN X</code><br><code>R6: IF (Z AND B) THEN V</code><br><code>R7: IF (E AND C) THEN F</code><br><br>Queremos inferir <code>H</code>
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+Un motor de inferencia clásico ejecuta <b>solo una regla por ciclo</b>.  
+La estrategia de desempate dictamina que gana la regla "más reciente" (las que acaban de activarse en ese ciclo). Si hay empate de novedad, gana la que tenga la letra con mayor prioridad en el abecedario en sus premisas. <br><br> 
+- <b>CICLO 1:</b> Conjunto Conflicto (CC). Empate R1 y R2. Gana la $R1$ por orden alfabético. Añadimos $C$ a la memoria.  <br>
+- <b>CICLO 2:</b> En el CC solo nos queda esperando la <b>R2</b>. Añadimos $D$ a la memoria.  <br>
+- <b>CICLO 3:</b> Añadimos $R$ a la memoria.  <br>
+- <b>CICLO 4:</b> Añadimos $X$ a la memoria.  <br>
+- <b>CICLO 5:</b> Llegamos a la meta $H$.  
+</div>
+</div>
 
-            En Programación Genética (GP), la solución se codifica obligatoriamente como un <strong>árbol sintáctico</strong>, lo que descarta la opción D (GP no usa cadenas/vectores planos, eso es propio de los Algoritmos Genéticos estándar).<br><br>
-            Aplicando la teoría estructural de árboles en GP:<br>
-            - <strong>Nodos Terminales (Hojas):</strong> Son los extremos del árbol que no tienen hijos. Alojan <em>exclusivamente</em> las variables de entrada ($X$, $Y$) y las constantes numéricas ($1$, $14$). Esto invalida las opciones A y B.<br>
-            - <strong>Nodos No Terminales (Internos):</strong> Contienen los operadores lógicos y algebraicos (<code>+</code>, <code>-</code>, <code>*</code>).<br>
-            - <strong>Profundidad:</strong> La opción C es correcta, ya que la profundidad estructural de este tipo de genotipo representa precisamente los niveles anidados o de llamadas recursivas en el árbol de código.
-            </div>
-</div></section>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 10. Encadenamiento en Sistema de Producción (Variante)</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+En el contexto de un sistema de producción, se parte de la siguiente base de reglas y estado de la Memoria Activa inicial ($M_0$):<br>
+<b>$M_0 = \{A, B, E\}$</b><br>
+¿Cuál es la secuencia de ejecución de las reglas?
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+Aplicamos el mismo algoritmo: <br>
+1. Inicialmente se activan las que cumplen las premisas con $A, B, E$. <br>
+2. Resolvemos conflictos. <br>
+3. Al final, deducimos de forma secuencial los elementos hasta que la Memoria Activa no dispara nada más.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 11. Encadenamiento Progresivo (Memoria Alternativa)</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Dado la siguiente base de reglas:  
+<div style="background: rgba(255,255,255,0.05); border-left: 3px solid #10b981; padding: 10px 15px; margin: 10px 0; border-radius: 4px; font-family: monospace; font-size: 0.95em; color: #d1d5db;">
+R1: `IF (X AND Y) THEN Z`<br>
+<br>
+R2: `IF (C OR D) THEN G`<br>
+<br>
+R3: `IF (E AND V) THEN H`<br>
+<br>
+R4: `IF (A AND B) THEN C`<br>
+<br>
+R5: `IF (F OR G) THEN X`<br>
+<br>
+R6: `IF (Z AND B) THEN V`<br>
+<br>
+R7: `IF (E AND C) THEN F`
+</div>
+Queremos inferir `H` mediante encadenamiento progresivo, y sabiendo que: la primera de las reglas activadas será ejecutada (si R3 y R4 son activadas, se ejecutará primero R3); y en la memoria activa tenemos `A`, `B`, `D` y `Y`. <i>(Nota: la digitalización indica `?, D y Y`, pero el apunte a mano `ABDY(H)` confirma que la memoria inicial es `{A, B, D, Y}`).</i> Entonces:
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+<b>CICLO 1:</b><br>
+- <b>MA:</b> $\{A, B, D, Y\}$<br>
+- <b>Conjunto Conflicto (CC):</b> R2 (por D), R4 (por A y B).<br>
+- <b>Resolución:</b> Empate. Miramos premisas: R4 tiene la 'A', que va antes que la 'D' de R2. Gana R4.<br>
+- <b>Ejecución:</b> Dispara R4 $\rightarrow$ Añadimos $C$.<br><br>
+<b>CICLO 2:</b><br>
+- <b>MA:</b> $\{A, B, D, Y, C\}$<br>
+- <b>CC:</b> Queda R2 (que se dispara tanto por D como por el nuevo C). R7 requiere E y C, pero no tenemos E, así que no se activa.<br>
+- <b>Ejecución:</b> Dispara R2 $\rightarrow$ Añadimos $G$.<br><br>
+<b>CICLO 3:</b><br>
+- <b>MA:</b> $\{A, B, D, Y, C, G\}$<br>
+- <b>CC:</b> R5 (se activa por G).<br>
+- <b>Ejecución:</b> Dispara R5 $\rightarrow$ Añadimos $X$.<br><br>
+<b>CICLO 4:</b><br>
+- <b>MA:</b> $\{A, B, D, Y, C, G, X\}$<br>
+- <b>CC:</b> R1 (se activa porque ya teníamos Y inicial y acabamos de inferir X).<br>
+- <b>Ejecución:</b> Dispara R1 $\rightarrow$ Añadimos $Z$.<br><br>
+<b>CICLO 5:</b><br>
+- <b>MA:</b> $\{A, B, D, Y, C, G, X, Z\}$<br>
+- <b>CC:</b> R6 (se activa porque teníamos B inicial y acabamos de inferir Z).<br>
+- <b>Ejecución:</b> Dispara R6 $\rightarrow$ Añadimos $V$.<br><br>
+<b>CICLO 6:</b><br>
+- <b>MA:</b> $\{A, B, D, Y, C, G, X, Z, V\}$<br>
+- <b>Evaluación:</b> La única regla que nos daría la meta $H$ es R3, que exige $E$ y $V$. Tenemos $V$, pero <b>no tenemos $E$</b> en la Memoria Activa.<br><br>
+<b>Conclusión:</b> El motor se detiene tras ejecutar 5 reglas (R4, R2, R5, R1, R6). <b>No es posible inferir la meta $H$.</b>
+</div>
+</div>
+
+
+<h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 4: Razonamiento e Inferencia</h3>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 12. BLE/BLR con 5 variables</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Sea un dominio con tres manifestaciones posibles $\{M(1), M(2), M(3)\}$ y dos interpretaciones posibles $\{I(1), I(2)\}$. Desde una perspectiva categórica, y dadas las reglas del dominio... ¿Cuántos posibles conjuntos manifestación-interpretación contiene la Base Lógica Reducida?
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+Nuevamente, $2^5 = 32$ complejos en la BLE. Eliminando los que incumplen las reglas dadas (R1, R2 y R3), nos quedan 7 complejos válidos.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 13. BLR con Medidas de Suficiencia (m4)</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Sea un dominio con tres manifestaciones posibles [M(1), M(2), M(3)] y dos interpretaciones [I(1), I(2)]. Desde una perspectiva categórica, y asumiendo la tabla de verdad y la Regla del Dominio: R1: M(1) V M(2) V M(3) ⇒ I(1) V I(2).
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+La Base Lógica Expandida (BLE) contiene todas las combinaciones posibles de variables, que son $2^5 = 32$ complejos.  
+Para obtener la Base Lógica Reducida (BLR), aplicamos las restricciones que dictan las reglas, eliminando los complejos absurdos, quedándonos al final con 7 conjuntos posibles en la BLR.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 14. BLR y Teorema de Bayes sobre Tablas Lógicas</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+¿Cuál de las siguientes combinaciones pertenece a la Base Lógica Reducida?
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+Se debe evaluar cada vector opción (por ejemplo $m_4 i_1$) contra las reglas. El que no las viola, es el que sobrevive y por tanto pertenece a la BLR.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 15. Probabilidad Condicional sobre Tabla</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+(Similar al ejercicio 10).
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+(Similar al ejercicio 10).
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 16. Inferencia Lógica con Tabla</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Dada la codificación de posibles Manifestaciones e Interpretaciones... Si en un momento dado se da la ocurrencia $f = M(1) \wedge \neg M(2) \wedge \neg M(3)$, entonces podríamos deducir que:
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+Analizamos lógicamente la manifestación entregada. La evidencia $f$ nos dice categóricamente que $M(1)$ es Verdadera ($1$), $M(2)$ es Falsa ($0$), y $M(3)$ es Falsa ($0$).<br>
+Si evaluamos esto en la Regla 3, el consecuente es forzosamente Falso. Por Modus Tollens, si el consecuente es falso, su antecedente no puede ser verdadero. Esto exige que $I(1)$ sea Falsa e $I(2)$ sea Verdadera.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 17. Inferencia Pura en BLR (Evidencia Concreta)</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Dado un dominio con manifestaciones $\{M(1), M(2), M(3)\}$ e interpretaciones $\{I(1), I(2)\}$, y las siguientes reglas:<br>
+<code>R1: M(1) V M(2) V M(3) ⇒ I(1) V I(2)</code><br>
+<code>R2: I(1) ⇒ ¬M(1) ∧ M(2)</code><br>
+<code>R3: I(2) ∧ ¬I(1) ⇒ M(1) ∧ M(3)</code><br><br>
+Asumiendo que observamos empíricamente que <b>$M(1)$ es verdadera</b>, ¿cuál será la interpretación deducida de la Base Lógica Reducida?
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+Se resuelve mediante inferencia lógica paso a paso (Modus Tollens / Ponens):<br><br>
+1. La evidencia nos dice categóricamente que <b>$M(1) = 1$</b>.<br>
+2. Evaluamos la regla <b>R2</b>: $I(1) \Rightarrow \neg M(1) \land M(2)$. Si $I(1)$ fuese verdadera, el consecuente obligaría a que $M(1)$ fuese falsa (por el $\neg M(1)$). Dado que sabemos que $M(1)$ es verdadera, esto genera una contradicción. Por lo tanto, el antecedente debe ser falso: <b>$I(1)$ es categóricamente Falsa (0)</b>.<br>
+3. Evaluamos la regla <b>R1</b>: $M(1) \lor M(2) \lor M(3) \Rightarrow I(1) \lor I(2)$. Como $M(1)=1$, el antecedente es verdadero (basta con que uno lo sea en la disyunción). Esto nos obliga a que el consecuente $(I(1) \lor I(2))$ sea obligatoriamente Verdadero.<br>
+4. Ya hemos deducido en el paso 2 que $I(1)$ es Falsa. Para que la disyunción sea verdadera, no queda más remedio que <b>$I(2)$ sea Verdadera (1)</b>.<br><br>
+El resultado final que sobrevive en la BLR es <b>$\neg I(1) \land I(2)$</b>.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 18. Teorema de Bayes sobre Regla Ineludible</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Con las reglas categóricas genéricas del dominio ($R1: M(1) \lor M(2) \lor M(3) \implies I(1) \lor I(2)$, $R2: I(1) \implies \neg M(1) \land M(2)$, y $R3$) y sabiendo que tenemos la <b>manifestación ineludible $M(1)$</b>, ¿cuál es el conjunto de interpretaciones más probables? Ten en cuenta las siguientes probabilidades:<br><br>
+- $p(\neg I(1) \land \neg I(2)) = 0.2$<br>
+- $p(\neg I(1) \land I(2)) = 0.08$<br>
+- $p(I(1) \land \neg I(2)) = 0.34$<br>
+- $p(I(1) \land I(2)) = 0.38$
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+Esta es la clásica <b>"Trampa F"</b> documentada en las recetas del método de resolución.<br><br>
+El Teorema de Bayes solo se emplea para desempatar la probabilidad cuando la Base Lógica Reducida (BLR) nos deja varias interpretaciones compatibles con la evidencia empírica.<br><br>
+En el Ejercicio 17 acabamos de demostrar rigurosamente que, dadas esas reglas, si $M(1)$ ocurre, la única interpretación lógicamente posible en la BLR es $\neg I(1) \land I(2)$. Todas las demás interpretaciones ($i_1$, $i_3$, $i_4$ si las hubiere) tienen probabilidad de existir <b>absolutamente cero</b> porque violan la Base de Reglas.<br><br>
+Al quedar <b>una sola interpretación lógica posible</b>, no hay que calcular nada. La respuesta ya está determinada por exclusión categórica: $\neg I(1) \land I(2)$.
+</div>
+</div>
+
+
+<h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 10: Computación Evolutiva</h3>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 19. Análisis Estructural de Árbol Genético</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Atendiendo al siguiente árbol que representa a un individuo de programación genética, ¿cuál de las siguientes afirmaciones es cierta?  
+<img src="../assets/images/arbol2.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;">
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+En la Programación Genética, las variables de entrada del problema ($X$, $Y$) siempre son nodos hoja o "terminales", al igual que las constantes numéricas; mientras que los operadores aritméticos (<code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">+</code>, <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">-</code>) ocupan los nodos internos o "no terminales".
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 20. Operadores Poblacionales en AG</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+En una población de 40 individuos, se aplica una tasa de cruce del 50%, una tasa de mutación del 10%, y se conserva un 20% mediante elitismo. ¿Cuántos individuos se someten a cada operador para formar la siguiente generación?
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+En un Algoritmo Genético, estos parámetros se aplican como fracciones directas sobre el tamaño total de la población $N$ en el modelo estándar que se explica en la asignatura:<br><br>
+- Población total ($N$): <b>40 individuos</b>.<br>
+- <b>Cruce:</b> 50% de la población $\Rightarrow 40 \times 0.50 = $ <b>20 individuos</b> se formarán cruzando padres.<br>
+- <b>Mutación:</b> 10% de la población $\Rightarrow 40 \times 0.10 = $ <b>4 individuos</b> sufrirán mutaciones aleatorias.<br>
+- <b>Elitismo:</b> 20% de la población $\Rightarrow 40 \times 0.20 = $ <b>8 individuos</b> (los de mayor aptitud) pasarán copiados exactamente igual a la siguiente generación para evitar perder las mejores soluciones.<br><br>
+Solución: <b>20 por cruce, 4 por mutación, 8 copiados sin cambios.</b>
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 21. Tasa de Mutación Inversa</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Supongamos que se ejecuta un algoritmo genético en una población de 1000 individuos.  <br>
+<br>
+Si en la segunda generación se obtienen 100 individuos mutados, ¿qué combinación de tasa de cruce y probabilidad de mutación es más probable que se haya utilizado?
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+La trampa principal en las preguntas teóricas de la asignatura (Receta H) es recordar que, a menos que se especifique lo contrario, <b>la tasa de mutación se aplica por individuo, no por gen</b>.<br><br>
+Por lo tanto, la probabilidad de mutación $P_m$ establece qué fracción del total de la población $N$ experimentará el operador. Podemos despejar la fórmula de forma trivial:<br>
+$$Individuos\_mutados = N \times P_m$$<br>
+$$100 = 1000 \times P_m$$<br>
+$$P_m = \frac{100}{1000} = 0.1$$<br><br>
+La tasa de mutación aplicada es de <b>0.1 (un 10%)</b>. La tasa de cruce que acompaña a esta opción es indiferente para el cálculo, la clave es localizar la opción con mutación a 0.1.
+</div>
+</div>
+
+</section>
 </main>
 <script>
     const sidebar = document.getElementById('sidebar');
@@ -1296,14 +1327,17 @@ Evaluemos la consistencia de las interpretaciones cuando $M(1)=1$:  <br>1. $\neg
     const qParam = urlParams.get('q');
     if (qParam) {
       const queryLower = qParam.toLowerCase();
-      const target = Array.from(document.querySelectorAll('.exam-title')).find(el => 
-        el.style.display !== 'none' && el.textContent.toLowerCase().includes(queryLower)
-      );
+      const target = Array.from(document.querySelectorAll('.exam-title')).find(el => {
+        return el.style.display !== 'none' && el.textContent.toLowerCase().includes(queryLower)
+      });
       if (target) {
-        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+        setTimeout(() => {
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            target.style.background = 'rgba(16, 185, 129, 0.2)';
+            setTimeout(() => target.style.background = 'transparent', 2000);
+        }, 500);
       }
     }
 </script>
-
 
 </body></html>
