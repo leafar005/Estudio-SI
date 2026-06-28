@@ -356,14 +356,14 @@
 
 /* Lista de pasos numerados */
 .steps-list { list-style: none; padding: 0; margin: 16px 0; counter-reset: steps; }
-.steps-list li {
+.steps-list > li {
   display: flex;
   gap: 14px;
   align-items: flex-start;
   margin-bottom: 14px;
   counter-increment: steps;
 }
-.steps-list li::before {
+.steps-list > li::before {
   content: counter(steps);
   flex-shrink: 0;
   width: 28px;
@@ -377,6 +377,39 @@
   font-weight: 800;
   font-size: 0.85rem;
   margin-top: 2px;
+}
+
+.step-body ul, .step-body ol {
+  list-style: none;
+  padding-left: 10px;
+  margin-top: 12px;
+  counter-reset: substeps;
+}
+
+.step-body ul > li, .step-body ol > li {
+  position: relative;
+  padding-left: 36px;
+  margin-bottom: 12px;
+  counter-increment: substeps;
+  line-height: 1.7;
+}
+
+.step-body ul > li::before, .step-body ol > li::before {
+  content: counter(substeps);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #93c5fd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.75rem;
 }
 .steps-list li .step-body { color: #d1d5db; line-height: 1.7; }
 .steps-list li .step-body strong { color: #fff; }
@@ -1392,10 +1425,9 @@
 <div class="def-card" style="--theme-color: var(--c-9);"><div class="def-term">Análisis de Componentes Principales</div><div class="def-body">
 <p>Detectar qué atributos caracterizan más los datos. Permite reducir la dimensionalidad eliminando entradas redundantes.</p>
 </div></div>
-<div class="box" style="border-top: 3px solid var(--c-9);">
-<h4>Extracción de características</h4>
+<div class="def-card" style="--theme-color: var(--c-9);"><div class="def-term">Extracción de características</div><div class="def-body">
 <p>Organizar datos para que entradas similares generen respuestas en zonas próximas del mapa, revelando relaciones ocultas.</p>
-</div>
+</div></div>
 <div class="def-card" style="--theme-color: var(--c-9);"><div class="def-term">Problema del Viajante (TSP)</div><div class="def-body">
 <p>SOM resuelve el TSP alterando su topología de malla 2D a una <strong>cadena unidimensional cerrada (anillo elástico)</strong>. Al entrenar, este anillo se retuerce y auto-organiza hasta pasar por todas las ciudades minimizando la ruta.</p>
 </div></div>
