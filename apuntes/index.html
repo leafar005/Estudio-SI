@@ -1652,8 +1652,12 @@
             const id = entry.target.id;
             const activeLink = document.querySelector(`.nav-h3[href="#${id}"], .nav-h2[href="#${id}"]`);
             document.querySelectorAll(".nav-h3, .nav-h2").forEach(l => l.classList.remove("active"));
-            if (activeLink && activeLink.classList.contains("nav-h3")) {
-              activeLink.classList.add("active");
+            if (activeLink) {
+              if (activeLink.classList.contains("nav-h3")) {
+                activeLink.classList.add("active");
+              }
+              // Autoscroll en el índice cuando bajas demasiado
+              activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
           }
         });

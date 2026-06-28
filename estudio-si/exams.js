@@ -808,7 +808,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_julio_2025",
-    "question": "Atendiendo al siguiente árbol que representa a un individuo de programación genética, ¿cuál de las siguientes afirmaciones es cierta?  \n<img src=\"../assets/images/arbol2.png\" style=\"max-width:100%; border-radius:8px; margin: 10px 0;\">",
+    "question": "Atendiendo al siguiente árbol que representa a un individuo de programación genética, ¿cuál de las siguientes afirmaciones es cierta?  \n<img src=\"../assets/images/arbol2.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "a) El conjunto de componentes terminales es sólo `[1, 14]`.",
       "b) Los componentes no terminales son $X$, $Y$, $+$, $-$.",
@@ -923,7 +923,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_2024",
-    "question": "En un problema en el que estamos utilizando búsqueda local, tenemos la siguiente función de coste, en la que estamos buscando el valor máximo:  \n<img src=\"../assets/images/busqlocal.png\" style=\"max-width:100%; border-radius:8px; margin: 10px 0;\">  \nSi estamos en el punto marcado, ¿qué deberíamos de hacer?",
+    "question": "En un problema en el que estamos utilizando búsqueda local, tenemos la siguiente función de coste, en la que estamos buscando el valor máximo:  \n<img src=\"../assets/images/busqlocal.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">  \nSi estamos en el punto marcado, ¿qué deberíamos de hacer?",
     "options": [
       "a) Retroceder a un punto anterior y probar un sentido diferente.",
       "b) Devolver el punto marcado.",
@@ -1868,7 +1868,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_2023",
-    "question": "Dado el siguiente grafo, en donde (i) el nodo inicial es $A$ y el nodo meta es $G$, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística $h$, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados:  \n<img src=\"../assets/images/grafo1.png\" style=\"max-width:100%; border-radius:8px; margin: 10px 0;\">  \nAplicando el algoritmo A* basado en <b>grafo</b>, en algún paso, los nodos de la frontera vendrán dispuestos según la siguiente configuración (considerar precedencia izq a drch, que el número entre paréntesis representa el correspondiente valor $f$, $f=h+g$, y que en caso de empate en valor $f$, la precedencia de expansión vendrá dada por el orden alfabético de los nodos correspondientes):",
+    "question": "Dado el siguiente grafo, en donde (i) el nodo inicial es $A$ y el nodo meta es $G$, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística $h$, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados:  \n<img src=\"../assets/images/grafo1.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">  \nAplicando el algoritmo A* basado en <b>grafo</b>, en algún paso, los nodos de la frontera vendrán dispuestos según la siguiente configuración (considerar precedencia izq a drch, que el número entre paréntesis representa el correspondiente valor $f$, $f=h+g$, y que en caso de empate en valor $f$, la precedencia de expansión vendrá dada por el orden alfabético de los nodos correspondientes):",
     "options": [
       "a) E(20), D(22)",
       "b) B(20), E(20), D(22)",
@@ -1961,7 +1961,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_2023",
-    "question": "En el contexto del algoritmo de escalada en búsqueda local, el siguiente árbol de búsqueda se corresponde con una situación de:  \n<img src=\"../assets/images/arbol1.png\" style=\"max-width:100%; border-radius:8px; margin: 10px 0;\">",
+    "question": "En el contexto del algoritmo de escalada en búsqueda local, el siguiente árbol de búsqueda se corresponde con una situación de:  \n<img src=\"../assets/images/arbol1.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "a) Mínimo local.",
       "b) Máximo local.",
@@ -2796,7 +2796,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_junio_2026",
-    "question": "Dado el siguiente grafo, donde el nodo inicial es A, el valor numérico de cada nodo indica el resultado de evaluar una función heurística $h$, y el valor numérico de cada arista indica el coste de transición entre estados... ¿Cuál sería el coste de la solución devuelta por el algoritmo $A^*$?  \n<img src=\"../assets/images/grafo2 1.png\" style=\"max-width:100%; border-radius:8px; margin: 10px 0;\">",
+    "question": "Dado el siguiente grafo, donde el nodo inicial es A, el valor numérico de cada nodo indica el resultado de evaluar una función heurística $h$, y el valor numérico de cada arista indica el coste de transición entre estados... ¿Cuál sería el coste de la solución devuelta por el algoritmo $A^*$?  \n<img src=\"../assets/images/grafo2 1.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "a) 22",
       "b) 26",
@@ -2813,7 +2813,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_junio_2026",
-    "question": "En el mismo grafo de la pregunta anterior, ¿cuál sería la solución de aplicar el algoritmo de búsqueda por profundidad iterativa, usando la precedencia lexicográfica como mecanismo de resolución de conflictos?  \n<img src=\"../assets/images/grafo2 1.png\" style=\"max-width:100%; border-radius:8px; margin: 10px 0;\">",
+    "question": "En el mismo grafo de la pregunta anterior, ¿cuál sería la solución de aplicar el algoritmo de búsqueda por profundidad iterativa, usando la precedencia lexicográfica como mecanismo de resolución de conflictos?  \n<img src=\"../assets/images/grafo2 1.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "a) $A \\to C \\to G \\to I$",
       "b) $A \\to B \\to E \\to H \\to I$",
@@ -2830,7 +2830,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_junio_2026",
-    "question": "En el mismo grafo, la heurística proporcionada...  \n<img src=\"../assets/images/grafo2 1.png\" style=\"max-width:100%; border-radius:8px; margin: 10px 0;\">",
+    "question": "En el mismo grafo, la heurística proporcionada...  \n<img src=\"../assets/images/grafo2 1.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "a) Es admisible y consistente",
       "b) No es admisible, pero sí consistente",
@@ -3825,7 +3825,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_mayo_2025",
-    "question": "Sobre el grafo del espacio de estados, ¿qué solución encuentra el algoritmo A*?  \n<img src=\"../assets/images/grafo3.png\" style=\"max-width:100%; border-radius:8px; margin: 10px 0;\">",
+    "question": "Sobre el grafo del espacio de estados, ¿qué solución encuentra el algoritmo A*?  \n<img src=\"../assets/images/grafo3.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "a) A → C → G → K",
       "b) A → C → F → J",
@@ -3843,7 +3843,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_mayo_2025",
-    "question": "Sobre el mismo espacio de estados, ¿qué solución encuentra el algoritmo de búsqueda en profundidad iterativa?  \n<img src=\"../assets/images/grafo3.png\" style=\"max-width:100%; border-radius:8px; margin: 10px 0;\">",
+    "question": "Sobre el mismo espacio de estados, ¿qué solución encuentra el algoritmo de búsqueda en profundidad iterativa?  \n<img src=\"../assets/images/grafo3.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "a) A → C → G → K",
       "b) A → C → F → J",
