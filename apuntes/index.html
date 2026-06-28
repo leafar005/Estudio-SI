@@ -555,6 +555,16 @@
 <div class="callout-key"><div class="callout-header">🔑 Diferencia Clave Metas vs Utilidad</div><div class="callout-body">
  El agente basado en <em>metas</em> planifica acciones para alcanzar objetivos, pero <strong>no cuantifica la bondad comparativa</strong> de los mismos. La asignación de un valor numérico de bienestar y la maximización de la preferencia corresponden exclusivamente al agente basado en <em>utilidad</em>.
 </div></div>
+<div class="callout-danger"><div class="callout-header">⚠️ Trampa de examen — Junio 2026, Pregunta 6</div><div class="callout-body">
+<p>Las cuatro arquitecturas básicas de agentes según Russell &amp; Norvig son: <strong>Reactivo simple, Basado en modelo (reactivo con estado), Basado en metas y Basado en utilidad</strong>.</p>
+<p>Las siguientes opciones son <strong>DISTRACTORES INVENTADOS</strong> que NO existen como categorías oficiales:</p>
+<ul>
+<li>❌ <strong>«Agente activo»</strong> — no es una categoría de agente inteligente.</li>
+<li>❌ <strong>«Reactivo con estado»</strong> (como nombre propio) — la categoría real es <em>Basado en modelo</em>.</li>
+<li>❌ <strong>«Basado en metas con estado»</strong> — no existe esta combinación como categoría.</li>
+</ul>
+<p>La respuesta correcta al examen fue: <em>Reactivo, reactivo basado en modelos, basado en metas y basado en utilidades</em>.</p>
+</div></div>
 <div class="grid-2">
 <div class="def-card" style="--theme-color: var(--c-1);"><div class="def-term">Estructura Arquitectura + Programa</div><div class="def-body">
 <p>Según Russell y Norvig, <strong>Agente = Arquitectura + Programa</strong>. La arquitectura representa la maquinaria que contiene el hardware base, proporciona una estructura de ejecución segura para el programa (algoritmo) y le brinda los sensores (percepción) y actuadores (ejecución de acciones).</p>
@@ -822,11 +832,18 @@
 <li>✅ <strong>Entornos dinámicos y parcialmente observables:</strong> El estado no se conoce por completo y el mundo cambia independientemente del agente. Se requiere ejecución entrelazada y mantener <strong>estados de creencia</strong> (POMDPs).</li>
 </ul>
 </div></div>
+<div class="callout-danger"><div class="callout-header">⚠️ Trampa de examen — Hill-Climbing NO genera árbol</div><div class="callout-body">
+<p><strong>Hill-Climbing NO construye ni guarda un árbol de búsqueda.</strong> Solo mantiene en memoria el nodo actual (estado actual). Su coste de espacio es constante $O(1)$. Si en un examen ves un árbol dibujado y te preguntan por el resultado de HC, recuerda que HC <em>nunca</em> guarda esa estructura: simplemente se mueve al mejor vecino en cada paso y olvida todo lo anterior.</p>
+</div></div>
+<div class="callout-danger"><div class="callout-header">⚠️ Trampa de examen — IDS y factor de ramificación b</div><div class="callout-body">
+<p>La propiedad de IDS que dice «los nodos hoja de la iteración actual superan en número a todos los nodos de todas las iteraciones previas combinadas» <strong>solo se cumple cuando b ≥ 2</strong>. Con b = 1, la suma anterior iguala al nodo actual.</p>
+</div></div>
+<div class="callout-danger"><div class="callout-header">⚠️ Trampa de examen — UCS vs BFS</div><div class="callout-body">
+<p><strong>Coste Uniforme (UCS)</strong> garantiza el <strong>mínimo coste total del camino</strong>. <strong>NO</strong> garantiza el mínimo número de pasos (eso lo hace BFS). <strong>NO</strong> requiere que todos los operadores tengan igual coste; de hecho, es la estrategia elegida precisamente cuando los costes de las acciones son heterogéneos.</p>
+</div></div>
 <div class="callout-danger"><div class="callout-header">⚠️ Trampa de examen</div><div class="callout-body">
 <ul>
 <li>📌 <strong>A* en Grafo:</strong> NO basta con que la heurística sea admisible; para garantizar optimalidad sin reabrir nodos en grafo, requiere que sea <strong>CONSISTENTE</strong>.</li>
-<li>⚡ <strong>Hill-Climbing:</strong> NO genera ni guarda un árbol de búsqueda; solo recuerda el nodo actual (estado e info). Su uso de memoria es constante $O(1)$.</li>
-<li>⚡ <strong>IDS (Prof. Iterativa):</strong> Utilízala cuando el espacio de estados es muy grande y NO conoces la profundidad $d$ de la solución.</li>
 <li>📌 <strong>Dominancia:</strong> Una heurística dominante $h_2 \ge h_1$ hará que A* expanda <strong>MENOS</strong> nodos, al cortar antes ramas improductivas.</li>
 <li>✅ <strong>Coste Uniforme (UCS):</strong> Garantiza la optimalidad estrictamente porque el primer <strong>nodo meta en ser expandido</strong> (no generado) es irrefutablemente el camino óptimo.</li>
 <li>✅ <strong>Completitud de A*:</strong> Exige que todos los pasos tengan un coste positivo mínimo ($\ge \epsilon &gt; 0$). Si existen costes nulos o negativos, el algoritmo puede iterar infinitamente en ciclos, perdiendo su completitud.</li>
@@ -964,11 +981,39 @@
 <div class="grid-2">
 <div class="def-card" style="--theme-color: var(--c-3);"><div class="def-term">Paradigma Declarativo</div><div class="def-body">
 <p>Define <em>qué</em> es el problema (Redes semánticas, Frames, Lógica). <br/><strong>Ventajas:</strong> Altamente escalable de forma modular. Facilita la reutilización del conocimiento, la estructuración visual de jerarquías y permite razonamiento por herencia o rastreo natural.</p>
+<p>📌 <strong>Clave:</strong> En el paradigma declarativo, incorporar nuevo conocimiento equivale a <strong>añadir nuevos axiomas</strong> a la base sin necesidad de recodificar ni modificar el conocimiento existente.</p>
 </div></div>
 <div class="def-card" style="--theme-color: var(--c-3);"><div class="def-term">Paradigma Procedimental</div><div class="def-body">
-<p>Define <em>cómo</em> solucionar el problema (Reglas de producción). <br/><strong>Ventajas:</strong> Muy explícito, modular, altamente explicable y trazable paso a paso (auditable en normativas). Su limitación es que se vuelve difícil de mantener y escalar si hay miles de reglas. Se evalúan mediante lógicas como <strong>IFALL</strong> (todas las cláusulas verdaderas), <strong>IFANY</strong> (primera cláusula verdadera) e <strong>IFSOME</strong> (todas las cláusulas verdaderas encontradas).</p>
+<p>Define <em>cómo</em> solucionar el problema (Reglas de producción). <br/><strong>Origen histórico:</strong> Surgió para <strong>capturar el conocimiento empírico y experiencial de los expertos humanos</strong>, quienes a menudo no saben explicar <em>por qué</em> hacen algo, pero sí <em>cómo</em> lo hacen paso a paso.</p>
+<p>Se evalúan mediante lógicas: <strong>IFALL</strong>, <strong>IFANY</strong> e <strong>IFSOME</strong> (ver def-cards abajo).</p>
 </div></div>
 </div>
+<div class="grid-3">
+<div class="def-card" style="--theme-color: var(--c-3);"><div class="def-term">IFALL (AND lógico)</div><div class="def-body">
+<p><strong>TODAS</strong> las cláusulas de la premisa deben ser verdaderas para que la regla se dispare. Equivale a un AND completo: si falla una sola, la regla no actúa.</p>
+</div></div>
+<div class="def-card" style="--theme-color: var(--c-3);"><div class="def-term">IFANY (OR cortocircuito)</div><div class="def-body">
+<p>Evalúa las cláusulas en orden y <strong>dispara la acción en la PRIMERA cláusula verdadera que encuentra</strong>. Se detiene ahí (cortocircuito): no evalúa el resto de la premisa.</p>
+</div></div>
+<div class="def-card" style="--theme-color: var(--c-3);"><div class="def-term">IFSOME (OR exhaustivo)</div><div class="def-body">
+<p>Evalúa <strong>TODAS</strong> las cláusulas de la premisa antes de actuar, y <strong>recoge TODAS las que son verdaderas</strong>. Solo después ejecuta la acción con el conjunto completo de coincidencias.</p>
+</div></div>
+</div>
+<div class="callout-danger"><div class="callout-header">⚠️ Trampa de examen — Junio 2026, Pregunta 5</div><div class="callout-body">
+<p>El examen de Junio 2026 (Q5) <strong>intercambia deliberadamente</strong> las definiciones de IFANY e IFSOME. La clave para no confundirlos:</p>
+<ul>
+<li>🔴 <strong>IFANY = para en la PRIMERA</strong> cláusula verdadera (OR de cortocircuito, evalúa y ejecuta de inmediato).</li>
+<li>🟢 <strong>IFSOME = evalúa TODO</strong> primero, recogiendo todas las cláusulas verdaderas antes de actuar (OR exhaustivo).</li>
+</ul>
+<p>La opción correcta del examen fue: <em>«IFSOME investiga toda la premisa, mientras que IFANY ejecuta la acción cuando encuentra una cláusula cierta»</em>.</p>
+</div></div>
+<div class="callout-key"><div class="callout-header">🔑 Resolución de Conflictos (criterio operativo)</div><div class="callout-body">
+<p>Cuando varias reglas son aplicables simultáneamente (conjunto conflicto), el motor de inferencias aplica criterios de desempate:</p>
+<ol class="steps-list">
+<li><div class="step-body"><strong>Novedad:</strong> Tiene prioridad la regla que fue activada más recientemente (el hecho más reciente en memoria activa activa primero la regla).</div></li>
+<li><div class="step-body"><strong>Prioridad por símbolo:</strong> En caso de empate de novedad, gana la regla cuya premisa contenga la letra o símbolo de mayor prioridad léxica o numérica definida en el sistema.</div></li>
+</ol>
+</div></div>
 <div class="def-card"><div class="def-term">Model Checking (Comprobación de modelos)</div><div class="def-body">
 <p>Es un algoritmo de inferencia proposicional. Evalúa la fórmula lógica en todos los <em>modelos posibles</em> (combinaciones de True/False para las variables) verificando que el entorno satisface las reglas. Si hay $n$ símbolos lógicos, hay $2^n$ modelos. Su complejidad temporal es <strong>$O(2^n)$</strong>, lo que lo hace totalmente <strong>inviable (co-NP-completo)</strong> para mundos con muchas variables.</p>
 </div></div>
@@ -1079,7 +1124,10 @@
 </div></div>
 <div class="callout-danger"><div class="callout-header">⚠️ Trampa de examen</div><div class="callout-body">
 <ul>
-<li>📌 <strong>BLE vs BLR:</strong> NO son lo mismo. La BLE contiene absolutamente todas las combinaciones teóricas $2^N$. La BLR es mucho menor, es la BLE tras podar con las reglas del conocimiento experto.</li>
+<li>📌 <strong>BLE vs BLR:</strong> NO son lo mismo. La BLE contiene absolutamente todas las combinaciones teóricas $2^{N+M}$ (filas = variables del sistema, columnas = cada posible combinación binaria de sus valores). La BLR es mucho menor: es la BLE tras eliminar todas las columnas que violan alguna regla del conocimiento experto.</li>
+<li>📌 <strong>Estructura de la tabla BLE/BLR:</strong> Cada <strong>fila</strong> representa una variable (manifestación o interpretación). Cada <strong>columna</strong> es una posible combinación de valores para todas las variables. Eliminar una columna = descartar ese escenario del mundo posible.</li>
+<li>📌 <strong>Modus Tollens en la BLR:</strong> Al aplicar las reglas del experto sobre la BLE, se usa implícitamente el <strong>Modus Tollens</strong>: si el consecuente de una regla es falso en una columna, el antecedente tampoco puede ser verdadero → esa columna se elimina. Herramienta fundamental para construir la BLR.</li>
+<li>📌 <strong>Bayes + tabla de manifestaciones:</strong> Para aplicar corrección bayesiana, el primer paso es <em>traducir la ocurrencia observada</em> (e.g., manifestación $m_2$ activa) a <strong>su columna correspondiente</strong> en la tabla de manifestaciones de la BLR, y leer de ella la distribución de interpretaciones posibles y sus probabilidades a posteriori.</li>
 <li>📌 <strong>Trampa Secuencialidad:</strong> Recuerda que la consistencia indica que la probabilidad sumada a su suceso contrario debe dar exactamente 1 (ej. $P(\text{lluvia}| \text{nubes}) + P(\text{no lluvia}| \text{nubes}) = 1$). No te confundan con $P(\text{nubes}| \text{lluvia})$.</li>
 </ul>
 </div></div>
@@ -1197,6 +1245,8 @@
 <h3 class="subtheme-title" id="precursores-de-la-ia-subsimbólica">Precursores de la IA Subsimbólica</h3>
 <ul>
 <li>📌 <strong>Neurona Biológica:</strong> Santiago Ramón y Cajal descubre la teoría sobre el funcionamiento de las neuronas, base fisiológica de la adaptación.</li>
+<li>📌 <strong>Regla de Hebb (1949):</strong> Donald Hebb formuló el principio de aprendizaje sináptico: <em>«Las neuronas que se activan juntas se refuerzan mutuamente»</em>. Si dos neuronas disparan simultáneamente, la conexión entre ellas se fortalece. Es la base biológica del aprendizaje asociativo en redes neuronales artificiales.</li>
+<li>📌 <strong>Mapas topográficos de la corteza:</strong> La corteza cerebral de los mamíferos organiza espacialmente sus neuronas en mapas funcionales. En la <strong>corteza visual</strong>, las neuronas se agrupan en columnas con selectividad similar ante orientación del estímulo. En la <strong>corteza somatosensorial</strong>, hay un mapa topográfico del cuerpo. Esta propiedad del cerebro inspiró directamente los Mapas Autoorganizativos de Kohonen (SOM).</li>
 </ul>
 <h4>Los 3 hitos fundacionales de 1943</h4>
 <ul>
@@ -1321,8 +1371,14 @@
 <p>Para evitar que la actualización de pesos dependa del orden de los patrones individuales, el descenso <strong>por lotes (Batch)</strong> acumula el error cuadrático de <em>todos</em> los ejemplos antes de ejecutar una única modificación maestra de los pesos.</p>
 </div></div>
 </div>
-<div class="callout-danger"><div class="callout-header">⚠️ Trampa de examen</div><div class="callout-body">
- La capa de entrada NO computa (solo almacena y distribuye valores); el conocimiento de la red reside intrínsecamente en los PESOS, NO en las funciones de transferencia.
+<div class="callout-danger"><div class="callout-header">⚠️ Trampa de examen — Examen 2023: Regla de propagación PRIMERO</div><div class="callout-body">
+<p>El examen 2023 preguntó qué ocurre <strong>primero</strong> al procesar una neurona artificial. La secuencia obligatoria es:</p>
+<ol class="steps-list">
+<li><div class="step-body"><strong>Regla de propagación:</strong> Calcula $net_j = \sum(x_i \cdot w_{ij}) + \theta_j$. Combina las señales de entrada ponderadas y el bias. Este es el paso que ocurre <strong>PRIMERO</strong>.</div></li>
+<li><div class="step-body"><strong>Función de transferencia / activación:</strong> Calcula $y_j = f(net_j)$. Transforma la entrada neta en la salida de la neurona. Este es el paso <strong>SEGUNDO</strong>.</div></li>
+</ol>
+<p>La trampa: confundir el orden o decir que la función de activación es lo primero. <strong>Siempre primero propaga, luego activa.</strong></p>
+<p>Además: la capa de entrada NO computa (solo almacena y distribuye valores); el conocimiento de la red reside en los <strong>PESOS</strong>, NO en las funciones de transferencia.</p>
 </div></div>
 </section><!-- TEMA 8 --><section class="theme-section">
 <h2 class="theme-title" id="t8-redes-feedforward-perceptrón-y-adaline" style="border-bottom-color: var(--c-8); color: var(--c-8);">➡️ 8. Redes Feedforward (Perceptrón y ADALINE)</h2>
@@ -1429,7 +1485,7 @@
 <p>Organizar datos para que entradas similares generen respuestas en zonas próximas del mapa, revelando relaciones ocultas.</p>
 </div></div>
 <div class="def-card" style="--theme-color: var(--c-9);"><div class="def-term">Problema del Viajante (TSP)</div><div class="def-body">
-<p>SOM resuelve el TSP alterando su topología de malla 2D a una <strong>cadena unidimensional cerrada (anillo elástico)</strong>. Al entrenar, este anillo se retuerce y auto-organiza hasta pasar por todas las ciudades minimizando la ruta.</p>
+<p>SOM resuelve el TSP alterando su topología de malla 2D a una <strong>cadena unidimensional cerrada (anillo elástico)</strong> con <strong>vecindad lineal</strong>. Cada neurona solo tiene dos vecinas: la anterior y la siguiente en la cadena. Al entrenar, este anillo con vecindad lineal se retuerce y auto-organiza hasta pasar por todas las ciudades minimizando la ruta total.</p>
 </div></div>
 </div>
 <div class="def-card"><div class="def-term" id="bmu-best-matching-unit">BMU (Best Matching Unit)</div><div class="def-body">
@@ -1474,6 +1530,11 @@
 </div>
 </div></div>
 </div>
+<div class="callout-danger"><div class="callout-header">⚠️ Trampa de examen — Patrones de tamaño variable (Examen 2023 Q23)</div><div class="callout-body">
+<p><strong>SOM, GNG, GCS y ADALINE</strong> requieren que todos los patrones de entrada tengan exactamente el <strong>mismo tamaño (dimensión fija)</strong>. Los pesos de cada neurona deben tener la misma dimensión que el vector de entrada.</p>
+<p>Si los patrones de entrada tienen <strong>tamaño variable</strong> (e.g., textos de longitud diferente, señales de duración distinta), <strong>ninguna de estas redes clásicas puede procesarlos directamente</strong>. La respuesta correcta en el examen 2023 Q23 fue: <em>«ninguna de las anteriores»</em>.</p>
+<p>Además: los pesos de cada neurona de la capa competitiva forman su <strong>vector prototipo</strong>: representan el centroide del grupo de patrones que esa neurona gana.</p>
+</div></div>
 <div class="callout-danger"><div class="callout-header">⚠️ Error frecuente</div><div class="callout-body">
  Las redes SOM de Kohonen se componen de <strong>UNA</strong> sola capa computacional de salida (la capa de entrada solo ejerce de buffer y no computa), y por operar con aprendizaje NO supervisado jamás disponen de salida deseada de ejemplo.
 </div></div>
@@ -1518,14 +1579,14 @@
 <h3 class="subtheme-title" id="programacion-genetica">Programación Genética y Modelo Poblacional</h3>
 <div class="grid-2">
 <div class="def-card"><div class="def-term">Programación Genética (GP)</div><div class="def-body">
-<p>A diferencia de los AG (que usan vectores/cadenas planas), la Programación Genética codifica las soluciones como <strong>árboles sintácticos</strong>, operando con el mismo motor evolutivo subyacente.</p>
+<p>La Programación Genética usa el <strong>mismo algoritmo evolutivo que los Algoritmos Genéticos</strong>. La única diferencia es la <strong>representación</strong>: en lugar de cadenas de bits o caracteres (AG), codifica las soluciones como <strong>árboles sintácticos</strong>.</p>
 <ul>
 <li>📌 <strong>Nodos Terminales (Hojas):</strong> Alojan los valores primitivos (variables de entrada y constantes numéricas).</li>
 <li>📌 <strong>Nodos No Terminales (Internos):</strong> Alojan los operadores funcionales, aritméticos o lógicos (ej. +, -, AND, IF).</li>
 </ul>
 </div></div>
 <div class="def-card"><div class="def-term">Modelo Steady-State (Estado Estacionario)</div><div class="def-body">
-<p>Frente al modelo <em>Generacional</em> (donde muere el 100% de la población), el <strong>Steady-State</strong> solo reemplaza 1 o 2 descendientes por ciclo. Requiere algoritmos de sustitución (ej. <strong>Crowding</strong> o sustitución de parecidos, que fuerza la inserción eliminando al más semejante, manteniendo una diversidad inmensa pero ralentizando la convergencia).</p>
+<p>Frente al modelo <em>Generacional</em> (donde muere el 100% de la población), el <strong>Steady-State</strong> solo reemplaza <strong>1 o 2 individuos por ciclo</strong>. Requiere algoritmos de sustitución (ej. <strong>Crowding</strong>: elimina al individuo más parecido al descendiente, <strong>manteniendo diversidad pero ralentizando la convergencia</strong>).</p>
 </div></div>
 </div>
 <h3 class="subtheme-title" id="hibridacion-vida-artificial-cuantica">Hibridación, Vida Artificial y Cuántica</h3>
@@ -1541,6 +1602,11 @@
 </div></div>
 </div>
 <h3 class="subtheme-title" id="criterios-de-seleccion">Criterios de Selección (Mecanismos)</h3>
+<div class="callout-danger"><div class="callout-header">⚠️ Trampa de examen — Lamarck NO en AGs estándar (Examen 2023 Q27)</div><div class="callout-body">
+<p>Los <strong>Algoritmos Genéticos estándar</strong> se fundamentan en las teorías de <strong>Mendel</strong> (herencia genética), <strong>Darwin</strong> (selección natural) y <strong>Wallace</strong> (selección independiente). <strong>NO incluyen a Lamarck.</strong></p>
+<p><strong>Lamarck</strong> (herencia de caracteres adquiridos) solo aparece en los <strong>Algoritmos Meméticos</strong>, donde el individuo mejora localmente y sobreescribe sus propios genes antes de reproducirse.</p>
+<p>Trampa clásica: incluir a Lamarck en la lista de bases teóricas de los AGs estándar. La respuesta correcta: Mendel + Darwin + Wallace.</p>
+</div></div>
 <div class="box">
 <table class="compare-table">
 <thead><tr><th style="color: var(--c-1);">Algoritmo</th><th style="color: var(--c-2);">Rol</th></tr></thead>
@@ -1548,11 +1614,16 @@
 <tr><td>Torneo</td><td>Exploración — reparte la búsqueda por todo el espacio</td></tr>
 <tr><td>Sobrante estocástico</td><td>Búsqueda intermedia entre torneo y ruleta</td></tr>
 <tr><td>Universal estocástica</td><td>Búsqueda intermedia</td></tr>
-<tr><td>Muestreo determinístico</td><td>—</td></tr>
+<tr><td>Muestreo determinístico</td><td>Intermedio (método estándar de la teoría oficial)</td></tr>
 <tr><td>Ruleta</td><td>Explotación — ejerce una fuerte presión selectiva sobre el mejor individuo</td></tr>
 </tbody>
 </table>
 </div>
+<div class="callout-key"><div class="callout-header">🔑 Elitismo y AG con tasa de cruce = 0</div><div class="callout-body">
+<p><strong>Elitismo:</strong> Consiste en mantener los <em>N</em> mejores individuos de la población actual directamente en la siguiente generación, sin que pasen por cruce ni mutación. Garantiza que la mejor solución encontrada nunca se pierde.</p>
+<p><strong>AG con tasa de cruce = 0:</strong> Si la probabilidad de cruce es 0, el AG funciona como una <strong>Estrategia Evolutiva</strong>: toda la variabilidad proviene exclusivamente de la mutación. Sin cruce no hay recombinación de material genético.</p>
+<p><strong>Función de Fitness:</strong> Determina cuáles son los mejores individuos de la población. Actúa de «juez»: evalúa la bondad de cada solución y establece la probabilidad de supervivencia y reproducción.</p>
+</div></div>
 <h3 class="subtheme-title" id="cuando-no-usar-ag">¿Cuándo NO usar un Algoritmo Genético?</h3>
 <div class="callout-danger"><div class="callout-header">⚠️ Trampa de examen</div><div class="callout-body">
 <ol class="steps-list">
@@ -1668,10 +1739,19 @@
   </script>
 <!--
 AUDITORÍA COMPLETADA
-Total preguntas auditadas: 519
-GAPs teóricos encontrados y resueltos: 25 (por tema: T1:2, T2:4, T3:1, T4:3, T5:1, T6:3, T7:3, T8:3, T9:3, T10:2)
-GAPs prácticos encontrados y resueltos: 1
-Preguntas PRÁCTICA VISUAL verificadas: 100% (todas documentadas en guia/index.html)
+Total preguntas auditadas: 519+
+GAPs teóricos encontrados y resueltos: 25 (sesión anterior) + 18 (sesión 2026-06-28)
+Cambios sesión 2026-06-28:
+  T1: +callout-danger Junio2026 Q6 (distractores agente activo/reactivo-con-estado/basado-en-metas-con-estado)
+  T2: +callout-danger HC no genera árbol, +callout-danger IDS b>=2, +callout-danger UCS vs BFS
+  T3: +def-cards IFALL/IFANY/IFSOME con definiciones exactas, +callout-danger Junio2026 Q5, +callout-key Resolución de Conflictos operativa, +nota declarativo=añadir axiomas, +nota procedimental=conocimiento empírico de expertos
+  T4: +Modus Tollens en BLR, +estructura filas/columnas de BLE/BLR, +paso Bayes+tabla de manifestaciones
+  T5: ya correcto
+  T6: +Regla de Hebb (1949) en precursores, +mapas topográficos corteza visual/somatosensorial
+  T7: +callout-danger secuencia propagación PRIMERO→activación SEGUNDO (Examen 2023)
+  T8: ya correcto
+  T9: +callout-danger patrones tamaño variable (Examen 2023 Q23 "ninguna de las anteriores"), +prototipos=pesos neuronas, +vecindad lineal en TSP
+  T10: +callout-danger Lamarck NO en AGs (Examen 2023 Q27), +callout-key elitismo/AG-cruce-0/fitness, +Muestreo determinístico en tabla, +Steady-State mejorado, +Programación Genética mejorada
 -->
 </body>
 </html>
