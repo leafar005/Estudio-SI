@@ -267,12 +267,7 @@
 
       text.innerHTML = formatJustification(q.justification);
       
-      const qText = (q.question + " " + (q.justification || "")).toLowerCase();
-      const temaUrl = getGuiaUrl(qText);
-      
-      if (temaUrl) {
-        text.innerHTML += `<div style="margin-top: 15px; text-align: center;"><a href="${temaUrl}" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(59, 130, 246, 0.1); color: #60a5fa; padding: 8px 16px; border-radius: 20px; font-weight: 600; text-decoration: none; border: 1px solid rgba(59, 130, 246, 0.3); font-size: 0.9rem;">📖 Ver resolución paso a paso</a></div>`;
-      }
+
       
       $('#btn-next').style.display = 'inline-block';
       const pctDone = ((state.currentIndex + 1) / state.questions.length) * 100;
@@ -356,12 +351,7 @@
 
     text.innerHTML = formatJustification(q.justification);
     
-    const qText = (q.question + " " + (q.justification || "")).toLowerCase();
-    const temaUrl = getGuiaUrl(qText);
-    
-    if (temaUrl) {
-      text.innerHTML += `<div style="margin-top: 15px; text-align: center;"><a href="${temaUrl}" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(59, 130, 246, 0.1); color: #60a5fa; padding: 8px 16px; border-radius: 20px; font-weight: 600; text-decoration: none; border: 1px solid rgba(59, 130, 246, 0.3); font-size: 0.9rem;">📖 Ver resolución paso a paso</a></div>`;
-    }
+
 
     if (window.MathJax && typeof MathJax.typesetPromise === 'function') { MathJax.typesetPromise([$('#question-card')]); }
 
@@ -641,11 +631,7 @@
           </div>
           <div class="review-detail-justification">
             ${formatJustification(q.justification)}
-            ${(function(){
-              const qt = (q.question + " " + (q.justification || "")).toLowerCase();
-              const tu = getGuiaUrl(qt);
-              return tu ? `<div style="margin-top: 10px;"><a href="${tu}" target="_blank" style="color: #60a5fa; font-weight: 600; text-decoration: none; font-size: 0.9rem;">📖 Ver resolución paso a paso</a></div>` : '';
-            })()}
+
           </div>
         </div>
       `;
@@ -706,30 +692,7 @@
     return `${m}:${s.toString().padStart(2, '0')}`;
   }
 
-  function getGuiaUrl(qText) {
-    let tu = null;
-    if (qText.includes('grafo1')) tu = '../guia/index.html?tema=2&q=grafo1';
-    else if (qText.includes('grafo2')) tu = '../guia/index.html?tema=2&q=grafo2';
-    else if (qText.includes('grafo3')) tu = '../guia/index.html?tema=2&q=grafo3';
-    else if (qText.includes('tabla') && (qText.includes('avara') || qText.includes('a*'))) tu = '../guia/index.html?tema=2&q=tabla';
-    else if (qText.includes('hill-climbing') || qText.includes('arbol1')) tu = '../guia/index.html?tema=2&q=hill-climbing';
-    else if (qText.includes('a*') || qText.includes('avara') || qText.includes('grafo')) tu = '../guia/index.html?tema=2';
-    
-    else if (qText.includes('m(1)=1')) tu = '../guia/index.html?tema=4&q=m(1)=1';
-    else if (qText.includes('m4')) tu = '../guia/index.html?tema=4&q=m4';
-    else if (qText.includes('5 variables')) tu = '../guia/index.html?tema=4&q=5 variables';
-    else if (qText.includes('m(1) dada')) tu = '../guia/index.html?tema=4&q=m(1) dada';
-    else if (qText.includes('tabla de manifestaciones') || qText.includes('p20-22')) tu = '../guia/index.html?tema=4&q=tabla de manifestaciones';
-    else if (qText.includes('bayes') || qText.includes('corrección')) tu = '../guia/index.html?tema=4&q=corrección';
-    else if (qText.includes('encadenamiento')) tu = '../guia/index.html?tema=4&q=encadenamiento';
-    else if (qText.includes('blr') || qText.includes('ble')) tu = '../guia/index.html?tema=4';
-    
-    else if (qText.includes('arbol2')) tu = '../guia/index.html?tema=10&q=arbol2';
-    else if (qText.includes('probabilidad en ag')) tu = '../guia/index.html?tema=10&q=probabilidad';
-    else if (qText.includes('análisis de árbol')) tu = '../guia/index.html?tema=10&q=análisis';
-    else if (qText.includes('genétic') || qText.includes('árbol gp')) tu = '../guia/index.html?tema=10';
-    return tu;
-  }
+
 
   // ========================
   // RESUME
