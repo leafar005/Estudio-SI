@@ -651,25 +651,30 @@
   <div class="recipe-step" style="margin-top:8px;">
     <div class="recipe-number">1</div>
     <div class="recipe-content">
-      <p style="color:#d1d5db;margin:0;"><strong>BLE:</strong> Construye todas las combinaciones posibles de Manifestaciones e Interpretaciones.</p>
-      <div class="formula-highlight">$|BLE| = 2^M \times 2^I = 2^{M+I}$</div>
+      <p style="color:#d1d5db;margin:0;"><strong>BLE (Base Lógica Expandida):</strong> Es tu tabla de verdad gigante. Construye todas las combinaciones binarias posibles (0 y 1) de Manifestaciones (M) e Interpretaciones (I).</p>
+      <div class="formula-highlight" style="font-size: 0.95rem;">$|BLE| = 2^M \times 2^I = 2^{M+I}$</div>
     </div>
   </div>
   <div class="recipe-step">
     <div class="recipe-number">2</div>
-    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Aplicar reglas:</strong> Elimina de la tabla las filas que violen las reglas lógicas del sistema.</p></div>
+    <div class="recipe-content">
+      <p style="color:#d1d5db;margin:0;"><strong>Aplicar reglas (Eliminar filas):</strong> Las reglas del dominio son las "leyes de la física" de tu sistema. Revisa la tabla gigante fila por fila y <strong>tacha por completo</strong> las filas que rompan estas leyes.</p>
+      <div class="tip-box" style="margin-top: 12px; padding: 12px; background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.3);">
+        <div class="tip-body" style="color: #93c5fd;"><strong>El Truco de Oro:</strong> Una regla <code>A → B</code> <strong>SÓLO</strong> se rompe (y por tanto tachas la fila) cuando la condición ocurre (<code>A=1</code>) pero la consecuencia no (<code>B=0</code>). En cualquier otro caso (por ejemplo, si <code>A=0</code>), la regla se salva automáticamente y no tachas nada.</div>
+      </div>
+    </div>
   </div>
   <div class="recipe-step">
     <div class="recipe-number">3</div>
-    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>BLR:</strong> El conjunto de filas supervivientes constituye tu Base Lógica Reducida.</p></div>
+    <div class="recipe-content">
+      <p style="color:#d1d5db;margin:0;"><strong>BLR (Base Lógica Reducida):</strong> El grupito de filas que ha sobrevivido a la criba anterior constituye tu BLR. Éstos representan los <strong>únicos escenarios lógicamente posibles</strong> que pueden darse en el mundo real sin generar contradicciones.</p>
+    </div>
   </div>
   <div class="recipe-step">
     <div class="recipe-number">4</div>
-    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Inferencia:</strong> Dada una evidencia empírica, filtra la BLR para ver qué interpretaciones quedan.</p></div>
-  </div>
-  <div class="trap-box">
-    <span class="trap-icon">⚠️</span>
-    <div class="trap-body"><code>A → B</code> solo se viola (es decir, eliminas la fila) cuando $A=1$ y $B=0$. En cualquier otro caso, la regla se cumple.</div>
+    <div class="recipe-content">
+      <p style="color:#d1d5db;margin:0;"><strong>Inferencia (Aplicar la evidencia):</strong> Cuando llega una evidencia empírica indiscutible (ej. <em>"Observamos que M1=1"</em>), vas a tu BLR y <strong>tachas las filas donde M1=0</strong>. Los valores de las Interpretaciones (I) de las filas que queden vivas al final serán tu deducción o diagnóstico lógico.</p>
+    </div>
   </div>
 </div>
 
@@ -679,27 +684,33 @@
     <div class="recipe-icon pink">📊</div>
     <div class="recipe-meta">
       <span class="recipe-label pink">Tipo F</span>
-      <span class="recipe-title-text">Calcular P(interpretación | manifestaciones observadas)</span>
+      <span class="recipe-title-text">Teorema de Bayes: P(Interpretación | Evidencia)</span>
     </div>
   </div>
   <div class="recipe-step" style="margin-top:8px;">
     <div class="recipe-number">1</div>
-    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Aplicabilidad:</strong> Comprueba qué interpretaciones son lógicamente posibles en la BLR antes de hacer cuentas.</p></div>
+    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Filtro previo (BLR):</strong> Antes de calcular nada, comprueba qué interpretaciones son lógicamente posibles en la Base de Reglas. Si solo queda viva UNA interpretación, <strong>su probabilidad es del 100%</strong> por descarte (no apliques Bayes).</p></div>
   </div>
   <div class="recipe-step">
     <div class="recipe-number">2</div>
     <div class="recipe-content">
-      <p style="color:#d1d5db;margin:0;"><strong>Verosimilitud:</strong> Calcula la probabilidad condicional de la evidencia para cada interpretación posible.</p>
-      <div class="formula-highlight">$P(m_{obs} \mid i_k) = \prod_j P(m_j \mid i_k)^{x_j} \cdot (1 - P(m_j \mid i_k))^{1-x_j}$</div>
+      <p style="color:#d1d5db;margin:0;"><strong>Verosimilitud $P(Evidencia \mid I_k)$:</strong> Multiplica las probabilidades de las manifestaciones que componen la evidencia empírica observada. Si la manifestación ocurre (1), usas su probabilidad dada en el enunciado. Si <strong>NO</strong> ocurre (0), usas su opuesto.</p>
+      <div class="formula-highlight" style="font-size: 0.95rem;">$P(Evidencia \mid I_k) = P(m_a \mid I_k) \times (1 - P(m_b \mid I_k)) \times \dots$</div>
     </div>
   </div>
   <div class="recipe-step">
     <div class="recipe-number">3</div>
-    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Conjunta:</strong> Multiplica la verosimilitud por la probabilidad a priori $P(i_k)$.</p></div>
+    <div class="recipe-content">
+      <p style="color:#d1d5db;margin:0;"><strong>Probabilidad Conjunta (Numerador):</strong> Multiplica el resultado de la verosimilitud (paso 2) por la probabilidad a priori de esa interpretación.</p>
+      <div class="formula-highlight" style="font-size: 0.95rem;">$Conjunta_k = P(Evidencia \mid I_k) \times P(I_k)$</div>
+    </div>
   </div>
   <div class="recipe-step">
     <div class="recipe-number">4</div>
-    <div class="recipe-content"><p style="color:#d1d5db;margin:0;"><strong>Normalizar:</strong> Divide entre la probabilidad total de la evidencia para obtener la probabilidad final.</p></div>
+    <div class="recipe-content">
+      <p style="color:#d1d5db;margin:0;"><strong>Normalizar (Probabilidad Final):</strong> Para hallar la probabilidad definitiva de una interpretación, simplemente divide su valor <em>Conjunto</em> entre la <strong>suma de los valores conjuntos</strong> de todas las interpretaciones que compiten.</p>
+      <div class="formula-highlight" style="font-size: 0.95rem;">$P(I_k \mid Evidencia) = \frac{Conjunta_k}{\sum Conjuntas_{totales}}$</div>
+    </div>
   </div>
 </div>
 
