@@ -10,14 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="../shared/shared.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script src="../shared/shared.js"></script>
 <script>
-    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
     MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']]
@@ -1449,11 +1443,44 @@ Dentro de los enfoques experimentales inspirados biológicamente, los autómatas
       sidebar.classList.toggle('hidden');
     });
 
+    // Lógica para modo aislado (solo mostrar un tema)
+    const urlParams = new URLSearchParams(window.location.search);
+    const tema = urlParams.get('tema');
+    if (tema) {
+      document.getElementById('clasificacion').style.display = 'none';
+      document.getElementById('metodo').style.display = 'none';
+      
+      const examenesSection = document.getElementById('examenes');
+      let currentTema = null;
+      let elementsToHide = [];
+      
+      for (const child of examenesSection.children) {
+        if (child.tagName === 'H3' && child.textContent.includes('Tema')) {
+          const match = child.textContent.match(/Tema (\d+)/);
+          if (match) {
+            currentTema = match[1];
+          }
+        }
+        
+        if (child.tagName !== 'H2' && currentTema && currentTema !== tema) {
+          elementsToHide.push(child);
+        }
+      }
+      
+      elementsToHide.forEach(el => el.style.display = 'none');
+      
+      const h2 = examenesSection.querySelector('h2');
+      if (h2) {
+        h2.innerHTML = `📝 RESOLUCIÓN PASO A PASO: TEMA ${tema} <a href="index.html" style="font-size: 0.9rem; margin-left: 15px; color: var(--accent); text-decoration: none;">Ver todo</a>`;
+      }
+    }
+
     // Generar índice automático
     const sidebarContent = document.getElementById('nav-links');
     sidebarContent.innerHTML = '';
     
     document.querySelectorAll('.theme-title, .subtheme-title, .exam-title').forEach((el, index) => {
+      if (el.style.display === 'none') return;
       if (!el.id) el.id = 'sec-' + index;
       
       const link = document.createElement('a');
@@ -1504,8 +1531,20 @@ Dentro de los enfoques experimentales inspirados biológicamente, los autómatas
     }, observerOptions);
 
     document.querySelectorAll('.theme-title, .subtheme-title, .exam-title').forEach(el => {
-      observer.observe(el);
+      if (el.style.display !== 'none') observer.observe(el);
     });
+
+    // Búsqueda del ejercicio concreto (q)
+    const qParam = urlParams.get('q');
+    if (qParam) {
+      const queryLower = qParam.toLowerCase();
+      const target = Array.from(document.querySelectorAll('.exam-title')).find(el => 
+        el.style.display !== 'none' && el.textContent.toLowerCase().includes(queryLower)
+      );
+      if (target) {
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+      }
+    }
 </script>
 </body>
 </html>

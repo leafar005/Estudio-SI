@@ -101,6 +101,16 @@
            const subIds = CATEGORIES.filter(c => c.part === 'subsimbolica').map(c => c.id);
            pool = pool.filter(q => subIds.includes(q.category));
         }
+      } else if (mode === 'fallos') {
+        const history = window.QuizStats?.data?.historyQuestions || [];
+        const falladasTextos = history.filter(q => !q.isCorrect).map(q => q.text);
+        pool = pool.filter(q => falladasTextos.includes(q.question));
+        if (pool.length === 0) {
+          alert('¡No tienes preguntas falladas registradas! Cargando aleatorias...');
+          pool = pool.slice(0, 20);
+        } else {
+          pool = pool.reverse().slice(0, 30); // Max 30 más recientes
+        }
       }
       
       if (sourceFilter === 'examen') {
@@ -256,6 +266,34 @@
       }
 
       text.innerHTML = formatJustification(q.justification);
+      
+      let qText1 = (q.question + " " + (q.justification || "")).toLowerCase();
+      let temaUrl1 = null;
+      if (qText1.includes('grafo1')) temaUrl1 = '../guia/index.html?tema=2&q=grafo1';
+      else if (qText1.includes('grafo2')) temaUrl1 = '../guia/index.html?tema=2&q=grafo2';
+      else if (qText1.includes('grafo3')) temaUrl1 = '../guia/index.html?tema=2&q=grafo3';
+      else if (qText1.includes('tabla') && (qText1.includes('avara') || qText1.includes('a*'))) temaUrl1 = '../guia/index.html?tema=2&q=tabla';
+      else if (qText1.includes('hill-climbing') || qText1.includes('arbol1')) temaUrl1 = '../guia/index.html?tema=2&q=hill-climbing';
+      else if (qText1.includes('a*') || qText1.includes('avara') || qText1.includes('grafo')) temaUrl1 = '../guia/index.html?tema=2';
+      
+      else if (qText1.includes('m(1)=1')) temaUrl1 = '../guia/index.html?tema=4&q=m(1)=1';
+      else if (qText1.includes('m4')) temaUrl1 = '../guia/index.html?tema=4&q=m4';
+      else if (qText1.includes('5 variables')) temaUrl1 = '../guia/index.html?tema=4&q=5 variables';
+      else if (qText1.includes('m(1) dada')) temaUrl1 = '../guia/index.html?tema=4&q=m(1) dada';
+      else if (qText1.includes('tabla de manifestaciones') || qText1.includes('p20-22')) temaUrl1 = '../guia/index.html?tema=4&q=tabla de manifestaciones';
+      else if (qText1.includes('bayes') || qText1.includes('corrección')) temaUrl1 = '../guia/index.html?tema=4&q=corrección';
+      else if (qText1.includes('encadenamiento')) temaUrl1 = '../guia/index.html?tema=4&q=encadenamiento';
+      else if (qText1.includes('blr') || qText1.includes('ble')) temaUrl1 = '../guia/index.html?tema=4';
+      
+      else if (qText1.includes('arbol2')) temaUrl1 = '../guia/index.html?tema=10&q=arbol2';
+      else if (qText1.includes('probabilidad en ag')) temaUrl1 = '../guia/index.html?tema=10&q=probabilidad';
+      else if (qText1.includes('análisis de árbol')) temaUrl1 = '../guia/index.html?tema=10&q=análisis';
+      else if (qText1.includes('genétic') || qText1.includes('árbol gp')) temaUrl1 = '../guia/index.html?tema=10';
+      
+      if (temaUrl1) {
+        text.innerHTML += `<div style="margin-top: 15px; text-align: center;"><a href="${temaUrl1}" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(59, 130, 246, 0.1); color: #60a5fa; padding: 8px 16px; border-radius: 20px; font-weight: 600; text-decoration: none; border: 1px solid rgba(59, 130, 246, 0.3); font-size: 0.9rem;">📖 Ver resolución paso a paso</a></div>`;
+      }
+      
       $('#btn-next').style.display = 'inline-block';
       const pctDone = ((state.currentIndex + 1) / state.questions.length) * 100;
       $('#progress-bar').style.width = `${pctDone}%`;
@@ -337,6 +375,34 @@
     }
 
     text.innerHTML = formatJustification(q.justification);
+    
+    let qText2 = (q.question + " " + (q.justification || "")).toLowerCase();
+    let temaUrl2 = null;
+    if (qText2.includes('grafo1')) temaUrl2 = '../guia/index.html?tema=2&q=grafo1';
+    else if (qText2.includes('grafo2')) temaUrl2 = '../guia/index.html?tema=2&q=grafo2';
+    else if (qText2.includes('grafo3')) temaUrl2 = '../guia/index.html?tema=2&q=grafo3';
+    else if (qText2.includes('tabla') && (qText2.includes('avara') || qText2.includes('a*'))) temaUrl2 = '../guia/index.html?tema=2&q=tabla';
+    else if (qText2.includes('hill-climbing') || qText2.includes('arbol1')) temaUrl2 = '../guia/index.html?tema=2&q=hill-climbing';
+    else if (qText2.includes('a*') || qText2.includes('avara') || qText2.includes('grafo')) temaUrl2 = '../guia/index.html?tema=2';
+    
+    else if (qText2.includes('m(1)=1')) temaUrl2 = '../guia/index.html?tema=4&q=m(1)=1';
+    else if (qText2.includes('m4')) temaUrl2 = '../guia/index.html?tema=4&q=m4';
+    else if (qText2.includes('5 variables')) temaUrl2 = '../guia/index.html?tema=4&q=5 variables';
+    else if (qText2.includes('m(1) dada')) temaUrl2 = '../guia/index.html?tema=4&q=m(1) dada';
+    else if (qText2.includes('tabla de manifestaciones') || qText2.includes('p20-22')) temaUrl2 = '../guia/index.html?tema=4&q=tabla de manifestaciones';
+    else if (qText2.includes('bayes') || qText2.includes('corrección')) temaUrl2 = '../guia/index.html?tema=4&q=corrección';
+    else if (qText2.includes('encadenamiento')) temaUrl2 = '../guia/index.html?tema=4&q=encadenamiento';
+    else if (qText2.includes('blr') || qText2.includes('ble')) temaUrl2 = '../guia/index.html?tema=4';
+    
+    else if (qText2.includes('arbol2')) temaUrl2 = '../guia/index.html?tema=10&q=arbol2';
+    else if (qText2.includes('probabilidad en ag')) temaUrl2 = '../guia/index.html?tema=10&q=probabilidad';
+    else if (qText2.includes('análisis de árbol')) temaUrl2 = '../guia/index.html?tema=10&q=análisis';
+    else if (qText2.includes('genétic') || qText2.includes('árbol gp')) temaUrl2 = '../guia/index.html?tema=10';
+    
+    if (temaUrl2) {
+      text.innerHTML += `<div style="margin-top: 15px; text-align: center;"><a href="${temaUrl2}" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(59, 130, 246, 0.1); color: #60a5fa; padding: 8px 16px; border-radius: 20px; font-weight: 600; text-decoration: none; border: 1px solid rgba(59, 130, 246, 0.3); font-size: 0.9rem;">📖 Ver resolución paso a paso</a></div>`;
+    }
+
     if (window.MathJax && typeof MathJax.typesetPromise === 'function') { MathJax.typesetPromise([$('#question-card')]); }
 
     $('#btn-next').style.display = 'inline-block';
@@ -354,8 +420,7 @@
     let formatted = text
       .replace(/FALSO/g, '<strong style="color:#ef4444">FALSO</strong>')
       .replace(/VERDADERO/g, '<strong style="color:#10b981">VERDADERO</strong>')
-      .replace(/(SGBD|SQL|SXBD|DDL|DML|DCL|ACID|WAL|MVCC|2PL|CBO|RBO|IOT|OLTP|OLAP|DW|FK|PK|B-Tree|B\\+|COMMIT|ROLLBACK|UNDO|REDO|CHECKPOINT|DEFERRABLE|NOT NULL|UNIQUE|PRIMARY KEY|FOREIGN KEY|CHECK|CASCADE|RESTRICT|NO ACTION|SET NULL|MATCH SIMPLE|MATCH PARTIAL|MATCH FULL|GRANT|REVOKE|PUBLIC|INFORMATION_SCHEMA|BEFORE|AFTER|INSTEAD OF|FOR EACH ROW|FOR EACH STATEMENT|ORA-04091|READ COMMITTED|SERIALIZABLE|READ UNCOMMITTED|REPEATABLE READ)/g, '<strong>$1</strong>')
-      .replace(/(Oracle|PostgreSQL)/g, '<strong>$1</strong>');
+      .replace(/(A\*|BLE|BLR|SOM|BMU|STRIPS|PDDL|RNA|MLP|DFS|BFS|LIFO|FIFO|Heurística|Metaconocimiento|SBC|Admisible|Monótona|Crossover|Mutación|Fitness|Perceptrón|Feedforward|Backpropagation|Algoritmo Genético)/g, '<strong>$1</strong>');
 
     if (window.marked) {
       return marked.parse(formatted);
@@ -614,7 +679,35 @@
             <span class="review-detail-label correct">Correcta:</span>
             <div class="review-detail-value">${letters[correctIndex]}. ${window.marked ? marked.parse(ans.displayOptions[correctIndex].text) : ans.displayOptions[correctIndex].text}</div>
           </div>
-          <div class="review-detail-justification">${formatJustification(q.justification)}</div>
+          <div class="review-detail-justification">
+            ${formatJustification(q.justification)}
+            ${(function(){
+              let qt = (q.question + " " + (q.justification || "")).toLowerCase();
+              let tu = null;
+              if (qt.includes('grafo1')) tu = '../guia/index.html?tema=2&q=grafo1';
+              else if (qt.includes('grafo2')) tu = '../guia/index.html?tema=2&q=grafo2';
+              else if (qt.includes('grafo3')) tu = '../guia/index.html?tema=2&q=grafo3';
+              else if (qt.includes('tabla') && (qt.includes('avara') || qt.includes('a*'))) tu = '../guia/index.html?tema=2&q=tabla';
+              else if (qt.includes('hill-climbing') || qt.includes('arbol1')) tu = '../guia/index.html?tema=2&q=hill-climbing';
+              else if (qt.includes('a*') || qt.includes('avara') || qt.includes('grafo')) tu = '../guia/index.html?tema=2';
+              
+              else if (qt.includes('m(1)=1')) tu = '../guia/index.html?tema=4&q=m(1)=1';
+              else if (qt.includes('m4')) tu = '../guia/index.html?tema=4&q=m4';
+              else if (qt.includes('5 variables')) tu = '../guia/index.html?tema=4&q=5 variables';
+              else if (qt.includes('m(1) dada')) tu = '../guia/index.html?tema=4&q=m(1) dada';
+              else if (qt.includes('tabla de manifestaciones') || qt.includes('p20-22')) tu = '../guia/index.html?tema=4&q=tabla de manifestaciones';
+              else if (qt.includes('bayes') || qt.includes('corrección')) tu = '../guia/index.html?tema=4&q=corrección';
+              else if (qt.includes('encadenamiento')) tu = '../guia/index.html?tema=4&q=encadenamiento';
+              else if (qt.includes('blr') || qt.includes('ble')) tu = '../guia/index.html?tema=4';
+              
+              else if (qt.includes('arbol2')) tu = '../guia/index.html?tema=10&q=arbol2';
+              else if (qt.includes('probabilidad en ag')) tu = '../guia/index.html?tema=10&q=probabilidad';
+              else if (qt.includes('análisis de árbol')) tu = '../guia/index.html?tema=10&q=análisis';
+              else if (qt.includes('genétic') || qt.includes('árbol gp')) tu = '../guia/index.html?tema=10';
+              
+              return tu ? `<div style="margin-top: 10px;"><a href="${tu}" target="_blank" style="color: #60a5fa; font-weight: 600; text-decoration: none; font-size: 0.9rem;">📖 Ver resolución paso a paso</a></div>` : '';
+            })()}
+          </div>
         </div>
       `;
 

@@ -1,5 +1,5 @@
 /**
- * Estadísticas App — Estudio BDA
+ * Estadísticas App — Estudio SI
  */
 (function() {
   'use strict';
@@ -23,6 +23,16 @@
     renderLogros();
     bindTabs();
     bindReset();
+    
+    document.getElementById('btn-repasar-fallos').addEventListener('click', () => {
+      const history = window.QuizStats?.data?.historyQuestions || [];
+      const hasFallos = history.some(q => !q.isCorrect);
+      if (!hasFallos) {
+        alert('¡Enhorabuena! No tienes ninguna pregunta fallada en tu historial.');
+        return;
+      }
+      window.location.href = '../estudio-si/index.html?mode=fallos';
+    });
   }
 
   function renderTests() {
