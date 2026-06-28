@@ -134,6 +134,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
+  const topicColorsRGB = {
+    'introduccion': '59, 130, 246',
+    'busqueda': '139, 92, 246',
+    'representacion': '16, 185, 129',
+    'razonamiento': '239, 68, 68',
+    'planificacion': '245, 158, 11',
+    'conexionistas': '6, 182, 212',
+    'neurona': '236, 72, 153',
+    'feedforward': '20, 184, 166',
+    'autoorganizacion': '249, 115, 22',
+    'evolutiva': '139, 92, 246'
+  };
+
   function parseMarkdown(text) {
     if (!text) return '';
     return window.marked ? marked.parse(text) : text;
@@ -150,6 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const cName = card.category || "";
       const displayTopic = tName ? 'block' : 'none';
       const displayCat = cName ? 'block' : 'none';
+      
+      const topicRgb = card.topic ? (topicColorsRGB[card.topic] || '99, 102, 241') : '99, 102, 241';
+      cardEl.style.setProperty('--topic-color-rgb', topicRgb);
 
       cardEl.innerHTML = `
         <div class="flashcard-inner">

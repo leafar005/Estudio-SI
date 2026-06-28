@@ -513,8 +513,8 @@
 </ul>
 </div></div>
 </div>
-<div class="box">
 <h3 class="subtheme-title" id="ia-vs-programa-convencional">Programa de IA vs Programa Convencional</h3>
+<div class="box">
 <table class="compare-table">
 <thead><tr><th style="color: var(--c-1);">Programa de IA</th><th style="color: var(--c-2);">Programa Convencional</th></tr></thead>
 <tbody>
@@ -579,8 +579,8 @@
 </ul>
 </div></div>
 </div>
-<div class="box">
 <h3 class="subtheme-title" id="tipos-de-entornos-ejemplos">Tipos de Entornos y Ejemplos</h3>
+<div class="box">
 <table class="compare-table">
 <thead><tr><th>Problema</th><th>Determinismo</th><th>Observabilidad</th><th>Nº agentes</th></tr></thead>
 <tbody>
@@ -594,8 +594,7 @@
 </div>
 <h3 class="subtheme-title" id="test-de-turing-y-regimen-lovelace">El Test de Turing y el Régimen de Lovelace</h3>
 <div class="grid-2">
-<div class="box" style="border-top: 3px solid var(--c-1);">
-<h4>El Régimen de Lovelace y su refutación</h4>
+<div class="def-card" style="--theme-color: var(--c-1);"><div class="def-term">El Régimen de Lovelace y su refutación</div><div class="def-body">
 <p>Ada Lovelace argumentaba que las máquinas solo ejecutan lo que se les programa, sin iniciativa ni creatividad propias. El gran objetivo de la IA es <em>superarlo</em>: lograr que la máquina origine ideas, no solo repita código.</p>
 <p><strong>Refutación histórica:</strong></p>
 <ul>
@@ -603,7 +602,7 @@
 <li>📌 <em>"General Problem Solver"</em> (1963) usó análisis medios-fines.</li>
 <li>📌 <em>"Juego de las Damas"</em> (Samuel, 1959) aprendió hasta vencer a su creador.</li>
 </ul>
-</div>
+</div></div>
 <div class="def-card" style="--theme-color: var(--c-1);"><div class="def-term">El Test de Turing (1950)</div><div class="def-body">
 <p>Comportamiento inteligente = capacidad de engañar a un humano haciéndole creer que habla con otro humano. Ejemplo clásico: ELIZA/DOCTOR (Weizenbaum), programa conversacional que llegó a confundir a un vicepresidente de "Bolt Beranek and Newman".</p>
 <p><strong>Dicotomía Ciencia vs Ingeniería:</strong></p>
@@ -737,6 +736,7 @@
 <ul>
 <li>⚡ <strong>Uso ideal:</strong> Cuando se sabe que la solución está a poca profundidad y los costes son unitarios.</li>
 <li>❌ <strong>Limitación:</strong> El consumo de memoria es extremo, ya que debe mantener todo el nivel del árbol en memoria.</li>
+<li>✅ <strong>Completitud y Optimalidad:</strong> Es <strong>Completa</strong> si el factor de ramificación ($b$) es finito (explora nivel por nivel). Es <strong>Óptima</strong> SÓLO si todas las acciones tienen un coste constante/idéntico.</li>
 </ul>
 </div></div>
 <div class="def-card"><div class="def-term">Estrategia UCS (Coste Uniforme)</div><div class="def-body">
@@ -744,6 +744,7 @@
 <ul>
 <li>⚡ <strong>Uso ideal:</strong> Cuando los pasos/acciones tienen diferentes costes entre sí.</li>
 <li>❌ <strong>Limitación:</strong> Puede volverse muy lento si el árbol tiene muchas ramas con costes muy bajos (se estanca explorando caminos pequeños).</li>
+<li>✅ <strong>Completitud y Optimalidad:</strong> Es <strong>Completa</strong> asumiendo costes de paso mayores o iguales a una constante positiva ($\ge \epsilon > 0$). Es siempre <strong>Óptima</strong>, garantizando encontrar la ruta de menor coste real.</li>
 </ul>
 </div></div>
 <div class="def-card"><div class="def-term">Estrategia DFS (Profundidad)</div><div class="def-body">
@@ -751,6 +752,14 @@
 <ul>
 <li>⚡ <strong>Uso ideal:</strong> Cuando hay restricciones severas de memoria espacial y se sabe que la profundidad es finita.</li>
 <li>❌ <strong>Limitación:</strong> No garantiza encontrar la solución óptima, puede atascarse en la primera rama infinita.</li>
+<li>✅ <strong>Completitud y Optimalidad:</strong> <strong>No es Completa</strong> en espacios infinitos (puede caer por ramas sin fondo sin llegar a la meta). <strong>No es Óptima</strong>, ya que suele encontrar caminos subóptimos primero por descender hasta el fondo.</li>
+</ul>
+</div></div>
+<div class="def-card"><div class="def-term">Estrategia DLS (Profundidad Limitada)</div><div class="def-body">
+<p><strong>Mecanismo:</strong> Variante de la búsqueda en profundidad a la que se le impone un límite máximo de exploración $l$ para evitar descensos infinitos.</p>
+<ul>
+<li>⚡ <strong>Uso ideal:</strong> Cuando el espacio de búsqueda es infinito o inmenso y se conoce la cota superior para la profundidad de la solución.</li>
+<li>✅ <strong>Completitud y Optimalidad:</strong> <strong>No es Completa</strong> (falla estrepitosamente si la meta se encuentra a una profundidad mayor que el límite establecido $d > l$). <strong>No es Óptima</strong>.</li>
 </ul>
 </div></div>
 <div class="def-card"><div class="def-term">Estrategia IDS (Profundización Iterativa)</div><div class="def-body">
@@ -759,6 +768,7 @@
 <li>⚡ <strong>Uso ideal:</strong> Espacios de búsqueda enormes donde la profundidad de la solución 'd' es DESCONOCIDA (si se conoce, se usaría directamente DLS).</li>
 <li>✅ <strong>Ventaja:</strong> Combina el bajísimo coste de memoria de DFS con la garantía de optimalidad de BFS.</li>
 <li>❌ <strong>Limitación:</strong> Recalcula niveles superiores en cada iteración (aunque matemáticamente no afecta la complejidad asintótica).</li>
+<li>✅ <strong>Completitud y Optimalidad:</strong> Combina lo mejor de ambos algoritmos ciegos: es <strong>Completa</strong> y <strong>Óptima</strong> (bajo la misma condición de costes idénticos que BFS).</li>
 </ul>
 </div></div>
 </div>
@@ -769,11 +779,11 @@
 <div class="grid-2">
 <div class="def-card" style="--theme-color: var(--c-2);"><div class="def-term">Búsqueda Avara</div><div class="def-body">
 <p><strong>Fórmula:</strong> $f(n) = h(n)$</p>
-<p>Expande siempre el nodo que parece estar más cerca del objetivo según la heurística. <br/><strong>Por qué NO es óptima:</strong> Ignora el coste del camino ya recorrido ($g(n)$). Puede seleccionar un atajo aparente que acabe costando muchísimo más, o incluso caer en bucles cerrados si se hace en árbol.</p>
+<p>Expande siempre el nodo que parece estar más cerca del objetivo según la heurística. <br/><strong>Por qué NO es óptima:</strong> Ignora el coste del camino ya recorrido ($g(n)$). Puede seleccionar un atajo aparente que acabe costando muchísimo más. <br/>✅ <strong>Completitud y Optimalidad:</strong> <strong>No es Completa</strong> (puede caer en bucles o máximos locales ignorando caminos viables). <strong>No es Óptima</strong>.</p>
 </div></div>
 <div class="def-card" style="--theme-color: var(--c-2);"><div class="def-term">Búsqueda A*</div><div class="def-body">
 <p><strong>Fórmula:</strong> $f(n) = g(n) + h(n)$</p>
-<p>Combina el coste real acumulado ($g$) con la estimación al final ($h$). Es <strong>óptima y completa</strong> si la heurística no sobreestima (admisible) y se maneja correctamente.</p>
+<p>Combina el coste real acumulado ($g$) con la estimación al final ($h$). <br/>✅ <strong>Completitud y Optimalidad:</strong> Es <strong>Completa</strong> siempre que existan soluciones y los costes sean positivos. Es <strong>Óptima</strong> de manera matemáticamente garantizada siempre que la heurística empleada sea <strong>admisible</strong> (en árbol) o <strong>consistente</strong> (en grafos).</p>
 </div></div>
 </div>
 <div class="grid-2">
@@ -807,8 +817,7 @@
 </div></div>
 <h3 class="subtheme-title" id="búsqueda-local">Búsqueda Local</h3>
 <div class="grid-2">
-<div class="box">
-<h4>Funcionamiento del Ascenso de Colinas</h4>
+<div class="def-card" style="--theme-color: var(--c-2);"><div class="def-term">Funcionamiento del Ascenso de Colinas</div><div class="def-body">
 <p>Es un algoritmo de búsqueda local muy sencillo e intuitivo:</p>
 <ol class="steps-list">
 <li><div class="step-body">Se parte de un estado inicial aleatorio o dado.</div></li>
@@ -816,7 +825,7 @@
 <li><div class="step-body">Si este vecino tiene mejor puntuación (valor) que el estado actual, el agente se mueve hacia él.</div></li>
 <li><div class="step-body">El proceso se repite hasta llegar a un punto donde <strong>ningún vecino mejora</strong> la situación actual. En ese momento, el algoritmo se detiene y devuelve ese nodo.</div></li>
 </ol>
-</div>
+</div></div>
 <div class="def-card" style="--theme-color: var(--c-2);"><div class="def-term">Problemas del Ascenso de Colinas</div><div class="def-body">
 <ul>
 <li>✅ <strong>Máximos Locales:</strong> Picos aislados que son mejores que sus vecinos directos, pero peores que el máximo global. El algoritmo se queda estancado allí.</li>
@@ -1241,8 +1250,8 @@
 <p>Potencia la investigación en IA y neurociencias cruzando modelos fisiológicos del cerebro y computacionales.</p>
 </div></div>
 </div>
-<div class="box">
 <h3 class="subtheme-title" id="precursores-de-la-ia-subsimbólica">Precursores de la IA Subsimbólica</h3>
+<div class="box">
 <ul>
 <li>📌 <strong>Neurona Biológica:</strong> Santiago Ramón y Cajal descubre la teoría sobre el funcionamiento de las neuronas, base fisiológica de la adaptación.</li>
 <li>📌 <strong>Regla de Hebb (1949):</strong> Donald Hebb formuló el principio de aprendizaje sináptico: <em>«Las neuronas que se activan juntas se refuerzan mutuamente»</em>. Si dos neuronas disparan simultáneamente, la conexión entre ellas se fortalece. Es la base biológica del aprendizaje asociativo en redes neuronales artificiales.</li>
@@ -1401,6 +1410,15 @@
 <div class="def-card"><div class="def-term" id="limitación-del-perceptrón-simple">Limitación del Perceptrón simple</div><div class="def-body">
 <p>Minsky y Papert (1969) demostraron que los perceptrones monocapa son incapaces de resolver el problema <strong>XOR</strong>, ya que las regiones no son <strong>linealmente separables</strong> (no pueden ser divididas usando una única recta/hiperplano). Provocó el "Invierno de la IA".</p>
 </div></div>
+<div class="def-card" style="--theme-color: var(--c-8);"><div class="def-term" id="perceptron-multicapa-mlp">Perceptrón Multicapa (MLP) y su arquitectura</div><div class="def-body">
+<p>Para solucionar el declive del perceptrón simple ante problemas no linealmente separables (XOR), se añadieron capas ocultas creando el Perceptrón Multicapa. Su arquitectura consta de:</p>
+<ul>
+<li>📌 <strong>Capa de entrada:</strong> Solo recibe y almacena los datos, pero NO computa (no procesa información).</li>
+<li>📌 <strong>Capas ocultas:</strong> Poseen funciones de transferencia obligatoriamente no lineales (sigmoide, tanh). <em>Regla de oro:</em> El número de neuronas ocultas <strong>depende estrictamente del problema a resolver</strong> (no lo elige el usuario libremente ni se empareja al de entrada).</li>
+<li>📌 <strong>Capa de salida:</strong> Función dictada por el problema (ej. para clasificación binaria se emplea estrictamente 1 sola neurona).</li>
+</ul>
+<p>Con suficiente complejidad (capas/neuronas suficientes), el MLP ostenta la capacidad matemática de separar todos los patrones de entrenamiento con un <strong>100% de acierto</strong> en cualquier caso imaginable.</p>
+</div></div>
 <div class="grid-3">
 <div class="def-card"><div class="def-term" id="entrenamiento">Entrenamiento</div><div class="def-body">
 <p>Subconjunto de patrones empleado de manera activa por el algoritmo (como retropropagación) para guiar la continua <strong>actualización de pesos</strong> de la red.</p>
@@ -1447,16 +1465,13 @@
 <p>A diferencia del modelo supervisado, en este modelo <strong>no existe "salida deseada"</strong> ni un jefe que dicte el resultado. La red explora por sí sola la información buscando redundancia para agrupar (clustering) los datos en patrones o centroides usando simplemente distancias para auto-representar el espacio de las entradas.</p>
 </div></div>
 <div class="grid-2">
-<div class="box">
-<h3 class="subtheme-title" id="proceso-de-adaptacion-de-pesos">Proceso de adaptación de pesos (Competición)</h3>
+<div class="def-card" style="--theme-color: var(--c-9);"><div class="def-term" id="proceso-de-adaptacion-de-pesos">Proceso de adaptación de pesos (Competición)</div><div class="def-body">
 <p>Las neuronas compiten para ser activadas. Sólo gana una, la cual acerca sus pesos y se adapta al patrón de entrada local, actuando como el prototipo del grupo.</p>
-</div>
-<div class="box">
-<h3 class="subtheme-title" id="geometria-topologica-de-elementos-de-proceso">Concepto de geometría topológica de elementos de proceso (Vecindad)</h3>
+</div></div>
+<div class="def-card" style="--theme-color: var(--c-9);"><div class="def-term" id="geometria-topologica-de-elementos-de-proceso">Geometría topológica y Vecindad</div><div class="def-body">
 <p>Los nodos vecinos en la arquitectura de red se ven influenciados simultáneamente. Así, neuronas vecinas responderán de manera parecida a patrones muy similares, preservando el tejido topográfico espacial.</p>
+</div></div>
 </div>
-</div>
-<div class="box">
 <h3 class="subtheme-title" id="algoritmo-som-paso-a-paso">Algoritmo SOM paso a paso</h3>
 <div class="box">
 <h4>Pasos del Algoritmo SOM</h4>
@@ -1468,7 +1483,6 @@
 <li><div class="step-body"><strong>Adaptación:</strong> Se modifican los pesos de la neurona ganadora y de sus <strong>vecinas</strong> topológicas para acercarlos aún más al patrón de entrada.</div></li>
 <li><div class="step-body">El proceso se repite, disminuyendo la tasa de aprendizaje y el radio del vecindario progresivamente hasta la convergencia final.</div></li>
 </ol>
-</div>
 </div>
 <h3 class="subtheme-title" id="aplicaciones-som">Aplicaciones: Tipos de problemas que resuelve el SOM</h3>
 <div class="grid-4">
@@ -1488,7 +1502,7 @@
 <p>SOM resuelve el TSP alterando su topología de malla 2D a una <strong>cadena unidimensional cerrada (anillo elástico)</strong> con <strong>vecindad lineal</strong>. Cada neurona solo tiene dos vecinas: la anterior y la siguiente en la cadena. Al entrenar, este anillo con vecindad lineal se retuerce y auto-organiza hasta pasar por todas las ciudades minimizando la ruta total.</p>
 </div></div>
 </div>
-<div class="def-card"><div class="def-term" id="bmu-best-matching-unit">BMU (Best Matching Unit)</div><div class="def-body">
+<div class="def-card" style="--theme-color: var(--c-9);"><div class="def-term" id="bmu-best-matching-unit">BMU (Best Matching Unit)</div><div class="def-body">
 <p>Es la "neurona ganadora" de la capa de competición cuyos pesos son los más parecidos a la entrada introducida. Se calcula encontrando el valor mínimo de la <strong>distancia euclídea</strong>: $$ \tau_j = \sqrt{\sum_{i=1}^{n}(e_i - \mu_{ij})^2} $$</p>
 </div></div>
 <div class="grid-2">
@@ -1507,8 +1521,7 @@
 <p>Además del Error de Cuantización (QE), para auditar un SOM se emplea el <strong>Error Topográfico (TE)</strong>. Esta métrica verifica que se haya preservado correctamente la topología original, confirmando que los datos de entrada cercanos se mapean hacia neuronas estrictamente contiguas o adyacentes en el mapa.</p>
 </div></div>
 <div class="grid-2">
-<div class="box">
-<h3 class="subtheme-title" id="som-de-kohonen">SOM de Kohonen</h3>
+<div class="def-card" style="--theme-color: var(--c-9);"><div class="def-term" id="som-de-kohonen">SOM de Kohonen</div><div class="def-body">
 <p>Posee una <strong>topología estática (fija predefinida)</strong>. Esto acarrea varios inconvenientes específicos:</p>
 <ul>
 <li>📌 <strong>Arquitectura estática:</strong> Tamaño y topología deben definirse antes de entrenar y no cambian.</li>
@@ -1517,8 +1530,8 @@
 <li>📌 <strong>Neuronas interpolantes:</strong> Se sitúan en zonas de densidad de probabilidad nula.</li>
 <li>⚡ <strong>Coste computacional y de inicialización crítico.</strong></li>
 </ul>
-</div>
-<div class="def-card"><div class="def-term" id="gcsgng-crecimiento-de-redes">GCS/GNG (Crecimiento de Redes)</div><div class="def-body">
+</div></div>
+<div class="def-card" style="--theme-color: var(--c-9);"><div class="def-term" id="gcsgng-crecimiento-de-redes">GCS/GNG (Crecimiento de Redes)</div><div class="def-body">
 <p>Mejoran al SOM solucionando el problema de las neuronas muertas. Sus diferencias técnicas clave con SOM son:</p>
 <ul>
 <li>📌 <strong>Topología:</strong> Crece dinámicamente durante el entrenamiento (en SOM era fija). La capa de salida en GCS mantiene siempre una estructura k-dimensional (segmento, triángulo, tetraedro).</li>
@@ -1599,6 +1612,15 @@
 </div></div>
 <div class="def-card"><div class="def-term">Computación Cuántica</div><div class="def-body">
 <p>Introduce el concepto de <strong>Entrelazamiento Cuántico</strong>, fenómeno de la mecánica subatómica mediante el cual dos Qubits quedan íntimamente enlazados; colapsar el estado de uno de ellos define instantáneamente y a cualquier distancia la información de su pareja complementaria.</p>
+</div></div>
+</div>
+<div class="grid-2">
+<div class="def-card" style="--theme-color: var(--c-10);"><div class="def-term">Cruce (Crossover)</div><div class="def-body">
+<p>Es el operador principal de recombinación en los algoritmos genéticos. Su función es <strong>combinar las características genéticas de dos padres</strong> (individuos seleccionados) para generar descendencia con la esperanza de que hereden las mejores partes de cada uno.</p>
+</div></div>
+<div class="def-card" style="--theme-color: var(--c-10);"><div class="def-term">Mutación</div><div class="def-body">
+<p>Su objetivo fundamental es <strong>explorar en el espacio de búsqueda</strong> de manera aleatoria. Modifica ligeramente el genotipo del individuo para inyectar nueva variabilidad genética e impedir que la población quede estancada en un óptimo local.</p>
+<p><em>Trampa clásica:</em> Si en un AG la tasa de cruce se reduce a 0, la población <strong>no</strong> deja de evolucionar. La mutación seguirá generando variabilidad por sí sola y la selección provocará que haya evolución continua.</p>
 </div></div>
 </div>
 <h3 class="subtheme-title" id="criterios-de-seleccion">Criterios de Selección (Mecanismos)</h3>
