@@ -207,7 +207,7 @@ body {
   font-size: clamp(1.4rem, 3vw, 1.8rem);
   font-weight: 700;
   line-height: 1.5;
-  white-space: pre-wrap;
+  
   background: linear-gradient(135deg, #f1f5f9, #a5b4fc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -224,6 +224,20 @@ body {
   color: var(--text-primary);
   -webkit-text-fill-color: initial;
   background: none;
+}
+
+.flashcard-content p {
+  margin: 0 0 10px 0;
+}
+.flashcard-content p:last-child {
+  margin: 0;
+}
+.flashcard-content ul, .flashcard-content ol {
+  margin: 0 0 10px 0;
+  padding-left: 20px;
+}
+.flashcard-content li {
+  margin-bottom: 5px;
 }
 
 .flashcard-hint {

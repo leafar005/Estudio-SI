@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'planificacion': 'T5: Planificación',
     'conexionistas': 'T6: Sistemas Conexionistas',
     'neurona': 'T7: Neurona Formal y Arquitecturas RNA',
-    'aprendizaje': 'T8: Aprendizaje en Redes Neuronales',
-    'evolutiva': 'T9: Computación Evolutiva y AG',
-    'difusa': 'T10: Lógica y Conjuntos Difusos'
+    'feedforward': 'T8: Redes Feedforward',
+    'autoorganizacion': 'T9: Redes Autoorganizativas',
+    'evolutiva': 'T10: Computación Evolutiva'
   };
   if(topic && titles[topic]) {
     titleEl.textContent = `Flashcards: ${titles[topic]}`;
@@ -30,8 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
       titleEl.textContent = `Flashcards: ${catName || category}`;
     }
   } else if (window.FlashcardsData && !topic) {
+    const topicOrder = ['introduccion', 'busqueda', 'representacion', 'razonamiento', 'planificacion', 'conexionistas', 'neurona', 'feedforward', 'autoorganizacion', 'evolutiva'];
     cards = [];
-    Object.keys(window.FlashcardsData).forEach(t => {
+    topicOrder.filter(t => window.FlashcardsData[t]).forEach(t => {
       let topicCards = window.FlashcardsData[t].map(c => ({ ...c, topic: t }));
       cards = cards.concat(topicCards);
     });
@@ -81,13 +82,14 @@ document.addEventListener('DOMContentLoaded', () => {
         'planificacion': '#f59e0b',
         'conexionistas': '#06b6d4',
         'neurona': '#ec4899',
-        'aprendizaje': '#14b8a6',
-        'evolutiva': '#f97316',
-        'difusa': '#8b5cf6'
+        'feedforward': '#14b8a6',
+        'autoorganizacion': '#f97316',
+        'evolutiva': '#8b5cf6'
       };
       
       let currentOffset = 0;
-      Object.keys(window.FlashcardsData).forEach(t => {
+      const topicOrder = ['introduccion', 'busqueda', 'representacion', 'razonamiento', 'planificacion', 'conexionistas', 'neurona', 'feedforward', 'autoorganizacion', 'evolutiva'];
+      topicOrder.filter(t => window.FlashcardsData[t]).forEach(t => {
         const count = window.FlashcardsData[t].length;
         if(count === 0) return;
         const percentage = (count / cards.length) * 100;
@@ -108,9 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
           'planificacion': 'T5: Planific.',
           'conexionistas': 'T6: Conexion.',
           'neurona': 'T7: Neurona',
-          'aprendizaje': 'T8: Aprend.',
-          'evolutiva': 'T9: Evolutiva',
-          'difusa': 'T10: Difusa'
+          'feedforward': 'T8: Feedf.',
+          'autoorganizacion': 'T9: Autoorg.',
+          'evolutiva': 'T10: Evolutiva'
         };
         const labelText = shortTitles[t] || t;
 
@@ -134,10 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   function parseMarkdown(text) {
     if (!text) return '';
-    return text
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/\n/g, '<br>');
+    return window.marked ? marked.parse(text) : text;
   }
 
   function initCards() {
@@ -256,5 +255,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   initCards();
   updateCards();
+  
+  if (window.MathJax && typeof MathJax.typesetPromise === 'function') {
+    MathJax.typesetPromise();
+  }
 });
 // Slider code is intact
