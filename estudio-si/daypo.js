@@ -4572,7 +4572,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "razonamiento",
     "source": "daypo",
-    "question": "Dominio con tres manifestaciones {M(1),M(2),M(3)} y dos interpretaciones posibles {I(1),I(2)}, desde una perspectiva categórica y dadas las reglas de dominio: Cuántos posibles conjuntos manifestación-interpretación contiene la BLR?",
+    "question": "Dominio con tres manifestaciones $\\{M(1), M(2), M(3)\\}$ y dos interpretaciones posibles $\\{I(1), I(2)\\}$, desde una perspectiva categórica y dadas las reglas de dominio:  \n<div style=\"background: rgba(255,255,255,0.05); border-left: 3px solid #10b981; padding: 10px 15px; margin: 10px 0; border-radius: 4px; font-family: monospace; font-size: 0.95em; color: #d1d5db;\">\nR1: $M(1) \\lor M(2) \\lor M(3) \\Rightarrow I(1) \\lor I(2)$<br>\n<br>\nR2: $I(1) \\Rightarrow \\neg M(1) \\land M(2)$<br>\n<br>\nR3: $I(2) \\land \\neg I(1) \\Rightarrow M(1) \\land M(3)$\n</div>\nCuántos posibles conjuntos manifestación-interpretación contiene la BLR?",
     "options": [
       "7",
       "32",
@@ -4750,7 +4750,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "busqueda",
     "source": "daypo",
-    "question": "Para este EE. Cuántos nodos se encontrarán en la lista de explorados en el paso 4 para una expansión por anchura?",
+    "question": "Para este EE. Cuántos nodos se encontrarán en la lista de explorados en el paso 4 para una expansión por anchura?  \n<img src=\"../assets/images/daypo1.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "4",
       "3",
@@ -4767,7 +4767,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "busqueda",
     "source": "daypo",
-    "question": "Para este EE. Cuántos nodos se encontrarán en la lista de explorados en el paso 2 para una expansión por coste uniforme?",
+    "question": "Para este EE. Cuántos nodos se encontrarán en la lista de explorados en el paso 2 para una expansión por coste uniforme?  \n<img src=\"../assets/images/daypo1.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "4",
       "3",
@@ -4784,7 +4784,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "busqueda",
     "source": "daypo",
-    "question": "Para este EE. Cuántos nodos se encontrarán en la frontera en el paso 4 para una expansión por profundidad?",
+    "question": "Para este EE. Cuántos nodos se encontrarán en la frontera en el paso 4 para una expansión por profundidad?  \n<img src=\"../assets/images/daypo1.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "4",
       "3",
@@ -4802,7 +4802,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "busqueda",
     "source": "daypo",
-    "question": "Para este EE. Usando un algoritmo de búsqueda A*, cuántos nodos máximos en la frontera habría en cualquier momento dado? Asumamos que G es la meta y comenzamos en C24",
+    "question": "Para este EE. Usando un algoritmo de búsqueda A*, cuántos nodos máximos en la frontera habría en cualquier momento dado? Asumamos que G es la meta y comenzamos en C24.  \n<img src=\"../assets/images/daypo2.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "4",
       "3",
@@ -4822,7 +4822,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "busqueda",
     "source": "daypo",
-    "question": "Para este EE. Usando un algoritmo de búsqueda A*, cuál sería el peso óptimo para la resolución del problema? Asumamos que G es la meta y comenzamos en C24",
+    "question": "Para este EE. Usando un algoritmo de búsqueda A*, cuál sería el peso óptimo para la resolución del problema? Asumamos que G es la meta y comenzamos en C24.  \n<img src=\"../assets/images/daypo2.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "26",
       "50",
