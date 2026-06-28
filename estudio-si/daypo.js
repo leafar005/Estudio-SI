@@ -4996,7 +4996,7 @@ const DAYPO_QUESTIONS = [
       "Razonamiento Categórico",
       "Redes Bayesianas",
       "Redes Neuronales",
-      "Híbrido entre Razonamiento Categórico y Frames  \n---  \n¿Hay algo más en lo que te pueda ayudar con estos archivos?"
+      "Híbrido entre Razonamiento Categórico y Frames"
     ],
     "correct": 1,
     "justification": "Las **Redes Bayesianas** están compuestas por una representación estructural gráfica (un grafo acíclico dirigido) que encapsula de manera explícita y transparente las relaciones de causalidad y de independencia condicional entre las variables. Esta topología causal, unida a la capacidad de cálculo de probabilidades, permite realizar razonamiento descendente (de causas a efectos, es decir, predicción) así como razonamiento ascendente (de efectos a causas, o diagnóstico). Alternativas como las Redes Neuronales pueden predecir, pero carecen de una representación estructural del conocimiento fácilmente explicable o causal (modelos \"caja negra\"), y el razonamiento categórico carece del manejo probabilístico para predecir con incertidumbre.",

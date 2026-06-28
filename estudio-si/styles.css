@@ -535,6 +535,7 @@ body {
   color: var(--text-primary);
   margin-bottom: 28px;
   letter-spacing: -0.01em;
+  overflow-x: auto;
 }
 
 /* Options */
@@ -699,6 +700,7 @@ body {
   border: 1px solid var(--border-subtle);
   border-top: none;
   border-radius: 0 0 var(--radius-md) var(--radius-md);
+  overflow-x: auto;
 }
 
 .justification-text {
@@ -975,6 +977,7 @@ body {
   color: var(--text-secondary);
   line-height: 1.5;
   margin-bottom: 0;
+  overflow-x: auto;
 }
 
 .review-item-detail {
@@ -1088,22 +1091,32 @@ body {
    ========================= */
 .question-text table, .qcb-text table, .review-item-question table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   margin: 16px 0;
   font-size: 0.9rem;
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  border: 1px solid var(--border-medium);
+  overflow: hidden;
 }
 
 .question-text th, .qcb-text th, .review-item-question th {
-  background: var(--bg-card-hover);
-  padding: 10px;
+  background: rgba(255,255,255,0.05);
+  padding: 14px;
   text-align: left;
-  border: 1px solid var(--border-medium);
-  font-weight: 600;
+  border-bottom: 1px solid var(--border-medium);
+  font-weight: 700;
+  color: #fff;
 }
 
 .question-text td, .qcb-text td, .review-item-question td {
-  padding: 10px;
-  border: 1px solid var(--border-medium);
+  padding: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.question-text tr:last-child td, .qcb-text tr:last-child td, .review-item-question tr:last-child td {
+  border-bottom: none;
 }
 
 .question-text pre, .qcb-text pre, .review-item-question pre {
