@@ -291,7 +291,7 @@ const DAYPO_QUESTIONS = [
       "Es la multiplicación entre la entrada por el peso que tiene"
     ],
     "correct": 3,
-    "justification": "La función de pérdida (loss function) se calcula para evaluar el error de un **único ejemplo** en concreto ($E_k = \\frac{1}{2}(d_k - y_k)^2$), mientras que la función de coste (cost function) es la sumatoria o promedio acumulado de todas esas funciones de pérdida sobre el **conjunto completo** de ejemplos de entrenamiento. Por lo tanto, afirmar que son la misma es **falso**. Las opciones 2 y 4 también contienen afirmaciones falsas, lo que evidencia una redacción ambigua en el test original. Cabe destacar que la opción 0 describe la definición estrictamente verdadera y matemática de la función, por lo que marcarla respondiendo a 'cuál es falsa' es incorrecto.",
+    "justification": "La función de pérdida (loss function) se calcula para evaluar el error de un **único ejemplo** en concreto ($E_k = \\frac{1}{2}(d_k - y_k)^2$), mientras que la función de coste (cost function) es la sumatoria o promedio acumulado de todas esas funciones de pérdida sobre el **conjunto completo** de ejemplos de entrenamiento. Por lo tanto, afirmar que son la misma es **falso**. Las opciones C y 4 también contienen afirmaciones falsas, lo que evidencia una redacción ambigua en el test original. Cabe destacar que la opción A describe la definición estrictamente verdadera y matemática de la función, por lo que marcarla respondiendo a 'cuál es falsa' es incorrecto.",
     "tags": [
       "neurona"
     ],
@@ -309,7 +309,7 @@ const DAYPO_QUESTIONS = [
       "Ninguna de las anteriores"
     ],
     "correct": 4,
-    "justification": "El método LMS utiliza el algoritmo de Descenso de Gradiente. En este proceso, **se deriva la función de error** respecto a los pesos (W) para calcular el gradiente y determinar la pendiente. Sin embargo, el objetivo final de actualizar los pesos en la dirección opuesta al gradiente es **minimizar la función de error (o coste)**, NO minimizar el gradiente en sí mismo (el gradiente simplemente tenderá a cero al llegar al fondo del paraboloide). La opción 0 comete un error conceptual al afirmar que se busca minimizar el gradiente. Por tanto, la respuesta más rigurosa es *Ninguna de las anteriores*.",
+    "justification": "El método LMS utiliza el algoritmo de Descenso de Gradiente. En este proceso, **se deriva la función de error** respecto a los pesos (W) para calcular el gradiente y determinar la pendiente. Sin embargo, el objetivo final de actualizar los pesos en la dirección opuesta al gradiente es **minimizar la función de error (o coste)**, NO minimizar el gradiente en sí mismo (el gradiente simplemente tenderá a cero al llegar al fondo del paraboloide). La opción A comete un error conceptual al afirmar que se busca minimizar el gradiente. Por tanto, la respuesta más rigurosa es *Ninguna de las anteriores*.",
     "tags": [
       "neurona"
     ],
@@ -363,7 +363,7 @@ const DAYPO_QUESTIONS = [
       "Conseguir la derivada de la pendiente reflejada en la curva y, a partir de su pendiente, crear una función de corrección"
     ],
     "correct": 2,
-    "justification": "Esta pregunta contiene terminología defectuosa. Geométricamente, el algoritmo de entrenamiento no busca un 'punto por debajo de la gráfica'. Sin embargo, interpretando la intención pedagógica del descenso de gradiente en LMS, el paso indispensable ante cualquier posición en la curva de error es **conseguir (calcular) la derivada de la curva** respecto al peso para conocer la pendiente en ese punto. A partir de ella, se establece la dirección de la actualización. Las opciones que mencionan ajustar obligatoriamente los pesos a 0 o 1 son falsas, y la opción 2 es la única que rescata la operación analítica esencial de derivar.",
+    "justification": "Esta pregunta contiene terminología defectuosa. Geométricamente, el algoritmo de entrenamiento no busca un 'punto por debajo de la gráfica'. Sin embargo, interpretando la intención pedagógica del descenso de gradiente en LMS, el paso indispensable ante cualquier posición en la curva de error es **conseguir (calcular) la derivada de la curva** respecto al peso para conocer la pendiente en ese punto. A partir de ella, se establece la dirección de la actualización. Las opciones que mencionan ajustar obligatoriamente los pesos a 0 o 1 son falsas, y la opción C es la única que rescata la operación analítica esencial de derivar.",
     "tags": [
       "A*",
       "BLE/BLR"
@@ -418,7 +418,7 @@ const DAYPO_QUESTIONS = [
       "Si el ECM es un valor aceptable, se termina el proceso, sino se aplica de nuevo un ejemplo de entrada"
     ],
     "correct": 0,
-    "justification": "El paso intruso e incorrecto es la opción 0. En cualquier algoritmo basado en retropropagación y descenso de gradiente (incluyendo LMS), los pesos y sesgos **nunca deben inicializarse con datos fijos o idénticos** (como todos a cero). Deben inicializarse de forma **aleatoria** con valores pequeños. Inicializarlos simétricamente con valores fijos provocaría que todas las neuronas calculen los mismos gradientes simultáneamente e impidan la especialización y adaptación durante el entrenamiento.",
+    "justification": "El paso intruso e incorrecto es la opción A. En cualquier algoritmo basado en retropropagación y descenso de gradiente (incluyendo LMS), los pesos y sesgos **nunca deben inicializarse con datos fijos o idénticos** (como todos a cero). Deben inicializarse de forma **aleatoria** con valores pequeños. Inicializarlos simétricamente con valores fijos provocaría que todas las neuronas calculen los mismos gradientes simultáneamente e impidan la especialización y adaptación durante el entrenamiento.",
     "tags": [
       "A*",
       "RNA"
@@ -1132,7 +1132,7 @@ const DAYPO_QUESTIONS = [
       "Ha habido algún error durante el test"
     ],
     "correct": 0,
-    "justification": "La opción correcta es la **0 (Sobreentrenamiento)**.\n\nEn problemas de clasificación del mundo real, y particularmente con conjuntos de datos muy extensos que **no son linealmente separables**, la existencia de ruido o superposición entre las clases es inevitable. Si una Red Neuronal Artificial (RNA) alcanza una precisión casi perfecta (99.3%) y sólo comete 1 error, lo más probable es que la red haya **memorizado los datos de entrenamiento**, incluyendo el ruido, en lugar de aprender una generalización robusta (un fenómeno conocido como **sobreentrenamiento** o *overfitting*). Una red con buena capacidad de generalización tendría un error mayor en entrenamiento pero rendiría mejor ante datos nuevos.\n\nLas demás opciones son incorrectas porque:\n*   **Valores correctos:** Es muy improbable en un caso no linealmente separable y masivo que se pueda obtener una separación tan precisa sin haber sobreajustado.\n*   **No ha habido entrenamiento suficiente:** Sería el caso opuesto (*underfitting*), donde el error de entrenamiento sería muy elevado.\n*   **El RNA no es correcto pues ha fallado...:** Es natural que una RNA falle alguna clasificación; buscar 0% de error suele ser síntoma de sobreentrenamiento.",
+    "justification": "La opción correcta es la **A (Sobreentrenamiento)**.\n\nEn problemas de clasificación del mundo real, y particularmente con conjuntos de datos muy extensos que **no son linealmente separables**, la existencia de ruido o superposición entre las clases es inevitable. Si una Red Neuronal Artificial (RNA) alcanza una precisión casi perfecta (99.3%) y sólo comete 1 error, lo más probable es que la red haya **memorizado los datos de entrenamiento**, incluyendo el ruido, en lugar de aprender una generalización robusta (un fenómeno conocido como **sobreentrenamiento** o *overfitting*). Una red con buena capacidad de generalización tendría un error mayor en entrenamiento pero rendiría mejor ante datos nuevos.\n\nLas demás opciones son incorrectas porque:\n*   **Valores correctos:** Es muy improbable en un caso no linealmente separable y masivo que se pueda obtener una separación tan precisa sin haber sobreajustado.\n*   **No ha habido entrenamiento suficiente:** Sería el caso opuesto (*underfitting*), donde el error de entrenamiento sería muy elevado.\n*   **El RNA no es correcto pues ha fallado...:** Es natural que una RNA falle alguna clasificación; buscar 0% de error suele ser síntoma de sobreentrenamiento.",
     "tags": [
       "BLE/BLR",
       "RNA"
@@ -1151,7 +1151,7 @@ const DAYPO_QUESTIONS = [
       "Aritmética"
     ],
     "correct": 4,
-    "justification": "La opción correcta es la **4 (Aritmética)**, ya que se pregunta cuál *no* es una aplicación.\n\nSegún la teoría, las principales aplicaciones de las Redes Neuronales Artificiales son la **clasificación** (asignación de clases), la **predicción** (valores futuros), el **clustering** (agrupamiento no supervisado), la **regresión** (relaciones con salidas continuas) y la aproximación de funciones (*fitting*). \n\nEl cálculo de operaciones exactas y simbólicas (como la **aritmética**) se resuelve de manera mucho más eficiente y precisa utilizando la computación clásica (ALU del procesador) o algoritmos exactos; no tiene sentido usar un modelo de aprendizaje automático basado en aproximación matemática y heurísticas para sumar, restar o realizar aritmética fundamental.",
+    "justification": "La opción correcta es la **E (Aritmética)**, ya que se pregunta cuál *no* es una aplicación.\n\nSegún la teoría, las principales aplicaciones de las Redes Neuronales Artificiales son la **clasificación** (asignación de clases), la **predicción** (valores futuros), el **clustering** (agrupamiento no supervisado), la **regresión** (relaciones con salidas continuas) y la aproximación de funciones (*fitting*). \n\nEl cálculo de operaciones exactas y simbólicas (como la **aritmética**) se resuelve de manera mucho más eficiente y precisa utilizando la computación clásica (ALU del procesador) o algoritmos exactos; no tiene sentido usar un modelo de aprendizaje automático basado en aproximación matemática y heurísticas para sumar, restar o realizar aritmética fundamental.",
     "tags": [
       "A*",
       "RNA",
@@ -1171,7 +1171,7 @@ const DAYPO_QUESTIONS = [
       "Ninguna de las anteriores"
     ],
     "correct": 0,
-    "justification": "La opción correcta es la **0 (Clasificación)**.\n\nLa **clasificación** es la aplicación de las RNAs orientada a asignar (mapear) patrones u objetos de entrada a una de varias categorías (clases) predefinidas, basándose en las características o atributos que se introducen en la red. En este tipo de problemas, el número de clases es finito y conocido de antemano.\n\nLas demás opciones no encajan con la definición:\n*   **Predicción:** Estima estados o valores futuros.\n*   **Clustering:** Realiza agrupaciones *sin* conocer a priori las clases (es no supervisado).\n*   **Regresión:** Estima valores continuos o reales, no clases discretas.",
+    "justification": "La opción correcta es la **A (Clasificación)**.\n\nLa **clasificación** es la aplicación de las RNAs orientada a asignar (mapear) patrones u objetos de entrada a una de varias categorías (clases) predefinidas, basándose en las características o atributos que se introducen en la red. En este tipo de problemas, el número de clases es finito y conocido de antemano.\n\nLas demás opciones no encajan con la definición:\n*   **Predicción:** Estima estados o valores futuros.\n*   **Clustering:** Realiza agrupaciones *sin* conocer a priori las clases (es no supervisado).\n*   **Regresión:** Estima valores continuos o reales, no clases discretas.",
     "tags": [
       "BLE/BLR",
       "RNA"
@@ -1190,7 +1190,7 @@ const DAYPO_QUESTIONS = [
       "Ninguna de las anteriores"
     ],
     "correct": 4,
-    "justification": "La opción correcta es la **4 (Ninguna de las anteriores)**.\n\n\"Calcular el promedio\" es una operación determinista puramente matemática (aritmética y estadística). Las RNAs están diseñadas para descubrir relaciones complejas, generalizar a partir de datos no lineales, clasificar, predecir o agrupar. Usar una red neuronal para algo tan sencillo y exacto como calcular la media de un conjunto de valores conocidos es innecesario, ineficiente y no constituye una aplicación válida del aprendizaje automático (como vimos en la pregunta 61, la aritmética no es una aplicación de las RNA).",
+    "justification": "La opción correcta es la **E (Ninguna de las anteriores)**.\n\n\"Calcular el promedio\" es una operación determinista puramente matemática (aritmética y estadística). Las RNAs están diseñadas para descubrir relaciones complejas, generalizar a partir de datos no lineales, clasificar, predecir o agrupar. Usar una red neuronal para algo tan sencillo y exacto como calcular la media de un conjunto de valores conocidos es innecesario, ineficiente y no constituye una aplicación válida del aprendizaje automático (como vimos en la pregunta 61, la aritmética no es una aplicación de las RNA).",
     "tags": [
       "RNA"
     ],
@@ -1208,7 +1208,7 @@ const DAYPO_QUESTIONS = [
       "Se asignan valores entre 0 y 1 a los valores en la FT"
     ],
     "correct": 3,
-    "justification": "La opción correcta (por ser la afirmación falsa) es la **3 (El umbral suele ser >1)**.\n\nEn un problema de **clasificación de dos clases (binaria)**, la arquitectura y configuración típica es:\n*   **1 neurona de salida** (opción 0 correcta) que discrimina entre ambas clases.\n*   La salida deseada se codifica como **0 o 1** (opción 1 correcta).\n*   Se usa una función de transferencia sigmoidea como la **logsig** (opción 2 correcta), que acota los valores precisamente en el rango **[0, 1]** (opción 4 correcta).\n\nDado que los valores de salida emitidos por la función *logsig* siempre van a estar entre 0 y 1, el **umbral de decisión** típico para discernir entre las dos clases es **0.5**. Un umbral superior a 1 no tiene ningún sentido matemático porque la neurona jamás alcanzará ese valor.",
+    "justification": "La opción correcta (por ser la afirmación falsa) es la **D (El umbral suele ser >1)**.\n\nEn un problema de **clasificación de dos clases (binaria)**, la arquitectura y configuración típica es:\n*   **1 neurona de salida** (opción A correcta) que discrimina entre ambas clases.\n*   La salida deseada se codifica como **0 o 1** (opción B correcta).\n*   Se usa una función de transferencia sigmoidea como la **logsig** (opción C correcta), que acota los valores precisamente en el rango **[0, 1]** (opción E correcta).\n\nDado que los valores de salida emitidos por la función *logsig* siempre van a estar entre 0 y 1, el **umbral de decisión** típico para discernir entre las dos clases es **0.5**. Un umbral superior a 1 no tiene ningún sentido matemático porque la neurona jamás alcanzará ese valor.",
     "tags": [
       "A*",
       "BLE/BLR",
@@ -1228,7 +1228,7 @@ const DAYPO_QUESTIONS = [
       "Para cada patrón, la salida deseada es distinta de 0 para aquella que corresponda a la clase"
     ],
     "correct": 2,
-    "justification": "La opción correcta (por ser la afirmación falsa) es la **2 (La FT habitual sería una logsig)**.\n\nCuando pasamos a una clasificación multiclase (más de dos clases), el diseño de la red cambia:\n*   Se suele usar una codificación *one-hot* donde hay **una neurona por clase** y la salida deseada es 1 para la clase correcta y 0 para el resto.\n*   Debido a esto, la Función de Transferencia (FT) en la capa de salida deja de ser la sigmoide (*logsig*) típica de la clasificación binaria. En su lugar, lo habitual es utilizar una activación **Lineal seguida de una función Softmax**. La función *Softmax* garantiza que todas las salidas sean positivas y sumen 1, convirtiéndolas en una distribución de probabilidad en la que las distintas clases compiten entre sí.\n\nPor tanto, afirmar que la FT habitual sigue siendo *logsig* en problemas puramente multiclase es incorrecto.",
+    "justification": "La opción correcta (por ser la afirmación falsa) es la **C (La FT habitual sería una logsig)**.\n\nCuando pasamos a una clasificación multiclase (más de dos clases), el diseño de la red cambia:\n*   Se suele usar una codificación *one-hot* donde hay **una neurona por clase** y la salida deseada es 1 para la clase correcta y 0 para el resto.\n*   Debido a esto, la Función de Transferencia (FT) en la capa de salida deja de ser la sigmoide (*logsig*) típica de la clasificación binaria. En su lugar, lo habitual es utilizar una activación **Lineal seguida de una función Softmax**. La función *Softmax* garantiza que todas las salidas sean positivas y sumen 1, convirtiéndolas en una distribución de probabilidad en la que las distintas clases compiten entre sí.\n\nPor tanto, afirmar que la FT habitual sigue siendo *logsig* en problemas puramente multiclase es incorrecto.",
     "tags": [
       "BLE/BLR",
       "RNA"
@@ -1247,7 +1247,7 @@ const DAYPO_QUESTIONS = [
       "Para cada patrón, la salida deseada es distinta de 0 para aquella que corresponda a la clase"
     ],
     "correct": 1,
-    "justification": "La opción correcta (por ser la afirmación falsa) es la **1 (La salida final será la clase con menos certidumbre)**.\n\nEl objetivo de una red de clasificación, al predecir o inferir un nuevo patrón, es determinar a qué clase es más probable que pertenezca dicho patrón basándose en los datos aprendidos. Tras aplicar la función *Softmax*, las neuronas arrojan valores interpretables como probabilidades. Por consiguiente, la decisión del sistema siempre recae sobre la clase que presenta la **mayor certidumbre** (el valor más alto o probabilidad máxima), nunca la de menor certidumbre.",
+    "justification": "La opción correcta (por ser la afirmación falsa) es la **B (La salida final será la clase con menos certidumbre)**.\n\nEl objetivo de una red de clasificación, al predecir o inferir un nuevo patrón, es determinar a qué clase es más probable que pertenezca dicho patrón basándose en los datos aprendidos. Tras aplicar la función *Softmax*, las neuronas arrojan valores interpretables como probabilidades. Por consiguiente, la decisión del sistema siempre recae sobre la clase que presenta la **mayor certidumbre** (el valor más alto o probabilidad máxima), nunca la de menor certidumbre.",
     "tags": [
       "BLE/BLR",
       "RNA"
@@ -1266,7 +1266,7 @@ const DAYPO_QUESTIONS = [
       "Para cada patrón, la salida deseada es distinta de 0 para aquella que corresponda a la clase"
     ],
     "correct": 0,
-    "justification": "La opción correcta (por ser la afirmación falsa) es la **0 (Se usarían 2 neuronas de salida en total)**.\n\nSi el problema original requiere clasificar entre la Clase A y la Clase B, pero se detecta que los patrones de ejemplo pueden contener información que **no se corresponde con ninguna de las dos**, nos enfrentamos a la necesidad de crear una **clase extra** (la clase de rechazo o \"ninguna\").\n\nAl introducir esta nueva clase, el problema de clasificación pasa de 2 clases a 3 clases (A, B y Ninguna). Por tanto, siguiendo la regla de asignar 1 neurona de salida por cada clase (para usar *Softmax* como sugieren las demás opciones válidas), necesitaríamos **3 neuronas de salida en total**, lo que invalida rotundamente la afirmación de que se usarían solamente 2.",
+    "justification": "La opción correcta (por ser la afirmación falsa) es la **A (Se usarían 2 neuronas de salida en total)**.\n\nSi el problema original requiere clasificar entre la Clase A y la Clase B, pero se detecta que los patrones de ejemplo pueden contener información que **no se corresponde con ninguna de las dos**, nos enfrentamos a la necesidad de crear una **clase extra** (la clase de rechazo o \"ninguna\").\n\nAl introducir esta nueva clase, el problema de clasificación pasa de 2 clases a 3 clases (A, B y Ninguna). Por tanto, siguiendo la regla de asignar 1 neurona de salida por cada clase (para usar *Softmax* como sugieren las demás opciones válidas), necesitaríamos **3 neuronas de salida en total**, lo que invalida rotundamente la afirmación de que se usarían solamente 2.",
     "tags": [
       "A*",
       "BLE/BLR",
@@ -1287,7 +1287,7 @@ const DAYPO_QUESTIONS = [
       "Podríamos tener 2 clases de salida"
     ],
     "correct": 1,
-    "justification": "La opción correcta (por ser la afirmación falsa) es la **1 (Representar las salidas por intervalos convierte el problema en uno de regresión)**.\n\nUna alternativa de diseño para clasificación con más de dos clases (especialmente si hay una gradación clara como baja/media/alta) es utilizar **una única neurona de salida y dividir su rango en intervalos** (ej. [0-0.33], [0.33-0.66], [0.66-1.0]), donde cada intervalo representa una clase.\n\nAplicar esta técnica arquitectónica **no cambia la naturaleza del problema**. La red sigue mapeando atributos para decidir la pertenencia a una categoría discreta; por tanto, el problema **sigue siendo de clasificación**. Un problema de regresión buscaría devolver una variable con significado continuo, no segmentarla en rangos rígidos con un significado de clase.",
+    "justification": "La opción correcta (por ser la afirmación falsa) es la **B (Representar las salidas por intervalos convierte el problema en uno de regresión)**.\n\nUna alternativa de diseño para clasificación con más de dos clases (especialmente si hay una gradación clara como baja/media/alta) es utilizar **una única neurona de salida y dividir su rango en intervalos** (ej. [0-0.33], [0.33-0.66], [0.66-1.0]), donde cada intervalo representa una clase.\n\nAplicar esta técnica arquitectónica **no cambia la naturaleza del problema**. La red sigue mapeando atributos para decidir la pertenencia a una categoría discreta; por tanto, el problema **sigue siendo de clasificación**. Un problema de regresión buscaría devolver una variable con significado continuo, no segmentarla en rangos rígidos con un significado de clase.",
     "tags": [
       "A*",
       "BLE/BLR",
@@ -1307,7 +1307,7 @@ const DAYPO_QUESTIONS = [
       "Aritmética"
     ],
     "correct": 1,
-    "justification": "La opción correcta es la **1 (Predicción)**.\n\nEn los apuntes sobre aplicaciones de las Redes Neuronales Artificiales, la **predicción** se define como el uso de la red para inferir o determinar el valor de una variable en un estado futuro, a menudo como proyección temporal basándose en históricos y dependencias. \n\nEl \"monitoreo de reserva de plazas en aerolíneas\", junto con la evolución del mercado de valores, el clima o las demandas de ventas, son los ejemplos clásicos y por excelencia de sistemas de **predicción**, ya que su objetivo es estimar la cantidad de recursos o la demanda que habrá en el futuro para optimizar operaciones.",
+    "justification": "La opción correcta es la **B (Predicción)**.\n\nEn los apuntes sobre aplicaciones de las Redes Neuronales Artificiales, la **predicción** se define como el uso de la red para inferir o determinar el valor de una variable en un estado futuro, a menudo como proyección temporal basándose en históricos y dependencias. \n\nEl \"monitoreo de reserva de plazas en aerolíneas\", junto con la evolución del mercado de valores, el clima o las demandas de ventas, son los ejemplos clásicos y por excelencia de sistemas de **predicción**, ya que su objetivo es estimar la cantidad de recursos o la demanda que habrá en el futuro para optimizar operaciones.",
     "tags": [
       "BLE/BLR",
       "RNA"
@@ -1326,7 +1326,7 @@ const DAYPO_QUESTIONS = [
       "Aritmética"
     ],
     "correct": 3,
-    "justification": "La opción correcta es la **3 (Regresión)**.\n\nLa aplicación encargada de modelar y aproximar la relación que permite **mapear un conjunto de variables independientes de entrada en una o múltiples variables dependientes continuas** es la **Regresión**. \n\nA diferencia de la clasificación, donde la salida está forzada a representar categorías discretas y finitas, en un problema de regresión, las salidas que arroja la RNA toman la forma de valores reales continuos que siguen la función subyacente aprendida. La aproximación de funciones o mapeo general es la base de las aplicaciones de regresión multivariante con RNAs.",
+    "justification": "La opción correcta es la **D (Regresión)**.\n\nLa aplicación encargada de modelar y aproximar la relación que permite **mapear un conjunto de variables independientes de entrada en una o múltiples variables dependientes continuas** es la **Regresión**. \n\nA diferencia de la clasificación, donde la salida está forzada a representar categorías discretas y finitas, en un problema de regresión, las salidas que arroja la RNA toman la forma de valores reales continuos que siguen la función subyacente aprendida. La aproximación de funciones o mapeo general es la base de las aplicaciones de regresión multivariante con RNAs.",
     "tags": [
       "BLE/BLR",
       "RNA"
@@ -1345,7 +1345,7 @@ const DAYPO_QUESTIONS = [
       "Aritmética"
     ],
     "correct": 2,
-    "justification": "La opción correcta es la **2 (Clustering)**.\n\nEl **Clustering** o agrupamiento es una técnica del aprendizaje automático diseñada específicamente para tomar un conjunto de patrones u objetos sin etiquetar y dividirlos en subgrupos estructurados. Estos grupos (clústeres) se forman de tal forma que los objetos pertenecientes al mismo clúster sean lo más similares posibles entre sí basándose en sus atributos o características, mientras difieren de los objetos de los demás grupos.",
+    "justification": "La opción correcta es la **C (Clustering)**.\n\nEl **Clustering** o agrupamiento es una técnica del aprendizaje automático diseñada específicamente para tomar un conjunto de patrones u objetos sin etiquetar y dividirlos en subgrupos estructurados. Estos grupos (clústeres) se forman de tal forma que los objetos pertenecientes al mismo clúster sean lo más similares posibles entre sí basándose en sus atributos o características, mientras difieren de los objetos de los demás grupos.",
     "tags": [
       "BLE/BLR",
       "RNA"
@@ -1364,7 +1364,7 @@ const DAYPO_QUESTIONS = [
       "Aritmética"
     ],
     "correct": 2,
-    "justification": "La opción correcta es la **2 (Clustering)**.\n\nEl hecho clave que diferencia al **Clustering** de la clasificación clásica es que se trata de un método de **aprendizaje no supervisado**. \n\nEsto significa que se desconoce por completo cuáles son las etiquetas, no hay variables objetivo y, sobre todo, **ni siquiera sabemos cuántas clases o agrupaciones existen a priori** en los datos subyacentes. El modelo neuronal (como pueden ser los Mapas Auto-Organizativos o SOM) es el responsable de analizar el espacio dimensional, encontrar la topología y agrupar los datos de forma autónoma sin un \"profesor\" que le diga a qué clase debería pertenecer cada uno.",
+    "justification": "La opción correcta es la **C (Clustering)**.\n\nEl hecho clave que diferencia al **Clustering** de la clasificación clásica es que se trata de un método de **aprendizaje no supervisado**. \n\nEsto significa que se desconoce por completo cuáles son las etiquetas, no hay variables objetivo y, sobre todo, **ni siquiera sabemos cuántas clases o agrupaciones existen a priori** en los datos subyacentes. El modelo neuronal (como pueden ser los Mapas Auto-Organizativos o SOM) es el responsable de analizar el espacio dimensional, encontrar la topología y agrupar los datos de forma autónoma sin un \"profesor\" que le diga a qué clase debería pertenecer cada uno.",
     "tags": [
       "BLE/BLR",
       "RNA"
@@ -1383,7 +1383,7 @@ const DAYPO_QUESTIONS = [
       "Aritmética"
     ],
     "correct": 2,
-    "justification": "La opción correcta es la **2 (Clustering)**.\n\nEl Perceptrón Multicapa (MLP) junto con la retropropagación es el estándar por excelencia de las redes alimentadas hacia delante (*feedforward*) supervisadas que se utilizan para clasificar y realizar regresiones.\n\nSi el objetivo es utilizar una red que se entrene mediante **aprendizaje no supervisado** (sin salidas deseadas u objetivo para el entrenamiento), se abandona el paradigma MLP y se acude a arquitecturas de agrupamiento y topológicas, siendo las **redes SOM (Self-Organizing Maps)** de Kohonen el máximo exponente para resolver problemas de **Clustering**.",
+    "justification": "La opción correcta es la **C (Clustering)**.\n\nEl Perceptrón Multicapa (MLP) junto con la retropropagación es el estándar por excelencia de las redes alimentadas hacia delante (*feedforward*) supervisadas que se utilizan para clasificar y realizar regresiones.\n\nSi el objetivo es utilizar una red que se entrene mediante **aprendizaje no supervisado** (sin salidas deseadas u objetivo para el entrenamiento), se abandona el paradigma MLP y se acude a arquitecturas de agrupamiento y topológicas, siendo las **redes SOM (Self-Organizing Maps)** de Kohonen el máximo exponente para resolver problemas de **Clustering**.",
     "tags": [
       "SOM",
       "BLE/BLR",
@@ -1403,7 +1403,7 @@ const DAYPO_QUESTIONS = [
       "Fitting"
     ],
     "correct": 4,
-    "justification": "La opción correcta es la **4 (Fitting)**.\n\nEl *Fitting* o **aproximación de funciones y curvas** es la aplicación que se encarga específicamente de ajustar una curva matemática que pase por (o que minimice el error respecto a) un conjunto de datos dados $(x, y)$. \n\nAunque comparte principios matemáticos fundamentales con la regresión, la terminología específica en ingeniería y aprendizaje automático (así como la nomenclatura de los modelos en MATLAB o herramientas afines) denomina al acto de tratar de encontrar la línea o curva subyacente que mejor dibuja una tendencia como **Fitting**.",
+    "justification": "La opción correcta es la **E (Fitting)**.\n\nEl *Fitting* o **aproximación de funciones y curvas** es la aplicación que se encarga específicamente de ajustar una curva matemática que pase por (o que minimice el error respecto a) un conjunto de datos dados $(x, y)$. \n\nAunque comparte principios matemáticos fundamentales con la regresión, la terminología específica en ingeniería y aprendizaje automático (así como la nomenclatura de los modelos en MATLAB o herramientas afines) denomina al acto de tratar de encontrar la línea o curva subyacente que mejor dibuja una tendencia como **Fitting**.",
     "tags": [
       "RNA"
     ],
@@ -1824,7 +1824,7 @@ const DAYPO_QUESTIONS = [
       "La distancia entre la capa de neuronas de entrad y la de salida"
     ],
     "correct": 3,
-    "justification": "Técnicamente, el error de cuantización en GCS, así como en SOM, mide la distancia euclídea (comúnmente elevada al cuadrado) existente entre un patrón concreto del vector de entrada y el vector de pesos que rige la neurona ganadora asociada a dicho estímulo (su BMU). Esta métrica va incrementándose a lo largo de las iteraciones. Entre las opciones propuestas de respuesta, que contienen una redacción semánticamente dudosa, la opción 3 ('La distancia entre las neuronas de entrada y su vector asociado') es la que trata de expresar esta métrica vinculando la entrada física de la red con el vector de pesos asociado a la neurona que lo capturó. La opción original dada por correcta ('una neurona y su estructura ideal') carece de consistencia teórica en la literatura del modelo GCS.",
+    "justification": "Técnicamente, el error de cuantización en GCS, así como en SOM, mide la distancia euclídea (comúnmente elevada al cuadrado) existente entre un patrón concreto del vector de entrada y el vector de pesos que rige la neurona ganadora asociada a dicho estímulo (su BMU). Esta métrica va incrementándose a lo largo de las iteraciones. Entre las opciones propuestas de respuesta, que contienen una redacción semánticamente dudosa, la opción D ('La distancia entre las neuronas de entrada y su vector asociado') es la que trata de expresar esta métrica vinculando la entrada física de la red con el vector de pesos asociado a la neurona que lo capturó. La opción original dada por correcta ('una neurona y su estructura ideal') carece de consistencia teórica en la literatura del modelo GCS.",
     "tags": [
       "SOM",
       "RNA"
@@ -2244,7 +2244,7 @@ const DAYPO_QUESTIONS = [
       "El radio"
     ],
     "correct": 2,
-    "justification": "En la programación cuántica y la computación cuántica, la unidad básica de información es el **qubit** (quantum bit). A diferencia del bit clásico, que solo puede tener un valor determinista de 0 o 1 en un instante dado, el qubit puede existir en una superposición de ambos estados simultáneamente gracias a los principios de la mecánica cuántica. Opciones como \"El bit\" pertenecen a la computación clásica, \"El cúbito\" es un término anatómico, y \"quantum-info\" o \"radio\" son inventadas o incorrectas en este contexto académico. Por consiguiente, la opción 2 es la respuesta adecuada.",
+    "justification": "En la programación cuántica y la computación cuántica, la unidad básica de información es el **qubit** (quantum bit). A diferencia del bit clásico, que solo puede tener un valor determinista de 0 o 1 en un instante dado, el qubit puede existir en una superposición de ambos estados simultáneamente gracias a los principios de la mecánica cuántica. Opciones como \"El bit\" pertenecen a la computación clásica, \"El cúbito\" es un término anatómico, y \"quantum-info\" o \"radio\" son inventadas o incorrectas en este contexto académico. Por consiguiente, la opción C es la respuesta adecuada.",
     "tags": [
       "conexionistas"
     ],
@@ -2262,7 +2262,7 @@ const DAYPO_QUESTIONS = [
       "La vecindad no afecta al aprendizaje de una red SOM"
     ],
     "correct": 2,
-    "justification": "Las Redes de Mapas Auto-organizados (SOM) utilizan una función de vecindad que decrece dinámicamente a lo largo del tiempo. En las fases iniciales (fase de ordenación topológica), la vecindad debe ser grande para organizar globalmente el mapa y descubrir las características primarias. Sin embargo, en las fases tardías (fase de convergencia o ajuste fino), la vecindad debe reducirse significativamente para que las neuronas se adapten con precisión a los datos locales y la red converja. Si artificialmente mantenemos la vecindad constante y amplia, los pesos de las neuronas seguirán modificándose drásticamente en base a estímulos lejanos, impidiendo que la red converja y resultando en un **aprendizaje muy desestabilizado en fases tardías**. Por eso, la opción correcta es la 2.",
+    "justification": "Las Redes de Mapas Auto-organizados (SOM) utilizan una función de vecindad que decrece dinámicamente a lo largo del tiempo. En las fases iniciales (fase de ordenación topológica), la vecindad debe ser grande para organizar globalmente el mapa y descubrir las características primarias. Sin embargo, en las fases tardías (fase de convergencia o ajuste fino), la vecindad debe reducirse significativamente para que las neuronas se adapten con precisión a los datos locales y la red converja. Si artificialmente mantenemos la vecindad constante y amplia, los pesos de las neuronas seguirán modificándose drásticamente en base a estímulos lejanos, impidiendo que la red converja y resultando en un **aprendizaje muy desestabilizado en fases tardías**. Por eso, la opción correcta es la C.",
     "tags": [
       "RNA"
     ],
@@ -2299,7 +2299,7 @@ const DAYPO_QUESTIONS = [
       "La hipótesis, una vez generada, no puede ser cambiada. Este caso generaría una nueva contra-hipótesis"
     ],
     "correct": 1,
-    "justification": "El proceso de creación y validación de modelos computacionales sigue una estructura cíclica y cibernética formalizada como **S-H-E-M-C** (Sistema, Hipótesis, Elaborador, Modelo, Comparador). En este ciclo de realimentación, el Sistema inspira una Hipótesis inicial; el Elaborador se encarga de construir un Modelo basado en ella; y el Comparador contrasta los resultados del Modelo con los del Sistema real. Cuando el **Comparador** detecta un error o discrepancia, emite una señal de error (feedback) que vuelve a la fase de diseño. Quien toma esta información para procesar el fallo, refinar y **reajustar la hipótesis**, y actualizar de nuevo el Modelo, es el componente activo cognitivo de este ciclo: el **Elaborador**. Por tanto, la opción 1 es la correcta.",
+    "justification": "El proceso de creación y validación de modelos computacionales sigue una estructura cíclica y cibernética formalizada como **S-H-E-M-C** (Sistema, Hipótesis, Elaborador, Modelo, Comparador). En este ciclo de realimentación, el Sistema inspira una Hipótesis inicial; el Elaborador se encarga de construir un Modelo basado en ella; y el Comparador contrasta los resultados del Modelo con los del Sistema real. Cuando el **Comparador** detecta un error o discrepancia, emite una señal de error (feedback) que vuelve a la fase de diseño. Quien toma esta información para procesar el fallo, refinar y **reajustar la hipótesis**, y actualizar de nuevo el Modelo, es el componente activo cognitivo de este ciclo: el **Elaborador**. Por tanto, la opción B es la correcta.",
     "tags": [
       "conexionistas"
     ],
@@ -2317,7 +2317,7 @@ const DAYPO_QUESTIONS = [
       "Ninguno de los anteriores"
     ],
     "correct": 3,
-    "justification": "El conexionismo y las redes neuronales artificiales toman profunda inspiración de la neurofisiología. **Santiago Ramón y Cajal** formuló la doctrina de la neurona, demostrando que el tejido cerebral está compuesto por células individuales que se comunican. **Donald Hebb** postuló en 1949 la regla de aprendizaje hebbiano (\"las neuronas que se disparan juntas, se conectan más fuertemente\"), principio vital en el aprendizaje no supervisado moderno. Por su parte, el neurofisiólogo **Warren McCulloch**, junto con el matemático Walter Pitts, desarrolló en 1943 el primer modelo matemático-lógico de una neurona biológica, uniendo definitivamente la biología con la computación. Puesto que todos ellos establecieron pilares biológicos fundamentales para la IA conexionista, la opción correcta es la 3: Todos los anteriores.",
+    "justification": "El conexionismo y las redes neuronales artificiales toman profunda inspiración de la neurofisiología. **Santiago Ramón y Cajal** formuló la doctrina de la neurona, demostrando que el tejido cerebral está compuesto por células individuales que se comunican. **Donald Hebb** postuló en 1949 la regla de aprendizaje hebbiano (\"las neuronas que se disparan juntas, se conectan más fuertemente\"), principio vital en el aprendizaje no supervisado moderno. Por su parte, el neurofisiólogo **Warren McCulloch**, junto con el matemático Walter Pitts, desarrolló en 1943 el primer modelo matemático-lógico de una neurona biológica, uniendo definitivamente la biología con la computación. Puesto que todos ellos establecieron pilares biológicos fundamentales para la IA conexionista, la opción correcta es la D: Todos los anteriores.",
     "tags": [
       "BLE/BLR",
       "RNA",
@@ -2337,7 +2337,7 @@ const DAYPO_QUESTIONS = [
       "Ninguna de las anteriores está relacionada"
     ],
     "correct": 0,
-    "justification": "Una de las características cardinales que separa a los sistemas inteligentes de los programas meramente algorítmicos o reactivos simples es la **intencionalidad**. Esto significa que el sistema exhibe un comportamiento propositivo o teleológico: sus acciones no son ciegas, sino que están **guiadas por metas y objetivos** a resolver de manera adaptativa dentro de su entorno (opción 0). Opciones como la 1 y la 2 son abiertamente contrarias a la inteligencia, dado que los sistemas inteligentes son capaces de proyectar a futuro y de desplegar altas dosis de innovación y creatividad para encontrar vías alternas a los problemas. El \"efecto serendipico\" es un fenómeno circunstancial, no una característica funcional de diseño.",
+    "justification": "Una de las características cardinales que separa a los sistemas inteligentes de los programas meramente algorítmicos o reactivos simples es la **intencionalidad**. Esto significa que el sistema exhibe un comportamiento propositivo o teleológico: sus acciones no son ciegas, sino que están **guiadas por metas y objetivos** a resolver de manera adaptativa dentro de su entorno (opción A). Opciones como la B y la C son abiertamente contrarias a la inteligencia, dado que los sistemas inteligentes son capaces de proyectar a futuro y de desplegar altas dosis de innovación y creatividad para encontrar vías alternas a los problemas. El \"efecto serendipico\" es un fenómeno circunstancial, no una característica funcional de diseño.",
     "tags": [
       "BLE/BLR",
       "RNA"
@@ -2356,7 +2356,7 @@ const DAYPO_QUESTIONS = [
       "Ninguna de las anteriores es correcta"
     ],
     "correct": 3,
-    "justification": "La Inteligencia Artificial moderna no nació de un único avance, sino que es el resultado de una confluencia de disciplinas (cibernética, neurofisiología, psicología y matemáticas). El trabajo de **Kenneth Craik** sentó las bases filosóficas de que las máquinas podrían modelar mentalmente la realidad para predecirla. **Wiener, Rosenblueth y Bigelow** aportaron los mecanismos de realimentación y el concepto vital de máquinas teleológicas (dirigidas a un propósito). Finalmente, la obra de **McCulloch y Pitts** demostró de forma rotunda cómo la actividad neuronal podía mapearse directamente en lógica proposicional formal y circuitos computacionales. Al conformar todas estas publicaciones el tejido fundacional de la IA, la opción 3 (\"Todas las anteriores son correctas\") es la respuesta certera.",
+    "justification": "La Inteligencia Artificial moderna no nació de un único avance, sino que es el resultado de una confluencia de disciplinas (cibernética, neurofisiología, psicología y matemáticas). El trabajo de **Kenneth Craik** sentó las bases filosóficas de que las máquinas podrían modelar mentalmente la realidad para predecirla. **Wiener, Rosenblueth y Bigelow** aportaron los mecanismos de realimentación y el concepto vital de máquinas teleológicas (dirigidas a un propósito). Finalmente, la obra de **McCulloch y Pitts** demostró de forma rotunda cómo la actividad neuronal podía mapearse directamente en lógica proposicional formal y circuitos computacionales. Al conformar todas estas publicaciones el tejido fundacional de la IA, la opción D (\"Todas las anteriores son correctas\") es la respuesta certera.",
     "tags": [
       "RNA"
     ],
@@ -2374,7 +2374,7 @@ const DAYPO_QUESTIONS = [
       "Alan Turing"
     ],
     "correct": 0,
-    "justification": "Aunque teóricos geniales como Alan Turing sentaron el terreno conceptual evaluativo (con su célebre artículo de 1950 y el Test de Turing), y genios como Newell y Simon estaban listos para presentar un primer programa resolutor de problemas de lógica, el término moderno fue obra de un joven profesor llamado **John McCarthy**. McCarthy redactó la propuesta en 1955 para organizar un grupo de estudio de verano y acuñó oficialmente la expresión **\"Artificial Intelligence\"** (Inteligencia Artificial) para bautizar la famosa *Conferencia de Dartmouth celebrada en 1956*, estableciendo oficialmente el nacimiento del campo de estudio bajo ese nombre. Por esto, la opción 0 es la correcta.",
+    "justification": "Aunque teóricos geniales como Alan Turing sentaron el terreno conceptual evaluativo (con su célebre artículo de 1950 y el Test de Turing), y genios como Newell y Simon estaban listos para presentar un primer programa resolutor de problemas de lógica, el término moderno fue obra de un joven profesor llamado **John McCarthy**. McCarthy redactó la propuesta en 1955 para organizar un grupo de estudio de verano y acuñó oficialmente la expresión **\"Artificial Intelligence\"** (Inteligencia Artificial) para bautizar la famosa *Conferencia de Dartmouth celebrada en 1956*, estableciendo oficialmente el nacimiento del campo de estudio bajo ese nombre. Por esto, la opción A es la correcta.",
     "tags": [
       "BLE/BLR"
     ],
@@ -2392,7 +2392,7 @@ const DAYPO_QUESTIONS = [
       "Es necesario modificar los pesos en sentido (signo) contrario al dictado por el gradiente"
     ],
     "correct": 4,
-    "justification": "El algoritmo del gradiente descendente se fundamenta en un principio del cálculo multivariable: el vector gradiente ($\\\\nabla E$) de una función de error apunta matemáticamente hacia la dirección de **máximo ascenso** (donde el error crece más rápidamente). Como el objetivo al entrenar una RNA es **minimizar** el error, la actualización de los parámetros o pesos sinápticos debe realizarse moviéndose en la dirección opuesta, restándole una porción del gradiente ponderada por la tasa de aprendizaje ($w_{nuevo} = w_{viejo} - \\\\eta \\\\cdot \\\\nabla E$). Por consiguiente, **es indispensable modificar los pesos en el sentido contrario al dictado por el gradiente** (opción 4). La clave de respuestas original marcaba la opción 3 (seguir el sentido del gradiente), lo cual resultaría en un gradiente ascendente y maximizaría el fallo de la red, de ahí que se marque como incorrecta. Las opciones sobre el valor del gradiente son contradictorias: un gradiente nulo implica que se ha llegado al fondo de un valle (mínimo local/global), no que esté lejos.",
+    "justification": "El algoritmo del gradiente descendente se fundamenta en un principio del cálculo multivariable: el vector gradiente ($\\\\nabla E$) de una función de error apunta matemáticamente hacia la dirección de **máximo ascenso** (donde el error crece más rápidamente). Como el objetivo al entrenar una RNA es **minimizar** el error, la actualización de los parámetros o pesos sinápticos debe realizarse moviéndose en la dirección opuesta, restándole una porción del gradiente ponderada por la tasa de aprendizaje ($w_{nuevo} = w_{viejo} - \\\\eta \\\\cdot \\\\nabla E$). Por consiguiente, **es indispensable modificar los pesos en el sentido contrario al dictado por el gradiente** (opción E). La clave de respuestas original marcaba la opción D (seguir el sentido del gradiente), lo cual resultaría en un gradiente ascendente y maximizaría el fallo de la red, de ahí que se marque como incorrecta. Las opciones sobre el valor del gradiente son contradictorias: un gradiente nulo implica que se ha llegado al fondo de un valle (mínimo local/global), no que esté lejos.",
     "tags": [
       "BLE/BLR",
       "RNA"
@@ -2427,7 +2427,7 @@ const DAYPO_QUESTIONS = [
       "Todas son correctas"
     ],
     "correct": 0,
-    "justification": "En los dominios de Inteligencia Artificial Simbólica, decir que el conocimiento es explícito significa que las reglas, hechos y restricciones que emplea el sistema pueden ser leídos, interpretados y trazados por un ser humano de forma natural (por ejemplo: `SI temperatura > 30 ENTONCES alerta`). La consecuencia directa e inmediata de disponer de un modelo así es que el sistema posee una **alta explicabilidad** (opción 0). Es decir, un sistema experto es capaz de mostrar el árbol exacto de razonamientos que lo condujo a una conclusión particular. Opciones como alta reusabilidad o manipulación, si bien deseables a nivel de ingeniería de software, no son consecuencias exclusivas del concepto de conocimiento declarativo explícito.",
+    "justification": "En los dominios de Inteligencia Artificial Simbólica, decir que el conocimiento es explícito significa que las reglas, hechos y restricciones que emplea el sistema pueden ser leídos, interpretados y trazados por un ser humano de forma natural (por ejemplo: `SI temperatura > 30 ENTONCES alerta`). La consecuencia directa e inmediata de disponer de un modelo así es que el sistema posee una **alta explicabilidad** (opción A). Es decir, un sistema experto es capaz de mostrar el árbol exacto de razonamientos que lo condujo a una conclusión particular. Opciones como alta reusabilidad o manipulación, si bien deseables a nivel de ingeniería de software, no son consecuencias exclusivas del concepto de conocimiento declarativo explícito.",
     "tags": [
       "BLE/BLR",
       "Reglas"
@@ -2445,7 +2445,7 @@ const DAYPO_QUESTIONS = [
       "Todas son correctas"
     ],
     "correct": 3,
-    "justification": "En la teoría de agentes inteligentes de Russell y Norvig, un Agente se define mediante la ecuación general: `Agente = Arquitectura + Programa`. La **arquitectura del agente** representa la maquinaria y el entorno computacional (o físico) sobre el cual este reside. Sus misiones son fundamentales: contiene el hardware base y los módulos de funcionamiento imprescindibles (opción 0), proporciona una estructura e interfaz de ejecución segura que le da soporte al algoritmo que constituye el 'programa' (opción 1), y le brinda los sensores e instrumentos para la percepción del entorno, junto con los actuadores para ejecutar la selección de acciones decididas (opción 2). Al describir perfectamente las facetas de la arquitectura en un sistema de IA, todas las afirmaciones son correctas (opción 3).",
+    "justification": "En la teoría de agentes inteligentes de Russell y Norvig, un Agente se define mediante la ecuación general: `Agente = Arquitectura + Programa`. La **arquitectura del agente** representa la maquinaria y el entorno computacional (o físico) sobre el cual este reside. Sus misiones son fundamentales: contiene el hardware base y los módulos de funcionamiento imprescindibles (opción A), proporciona una estructura e interfaz de ejecución segura que le da soporte al algoritmo que constituye el 'programa' (opción B), y le brinda los sensores e instrumentos para la percepción del entorno, junto con los actuadores para ejecutar la selección de acciones decididas (opción C). Al describir perfectamente las facetas de la arquitectura en un sistema de IA, todas las afirmaciones son correctas (opción D).",
     "tags": [
       "BLE/BLR"
     ],
@@ -2462,7 +2462,7 @@ const DAYPO_QUESTIONS = [
       "Selecciona una acción en base a un estado interno que mide qué tan beneficioso es un estado"
     ],
     "correct": 0,
-    "justification": "El **agente reactivo simple** es la concepción algorítmica más elemental en la taxonomía de agentes inteligentes. Su característica primordial es que padece de una \"amnesia total\": no retiene historia de las percepciones anteriores. Su proceso de toma de decisiones opera mapeando de manera directa e inmediata la **percepción actual** (estado del entorno en el instante presente) a una acción, usando un sistema rígido de reglas de condición-acción que a menudo se conocen biológicamente como **reflejos**. Por ejemplo, una aspiradora que gira si choca contra la pared en el instante $t$. Por lo tanto, la opción correcta es la 0. El resto de opciones detallan agentes con estado, con metas, o basados en función de utilidad.",
+    "justification": "El **agente reactivo simple** es la concepción algorítmica más elemental en la taxonomía de agentes inteligentes. Su característica primordial es que padece de una \"amnesia total\": no retiene historia de las percepciones anteriores. Su proceso de toma de decisiones opera mapeando de manera directa e inmediata la **percepción actual** (estado del entorno en el instante presente) a una acción, usando un sistema rígido de reglas de condición-acción que a menudo se conocen biológicamente como **reflejos**. Por ejemplo, una aspiradora que gira si choca contra la pared en el instante $t$. Por lo tanto, la opción correcta es la A. El resto de opciones detallan agentes con estado, con metas, o basados en función de utilidad.",
     "tags": [
       "Reglas"
     ],
@@ -2479,7 +2479,7 @@ const DAYPO_QUESTIONS = [
       "Selecciona una acción en base a un estado interno que mide qué tan beneficioso es un estado"
     ],
     "correct": 1,
-    "justification": "A diferencia de la rigidez de un agente reactivo simple, el **agente reactivo basado en modelos** mantiene un registro o 'estado interno' que le permite suplir la parte del entorno que no está siendo observada en un instante específico. Para sostener y actualizar fiablemente este estado interno, el agente necesita tener integrado un \"modelo del mundo\", es decir, un conocimiento sobre dos dinámicas causales: **cómo evoluciona el mundo independientemente del agente**, y **qué efecto o impacto físico tienen las acciones** que el propio agente ejecuta sobre ese mundo. Esta descripción técnica casa a la perfección con la opción 1.",
+    "justification": "A diferencia de la rigidez de un agente reactivo simple, el **agente reactivo basado en modelos** mantiene un registro o 'estado interno' que le permite suplir la parte del entorno que no está siendo observada en un instante específico. Para sostener y actualizar fiablemente este estado interno, el agente necesita tener integrado un \"modelo del mundo\", es decir, un conocimiento sobre dos dinámicas causales: **cómo evoluciona el mundo independientemente del agente**, y **qué efecto o impacto físico tienen las acciones** que el propio agente ejecuta sobre ese mundo. Esta descripción técnica casa a la perfección con la opción B.",
     "tags": [
       "BLE/BLR"
     ],
@@ -2496,7 +2496,7 @@ const DAYPO_QUESTIONS = [
       "Selecciona una acción en base a un estado interno que mide qué tan beneficioso es un estado"
     ],
     "correct": 2,
-    "justification": "Para que un agente resuelva problemas de manera intencionada, poseer un modelo del mundo no es suficiente. El **agente basado en metas** (o en objetivos) añade un componente teleológico: posee una descripción de las situaciones favorables o estados finales que se desea que alcance (metas). Cuando se encuentra ante varias bifurcaciones posibles, debe proyectar hacia el futuro qué desenlace provendría de ejecutar cada posibilidad, evaluando si este nuevo estado satisface la meta. Es decir, **selecciona la acción planificando secuencias que le aproximen a sus objetivos**, lo que hace que la opción correcta sea la 2. La opción 3, por su parte, aludiría a los agentes basados en utilidad, los cuales cuantifican 'cuán feliz' se está en un estado.",
+    "justification": "Para que un agente resuelva problemas de manera intencionada, poseer un modelo del mundo no es suficiente. El **agente basado en metas** (o en objetivos) añade un componente teleológico: posee una descripción de las situaciones favorables o estados finales que se desea que alcance (metas). Cuando se encuentra ante varias bifurcaciones posibles, debe proyectar hacia el futuro qué desenlace provendría de ejecutar cada posibilidad, evaluando si este nuevo estado satisface la meta. Es decir, **selecciona la acción planificando secuencias que le aproximen a sus objetivos**, lo que hace que la opción correcta sea la C. La opción D, por su parte, aludiría a los agentes basados en utilidad, los cuales cuantifican 'cuán feliz' se está en un estado.",
     "tags": [
       "BLE/BLR",
       "Planificación"
@@ -2514,7 +2514,7 @@ const DAYPO_QUESTIONS = [
       "Selecciona una acción en base a un estado interno que mide qué tan beneficioso es un estado"
     ],
     "correct": 3,
-    "justification": "El **agente basado en utilidad** es el tipo de agente más avanzado presentado en la teoría. A diferencia del agente basado en metas, que solo distingue entre estados que cumplen o no un objetivo (éxito/fracaso), el agente basado en utilidad utiliza una función matemática de utilidad que asigna un valor numérico a la \"bondad\" de cada estado. De esta forma, selecciona la acción que maximiza dicha utilidad (por ejemplo, entre varias rutas para llegar a un destino, escoge la que minimiza el consumo de gasolina y peajes). Por ello, la opción correcta es la 3. Las opciones 0, 1 y 2 describen al agente reactivo simple, agente basado en modelos y agente basado en metas, respectivamente.",
+    "justification": "El **agente basado en utilidad** es el tipo de agente más avanzado presentado en la teoría. A diferencia del agente basado en metas, que solo distingue entre estados que cumplen o no un objetivo (éxito/fracaso), el agente basado en utilidad utiliza una función matemática de utilidad que asigna un valor numérico a la \"bondad\" de cada estado. De esta forma, selecciona la acción que maximiza dicha utilidad (por ejemplo, entre varias rutas para llegar a un destino, escoge la que minimiza el consumo de gasolina y peajes). Por ello, la opción correcta es la D. Las opciones A, 1 y 2 describen al agente reactivo simple, agente basado en modelos y agente basado en metas, respectivamente.",
     "tags": [
       "introduccion"
     ],
@@ -2531,7 +2531,7 @@ const DAYPO_QUESTIONS = [
       "Ninguna es correcta"
     ],
     "correct": 0,
-    "justification": "El **agente reactivo simple** toma sus decisiones basándose pura y exclusivamente en la percepción actual que recibe del entorno, ignorando todo el historial de percepciones pasadas. Para ello, su arquitectura se fundamenta en unas **reglas de condición-acción** (por ejemplo, \"si el coche de delante frena, entonces frena\"). Al carecer de estado interno, no evalúa los efectos futuros de sus acciones ni cómo evoluciona el mundo, haciendo la opción 0 la única correcta.",
+    "justification": "El **agente reactivo simple** toma sus decisiones basándose pura y exclusivamente en la percepción actual que recibe del entorno, ignorando todo el historial de percepciones pasadas. Para ello, su arquitectura se fundamenta en unas **reglas de condición-acción** (por ejemplo, \"si el coche de delante frena, entonces frena\"). Al carecer de estado interno, no evalúa los efectos futuros de sus acciones ni cómo evoluciona el mundo, haciendo la opción A la única correcta.",
     "tags": [
       "Reglas"
     ],
@@ -2548,7 +2548,7 @@ const DAYPO_QUESTIONS = [
       "Mantiene un estado interno con el efecto de sus acciones"
     ],
     "correct": 3,
-    "justification": "Como se ha mencionado, el **agente reactivo simple** es la arquitectura más básica (opción 0 correcta) porque reacciona automáticamente a la percepción actual (opción 1 correcta) como si fuera un reflejo (opción 2 correcta). Lo que **nunca hace** es mantener un estado interno que memorice las percepciones pasadas, estime cómo evoluciona el mundo u observe los efectos de sus acciones; esa es la característica principal que distingue al **agente basado en modelos**. Por tanto, la afirmación de la opción 3 es la incorrecta.",
+    "justification": "Como se ha mencionado, el **agente reactivo simple** es la arquitectura más básica (opción A correcta) porque reacciona automáticamente a la percepción actual (opción B correcta) como si fuera un reflejo (opción C correcta). Lo que **nunca hace** es mantener un estado interno que memorice las percepciones pasadas, estime cómo evoluciona el mundo u observe los efectos de sus acciones; esa es la característica principal que distingue al **agente basado en modelos**. Por tanto, la afirmación de la opción D es la incorrecta.",
     "tags": [
       "introduccion"
     ],
@@ -2565,7 +2565,7 @@ const DAYPO_QUESTIONS = [
       "Mantiene un estado interno con el efecto de sus acciones"
     ],
     "correct": 0,
-    "justification": "El **agente basado en modelos** da un paso adelante respecto al reactivo simple incorporando un \"estado interno\". Esto le permite tener en cuenta el historial perceptivo, conocer cómo evoluciona el mundo y qué impacto tendrán sus acciones inmediatas (opciones 1, 2 y 3 correctas en su definición). Sin embargo, **no es capaz de planificar** secuencias de acciones para alcanzar un fin último (esto es lo que hace el agente basado en metas). Como el agente basado en modelos solo reacciona con reglas de condición-acción actualizadas por su modelo, la opción 0 es la afirmación incorrecta.",
+    "justification": "El **agente basado en modelos** da un paso adelante respecto al reactivo simple incorporando un \"estado interno\". Esto le permite tener en cuenta el historial perceptivo, conocer cómo evoluciona el mundo y qué impacto tendrán sus acciones inmediatas (opciones B, 2 y 3 correctas en su definición). Sin embargo, **no es capaz de planificar** secuencias de acciones para alcanzar un fin último (esto es lo que hace el agente basado en metas). Como el agente basado en modelos solo reacciona con reglas de condición-acción actualizadas por su modelo, la opción A es la afirmación incorrecta.",
     "tags": [
       "Reglas",
       "Planificación"
@@ -2583,7 +2583,7 @@ const DAYPO_QUESTIONS = [
       "Mantiene un estado interno con el efecto de sus acciones"
     ],
     "correct": 2,
-    "justification": "El **agente basado en metas** hereda las capacidades del agente basado en modelos (por tanto, mantiene un estado interno y puede medir el efecto de sus acciones en el entorno, haciendo correctas las opciones 1 y 3). Además, incorpora información sobre sus objetivos para planificar qué secuencias de acciones le llevarán a conseguirlos (opción 0 correcta). Lo que **deja de utilizar** son las reglas estáticas y fijas de \"condición-acción\" que definen a los agentes reactivos. Sus decisiones ahora son dinámicas basadas en la pregunta \"¿qué pasará si realizo esta acción y me acerca a la meta?\". Por tanto, la opción 2 es la incorrecta.",
+    "justification": "El **agente basado en metas** hereda las capacidades del agente basado en modelos (por tanto, mantiene un estado interno y puede medir el efecto de sus acciones en el entorno, haciendo correctas las opciones B y 3). Además, incorpora información sobre sus objetivos para planificar qué secuencias de acciones le llevarán a conseguirlos (opción A correcta). Lo que **deja de utilizar** son las reglas estáticas y fijas de \"condición-acción\" que definen a los agentes reactivos. Sus decisiones ahora son dinámicas basadas en la pregunta \"¿qué pasará si realizo esta acción y me acerca a la meta?\". Por tanto, la opción C es la incorrecta.",
     "tags": [
       "Reglas",
       "Planificación"
@@ -2601,7 +2601,7 @@ const DAYPO_QUESTIONS = [
       "Cada acción del agente deriva a un estado predecible bajo un valor pseudoaleatorio"
     ],
     "correct": 0,
-    "justification": "En inteligencia artificial, un entorno se clasifica como **determinista** cuando el siguiente estado del entorno está completamente determinado por el estado actual y la acción ejecutada por el agente. Es decir, cada acción deriva en un resultado seguro y perfectamente predecible. No intervienen factores de azar, probabilidad o incertidumbre. El ajedrez o los crucigramas son claros ejemplos deterministas. Por ello, la opción 0 es la única correcta.",
+    "justification": "En inteligencia artificial, un entorno se clasifica como **determinista** cuando el siguiente estado del entorno está completamente determinado por el estado actual y la acción ejecutada por el agente. Es decir, cada acción deriva en un resultado seguro y perfectamente predecible. No intervienen factores de azar, probabilidad o incertidumbre. El ajedrez o los crucigramas son claros ejemplos deterministas. Por ello, la opción A es la única correcta.",
     "tags": [
       "A*",
       "BLE/BLR"
@@ -2619,7 +2619,7 @@ const DAYPO_QUESTIONS = [
       "Cada acción del agente deriva a un estado dependiente de un valor fijo"
     ],
     "correct": 2,
-    "justification": "A diferencia del entorno determinista, en un entorno **estocástico** el resultado de las acciones no está asegurado de forma exacta. El estado al que se llega tras aplicar una acción depende en parte de la acción del agente y en parte de variables externas incontrolables o elementos aleatorios. Por lo tanto, el estado resultante involucra incertidumbre (valores aleatorios). La opción 2 captura correctamente esta dependencia probabilística y aleatoria.",
+    "justification": "A diferencia del entorno determinista, en un entorno **estocástico** el resultado de las acciones no está asegurado de forma exacta. El estado al que se llega tras aplicar una acción depende en parte de la acción del agente y en parte de variables externas incontrolables o elementos aleatorios. Por lo tanto, el estado resultante involucra incertidumbre (valores aleatorios). La opción C captura correctamente esta dependencia probabilística y aleatoria.",
     "tags": [
       "BLE/BLR",
       "RNA"
@@ -2655,7 +2655,7 @@ const DAYPO_QUESTIONS = [
       "Clasificación de imágenes"
     ],
     "correct": 2,
-    "justification": "Aunque estrictamente tanto el solitario de cartas (por las cartas ocultas) como la conducción autónoma presentan observabilidad parcial según el temario de la asignatura, la **conducción autónoma** (opción 2) es el ejemplo canónico por excelencia utilizado para ilustrar la observabilidad parcial debida a limitaciones sensoriales físicas en el mundo real. Es la opción esperada y más representativa de un entorno real complejo. (Nota: el solitario también sería formalmente válido, pero típicamente se destaca la conducción autónoma al sumar también estocasticidad y multiagente).",
+    "justification": "Aunque estrictamente tanto el solitario de cartas (por las cartas ocultas) como la conducción autónoma presentan observabilidad parcial según el temario de la asignatura, la **conducción autónoma** (opción C) es el ejemplo canónico por excelencia utilizado para ilustrar la observabilidad parcial debida a limitaciones sensoriales físicas en el mundo real. Es la opción esperada y más representativa de un entorno real complejo. (Nota: el solitario también sería formalmente válido, pero típicamente se destaca la conducción autónoma al sumar también estocasticidad y multiagente).",
     "tags": [
       "A*"
     ],
@@ -2672,7 +2672,7 @@ const DAYPO_QUESTIONS = [
       "Todas son correctas"
     ],
     "correct": 0,
-    "justification": "Esta pregunta contiene un pequeño error en su formulación, ya que describe la definición de **\"Estado\"** en general y no de \"Estado Inicial\". Un estado se define como la representación abstracta de \"cada situación posible en el problema\". El estado inicial sería simplemente el estado o punto de partida desde el cual el agente comienza a resolver el problema. Dado que la opción 0 (\"Cada situación posible en el problema con un estado\") corresponde a la definición de Estado, y es la respuesta dada como correcta, se asume que la pregunta contenía una errata al añadir \"inicial\". Se ha mantenido el índice 0 como correcto.",
+    "justification": "Esta pregunta contiene un pequeño error en su formulación, ya que describe la definición de **\"Estado\"** en general y no de \"Estado Inicial\". Un estado se define como la representación abstracta de \"cada situación posible en el problema\". El estado inicial sería simplemente el estado o punto de partida desde el cual el agente comienza a resolver el problema. Dado que la opción A (\"Cada situación posible en el problema con un estado\") corresponde a la definición de Estado, y es la respuesta dada como correcta, se asume que la pregunta contenía una errata al añadir \"inicial\". Se ha mantenido el índice 0 como correcto.",
     "tags": [
       "BLE/BLR"
     ],
@@ -2689,7 +2689,7 @@ const DAYPO_QUESTIONS = [
       "Describen las acciones de los agentes en el problema"
     ],
     "correct": 1,
-    "justification": "Formalmente, la función de **Acciones** de un problema toma un estado particular `s` y devuelve el conjunto de las acciones que el agente puede ejecutar en ese estado concreto (aplicabilidad). No enumera todas las acciones del problema de golpe, sino que lo hace en base al estado dado. Por lo tanto, la opción 1 (\"Para un estado dado cualquiera del agente, lista las posibles acciones\") es la definición correcta y precisa.",
+    "justification": "Formalmente, la función de **Acciones** de un problema toma un estado particular `s` y devuelve el conjunto de las acciones que el agente puede ejecutar en ese estado concreto (aplicabilidad). No enumera todas las acciones del problema de golpe, sino que lo hace en base al estado dado. Por lo tanto, la opción B (\"Para un estado dado cualquiera del agente, lista las posibles acciones\") es la definición correcta y precisa.",
     "tags": [
       "BLE/BLR"
     ],
@@ -2706,7 +2706,7 @@ const DAYPO_QUESTIONS = [
       "El espacio de estados se puede hacer explícito (finito o infinito) mediante el modelo de transición"
     ],
     "correct": 0,
-    "justification": "El **Espacio de Estados** se define como el conjunto de todos los estados alcanzables desde el estado inicial a través de cualquier secuencia de acciones. Se forma implícitamente mediante el Estado Inicial, la función de Acciones y el Modelo de Transición, y su estructura matemática subyacente es la de un **grafo dirigido** donde los nodos representan estados y los arcos dirigidos representan las acciones ejecutadas para pasar de uno a otro. Por lo tanto, la opción 0 es la definición teórica más exacta y completa.",
+    "justification": "El **Espacio de Estados** se define como el conjunto de todos los estados alcanzables desde el estado inicial a través de cualquier secuencia de acciones. Se forma implícitamente mediante el Estado Inicial, la función de Acciones y el Modelo de Transición, y su estructura matemática subyacente es la de un **grafo dirigido** donde los nodos representan estados y los arcos dirigidos representan las acciones ejecutadas para pasar de uno a otro. Por lo tanto, la opción A es la definición teórica más exacta y completa.",
     "tags": [
       "BLE/BLR"
     ],
@@ -2723,7 +2723,7 @@ const DAYPO_QUESTIONS = [
       "a) y b)"
     ],
     "correct": 0,
-    "justification": "Dentro de la definición formal de los componentes de un problema, el **Test Objetivo** (o Prueba de Meta) es la función encargada de evaluar un estado `s` para comprobar si éste cumple con las condiciones que definen el fin o resolución del problema. Es decir, verifica simplemente si el estado actual es (o no) un estado meta. La asignación de costes corresponde a la Función de Coste, por lo que la opción 0 es la correcta.",
+    "justification": "Dentro de la definición formal de los componentes de un problema, el **Test Objetivo** (o Prueba de Meta) es la función encargada de evaluar un estado `s` para comprobar si éste cumple con las condiciones que definen el fin o resolución del problema. Es decir, verifica simplemente si el estado actual es (o no) un estado meta. La asignación de costes corresponde a la Función de Coste, por lo que la opción A es la correcta.",
     "tags": [
       "BLE/BLR"
     ],
@@ -2740,7 +2740,7 @@ const DAYPO_QUESTIONS = [
       "b) y c)"
     ],
     "correct": 3,
-    "justification": "La **Función de Coste del Camino** permite evaluar la calidad o esfuerzo requerido por cada camino posible. Para ello asume los costes de cada paso intermedio, representados típicamente como la función que evalúa llevar a cabo la acción `W` desde el estado `X` al `Y`, denotada como `c(X, W, Y)` o `C(X, W, Y)`. Esta información permite asignar un valor numérico total al camino seguido (aunque teóricamente a cualquier camino, el enunciado especifica el que llega al objetivo para contextualizar su uso al buscar la solución óptima). Al recoger correctamente ambos aspectos representacionales y funcionales de la asignatura, la respuesta combinada \"b) y c)\" (opción 3) es la correcta.",
+    "justification": "La **Función de Coste del Camino** permite evaluar la calidad o esfuerzo requerido por cada camino posible. Para ello asume los costes de cada paso intermedio, representados típicamente como la función que evalúa llevar a cabo la acción `W` desde el estado `X` al `Y`, denotada como `c(X, W, Y)` o `C(X, W, Y)`. Esta información permite asignar un valor numérico total al camino seguido (aunque teóricamente a cualquier camino, el enunciado especifica el que llega al objetivo para contextualizar su uso al buscar la solución óptima). Al recoger correctamente ambos aspectos representacionales y funcionales de la asignatura, la respuesta combinada \"b) y c)\" (opción D) es la correcta.",
     "tags": [
       "BLE/BLR"
     ],
@@ -2757,7 +2757,7 @@ const DAYPO_QUESTIONS = [
       "Puede existir una solución que no sea óptima para un problema"
     ],
     "correct": 1,
-    "justification": "Una solución a un problema de búsqueda es, por definición, una secuencia de acciones que nos llevan desde el estado inicial hasta el estado meta (opción 0). Esta solución puede ser óptima o subóptima (opción 3), y su calidad se evalúa aplicando la función de coste del camino (opción 2). Sin embargo, el término **\"camino crítico\"** pertenece a los modelos de planificación de proyectos (como PERT o CPM) o algoritmos de grafos muy particulares, no siendo parte de la definición formal de la solución genérica en la búsqueda de IA. Por lo tanto, la opción 1 es la afirmación incorrecta.",
+    "justification": "Una solución a un problema de búsqueda es, por definición, una secuencia de acciones que nos llevan desde el estado inicial hasta el estado meta (opción A). Esta solución puede ser óptima o subóptima (opción D), y su calidad se evalúa aplicando la función de coste del camino (opción C). Sin embargo, el término **\"camino crítico\"** pertenece a los modelos de planificación de proyectos (como PERT o CPM) o algoritmos de grafos muy particulares, no siendo parte de la definición formal de la solución genérica en la búsqueda de IA. Por lo tanto, la opción B es la afirmación incorrecta.",
     "tags": [
       "BLE/BLR",
       "Planificación"
@@ -3116,7 +3116,7 @@ const DAYPO_QUESTIONS = [
       "Es completa y óptima"
     ],
     "correct": 2,
-    "justification": "La respuesta correcta (la afirmación falsa) es la **2**. El coste de camino ($g(n)$) de un nodo cualquiera no tiene por qué ser el mismo que el coste de la solución óptima ($C^*$). Esta afirmación tergiversa la complejidad del algoritmo, que evalúa nodos cuyo coste es $\\le C^*$. Las demás afirmaciones son consideradas ciertas en la teoría: la frontera mantiene el camino más corto conocido a sus nodos (opción 0, gracias a la actualización cuando se encuentra un camino mejor), es completa y óptima (opción 3), y el primer nodo meta en ser expandido garantiza ser la solución óptima (opción 1).",
+    "justification": "La respuesta correcta (la afirmación falsa) es la **C**. El coste de camino ($g(n)$) de un nodo cualquiera no tiene por qué ser el mismo que el coste de la solución óptima ($C^\\ast$). Esta afirmación tergiversa la complejidad del algoritmo, que evalúa nodos cuyo coste es $\\le C^\\ast$. Las demás afirmaciones son consideradas ciertas en la teoría: la frontera mantiene el camino más corto conocido a sus nodos (opción A, gracias a la actualización cuando se encuentra un camino mejor), es completa y óptima (opción D), y el primer nodo meta en ser expandido garantiza ser la solución óptima (opción B).",
     "tags": [
       "busqueda"
     ],
@@ -3133,7 +3133,7 @@ const DAYPO_QUESTIONS = [
       "Todas son verdaderas"
     ],
     "correct": 1,
-    "justification": "La respuesta correcta es la **B**. Dado que la afirmación 'El coste de camino es el mismo que el coste de la solución óptima' es falsa en términos generales (el coste $g(n)$ de los nodos explorados va creciendo hasta alcanzar $C^*$), la opción 'Todas son verdaderas' es incorrecta. De las opciones restantes, la afirmación más sólida y representativa del algoritmo de coste uniforme es que **el primer nodo meta en ser expandido será el óptimo** (opción B). Esto ocurre porque los nodos se extraen de la cola de prioridad en orden creciente de coste $g(n)$, garantizando la optimalidad al momento de la expansión.",
+    "justification": "La respuesta correcta es la **B**. Dado que la afirmación 'El coste de camino es el mismo que el coste de la solución óptima' es falsa en términos generales (el coste $g(n)$ de los nodos explorados va creciendo hasta alcanzar $C^\ast$), la opción 'Todas son verdaderas' es incorrecta. De las opciones restantes, la afirmación más sólida y representativa del algoritmo de coste uniforme es que **el primer nodo meta en ser expandido será el óptimo** (opción B). Esto ocurre porque los nodos se extraen de la cola de prioridad en orden creciente de coste $g(n)$, garantizando la optimalidad al momento de la expansión.",
     "tags": [
       "busqueda"
     ],
@@ -3184,7 +3184,7 @@ const DAYPO_QUESTIONS = [
       "Todas son correctas"
     ],
     "correct": 3,
-    "justification": "La respuesta correcta es la **D** (Todas son correctas). La búsqueda de profundidad limitada soluciona el defecto principal de la búsqueda en profundidad (perderse en ramas o caminos infinitos) al **fijar un límite ($l$) a la profundidad máxima** permitida (opciones 0 y 2). Sin embargo, este límite introduce un riesgo: si la meta se encuentra a una profundidad mayor que el límite establecido ($l < d$), **el algoritmo nunca llegará a ella**, perdiendo su completitud (opción 1). Por tanto, todas las afirmaciones describen correctamente sus características.",
+    "justification": "La respuesta correcta es la **D** (Todas son correctas). La búsqueda de profundidad limitada soluciona el defecto principal de la búsqueda en profundidad (perderse en ramas o caminos infinitos) al **fijar un límite ($l$) a la profundidad máxima** permitida (opciones A y 2). Sin embargo, este límite introduce un riesgo: si la meta se encuentra a una profundidad mayor que el límite establecido ($l < d$), **el algoritmo nunca llegará a ella**, perdiendo su completitud (opción B). Por tanto, todas las afirmaciones describen correctamente sus características.",
     "tags": [
       "A*",
       "BLE/BLR",
@@ -3220,7 +3220,7 @@ const DAYPO_QUESTIONS = [
       "Se selecciona en base a una función heurística h(n) donde se elige el mayor mejor valor"
     ],
     "correct": 0,
-    "justification": "La respuesta correcta es la **A**. En las estrategias de búsqueda preferente por el mejor (Best-First Search), el nodo a expandir se selecciona utilizando una función de evaluación genérica **$f(n)$**. Para optimizar el camino hacia la meta, el algoritmo siempre elige el nodo que presente el **menor valor** de $f(n)$ (el coste más prometedor o estimado). La opción 2 se refiere específicamente a la búsqueda avara ($f(n) = h(n)$), que es solo un caso particular, no la definición general.",
+    "justification": "La respuesta correcta es la **A**. En las estrategias de búsqueda preferente por el mejor (Best-First Search), el nodo a expandir se selecciona utilizando una función de evaluación genérica **$f(n)$**. Para optimizar el camino hacia la meta, el algoritmo siempre elige el nodo que presente el **menor valor** de $f(n)$ (el coste más prometedor o estimado). La opción C se refiere específicamente a la búsqueda avara ($f(n) = h(n)$), que es solo un caso particular, no la definición general.",
     "tags": [
       "busqueda"
     ],
@@ -3237,7 +3237,7 @@ const DAYPO_QUESTIONS = [
       "Si n es un nodo meta, entonces la función heurística h(n) = 1"
     ],
     "correct": 3,
-    "justification": "La respuesta correcta (la afirmación falsa) es la **3**. En toda búsqueda informada, la función heurística $h(n)$ estima el coste desde el nodo $n$ hasta la meta. Una **restricción inquebrantable** para que la heurística sea válida es que el coste estimado para llegar a la meta estando ya en ella debe ser nulo. Por lo tanto, si $n$ es un nodo meta, **$h(n) = 0$**, no 1.",
+    "justification": "La respuesta correcta (la afirmación falsa) es la **D**. En toda búsqueda informada, la función heurística $h(n)$ estima el coste desde el nodo $n$ hasta la meta. Una **restricción inquebrantable** para que la heurística sea válida es que el coste estimado para llegar a la meta estando ya en ella debe ser nulo. Por lo tanto, si $n$ es un nodo meta, **$h(n) = 0$**, no 1.",
     "tags": [
       "BLE/BLR",
       "Heurística"
@@ -3273,7 +3273,7 @@ const DAYPO_QUESTIONS = [
       "La búsqueda A* ocurre cuando la f(n) considera el coste máximo total del camino a un nodo solución"
     ],
     "correct": 3,
-    "justification": "La respuesta correcta (la afirmación falsa) es la **3**. La búsqueda A* ocurre cuando $f(n) = g(n) + h(n)$. Esta función $f(n)$ estima el coste **mínimo** total del camino hacia la solución que pasa por el nodo $n$, no el coste *máximo*. Las opciones 0 y 1 describen correctamente la búsqueda avara ($f(n) = h(n)$ centrada en el coste mínimo estimado futuro) y la opción 2 define matemáticamente A* de forma correcta.",
+    "justification": "La respuesta correcta (la afirmación falsa) es la **D**. La búsqueda A* ocurre cuando $f(n) = g(n) + h(n)$. Esta función $f(n)$ estima el coste **mínimo** total del camino hacia la solución que pasa por el nodo $n$, no el coste *máximo*. Las opciones A y 1 describen correctamente la búsqueda avara ($f(n) = h(n)$ centrada en el coste mínimo estimado futuro) y la opción C define matemáticamente A* de forma correcta.",
     "tags": [
       "A*"
     ],
@@ -3290,7 +3290,7 @@ const DAYPO_QUESTIONS = [
       "La búsqueda avara implementa una cola FIFO que atiende al costo g(n)"
     ],
     "correct": 1,
-    "justification": "La respuesta correcta es la **B**. La búsqueda avara ordena su frontera utilizando únicamente la información sobre cuán cerca parece estar la meta. Por lo tanto, implementa una **cola de prioridad ordenada por la función heurística $h(n)$**. La opción 0 describe la búsqueda de coste uniforme (que prioriza $g(n)$), la opción 3 mezcla conceptos erróneos (FIFO con $g(n)$) y la opción 2, aunque cierta a nivel conceptual (usa $f(n)$), es menos específica y descriptiva que la 1, ya que la esencia de la búsqueda avara es precisamente que $f(n)$ es igual a $h(n)$.",
+    "justification": "La respuesta correcta es la **B**. La búsqueda avara ordena su frontera utilizando únicamente la información sobre cuán cerca parece estar la meta. Por lo tanto, implementa una **cola de prioridad ordenada por la función heurística $h(n)$**. La opción A describe la búsqueda de coste uniforme (que prioriza $g(n)$), la opción D mezcla conceptos erróneos (FIFO con $g(n)$) y la opción C, aunque cierta a nivel conceptual (usa $f(n)$), es menos específica y descriptiva que la B, ya que la esencia de la búsqueda avara es precisamente que $f(n)$ es igual a $h(n)$.",
     "tags": [
       "Heurística"
     ],
@@ -3495,8 +3495,8 @@ const DAYPO_QUESTIONS = [
       "De máxima pendiente",
       "De best-state"
     ],
-    "correct": 1,
-    "justification": "El algoritmo que evalúa exhaustivamente a **todos** los vecinos y selecciona el mejor de ellos se denomina 'Ascensión de colinas por la máxima pendiente' o Best-Neighbor, a diferencia de First-Choice que elige el primero que mejore.",
+    "correct": 2,
+    "justification": "En la teoría de la asignatura, la versión **de máxima pendiente** (o *steepest-ascent* / *best-neighbor*) se define como el algoritmo que evalúa todos los vecinos y selecciona el mejor de ellos (el primer mejor de entre los sucesores). Se diferencia de la escalada clásica (*first-choice*), la cual se mueve al primer sucesor que encuentre que sea mejor que el estado actual sin evaluar a los demás.",
     "tags": [
       "busqueda"
     ],
@@ -4363,7 +4363,7 @@ const DAYPO_QUESTIONS = [
       "Las interpretaciones categóricas son poco frecuentes en el mundo real"
     ],
     "correct": 2,
-    "justification": "En el mundo real, los problemas médicos o diagnósticos están dominados por la incertidumbre. Un síntoma o manifestación puede ser causado por diversas enfermedades, por lo que **no es posible afirmar siempre y de forma categórica** que la presencia de un síntoma implique una causa única. Esta es la base del razonamiento bayesiano y bajo incertidumbre, haciendo que la opción 2 sea claramente la afirmación incorrecta.",
+    "justification": "En el mundo real, los problemas médicos o diagnósticos están dominados por la incertidumbre. Un síntoma o manifestación puede ser causado por diversas enfermedades, por lo que **no es posible afirmar siempre y de forma categórica** que la presencia de un síntoma implique una causa única. Esta es la base del razonamiento bayesiano y bajo incertidumbre, haciendo que la opción C sea claramente la afirmación incorrecta.",
     "tags": [
       "A*",
       "Bayes",
@@ -4382,7 +4382,7 @@ const DAYPO_QUESTIONS = [
       "Es un grafo no dirigido no cíclico donde no todas las variables dependen de todas"
     ],
     "correct": 0,
-    "justification": "Una **red bayesiana** se define estructuralmente como un **Grafo Dirigido Acíclico (DAG)**. Sus **nodos** representan las **variables aleatorias** del dominio (por ejemplo, síntomas o enfermedades) y cada nodo aloja distribuciones probabilísticas (las tablas de probabilidad condicionada). Las aristas, por su parte, representan las dependencias; la opción 0 captura la definición fundamental sobre la representación de las variables del dominio en el grafo.",
+    "justification": "Una **red bayesiana** se define estructuralmente como un **Grafo Dirigido Acíclico (DAG)**. Sus **nodos** representan las **variables aleatorias** del dominio (por ejemplo, síntomas o enfermedades) y cada nodo aloja distribuciones probabilísticas (las tablas de probabilidad condicionada). Las aristas, por su parte, representan las dependencias; la opción A captura la definición fundamental sobre la representación de las variables del dominio en el grafo.",
     "tags": [
       "A*",
       "Bayes",
@@ -4544,7 +4544,7 @@ const DAYPO_QUESTIONS = [
       "Ninguna de las anteriores es correcta"
     ],
     "correct": 3,
-    "justification": "En este caso, la opción 2 afirma que siempre involucran **alternativas explícitas**. Esto es falso, ya que en una regla de producción (`IF ... THEN ... ELSE`), el bloque `ELSE` (la alternativa) es **completamente opcional**. Al ser las demás opciones falsas también, la opción correcta es que 'Ninguna de las anteriores es correcta'.",
+    "justification": "En este caso, la opción C afirma que siempre involucran **alternativas explícitas**. Esto es falso, ya que en una regla de producción (`IF ... THEN ... ELSE`), el bloque `ELSE` (la alternativa) es **completamente opcional**. Al ser las demás opciones falsas también, la opción correcta es que 'Ninguna de las anteriores es correcta'.",
     "tags": [
       "RNA",
       "Reglas"
@@ -4572,7 +4572,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "razonamiento",
     "source": "daypo",
-    "question": "Dominio con tres manifestaciones $\\{M(1), M(2), M(3)\\}$ y dos interpretaciones posibles $\\{I(1), I(2)\\}$, desde una perspectiva categórica y dadas las reglas de dominio:  \n<div style=\"background: rgba(255,255,255,0.05); border-left: 3px solid #10b981; padding: 10px 15px; margin: 10px 0; border-radius: 4px; font-family: monospace; font-size: 0.95em; color: #d1d5db;\">\nR1: $M(1) \\lor M(2) \\lor M(3) \\Rightarrow I(1) \\lor I(2)$<br>\n<br>\nR2: $I(1) \\Rightarrow \\neg M(1) \\land M(2)$<br>\n<br>\nR3: $I(2) \\land \\neg I(1) \\Rightarrow M(1) \\land M(3)$\n</div>\nCuántos posibles conjuntos manifestación-interpretación contiene la BLR?",
+    "question": "Dominio con tres manifestaciones $\\{M(1), M(2), M(3)\\}$ y dos interpretaciones posibles $\\{I(1), I(2)\\}$, desde una perspectiva categórica y dadas las reglas de dominio:  \n<div style=\"background: rgba(255,255,255,0.05); border-left: 3px solid #10b981; padding: 10px 15px; margin: 10px 0; border-radius: 4px; font-family: monospace; font-size: 0.95em; color: #d1d5db;\">\nR1: $M(1) \\lor M(2) \\lor M(3) \\Rightarrow I(1) \\lor I(2)$<br>\n<br>\nR2: $I(1) \\Rightarrow M(2)$<br>\n<br>\nR3: $I(2) \\Rightarrow M(3)$\n</div>\nCuántos posibles conjuntos manifestación-interpretación contiene la BLR?",
     "options": [
       "7",
       "32",
@@ -4580,7 +4580,7 @@ const DAYPO_QUESTIONS = [
       "11"
     ],
     "correct": 3,
-    "justification": "La Base Lógica Expandida (BLE) contiene todas las combinaciones teóricas posibles. Al tener 3 manifestaciones y 2 interpretaciones, la BLE tiene $2^3 \\times 2^2 = 8 \\times 4 = 32$ complejos.<br><br><b>Análisis de casos para llegar al resultado:</b><br><br><b>1. Si aplicamos las reglas exactas del enunciado (que corresponden al examen de Julio 2025):</b><br>Analizamos las 4 combinaciones posibles de interpretaciones:<br>- <b>Si $I(1)=0, I(2)=0$:</b> Por R1, el antecedente debe ser falso, lo que obliga a $M(1)=0, M(2)=0, M(3)=0$ (<b>1 estado válido</b>).<br>- <b>Si $I(1)=1, I(2)=0$:</b> Por R2, se obliga a $M(1)=0, M(2)=1$. Como $M(3)$ queda libre (0 o 1), hay 2 estados (<b>2 estados válidos</b>).<br>- <b>Si $I(1)=0, I(2)=1$:</b> Por R3, se obliga a $M(1)=1, M(3)=1$. Como $M(2)$ queda libre (0 o 1), hay 2 estados (<b>2 estados válidos</b>).<br>- <b>Si $I(1)=1, I(2)=1$:</b> Por R2, se obliga a $M(1)=0, M(2)=1$. Como $M(3)$ queda libre (0 o 1), hay 2 estados (<b>2 estados válidos</b>).<br><b>Suma total = $1 + 2 + 2 + 2 = 7$ estados válidos.</b><br><br><b>2. Si aplicamos las reglas del clásico ejemplo de las diapositivas de clase (donde la respuesta correcta en Daypo es 11 debido a una simplificación de R2 y R3):</b><br>Las reglas de clase son:<br><i>R1: $M(1) \\lor M(2) \\lor M(3) \\Rightarrow I(1) \\lor I(2)$</i><br><i>R2: $I(1) \\Rightarrow M(2)$</i><br><i>R3: $I(2) \\Rightarrow M(3)$</i><br>- <b>Si $I(1)=0, I(2)=0$:</b> Por R1, obliga a todas las manifestaciones a ser 0 (<b>1 estado válido</b>: $0,0,0$).<br>- <b>Si $I(1)=1, I(2)=0$:</b> Por R2, obliga a $M(2)=1$. Como $M(1)$ y $M(3)$ quedan libres, hay $2^2 = 4$ estados (<b>4 estados válidos</b>).<br>- <b>Si $I(1)=0, I(2)=1$:</b> Por R3, obliga a $M(3)=1$. Como $M(1)$ y $M(2)$ quedan libres, hay $2^2 = 4$ estados (<b>4 estados válidos</b>).<br>- <b>Si $I(1)=1, I(2)=1$:</b> Por R2 y R3, se obliga a $M(2)=1$ y $M(3)=1$. Como $M(1)$ queda libre, hay $2^1 = 2$ estados (<b>2 estados válidos</b>).<br><b>Suma total = $1 + 4 + 4 + 2 = 11$ estados válidos.</b>",
+    "justification": "La Base Lógica Expandida (BLE) contiene todas las combinaciones teóricas posibles. Al tener 3 manifestaciones y 2 interpretaciones, la BLE tiene $2^3 \\times 2^2 = 8 \\times 4 = 32$ complejos.<br><br>Para obtener la Base Lógica Reducida (BLR), aplicamos las restricciones de las reglas del dominio, eliminando los complejos absurdos en cada uno de los 4 estados posibles de las interpretaciones:<br><br>- <b>Si $I(1)=0, I(2)=0$:</b> Por R1, obliga a todas las manifestaciones a ser 0. (<b>1 estado válido</b>: $0,0,0$).<br>- <b>Si $I(1)=1, I(2)=0$:</b> Por R2, obliga a $M(2)=1$. Como $M(1)$ y $M(3)$ quedan libres (pueden valer 0 o 1), hay $2^2 = 4$ estados (<b>4 estados válidos</b>).<br>- <b>Si $I(1)=0, I(2)=1$:</b> Por R3, obliga a $M(3)=1$. Como $M(1)$ y $M(2)$ quedan libres, hay $2^2 = 4$ estados (<b>4 estados válidos</b>).<br>- <b>Si $I(1)=1, I(2)=1$:</b> Por R2 y R3, se obliga a $M(2)=1$ y $M(3)=1$. Como $M(1)$ queda libre, hay $2^1 = 2$ estados (<b>2 estados válidos</b>).<br><br><b>Suma total de la BLR = $1 + 4 + 4 + 2 = 11$ estados válidos.</b>",
     "tags": [
       "BLE/BLR",
       "Reglas"
@@ -4774,8 +4774,8 @@ const DAYPO_QUESTIONS = [
       "5",
       "2"
     ],
-    "correct": 2,
-    "justification": "La **búsqueda de coste uniforme** ordena los nodos en su frontera empleando una cola de prioridad basada en el coste acumulado $g(n)$. Siendo una pregunta basada en una representación gráfica de un Espacio de Estados omitida pero implícita en la evaluación original, tras la segunda etapa de análisis, la ramificación y los costes de transición del grafo han llevado al algoritmo a cerrar y mover 5 estados a su registro de **nodos explorados**, garantizando la no re-exploración subóptima.",
+    "correct": 3,
+    "justification": "La **búsqueda de coste uniforme** (UCS) expande los nodos basándose estrictamente en su coste real acumulado $g(n)$:<br><br>- <b>Estado Inicial (Paso 0):</b> Frontera = `[A(g=0)]`. Explorados = `{}` (0 nodos).<br>- <b>Paso 1 (Expandir A):</b> Se extrae A. Sus sucesores son B (g=8) y C (g=14). Frontera = `[B(g=8), C(g=14)]`. Explorados = `{A}` (1 nodo).<br>- <b>Paso 2 (Expandir B):</b> Se extrae B (coste 8 < 14). Su sucesor es D (coste 8+38=46). Frontera = `[C(g=14), D(g=46)]`. Explorados = `{A, B}` (2 nodos).<br><br>Al finalizar el paso 2, el conjunto de nodos explorados contiene exactamente <b>2 nodos</b> (A y B).",
     "tags": [
       "busqueda"
     ],
@@ -4792,7 +4792,7 @@ const DAYPO_QUESTIONS = [
       "2"
     ],
     "correct": 2,
-    "justification": "A diferencia de otras metodologías, la **búsqueda en profundidad** (DFS) se implementa mediante una estructura de datos de tipo pila (LIFO) para su frontera. Para el árbol de transiciones concreto de la pregunta original, en el paso 4 el algoritmo ha seguido una única rama expandiendo recursivamente. Al detenerse en ese nivel y contabilizar las bifurcaciones no tomadas que quedaron pendientes en niveles superiores más los nuevos vecinos apilados, la pila de la **frontera** retiene 5 nodos en espera.",
+    "justification": "Al analizar la imagen detenidamente, observamos que nodos como B y D aparecen repetidos en distintas ramas. Esto es la prueba definitiva de que estamos ante una <b>Búsqueda en Árbol</b> (donde no se controlan ni descartan duplicados), no en grafo.<br><br>Además, en la implementación algorítmica estricta de DFS mediante una pila (LIFO), si los sucesores se generan en orden alfabético y se van apilando uno a uno, el último en entrar queda en la cima. Es decir, al expandir A (hijos B y C), se apila B y luego C, por lo que <b>C queda en la cima y se expande primero</b> (explorando la rama más a la derecha).<br><br>La traza exacta es:<br>- <b>Paso 1 (Expandir A):</b> Se apilan B y C. Frontera: `[B, C]` (C en la cima).<br>- <b>Paso 2 (Expandir C):</b> Se extrae C. Sus hijos son B, D, E. Se apilan en ese orden. Frontera: `[B, B, D, E]` (E en la cima).<br>- <b>Paso 3 (Expandir E):</b> Se extrae E. Sus hijos son D, F, G. Se apilan en ese orden. Frontera: `[B, B, D, D, F, G]` (G en la cima).<br>- <b>Paso 4 (Expandir G):</b> Se extrae G (meta). El algoritmo se detiene.<br><br>La frontera restante en la pila es `[B, B, D, D, F]`, lo que suma exactamente <b>5 nodos</b>.",
     "tags": [
       "A*",
       "Búsqueda Ciega"
@@ -4809,8 +4809,8 @@ const DAYPO_QUESTIONS = [
       "5",
       "2"
     ],
-    "correct": 2,
-    "justification": "El algoritmo **A*** emplea una heurística $f(n) = g(n) + h(n)$ para elegir la trayectoria más prometedora. Partiendo del nodo C24 hacia G en este diagrama de problema en particular, el comportamiento de poda y mantenimiento de caminos alternativos hace que, en el instante de mayor dispersión o incertidumbre de la ruta óptima antes de converger, la cantidad de nodos retenidos al mismo tiempo en la **cola de prioridad (frontera)** alcance un máximo de 5 nodos.",
+    "correct": 3,
+    "justification": "Trazando la ejecución del algoritmo $A^*$ con búsqueda en grafo (donde se descartan o actualizan duplicados) sobre la imagen `daypo2.png`:<br><br>- <b>Inicial:</b> Frontera = `[C(f=24)]` (Tamaño: 1)<br>- <b>Paso 1 (Expandir C):</b> Frontera = `[B(f=20), E(f=21)]` (Tamaño: 2)<br>- <b>Paso 2 (Expandir B):</b> Frontera = `[E(f=21), D(f=22)]` (Tamaño: 2)<br>- <b>Paso 3 (Expandir E):</b> Genera D (f=37, peor que la ruta a D existente, se descarta) y F (f=38). Frontera = `[D(f=22), F(f=38)]` (Tamaño: 2)<br>- <b>Paso 4 (Expandir D):</b> Genera G (f=26). Frontera = `[G(f=26), F(f=38)]` (Tamaño: 2)<br>- <b>Paso 5 (Expandir G):</b> Se alcanza el objetivo y finaliza.<br><br>El tamaño de la frontera (cola de prioridad de abiertos) en ningún momento excede de **2 nodos**. (Si se tratase de una búsqueda en árbol sin control de duplicados, el máximo de la frontera sería de 3 nodos al retener ambas rutas a D).",
     "tags": [
       "A*",
       "BLE/BLR",
@@ -4886,7 +4886,7 @@ const DAYPO_QUESTIONS = [
       "No, porque la función de validación no maneja correctamente la heurística"
     ],
     "correct": 0,
-    "justification": "La función de evaluación en el algoritmo A* es $f(n) = g(n) + h(n)$, donde $g(n)$ representa el coste real y exacto acumulado desde el nodo inicial hasta el nodo actual $n$, y $h(n)$ es la estimación heurística del coste desde $n$ hasta el objetivo. Que una heurística sea **admisible** significa que $h(n) \\le h^*(n)$ para todo $n$, siendo $h^*(n)$ el coste real mínimo para llegar a la meta. Al sumar un coste real exacto $g(n)$ con un coste restante que nunca sobreestima el real $h(n)$, la evaluación total $f(n)$ nunca podrá exceder el coste real total de una solución a lo largo de ese camino. Por tanto, la afirmación es cierta.",
+    "justification": "La función de evaluación en el algoritmo A* es $f(n) = g(n) + h(n)$, donde $g(n)$ representa el coste real y exacto acumulado desde el nodo inicial hasta el nodo actual $n$, y $h(n)$ es la estimación heurística del coste desde $n$ hasta el objetivo. Que una heurística sea **admisible** significa que $h(n) \\le h^\\ast(n)$ para todo $n$, siendo $h^\\ast(n)$ el coste real mínimo para llegar a la meta. Al sumar un coste real exacto $g(n)$ con un coste restante que nunca sobreestima el real $h(n)$, la evaluación total $f(n)$ nunca podrá exceder el coste real total de una solución a lo largo de ese camino. Por tanto, la afirmación es cierta.",
     "tags": [
       "A*",
       "BLE/BLR",

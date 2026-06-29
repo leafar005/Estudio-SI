@@ -244,12 +244,21 @@
         catSelect.appendChild(opt);
       });
 
+      // Crear el pool de preguntas ordenado por categorías y asignar un ID global permanente
+      let pool = [...(typeof QUESTIONS !== 'undefined' ? QUESTIONS : []), ...(typeof EXAM_QUESTIONS !== 'undefined' ? EXAM_QUESTIONS : []), ...(typeof DAYPO_QUESTIONS !== 'undefined' ? DAYPO_QUESTIONS : [])];
+      pool.sort((a, b) => {
+        const indexA = CATEGORIES.findIndex(c => c.id === a.category);
+        const indexB = CATEGORIES.findIndex(c => c.id === b.category);
+        return indexA - indexB;
+      });
+      pool.forEach((q, idx) => {
+        q.globalId = idx + 1;
+      });
+
       function render() {
         const category = document.getElementById('filter-category').value;
         const examFilter = document.getElementById('filter-exam').value;
         const search = document.getElementById('search-input').value.toLowerCase().trim();
-
-        let pool = [...(typeof QUESTIONS !== 'undefined' ? QUESTIONS : []), ...(typeof EXAM_QUESTIONS !== 'undefined' ? EXAM_QUESTIONS : []), ...(typeof DAYPO_QUESTIONS !== 'undefined' ? DAYPO_QUESTIONS : [])];
 
         let filtered = pool.filter(q => {
           if (category !== 'all' && q.category !== category) return false;
@@ -262,26 +271,19 @@
           return true;
         });
 
-        // Ordenar las preguntas por el orden de los temas (CATEGORIES)
-        filtered.sort((a, b) => {
-          const indexA = CATEGORIES.findIndex(c => c.id === a.category);
-          const indexB = CATEGORIES.findIndex(c => c.id === b.category);
-          return indexA - indexB;
-        });
-
         document.getElementById('count-badge').textContent = `${filtered.length} pregunta${filtered.length !== 1 ? 's' : ''} encontrada${filtered.length !== 1 ? 's' : ''}`;
 
         const list = document.getElementById('questions-list');
         list.innerHTML = '';
         const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
 
-        filtered.forEach((q, idx) => {
+        filtered.forEach((q) => {
           const cat = CATEGORIES.find(c => c.id === q.category);
           const card = document.createElement('div');
           card.className = 'question-card-banco';
           card.innerHTML = `
             <div class="qcb-header">
-              <span class="qcb-num">#${idx + 1}</span>
+              <span class="qcb-num">#${q.globalId}</span>
               <span class="qcb-category">${cat ? cat.name : q.category}</span>
               ${ ((q.source && q.source.startsWith('examen')) || (q.category && q.category.startsWith('examen'))) ? '<span class="qcb-exam" style="color:#facc15; font-weight:600; background:rgba(250,204,21,0.1); padding:2px 8px; border-radius:4px; font-size:0.8rem; margin-left:8px;">🎓 Examen</span>' : '' }
               ${ (q.source === 'daypo') ? '<span class="qcb-daypo" style="color:#10b981; font-weight:600; background:rgba(16,185,129,0.1); padding:2px 8px; border-radius:4px; font-size:0.8rem; margin-left:8px;">🧪 Daypo</span>' : '' }

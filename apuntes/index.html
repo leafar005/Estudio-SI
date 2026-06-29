@@ -825,6 +825,11 @@
 <li><div class="step-body">Si este vecino tiene mejor puntuación (valor) que el estado actual, el agente se mueve hacia él.</div></li>
 <li><div class="step-body">El proceso se repite hasta llegar a un punto donde <strong>ningún vecino mejora</strong> la situación actual. En ese momento, el algoritmo se detiene y devuelve ese nodo.</div></li>
 </ol>
+<p style="margin-top:12px; border-top:1px solid rgba(255,255,255,0.1); padding-top:8px;">📌 <strong>Variantes del algoritmo:</strong></p>
+<ul>
+  <li><strong>Máxima Pendiente (Steepest-Ascent / Best-Neighbor):</strong> Evalúa de forma exhaustiva a <em>todos</em> los vecinos y selecciona el mejor de ellos (el primer mejor sucesor global).</li>
+  <li><strong>Escalada Clásica (First-Choice):</strong> No evalúa todos los vecinos; en su lugar, selecciona el <strong>primer sucesor mejor</strong> que el estado actual (en cuanto encuentra uno que mejore, se mueve a él).</li>
+</ul>
 </div></div>
 <div class="def-card" style="--theme-color: var(--c-2);"><div class="def-term">Problemas del Ascenso de Colinas</div><div class="def-body">
 <ul>
