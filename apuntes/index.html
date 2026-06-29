@@ -897,16 +897,42 @@
 <h3 class="subtheme-title" id="sistemas-de-producción">Sistemas de Producción</h3>
 <div class="def-card"><div class="def-term">Componentes de un Sistema de Producción</div><div class="def-body">
 <ul>
-<li>⚡ <strong>Memoria Activa:</strong> Almacén del estado actual del sistema (hechos activos en cada momento). Contiene los datos iniciales, hechos incorporados dinámicamente, hipótesis y metas a probar.</li>
-<li>📌 <strong>Base de Reglas (Conocimiento):</strong> Conjunto de reglas estáticas de tipo IF-THEN que representan el conocimiento del experto.</li>
-<li>📌 <strong>Motor de Inferencia:</strong> Intérprete y estrategia de control que decide qué reglas evaluar, resuelve conflictos y aplica las acciones.</li>
+<li>🧠 <strong>Base de Conocimiento (KB):</strong> Describe el dominio del problema. Está dividida en dos esqueletos complementarios que deben ser estrictamente compatibles entre sí (ver detalle abajo).</li>
+<li>⚡ <strong>Memoria Activa (MA):</strong> Almacén del estado actual del sistema (hechos activos en cada momento). Contiene los datos iniciales, hechos incorporados dinámicamente, hipótesis y metas a probar.</li>
+<li>⚙️ <strong>Motor de Inferencia (MI):</strong> Intérprete y estrategia de control que decide qué reglas evaluar, resuelve conflictos y aplica las acciones.</li>
+<li>🔍 <strong>Subsistema de Explicación:</strong> Encargado de dotar de trazabilidad a las decisiones (pista de auditoría de las reglas disparadas).</li>
 </ul>
 </div></div>
-<div class="callout-tip"><div class="callout-header">💡 Información</div><div class="callout-body">
+<div class="grid-2" style="margin-bottom: 20px;">
+<div class="def-card" style="--theme-color: #3b82f6;"><div class="def-term">📂 Base de Hechos (BH) — Esqueleto Declarativo</div><div class="def-body">
+<p>Es la parte <strong>declarativa</strong> de la KB. Almacena todas las <strong>verdades estáticas</strong>, características y parámetros relevantes del dominio.</p>
+<p>Responde a la pregunta <em>¿qué?</em>: define qué es cierto sobre el mundo.</p>
+<ul>
+<li>📌 Contiene hechos fijos del dominio (ej. valores de referencia, catálogos).</li>
+<li>📌 Se puede ampliar añadiendo nuevos hechos sin modificar los existentes.</li>
+<li>📌 Su naturaleza es <strong>estática</strong>: no cambia durante la ejecución del motor.</li>
+</ul>
+</div></div>
+<div class="def-card" style="--theme-color: #f59e0b;"><div class="def-term">📋 Base de Reglas (BR) — Esqueleto Procedimental</div><div class="def-body">
+<p>Es la parte <strong>procedimental</strong> de la KB. Contiene las reglas lógicas con formato <code>IF &lt;premisas&gt; THEN &lt;conclusiones&gt;</code> que permiten construir el razonamiento.</p>
+<p>Responde a la pregunta <em>¿cómo?</em>: define cómo razonar a partir de los hechos.</p>
+<ul>
+<li>📌 Cada regla es una unidad independiente de conocimiento experto.</li>
+<li>📌 Alta modularidad: añadir una regla no afecta al resto.</li>
+<li>📌 Son <strong>dinámicas</strong>: se disparan cuando sus premisas se satisfacen en la MA.</li>
+</ul>
+</div></div>
+</div>
+<div class="callout-tip"><div class="callout-header">💡 KB = BH + BR — La Base de Conocimiento completa</div><div class="callout-body">
+<p>La <strong>Base de Conocimiento (KB)</strong> es la unión de la Base de Hechos y la Base de Reglas:</p>
+<ul>
+<li>🧩 <strong>BH (declarativo)</strong> → «lo que el sistema sabe sobre el dominio» (verdades estáticas del mundo).</li>
+<li>⚡ <strong>BR (procedimental)</strong> → «cómo el sistema razona con ese saber» (reglas IF-THEN del experto).</li>
+</ul>
 <p>La esencia de los sistemas de producción es su extrema modularidad. El Motor de Inferencias es un programa de control genérico que permanece <strong>inalterado</strong>. Toda modificación se aplica de forma separada:</p>
 <ul>
-<li>📌 Si el cliente requiere cubrir <strong>nuevos casos específicos</strong>, se añaden reglas a la <strong>Base de Reglas (Conocimiento)</strong>.</li>
-<li>⚡ Si el cliente necesita añadir <strong>datos sobre el estado actual</strong>, se añaden hechos a la <strong>Memoria Activa</strong>.</li>
+<li>📌 Si el cliente requiere cubrir <strong>nuevos casos específicos</strong>, se añaden reglas a la <strong>BR</strong>.</li>
+<li>⚡ Si el cliente necesita añadir <strong>datos sobre el estado actual</strong>, se añaden hechos a la <strong>MA</strong>.</li>
 </ul>
 <p>Cada regla (estructurada en <strong>IF-THEN, con ELSE opcional</strong>) constituye una <strong>unidad completa e independiente de razonamiento</strong>, siendo el modelo ideal para capturar las heurísticas y atajos de los expertos humanos.</p>
 </div></div>

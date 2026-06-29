@@ -1215,6 +1215,8 @@ La secuencia de reglas disparadas es <b>R4, R2, R5, R1, R6, R3</b>.
 </div>
 </div>
 
+
+
 <h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 4: Razonamiento e Inferencia</h3>
 
 <h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 22. BLE/BLR con 5 variables</h4>
@@ -1332,23 +1334,22 @@ Y atendiendo a las siguientes tablas de codificación:<br>
     </tr>
   </tbody>
 </table>
-¿Cuál de las siguientes combinaciones pertenece a la Base Lógica Reducida?<br>
-a) $m_4 i_1$ &nbsp;&nbsp;&nbsp;&nbsp; b) $m_4 i_2$ &nbsp;&nbsp;&nbsp;&nbsp; c) $m_4 i_3$ &nbsp;&nbsp;&nbsp;&nbsp; d) Ninguna es correcta
+¿Cuál de las siguientes combinaciones ($m_4 i_1$, $m_4 i_2$, $m_4 i_3$) pertenece a la Base Lógica Reducida? ¿O ninguna es correcta?
 </div>
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-Analizando la manifestación $m_4$, en la tabla sus valores son $M(1)=1, M(2)=0, M(3)=0$. Evaluemos cada opción:<br><br>
-- <b>Para a) $m_4 i_1$ (donde $I(1)=0, I(2)=0$):</b><br>
+La manifestación $m_4$ tiene valores $M(1)=1, M(2)=0, M(3)=0$ (según la tabla). Evaluamos cada combinación:<br><br>
+- <b>$m_4 i_1$ (donde $I(1)=0, I(2)=0$):</b><br>
   R1 establece que si hay manifestaciones activas (las hay porque $M(1)=1$), debe haber al menos una interpretación activa. Al ser ambas 0, <b>R1 se viola</b>. No pertenece a la BLR.<br><br>
-- <b>Para b) $m_4 i_2$ (donde $I(1)=0, I(2)=1$):</b><br>
-  - R1: Antecedente Verdadero, Consecuente Verdadero ($I(2)=1$). (Se cumple)<br>
-  - R2: Antecedente Verdadero ($I(2)=1$). Consecuente: $\neg M(2) \land M(1) = \neg 0 \land 1 = 1$. (Se cumple)<br>
-  - R3: Antecedente: $I(1) \lor \neg I(2) = 0 \lor \neg 1 = 0$ (Falso). Al ser el antecedente falso, la implicación se cumple automáticamente. (Se cumple)<br>
-  Todas las reglas se satisfacen, por lo que <b>pertenece a la BLR</b>.<br><br>
-- <b>Para c) $m_4 i_3$ (donde $I(1)=1, I(2)=0$):</b><br>
+- <b>$m_4 i_2$ (donde $I(1)=0, I(2)=1$):</b><br>
+  - R1: Antecedente Verdadero, Consecuente Verdadero ($I(2)=1$). ✅<br>
+  - R2: Antecedente Verdadero ($I(2)=1$). Consecuente: $\neg M(2) \land M(1) = \neg 0 \land 1 = 1$. ✅<br>
+  - R3: Antecedente: $I(1) \lor \neg I(2) = 0 \lor \neg 1 = 0$ (Falso). Al ser el antecedente falso, la implicación se cumple automáticamente. ✅<br>
+  Todas las reglas se satisfacen: <b>$m_4 i_2$ pertenece a la BLR</b>.<br><br>
+- <b>$m_4 i_3$ (donde $I(1)=1, I(2)=0$):</b><br>
   R3: Antecedente: $I(1) \lor \neg I(2) = 1 \lor \neg 0 = 1$ (Verdadero). Consecuente: $M(2) \land M(3) = 0 \land 0 = 0$ (Falso). <b>R3 se viola</b> ($1 \Rightarrow 0$ es falso). No pertenece a la BLR.<br><br>
-La opción correcta es la <b>b) $m_4 i_2$</b>.
+<b>Conclusión: la combinación que pertenece a la BLR es $m_4 i_2$</b>.
 </div>
 </div>
 
@@ -1444,9 +1445,7 @@ R1: $M(1) \lor M(2) \lor M(3) \implies I(1) \lor I(2)$<br>
 R2: $I(2) \implies \neg M(2) \land M(1)$<br>
 R3: $I(1) \lor \neg I(2) \implies M(2) \land M(3)$<br><br>
 
-Si en un momento dado se da la ocurrencia $f = M(1) \land \neg M(2) \land \neg M(3)$, entonces podríamos deducir que:<br>
-a) Es verdadera $I(1)$ e $I(2)$ es falsa &nbsp;&nbsp;&nbsp;&nbsp; b) Ambas son verdaderas<br>
-c) Es falsa $I(1)$ e $I(2)$ es verdadera &nbsp;&nbsp;&nbsp;&nbsp; d) Ninguna de las anteriores es correcta
+Si en un momento dado se da la ocurrencia $f = M(1) \land \neg M(2) \land \neg M(3)$, ¿qué se puede deducir sobre $I(1)$ e $I(2)$?
 </div>
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
@@ -1458,7 +1457,7 @@ Por la ley del Modus Tollens, para que la implicación se mantenga verdadera, el
 Para que una disyunción ($I(1) \lor \neg I(2)$) sea falsa, ambos miembros deben ser falsos simultáneamente:<br>
 1. $I(1)$ debe ser <b>falsa (0)</b>.<br>
 2. $\neg I(2)$ debe ser <b>falsa (0)</b>, lo que implica que $I(2)$ es obligatoriamente <b>verdadera (1)</b>.<br><br>
-La única conclusión compatible es **$I(1)$ es falsa e $I(2)$ es verdadera** (Opción c).
+<b>Conclusión: $I(1)$ es falsa e $I(2)$ es verdadera</b>.
 </div>
 </div>
 

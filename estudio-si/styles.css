@@ -718,6 +718,28 @@ body {
   font-weight: 600;
 }
 
+/* Lists inside justification (rendered by marked.js) */
+.justification-text ol,
+.justification-text ul,
+.review-detail-justification ol,
+.review-detail-justification ul {
+  padding-left: 1.4rem;
+  margin: 6px 0;
+}
+
+.justification-text ol li,
+.justification-text ul li,
+.review-detail-justification ol li,
+.review-detail-justification ul li {
+  margin-bottom: 4px;
+  line-height: 1.6;
+}
+
+.justification-text p,
+.review-detail-justification p {
+  margin: 4px 0;
+}
+
 /* Question Actions */
 .question-actions {
   margin-top: 24px;

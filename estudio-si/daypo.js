@@ -3887,7 +3887,7 @@ const DAYPO_QUESTIONS = [
       "Todas son correctas"
     ],
     "correct": 3,
-    "justification": "El teorema fundamental de resolución estipula que es un método completo por refutación: si un conjunto de cláusulas es insatisfacible, aplicando la resolución sobre su cierre se derivará ineludiblemente la cláusula vacía.",
+    "justification": "La respuesta correcta es **D (todas son correctas)** porque las tres afirmaciones son verdaderas:\n\n- **A**: El cierre de resolución RC(S) es el conjunto de *todas* las cláusulas obtenibles aplicando la regla de resolución repetidamente sobre S y sus derivados.\n- **B**: RC es finito porque en lógica proposicional solo existen un número acotado de cláusulas posibles (subconjuntos de los n literales disponibles), así que el proceso converge.\n- **C**: El teorema fundamental de resolución estipula que es un método **completo por refutación**: si un conjunto de cláusulas es insatisfacible, aplicando la resolución sobre su cierre se derivará ineludiblemente la cláusula vacía, confirmando la contradicción.",
     "tags": [
       "razonamiento"
     ],

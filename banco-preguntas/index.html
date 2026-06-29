@@ -255,12 +255,77 @@
         q.globalId = idx + 1;
       });
 
+      const PAGE_SIZE = 50;
+      let currentFiltered = [];
+      let currentPage = 0;
+      let sentinel = null;
+      let observer = null;
+      const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+      function buildCard(q) {
+        const cat = CATEGORIES.find(c => c.id === q.category);
+        const card = document.createElement('div');
+        card.className = 'question-card-banco';
+        card.innerHTML = `
+          <div class="qcb-header">
+            <span class="qcb-num">#${q.globalId}</span>
+            <span class="qcb-category">${cat ? cat.name : q.category}</span>
+            ${ ((q.source && q.source.startsWith('examen')) || (q.category && q.category.startsWith('examen'))) ? '<span class="qcb-exam" style="color:#facc15; font-weight:600; background:rgba(250,204,21,0.1); padding:2px 8px; border-radius:4px; font-size:0.8rem; margin-left:8px;">🎓 Examen</span>' : '' }
+            ${ (q.source === 'daypo') ? '<span class="qcb-daypo" style="color:#10b981; font-weight:600; background:rgba(16,185,129,0.1); padding:2px 8px; border-radius:4px; font-size:0.8rem; margin-left:8px;">🧪 Daypo</span>' : '' }
+          </div>
+          <div class="qcb-text">${window.marked ? marked.parse(q.question) : q.question}</div>
+          <div class="qcb-detail">
+            <div class="qcb-options">
+              ${q.options.map((opt, i) => {
+                const parsedOpt = window.marked ? marked.parse(opt) : opt;
+                return `
+                <div class="qcb-option ${i === q.correct ? 'correct' : ''}">
+                  <span class="qcb-option-letter">${letters[i]}</span>
+                  <div style="flex:1;">${parsedOpt}</div>
+                  ${i === q.correct ? ' ✅' : ''}
+                </div>
+                `;
+              }).join('')}
+            </div>
+            <div class="qcb-justification">${window.marked ? marked.parse(q.justification) : q.justification}</div>
+          </div>
+        `;
+        card.addEventListener('click', () => card.classList.toggle('expanded'));
+        return card;
+      }
+
+      function appendPage() {
+        const list = document.getElementById('questions-list');
+        const start = currentPage * PAGE_SIZE;
+        const slice = currentFiltered.slice(start, start + PAGE_SIZE);
+        if (slice.length === 0) return;
+
+        const fragment = document.createDocumentFragment();
+        slice.forEach(q => fragment.appendChild(buildCard(q)));
+        // Remove old sentinel before appending, then re-add after
+        if (sentinel && sentinel.parentNode) sentinel.parentNode.removeChild(sentinel);
+        list.appendChild(fragment);
+        currentPage++;
+
+        if (window.MathJax && typeof MathJax.typesetPromise === 'function') {
+          MathJax.typesetPromise([list]);
+        }
+
+        // Add sentinel if more pages remain
+        if (currentPage * PAGE_SIZE < currentFiltered.length) {
+          sentinel = document.createElement('div');
+          sentinel.style.cssText = 'height:1px;';
+          list.appendChild(sentinel);
+          observer.observe(sentinel);
+        }
+      }
+
       function render() {
         const category = document.getElementById('filter-category').value;
         const examFilter = document.getElementById('filter-exam').value;
         const search = document.getElementById('search-input').value.toLowerCase().trim();
 
-        let filtered = pool.filter(q => {
+        currentFiltered = pool.filter(q => {
           if (category !== 'all' && q.category !== category) return false;
           const isExam = (q.source && q.source.startsWith('examen')) || (q.category && q.category.startsWith('examen'));
           if (examFilter === 'exam' && !isExam) return false;
@@ -271,44 +336,24 @@
           return true;
         });
 
-        document.getElementById('count-badge').textContent = `${filtered.length} pregunta${filtered.length !== 1 ? 's' : ''} encontrada${filtered.length !== 1 ? 's' : ''}`;
+        document.getElementById('count-badge').textContent = `${currentFiltered.length} pregunta${currentFiltered.length !== 1 ? 's' : ''} encontrada${currentFiltered.length !== 1 ? 's' : ''}`;
 
+        // Reset state
+        currentPage = 0;
+        if (observer) observer.disconnect();
         const list = document.getElementById('questions-list');
         list.innerHTML = '';
-        const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+        sentinel = null;
 
-        filtered.forEach((q) => {
-          const cat = CATEGORIES.find(c => c.id === q.category);
-          const card = document.createElement('div');
-          card.className = 'question-card-banco';
-          card.innerHTML = `
-            <div class="qcb-header">
-              <span class="qcb-num">#${q.globalId}</span>
-              <span class="qcb-category">${cat ? cat.name : q.category}</span>
-              ${ ((q.source && q.source.startsWith('examen')) || (q.category && q.category.startsWith('examen'))) ? '<span class="qcb-exam" style="color:#facc15; font-weight:600; background:rgba(250,204,21,0.1); padding:2px 8px; border-radius:4px; font-size:0.8rem; margin-left:8px;">🎓 Examen</span>' : '' }
-              ${ (q.source === 'daypo') ? '<span class="qcb-daypo" style="color:#10b981; font-weight:600; background:rgba(16,185,129,0.1); padding:2px 8px; border-radius:4px; font-size:0.8rem; margin-left:8px;">🧪 Daypo</span>' : '' }
-            </div>
-            <div class="qcb-text">${window.marked ? marked.parse(q.question) : q.question}</div>
-            <div class="qcb-detail">
-              <div class="qcb-options">
-                ${q.options.map((opt, i) => {
-                  const parsedOpt = window.marked ? marked.parse(opt) : opt;
-                  return `
-                  <div class="qcb-option ${i === q.correct ? 'correct' : ''}">
-                    <span class="qcb-option-letter">${letters[i]}</span>
-                    <div style="flex:1;">${parsedOpt}</div>
-                    ${i === q.correct ? ' ✅' : ''}
-                  </div>
-                  `;
-                }).join('')}
-              </div>
-              <div class="qcb-justification">${window.marked ? marked.parse(q.justification) : q.justification}</div>
-            </div>
-          `;
-          card.addEventListener('click', () => card.classList.toggle('expanded'));
-          list.appendChild(card);
-        });
-        if (window.MathJax && typeof MathJax.typesetPromise === 'function') { MathJax.typesetPromise(); }
+        // Set up IntersectionObserver for infinite scroll
+        observer = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) {
+            observer.unobserve(entries[0].target);
+            appendPage();
+          }
+        }, { rootMargin: '200px' });
+
+        appendPage();
       }
 
       document.getElementById('filter-category').addEventListener('change', render);
