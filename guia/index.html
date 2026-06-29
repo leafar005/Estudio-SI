@@ -1046,10 +1046,10 @@ Para el árbol representado en la imagen a continuación (daypo1.png), ¿cuánto
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
 En una expansión guiada por la estrategia de búsqueda en anchura (BFS), los nodos se visitan nivel por nivel (horizontalmente):<br><br>
-- <b>Estado Inicial (Paso 0):</b> Frontera = `[A]`, Cerrados = `[]`<br>
-- <b>Paso 1:</b> Expandimos A. Frontera = `[B, C, D]`. Cerrados = `[A]` (1 nodo).<br>
-- <b>Paso 2:</b> Expandimos B (primer sucesor de A). Sucesores de B son E y F. Frontera = `[C, D, E, F]`. Cerrados = `[A, B]` (2 nodos).<br>
-- <b>Paso 3:</b> Expandimos C (siguiente en el nivel 1). Sucesores de C son G e H. Frontera = `[D, E, F, G, H]`. Cerrados = `[A, B, C]` (3 nodos).<br>
+- <b>Estado Inicial (Paso 0):</b> Frontera = <code>[A]</code>, Cerrados = <code>[]</code><br>
+- <b>Paso 1:</b> Expandimos A. Frontera = <code>[B, C, D]</code>. Cerrados = <code>[A]</code> (1 nodo).<br>
+- <b>Paso 2:</b> Expandimos B (primer sucesor de A). Sucesores de B son E y F. Frontera = <code>[C, D, E, F]</code>. Cerrados = <code>[A, B]</code> (2 nodos).<br>
+- <b>Paso 3:</b> Expandimos C (siguiente en el nivel 1). Sucesores de C son G e H. Frontera = <code>[D, E, F, G, H]</code>. Cerrados = <code>[A, B, C]</code> (3 nodos).<br>
 - <b>Paso 4:</b> Expandimos D (último en el nivel 1). Al llegar a este paso, el algoritmo ha completado y cerrado la evaluación de 3 nodos (A, B y C). Por tanto, la lista de explorados (cerrados) contendrá exactamente <b>3</b> elementos.
 </div>
 </div>
@@ -1065,9 +1065,9 @@ Para el mismo árbol (daypo1.png), ¿cuántos nodos se encontrarán en la lista 
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
 La búsqueda de coste uniforme (UCS) expande los nodos basándose estrictamente en su coste real acumulado g(n) desde el inicio:<br><br>
-- <b>Estado Inicial (Paso 0):</b> Frontera = `[A(g=0)]`, Cerrados = `[]`<br>
-- <b>Paso 1:</b> Se extrae y expande A (coste 0). Sus sucesores entran en la frontera: Frontera = `[B(g=2), C(g=4), D(g=8)]` (los pesos de las aristas son A → B = 2, A → C = 4, A → D = 8). Cerrados = `[A]` (1 nodo).<br>
-- <b>Paso 2:</b> Extraemos B de la frontera por tener el menor coste acumulado (g=2). Sus sucesores son E y F (costes acumulados g(E)=2+3=5 y g(F)=2+4=6$). Frontera = `[C(g=4), E(g=5), F(g=6), D(g=8)]`. Cerrados = `[A, B]` (2 nodos).<br><br>
+- <b>Estado Inicial (Paso 0):</b> Frontera = <code>[A(g=0)]</code>, Cerrados = <code>[]</code><br>
+- <b>Paso 1:</b> Se extrae y expande A (coste 0). Sus sucesores entran en la frontera: Frontera = <code>[B(g=2), C(g=4), D(g=8)]</code> (los pesos de las aristas son A → B = 2, A → C = 4, A → D = 8). Cerrados = <code>[A]</code> (1 nodo).<br>
+- <b>Paso 2:</b> Extraemos B de la frontera por tener el menor coste acumulado (g=2). Sus sucesores son E y F (costes acumulados g(E)=2+3=5 y g(F)=2+4=6$). Frontera = <code>[C(g=4), E(g=5), F(g=6), D(g=8)]</code>. Cerrados = <code>[A, B]</code> (2 nodos).<br><br>
 Al concluir la expansión del paso 2, el algoritmo ya ha retirado de su frontera y finalizado la evaluación de 2 nodos (A y B). Por lo tanto, la lista de explorados contiene exactamente <b>2</b> elementos.
 </div>
 </div>
@@ -1083,11 +1083,11 @@ Para el mismo árbol (daypo1.png), ¿cuántos nodos se encontrarán en la fronte
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
 La búsqueda en profundidad (DFS) expande primero los nodos del nivel más profundo (LIFO/Pila Stack):<br><br>
-- <b>Inicial:</b> Frontera = `[A]` (Tamaño: 1)<br>
-- <b>Paso 1:</b> Expandimos A. Sucesores son B, C y D. Entran en la pila (con prioridad lexicográfica, de derecha a izquierda para extraer primero la B): Frontera = `[D, C, B]` (Tamaño: 3). Explorados = `[A]` (1)<br>
-- <b>Paso 2:</b> Expandimos B. Sucesores de B son E y F. Entran en la pila: Frontera = `[D, C, F, E]` (Tamaño: 4). Explorados = `[A, B]` (2)<br>
-- <b>Paso 3:</b> Expandimos E. Sucesores de E son K y L (hojas). Entran en la pila: Frontera = `[D, C, F, L, K]` (Tamaño: 5). Explorados = `[A, B, E]` (3)<br>
-- <b>Paso 4:</b> Extraemos K. Dado que es una hoja (no tiene descendientes), no se añaden sucesores. Queda en cerrados. Frontera = `[D, C, F, L]` (Tamaño: 4). Explorados = `[A, B, E, K]` (4).<br><br>
+- <b>Inicial:</b> Frontera = <code>[A]</code> (Tamaño: 1)<br>
+- <b>Paso 1:</b> Expandimos A. Sucesores son B, C y D. Entran en la pila (con prioridad lexicográfica, de derecha a izquierda para extraer primero la B): Frontera = <code>[D, C, B]</code> (Tamaño: 3). Explorados = <code>[A]</code> (1)<br>
+- <b>Paso 2:</b> Expandimos B. Sucesores de B son E y F. Entran en la pila: Frontera = <code>[D, C, F, E]</code> (Tamaño: 4). Explorados = <code>[A, B]</code> (2)<br>
+- <b>Paso 3:</b> Expandimos E. Sucesores de E son K y L (hojas). Entran en la pila: Frontera = <code>[D, C, F, L, K]</code> (Tamaño: 5). Explorados = <code>[A, B, E]</code> (3)<br>
+- <b>Paso 4:</b> Extraemos K. Dado que es una hoja (no tiene descendientes), no se añaden sucesores. Queda en cerrados. Frontera = <code>[D, C, F, L]</code> (Tamaño: 4). Explorados = <code>[A, B, E, K]</code> (4).<br><br>
 Al llegar al paso 4 (tras expandir y vaciar K), la frontera contiene exactamente <b>5</b> nodos (los acumulados en espera en la pila LIFO, que son D, C, F, L, K antes de remover K).
 </div>
 </div>
@@ -1103,11 +1103,11 @@ Usando un algoritmo de búsqueda A*, ¿cuántos nodos máximos en la frontera ha
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
 Trazando la ejecución del algoritmo $A^*$ con búsqueda en grafo (donde se descartan duplicados de peor coste):<br><br>
-- <b>Inicial:</b> Frontera = `[C(f=24)]` (Tamaño: 1)<br>
-- <b>Paso 1 (Expandir C):</b> Sucesores son B (g=4, h=16 ⇒ f=20) y E (g=7, h=14 ⇒ f=21). Frontera = `[B(f=20), E(f=21)]` (Tamaño: 2)<br>
-- <b>Paso 2 (Expandir B):</b> Sucesores son D (g=4+8=12, h=10 ⇒ f=22). Frontera = `[E(f=21), D(f=22)]` (Tamaño: 2)<br>
-- <b>Paso 3 (Expandir E):</b> Sucesores son D (peor camino, se ignora) y F (g=7+25=32, h=6 ⇒ f=38). Frontera = `[D(f=22), F(f=38)]` (Tamaño: 2)<br>
-- <b>Paso 4 (Expandir D):</b> Sucesores son G (g=12+14=26, h=0 ⇒ f=26). Frontera = `[G(f=26), F(f=38)]` (Tamaño: 2)<br>
+- <b>Inicial:</b> Frontera = <code>[C(f=24)]</code> (Tamaño: 1)<br>
+- <b>Paso 1 (Expandir C):</b> Sucesores son B (g=4, h=16 ⇒ f=20) y E (g=7, h=14 ⇒ f=21). Frontera = <code>[B(f=20), E(f=21)]</code> (Tamaño: 2)<br>
+- <b>Paso 2 (Expandir B):</b> Sucesores son D (g=4+8=12, h=10 ⇒ f=22). Frontera = <code>[E(f=21), D(f=22)]</code> (Tamaño: 2)<br>
+- <b>Paso 3 (Expandir E):</b> Sucesores son D (peor camino, se ignora) y F (g=7+25=32, h=6 ⇒ f=38). Frontera = <code>[D(f=22), F(f=38)]</code> (Tamaño: 2)<br>
+- <b>Paso 4 (Expandir D):</b> Sucesores son G (g=12+14=26, h=0 ⇒ f=26). Frontera = <code>[G(f=26), F(f=38)]</code> (Tamaño: 2)<br>
 - <b>Paso 5 (Expandir G):</b> Llegamos al objetivo.<br><br>
 El tamaño máximo de la frontera en todo momento de la ejecución es de <b>2</b> nodos.
 </div>
