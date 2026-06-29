@@ -246,7 +246,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "neurona",
     "source": "daypo",
-    "question": "Cuál de las siguientes afirmaciones sobre el LMS es falsa?",
+    "question": "Cuál de las siguientes afirmaciones sobre el LMS es FALSA?",
     "options": [
       "Durante el aprendizaje, se fijan los valores de los pesos de las conexiones y de las bias",
       "El algoritmo de aprendizaje que tiene es supervisado",
@@ -264,7 +264,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "neurona",
     "source": "daypo",
-    "question": "Cuál de las siguientes afirmaciones sobre la corrección de errores de LMS es falsa?",
+    "question": "Cuál de las siguientes afirmaciones sobre la corrección de errores de LMS es FALSA?",
     "options": [
       "Se calcula para cada una de las instancias a partir de la salida obtenida y la deseada",
       "Se calcula para una de las instancias a partir de la salida obtenida y la deseada",
@@ -282,7 +282,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "neurona",
     "source": "daypo",
-    "question": "Cuál de las siguientes afirmaciones sobre la función de pérdida de LMS es falsa?",
+    "question": "Cuál de las siguientes afirmaciones sobre la función de pérdida de LMS es FALSA?",
     "options": [
       "Es el cuadrado del error para un ejemplo dividido entre 2",
       "Es la diferencia entre la salida obtenida y la deseada al cuadrado",
@@ -577,7 +577,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Cuál de las siguientes afirmaciones es incorrecta con respecto al MLP?",
+    "question": "Cuál de las siguientes afirmaciones es INCORRECTA con respecto al MLP?",
     "options": [
       "Se conectan más neuronas a la salida de otras",
       "Se organiza en capas",
@@ -595,7 +595,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Cuál de las siguientes afirmaciones es incorrecta con respecto al MLP?",
+    "question": "Cuál de las siguientes afirmaciones es INCORRECTA con respecto al MLP?",
     "options": [
       "Las capas de entrada no computan nada, solo guardan el valor y se lo envían a la siguiente capa",
       "El número de capas ocultas es variable, pero mínimo deben haber dos",
@@ -615,7 +615,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Cuál de las siguientes afirmaciones es incorrecta con respecto al MLP?",
+    "question": "Cuál de las siguientes afirmaciones es INCORRECTA con respecto al MLP?",
     "options": [
       "El conocimiento de la red es centralizado y distribuido",
       "El conocimiento de la red permite explicar su funcionamiento mediante tablas de valores",
@@ -635,7 +635,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Cuál de las siguientes afirmaciones es incorrecta con respecto al MLP?",
+    "question": "Cuál de las siguientes afirmaciones es INCORRECTA con respecto al MLP?",
     "options": [
       "Las funciones de transferencia no están limitadas a ser umbral o lineales",
       "Las funciones de transferencia deben ser siempre la misma para todas las neuronas de una capa",
@@ -709,7 +709,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta respecto al entrenamiento del MLP",
+    "question": "Escoja la opción INCORRECTA respecto al entrenamiento del MLP",
     "options": [
       "La regla delta está pensada para redes sin capas ocultas",
       "No se puede computar el error en las capas ocultas",
@@ -729,7 +729,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta respecto al algoritmo de backpropagation",
+    "question": "Escoja la opción INCORRECTA respecto al algoritmo de backpropagation",
     "options": [
       "Los errores se propagan de la capa de salida hacia dentro, hacia las capas ocultas",
       "Los términos del error de las unidades ocultas se calculan ANTES de que hayan sido modificados los pesos de los de salida",
@@ -748,7 +748,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta respecto al algoritmo de backpropagation",
+    "question": "Escoja la opción INCORRECTA respecto al algoritmo de backpropagation",
     "options": [
       "Se inicializan todos los pesos de forma aleatoria",
       "Se calculan los errores de todos los patrones y se modifican los pesus según ese valor de error global",
@@ -768,7 +768,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta respecto al algoritmo de backpropagation",
+    "question": "Escoja la opción INCORRECTA respecto al algoritmo de backpropagation",
     "options": [
       "Se pueden emplear todos los datos disponibles para entrenar la red",
       "Lo que se necesita es un subconjunto de datos representativos para el entrenamiento",
@@ -787,7 +787,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta respecto al algoritmo de backpropagation",
+    "question": "Escoja la opción INCORRECTA respecto al algoritmo de backpropagation",
     "options": [
       "La capacidad de una red para resolver un problema está ligada a los ejemplos usados en el aprendizaje",
       "Un conjunto de entrenamiento debe ser significativo y representativo",
@@ -938,7 +938,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Digamos que tenemos un problema complejo, donde no solamente podemos usar un semiespacio sino 2. En un MLP, cuál de estas opciones sería incorrecta?",
+    "question": "Digamos que tenemos un problema complejo, donde no solamente podemos usar un semiespacio sino 2. En un MLP, cuál de estas opciones sería INCORRECTA?",
     "options": [
       "Las neuronas de la primera capa crean semiespacios",
       "Las neuronas de la segunda capa unen semiespacios y crean regiones",
@@ -976,7 +976,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Cuál de estas afirmaciones sobre el entrenamiento en MLP es incorrecta?",
+    "question": "Cuál de estas afirmaciones sobre el entrenamiento en MLP es INCORRECTA?",
     "options": [
       "Una causa del sobreentrenamiento puede ser que la red sea demasiado compleja",
       "Una causa del sobreentrenamiento puede ser que se ha forzado a aprender demasiados ciclos",
@@ -1199,7 +1199,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Digamos que para una RNA de clasificación tengo solamente dos clases, qué opción sería incorrecta?",
+    "question": "Digamos que para una RNA de clasificación tengo solamente dos clases, qué opción sería INCORRECTA?",
     "options": [
       "Se usaría 1 neurona de salida",
       "La salida deseada sería binaria",
@@ -1219,7 +1219,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Digamos que para una RNA de clasificación tengo más de dos clases, qué opción sería incorrecta?",
+    "question": "Digamos que para una RNA de clasificación tengo más de dos clases, qué opción sería INCORRECTA?",
     "options": [
       "Se usaría 1 neurona de salida por clase",
       "La salida deseada sería binaria",
@@ -1238,7 +1238,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Digamos que para una RNA de clasificación tengo más de dos clases, qué opción sería incorrecta?",
+    "question": "Digamos que para una RNA de clasificación tengo más de dos clases, qué opción sería INCORRECTA?",
     "options": [
       "Se usaría 1 neurona de salida por clase",
       "La salida final será la clase con menos certidumbre",
@@ -1257,7 +1257,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Digamos que para una RNA de clasificación tengo dos clases de salida, pero algunas clases del ejemplo no se corresponden con ninguna de las especificadas, qué opción sería incorrecta?",
+    "question": "Digamos que para una RNA de clasificación tengo dos clases de salida, pero algunas clases del ejemplo no se corresponden con ninguna de las especificadas, qué opción sería INCORRECTA?",
     "options": [
       "Se usarían 2 neuronas de salida en total",
       "La salida final será la clase con mayor certidumbre",
@@ -1278,7 +1278,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Digamos que tenemos un RNA de clasificación, donde tenemos tres clases. Escoja la opción incorrecta",
+    "question": "Digamos que tenemos un RNA de clasificación, donde tenemos tres clases. Escoja la opción INCORRECTA",
     "options": [
       "Es posible usar una única neurona de salida según intervalos",
       "Representar las salidas por intervalos convierte el problema en uno de regresión",
@@ -1448,7 +1448,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Digamos que para una RNA de clasificación tengo dos clases, qué opción sería incorrecta?",
+    "question": "Digamos que para una RNA de clasificación tengo dos clases, qué opción sería INCORRECTA?",
     "options": [
       "Se usaría 1 neurona de salida por clase",
       "La salida deseada sería binaria",
@@ -1484,7 +1484,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "feedforward",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta sobre las aplicaciones del RNA regresivo",
+    "question": "Escoja la opción INCORRECTA sobre las aplicaciones del RNA regresivo",
     "options": [
       "Es necesario normalizar los valores de entrada individualmente",
       "Es necesario normalizar los valores de salida individualmente",
@@ -1520,7 +1520,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "autoorganizacion",
     "source": "daypo",
-    "question": "Escoja la opción falsa en cuanto a la autoorganización en sistemas conexionistas",
+    "question": "Escoja la opción FALSA en cuanto a la autoorganización en sistemas conexionistas",
     "options": [
       "No existen observaciones globales que determinen el comportamiento",
       "Las característica surgen de manera inesperada a partir de la interacción de componentes del sistema",
@@ -1538,7 +1538,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "autoorganizacion",
     "source": "daypo",
-    "question": "Escoja la opción falsa en cuanto a los SOM, en concreto el mapa autoorganizativo de características de Kohonen",
+    "question": "Escoja la opción FALSA en cuanto a los SOM, en concreto el mapa autoorganizativo de características de Kohonen",
     "options": [
       "La localización de la neurona en la red especifica un orden topológico que describe la relación de similitud entre los patrones de entrada",
       "Permite mostrar las relaciones existentes entre los datos",
@@ -1556,7 +1556,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "autoorganizacion",
     "source": "daypo",
-    "question": "Escoja la opción falsa en cuanto a los SOM, en concreto el mapa autoorganizativo de características de Kohonen",
+    "question": "Escoja la opción FALSA en cuanto a los SOM, en concreto el mapa autoorganizativo de características de Kohonen",
     "options": [
       "El aprendizaje conserva al relación topológica entre las neuronas",
       "Neuronas cercanas responden ante patrones similares",
@@ -1574,7 +1574,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "autoorganizacion",
     "source": "daypo",
-    "question": "Escoja la opción falsa en cuanto a los SOM, en concreto el mapa autoorganizativo de características de Kohonen",
+    "question": "Escoja la opción FALSA en cuanto a los SOM, en concreto el mapa autoorganizativo de características de Kohonen",
     "options": [
       "Cada neurona de la capa de entrada se conecta con una de las neuronas de la capa de competición",
       "No existen las conexiones entre neuronas de competición",
@@ -1592,7 +1592,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "autoorganizacion",
     "source": "daypo",
-    "question": "Escoja la opción falsa en cuanto a los SOM, en concreto el mapa autoorganizativo de características de Kohonen",
+    "question": "Escoja la opción FALSA en cuanto a los SOM, en concreto el mapa autoorganizativo de características de Kohonen",
     "options": [
       "Los pesos de las conexiones se inicializan aleatoriamente",
       "La célula ganadora es la que tenga mayor distancia con ese vector de entrada",
@@ -1610,7 +1610,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "autoorganizacion",
     "source": "daypo",
-    "question": "Escoja la opción falsa en cuanto a la vecindad de los SOM",
+    "question": "Escoja la opción FALSA en cuanto a la vecindad de los SOM",
     "options": [
       "La vecindad es regulada, entre otros, por su topología",
       "La vecindad genera regiones que responden a valores muy próximos al de entrenamiento",
@@ -1646,7 +1646,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "autoorganizacion",
     "source": "daypo",
-    "question": "Sobre los mapas auto-organizativos, escoja la opción incorrecta",
+    "question": "Sobre los mapas auto-organizativos, escoja la opción INCORRECTA",
     "options": [
       "Las coordenadas de los prototipos son los pesos de las células de la capa competitiva",
       "El grado de vecindad es el número de células que habrá que recorrer para llegar de una célula a otra",
@@ -2019,7 +2019,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "evolutiva",
     "source": "daypo",
-    "question": "En un algoritmo genético, qué afirmación es incorrecta con respecto a las mutaciones?",
+    "question": "En un algoritmo genético, qué afirmación es INCORRECTA con respecto a las mutaciones?",
     "options": [
       "Opera sobre un grupo aleatorio de individuos",
       "Consiste en el cambio de un bit o posición aleatoria",
@@ -2540,7 +2540,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "introduccion",
     "source": "daypo",
-    "question": "Cuál de estas opciones es incorrecta con respecto al agente reactivo simple",
+    "question": "Cuál de estas opciones es INCORRECTA con respecto al agente reactivo simple",
     "options": [
       "Es el tipo de agente más sencillo",
       "Selecciona la acción en base a percepciones actuales",
@@ -2557,7 +2557,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "introduccion",
     "source": "daypo",
-    "question": "Cuál de estas opciones es incorrecta con respecto al agente basado en modelos",
+    "question": "Cuál de estas opciones es INCORRECTA con respecto al agente basado en modelos",
     "options": [
       "Puede planificar una secuencia de acciones para realizar la acción",
       "Puede medir el efecto de sus acciones con respecto al mundo",
@@ -2575,7 +2575,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "introduccion",
     "source": "daypo",
-    "question": "Cuál de estas opciones es incorrecta con respecto al agente basado en metas",
+    "question": "Cuál de estas opciones es INCORRECTA con respecto al agente basado en metas",
     "options": [
       "Puede planificar una secuencia de acciones para realizar la acción",
       "Puede medir el efecto de sus acciones con respecto al mundo",
@@ -2802,7 +2802,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "busqueda",
     "source": "daypo",
-    "question": "Escoja la afirmación incorrecta sobre búsqueda",
+    "question": "Escoja la afirmación INCORRECTA sobre búsqueda",
     "options": [
       "Cuando existen operadores reversibles, la repetición es inevitable",
       "Cuando el EE es un grafo, si se usa un algoritmo para árboles se producen caminos redundantes",
@@ -2892,7 +2892,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "busqueda",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta con respecto a las funciones Heurísticas",
+    "question": "Escoja la opción INCORRECTA con respecto a las funciones Heurísticas",
     "options": [
       "Son de carácter numérico",
       "Permiten optimizar procesos de búsqueda",
@@ -3108,7 +3108,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "busqueda",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta con respecto a la búsqueda de coste uniforme",
+    "question": "Escoja la opción INCORRECTA con respecto a la búsqueda de coste uniforme",
     "options": [
       "La frontera siempre tiene el camino más corto a los nodos contenidos en ella",
       "El primer nodo meta en ser expandido será el óptimo",
@@ -3229,7 +3229,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "busqueda",
     "source": "daypo",
-    "question": "Escoja la opción falsa con respecto a la búsqueda preferente por el mejor",
+    "question": "Escoja la opción FALSA con respecto a la búsqueda preferente por el mejor",
     "options": [
       "Está basada en el algoritmo de búsqueda en árbol o grafo",
       "La información de cómo prometedor es un estado la proporciona una función heurística",
@@ -3265,7 +3265,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "busqueda",
     "source": "daypo",
-    "question": "En cuanto a las formas de implementar la búsqueda por el mejor nodo... escoja la falsa",
+    "question": "En cuanto a las formas de implementar la búsqueda por el mejor nodo... escoja la FALSA",
     "options": [
       "Si f(n) = h(n) entonces estamos en una búsqueda avara",
       "La búsqueda avara ocurre cuando la f(n) considera el coste mínimo estimado",
@@ -3299,7 +3299,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "busqueda",
     "source": "daypo",
-    "question": "En cuanto a las formas de implementar la búsqueda por el mejor nodo... escoja la falsa",
+    "question": "En cuanto a las formas de implementar la búsqueda por el mejor nodo... escoja la FALSA",
     "options": [
       "En la búsqueda avara, se expande el nodo que se estima que está más cerca de la meta",
       "La búsqueda avara implementa una cola de prioridad que atiende a h(n) para los nodos explorados",
@@ -3316,7 +3316,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "busqueda",
     "source": "daypo",
-    "question": "En cuanto a las formas de implementar la búsqueda por el mejor nodo... escoja la falsa",
+    "question": "En cuanto a las formas de implementar la búsqueda por el mejor nodo... escoja la FALSA",
     "options": [
       "La búsqueda A* combina la búsqueda avara y la búsqueda de coste uniforme",
       "La búsqueda A* presenta una cola de prioridad de la heurística para la frontera",
@@ -3419,7 +3419,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "busqueda",
     "source": "daypo",
-    "question": "Escoja al opción falsa en cuanto a A*",
+    "question": "Escoja al opción FALSA en cuanto a A*",
     "options": [
       "Tiene una complejidad espacial que no es práctica para problemas muy grandes",
       "A* es óptimamente eficiente para una heurística consistente dada",
@@ -3641,7 +3641,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "introduccion",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta con respecto a los agentes de conocimiento simple",
+    "question": "Escoja la opción INCORRECTA con respecto a los agentes de conocimiento simple",
     "options": [
       "El agente recibe como entrada una percepción y devuelve una acción",
       "El agente presenta una base de conocimiento que son aserciones sobre el mundo",
@@ -3692,7 +3692,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "introduccion",
     "source": "daypo",
-    "question": "Dentro de la definición REAS, qué elemento permite al agente interactuar con el medio ambiente",
+    "question": "Dentro de la definición REAS, qué elemento permite al agente percibir el medio ambiente",
     "options": [
       "Medida de rendimiento",
       "Entorno",
@@ -3700,7 +3700,7 @@ const DAYPO_QUESTIONS = [
       "Sensores"
     ],
     "correct": 3,
-    "justification": "Los Sensores (Sensors) son los mecanismos de entrada. A través de ellos el agente 'percibe' o recibe la información del estado actual del medio ambiente para poder evaluar qué acción tomar.",
+    "justification": "Los **Sensores** (Sensors) son los mecanismos de entrada. A través de ellos el agente percibe o recibe la información del estado actual del medio ambiente para poder evaluar qué acciones debe tomar.",
     "tags": [
       "introduccion"
     ],
@@ -3913,7 +3913,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "razonamiento",
     "source": "daypo",
-    "question": "Escoja la opción falsa",
+    "question": "Escoja la opción FALSA",
     "options": [
       "Toda cláusula definida se puede describir como una implicación, con una premisa, conclusión y hecho",
       "La inferencia con cláusulas de Horn se puede hacer a través de algoritmos de encadenamiento",
@@ -3930,7 +3930,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "razonamiento",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta con respecto a los algoritmos de encadenamiento progresivo",
+    "question": "Escoja la opción INCORRECTA con respecto a los algoritmos de encadenamiento progresivo",
     "options": [
       "Determina si un único símbolo proposicional deriva en una KB de cláusulas definidas",
       "Funciona en tiempo real",
@@ -3947,7 +3947,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "razonamiento",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta con respecto a los algoritmos de encadenamiento regresivo",
+    "question": "Escoja la opción INCORRECTA con respecto a los algoritmos de encadenamiento regresivo",
     "options": [
       "Hay que comprobar si cada nueva submeta está ya en el stack de metas",
       "Hay que comprobar si cada nueva submeta se ha probado True o False",
@@ -4015,7 +4015,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "representacion",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta con respecto a los frames o marcos",
+    "question": "Escoja la opción INCORRECTA con respecto a los frames o marcos",
     "options": [
       "Son una versión de las redes semánticas",
       "Describen objetos o clases de objetos o categorías, con atributos y relaciones con otros",
@@ -4032,7 +4032,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "representacion",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta con respecto a los métodos estructurados",
+    "question": "Escoja la opción INCORRECTA con respecto a los métodos estructurados",
     "options": [
       "Las ontologías dan significado explícito a los conceptos",
       "En los grafos de conocimiento, las aristas representan relaciones entre entidades",
@@ -4049,7 +4049,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "representacion",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta con respecto a las reglas de producción",
+    "question": "Escoja la opción INCORRECTA con respecto a las reglas de producción",
     "options": [
       "Son un esquema de representación del conocimiento procedimental",
       "Constan de 3 partes que se comportan como condicionales y controladores de flujo",
@@ -4151,7 +4151,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "razonamiento",
     "source": "daypo",
-    "question": "Escoja la opción falsa con respecto al funcionamiento de la memoria activa",
+    "question": "Escoja la opción FALSA con respecto al funcionamiento de la memoria activa",
     "options": [
       "Lanza un proceso inferencial dirigido por los objetivos establecidos por la actividad entrante",
       "Si en la memoria activa no hay información sobre una regla entrante, esta no se ejecuta (caso ELSE)",
@@ -4168,7 +4168,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "razonamiento",
     "source": "daypo",
-    "question": "Escoja la opción falsa con respecto al funcionamiento de la memoria activa",
+    "question": "Escoja la opción FALSA con respecto al funcionamiento de la memoria activa",
     "options": [
       "Los hechos y los datos de la M.A corresponden a entidades de la base de hechos, pero con valores concretos asociados",
       "Los valores de las trayectorias correspondientes a los hechos de la base se asignan a través de un proceso inferencial",
@@ -4304,7 +4304,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "razonamiento",
     "source": "daypo",
-    "question": "Escoja la opción incorrecta con respecto a los modelos categóricos",
+    "question": "Escoja la opción INCORRECTA con respecto a los modelos categóricos",
     "options": [
       "El papel del conocimiento es eliminar las combinaciones absurdas del BLE",
       "El BLR es la versión reducida del BLE",
@@ -4355,7 +4355,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "razonamiento",
     "source": "daypo",
-    "question": "Cuál de las siguientes afirmaciones con respecto al problema de la incertidumbre es incorrecto",
+    "question": "Cuál de las siguientes afirmaciones con respecto al problema de la incertidumbre es INCORRECTO",
     "options": [
       "La existencia de una determinada causa no siempre conlleva la presencia de una manifestación",
       "Un síntoma no implica una única enfermedad",
@@ -4393,7 +4393,7 @@ const DAYPO_QUESTIONS = [
   {
     "category": "planificacion",
     "source": "daypo",
-    "question": "Escoja la opción falsa con respecto a la planificación clásica",
+    "question": "Escoja la opción FALSA con respecto a la planificación clásica",
     "options": [
       "Es importante hacer uso de postcondiciones y precondiciones",
       "La planificación no busca en un problema, sino que define el problema y luego busca",
@@ -4758,7 +4758,7 @@ const DAYPO_QUESTIONS = [
       "5"
     ],
     "correct": 1,
-    "justification": "En una expansión guiada por la estrategia de **búsqueda en anchura** (BFS), los nodos se visitan nivel por nivel. Al llegar al paso 4, asumiendo un avance secuencial genérico donde cada paso concluye la expansión completa de un nodo, el algoritmo ya ha retirado de su frontera y finalizado la evaluación de 3 nodos. Estos nodos expandidos pasan permanentemente a la **lista de explorados** (o lista de nodos cerrados), por lo que la lista contendrá exactamente 3 elementos.",
+    "justification": "La **búsqueda en anchura** (BFS) expande los nodos nivel por nivel en orden de llegada (cola FIFO):<br><br>- <b>Estado Inicial (Paso 0):</b> Frontera = `[A]`. Explorados = `{}` (0 nodos).<br>- <b>Paso 1 (Expandir A):</b> Se extrae A. Sucesores: B y C. Frontera = `[B, C]`. Explorados = `{A}` (1 nodo).<br>- <b>Paso 2 (Expandir B):</b> Se extrae B. Sucesor: D. Frontera = `[C, D]`. Explorados = `{A, B}` (2 nodos).<br>- <b>Paso 3 (Expandir C):</b> Se extrae C. Sucesores: B, D, E. Frontera = `[D, E]`. Explorados = `{A, B, C}` (3 nodos).<br>- <b>Paso 4 (Expandir D):</b> Se extrae D. Al comenzar el paso 4 (o finalizar la tercera expansión), la lista de explorados contiene exactamente los 3 nodos ya cerrados.<br><br>Al llegar al paso 4, el conjunto de nodos explorados contiene exactamente <b>3 nodos</b> (A, B y C).",
     "tags": [
       "A*"
     ],

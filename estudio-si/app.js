@@ -473,7 +473,7 @@
       }
 
       if (!state.answered) {
-        const keyMap = { '1': 0, '2': 1, '3': 2, '4': 3, 'a': 0, 'b': 1, 'c': 2, 'd': 3 };
+        const keyMap = { '1': 0, '2': 1, '3': 2, '4': 3, '5': 4, 'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4 };
         const idx = keyMap[e.key.toLowerCase()];
         if (idx !== undefined && idx < state.questions[state.currentIndex].options.length) {
           handleAnswer(idx);
