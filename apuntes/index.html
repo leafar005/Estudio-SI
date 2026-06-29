@@ -1033,8 +1033,8 @@
 </div></div>
 <h3 class="subtheme-title" id="solidez-y-completitud">Cualidades de un Algoritmo Inferencial</h3>
 <div class="grid-2">
-<div class="def-card" style="--theme-color: var(--c-3);"><div class="def-term">Solidez (Soundness)</div><div class="def-body">
-<p>Un algoritmo es sólido si solo deriva sentencias que están verdaderamente implicadas. Si <code>KB ⊢ᵢ α</code> entonces <code>KB ⊨ α</code>.<br/><em>Analogía:</em> detector de metales que nunca da falsas alarmas.</p>
+<div class="def-card" style="--theme-color: var(--c-3);"><div class="def-term">Solidez (Soundness / Truth-preserving)</div><div class="def-body">
+<p>Un algoritmo es <strong>sólido</strong> (sound) o <strong>preservador de verdad</strong> (truth-preserving) si solo deriva sentencias que están verdaderamente implicadas por la base de conocimiento (KB). Si <code>KB ⊢ᵢ α</code> entonces <code>KB ⊨ α</code>.<br/><em>Analogía:</em> detector de metales que nunca da falsas alarmas.</p>
 </div></div>
 <div class="def-card" style="--theme-color: var(--c-3);"><div class="def-term">Completitud (Completeness)</div><div class="def-body">
 <p>Un algoritmo es completo si puede derivar cualquier sentencia implicada. Si <code>KB ⊨ α</code> entonces <code>KB ⊢ᵢ α</code>.<br/><em>Analogía:</em> detector que garantiza encontrar todas las monedas.</p>
@@ -1056,7 +1056,7 @@
 <p>Dos sentencias son lógicamente <strong>equivalentes</strong> si son verdaderas en los mismos modelos. Una sentencia es <strong>válida (tautología)</strong> si es verdadera en todos los modelos. Además, la lógica clásica es <strong>monotónica</strong>: añadir nueva información a la base de conocimiento no invalida las inferencias previas, solo las hace crecer.</p>
 </div></div>
 <div class="def-card" style="--theme-color: var(--c-4);"><div class="def-term">Algoritmos Inferenciales</div><div class="def-body">
-<p>Un algoritmo inferencial <strong>sólido (correcto)</strong> deriva solamente sentencias implicadas. Es <strong>completo</strong> si es capaz de derivar <em>cualquier</em> sentencia que esté lógicamente implicada. La <strong>comprobación de modelos (model checking)</strong> es el algoritmo que enumera todos los modelos posibles para comprobar si una afirmación es cierta en todos ellos.</p>
+<p>Un algoritmo inferencial es <strong>sólido</strong> (correcto / <em>truth-preserving</em>) si deriva solamente sentencias implicadas. Es <strong>completo</strong> si es capaz de derivar <em>cualquier</em> sentencia que esté lógicamente implicada. La <strong>comprobación de modelos (model checking)</strong> es el algoritmo que enumera todos los modelos posibles para comprobar si una afirmación es cierta en todos ellos, constituyendo un procedimiento siempre sólido.</p>
 </div></div>
 <div class="def-card" style="--theme-color: var(--c-4);"><div class="def-term">Resolución y Factorización</div><div class="def-body">
 <p>La <strong>Resolución</strong> es una regla de inferencia única que proporciona un algoritmo de inferencia completo si se unifica con un algoritmo de búsqueda completo. Utiliza la <strong>factorización</strong>, el proceso lógico por el cual dos literales idénticos en una misma cláusula se unifican en uno solo.</p>

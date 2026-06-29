@@ -237,7 +237,7 @@
     .tip-body { font-size: 0.88rem; color: #a7f3d0; line-height: 1.6; }
     .tip-body strong { color: #fff; }
 
-    /* Bloque de examen rediseñado */
+    /* Bloque de ejercicio rediseñado */
     .exam-block {
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.08);
@@ -276,7 +276,7 @@
     }
     .exam-block-body { padding: 20px 24px; }
 
-    /* Sección de enunciado dentro del bloque de examen */
+    /* Sección de enunciado dentro del bloque de ejercicio */
     .enunciado-section {
       background: rgba(0,0,0,0.2);
       border-radius: 10px;
@@ -439,7 +439,7 @@
 <section id="clasificacion">
 <h2 class="theme-title" style="border-bottom-color: var(--accent); color: var(--accent);">📊 1. CLASIFICACIÓN DE EJERCICIOS</h2>
 <div class="box">
-<p style="color: #d1d5db; line-height: 1.6; margin-bottom: 20px;">Tras diseccionar los 5 exámenes oficiales, los problemas prácticos de Sistemas Inteligentes se dividen en <strong>9 grandes tipos</strong>.</p>
+<p style="color: #d1d5db; line-height: 1.6; margin-bottom: 20px;">Tras diseccionar los ejercicios oficiales, los problemas prácticos de Sistemas Inteligentes se dividen en <strong>9 grandes tipos</strong>.</p>
 <div class="grid-2" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 10px;">
 <div class="box" style="border-top: 3px solid #14b8a6;">
 <h4 style="color: #14b8a6; margin-top: 0;">Tipo A: Traza de algoritmo de búsqueda sobre grafo</h4>
@@ -809,8 +809,8 @@
 
 </section>
 
-<section id="examenes">
-<h2 class="theme-title" style="border-bottom-color: var(--accent); color: var(--accent);">📝 3. RESOLUCIÓN DE EXÁMENES OFICIALES</h2>
+<section id="ejercicios">
+<h2 class="theme-title" style="border-bottom-color: var(--accent); color: var(--accent);">📝 3. RESOLUCIÓN DE EJERCICIOS PRÁCTICOS</h2>
 
 <h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 2: Búsqueda y Exploración</h3>
 
@@ -819,18 +819,18 @@
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-Dado el siguiente grafo, en donde (i) el nodo inicial es $A$ y el nodo meta es $G$, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística $h$, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados:  <br><img src="../assets/images/grafo1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;"><br>Aplicando el algoritmo A* basado en <b>grafo</b>, en algún paso, los nodos de la frontera vendrán dispuestos según la siguiente configuración...
+Dado el siguiente grafo, en donde (i) el nodo inicial es A y el nodo meta es G, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística h, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados:  <br><img src="../assets/images/grafo1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;"><br>Aplicando el algoritmo A* basado en <b>grafo</b>, en algún paso, los nodos de la frontera vendrán dispuestos según la siguiente configuración (considerar precedencia izq a drch, que el número entre paréntesis representa el correspondiente valor f, f = h + g, y que en caso de empate en valor f, la precedencia de expansión vendrá dada por el orden alfabético de los nodos correspondientes):
 </div>
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-En el algoritmo A* basado en <b>grafo</b>, se mantiene una lista de nodos "Cerrados" (Explorados). Si la heurística no es consistente (como ocurre aquí, ya que $h(A)=25 \not\le c(A,C)+h(C) = 2+20=22$), la versión estricta del algoritmo en grafo <b>no reabre nodos que ya han sido cerrados</b>, aunque encuentre un camino mejor hacia ellos.  
-Realizamos la traza paso a paso usando la ecuación $f(n) = g(n) + h(n)$:  <br>
-1. <b>Paso 1:</b> Genera $B$ ($g=5, h=16 \rightarrow f=21$) y $C$ ($g=2, h=20 \rightarrow f=22$).<br>
-2. <b>Paso 2:</b> Genera $D$ ($g=5+7=12, h=10 \rightarrow f=22$).<br>
-3. <b>Paso 3:</b> Genera $E$ ($g=2+10=12, h=8 \rightarrow f=20$).<br>
-- También encuentra una nueva ruta hacia $B$ con menor coste ($g=2+2=4 \rightarrow f=20$).<br>
-- <b>Punto clave:</b> Como $B$ ya está en la lista de Cerrados <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">{A, B}</code>, la nueva ruta hacia él <b>se descarta</b>.
+El algoritmo A* evalúa los nodos según f(n) = g(n) + h(n), donde g(n) es el coste acumulado real desde el inicio y h(n) es la estimación heurística hasta la meta.  <br><br>
+El recorrido paso a paso es:  <br>
+- <b>Paso 0:</b> Estado Inicial: frontera = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[A(f=25)]</code>. Cerrados = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[]</code>.  <br>
+- <b>Paso 1:</b> Se expande el nodo A. Sus sucesores son B (g=4, h=23 ⇒ f=27), C (g=2, h=20 ⇒ f=22) y D (g=6, h=21 ⇒ f=27).  <br>
+  La frontera queda como: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[C(22), B(27), D(27)]</code>. Cerrados = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[A]</code>.  <br>
+- <b>Paso 2:</b> Expandimos C (menor f=22). Sus sucesores son G (g=2+20=22, h=0 ⇒ f=22).  <br>
+  La frontera queda como: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[G(22), B(27), D(27)]</code>. Cerrados = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[A, C]</code>.
 </div>
 </div>
 
@@ -839,22 +839,16 @@ Realizamos la traza paso a paso usando la ecuación $f(n) = g(n) + h(n)$:  <br>
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-<div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:5px; margin-bottom:15px; font-size: 0.9em; border-left: 3px solid #3b82f6; color: #9ca3af;"><em>Contexto del ejercicio anterior:</em><br>
-Dado el siguiente grafo, en donde (i) el nodo inicial es $A$ y el nodo meta es $G$, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística $h$, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados:<br>
-<img src="../assets/images/grafo1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;">
-</div>
-En el mismo problema de la pregunta 1, indica la secuencia del camino devuelto utilizando, esta vez, la búsqueda avara:
+En el mismo problema del ejercicio 1 (grafo1.png), indica la secuencia del camino devuelto utilizando, esta vez, la búsqueda avara (Greedy Search):
 </div>
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-La Búsqueda Avara ordena los nodos de la frontera basándose <b>únicamente en el valor de la heurística</b> $f(n) = h(n)$, ignorando por completo el coste acumulado $g(n)$.<br><br>
-Traza del algoritmo:<br>
-1. <b>Paso 1:</b> Expandimos $A$. Genera $B$ ($h=16$) y $C$ ($h=20$). Frontera: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[B(16), C(20)]</code>.<br>
-2. <b>Paso 2:</b> Extraemos $B$ (el de menor $h$). Genera $D$ ($h=10$). Frontera: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[D(10), C(20)]</code>.<br>
-3. <b>Paso 3:</b> Extraemos $D$. Genera $G$ ($h=0$). Frontera: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[G(0), C(20)]</code>.<br>
-4. <b>Paso 4:</b> Extraemos $G$, que es la meta. Fin.<br><br>
-La secuencia de nodos explorados para formar el camino devuelto es <b>$A \rightarrow B \rightarrow D \rightarrow G$</b>.
+La búsqueda avara (o codiciosa) toma decisiones basándose estrictamente y únicamente en el valor de la función heurística f(n) = h(n), ignorando por completo el coste real del camino recorrido g(n).  <br><br>
+Trazando la ruta desde A:  <br>
+- <b>Paso 1:</b> Desde A, evaluamos la heurística de sus vecinos: h(C)=20, h(D)=21, h(B)=23. El menor es C (h=20). Nos movemos a C.  <br>
+- <b>Paso 2:</b> Desde C, el único sucesor es G (meta) con h(G)=0. Nos movemos a G.  <br><br>
+La secuencia del camino devuelto es: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A → C → G</code>.
 </div>
 </div>
 
@@ -863,23 +857,19 @@ La secuencia de nodos explorados para formar el camino devuelto es <b>$A \righta
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-<div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:5px; margin-bottom:15px; font-size: 0.9em; border-left: 3px solid #3b82f6; color: #9ca3af;"><em>Contexto del ejercicio anterior:</em><br>
-Dado el siguiente grafo, en donde (i) el nodo inicial es $A$ y el nodo meta es $G$, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística $h$, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados:<br>
-<img src="../assets/images/grafo1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;">
-</div>
 En el mismo problema de la pregunta 1, ¿obtiene el algoritmo A* una solución óptima?
 </div>
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-Para que el algoritmo A* sobre grafo garantice encontrar la solución óptima, la heurística $h(n)$ debe ser <b>admisible y consistente</b>.<br><br>
-- <b>Admisibilidad:</b> Evaluemos el nodo origen $A$. Su valor heurístico es $h(A) = 25$. Sin embargo, si miramos el grafo, existe un camino real $A \rightarrow C \rightarrow G$ cuyo coste exacto es $c(A,C) + c(C,G) = 2 + 20 = 22$. Como $h(A) > h^*(A)$ ($25 > 22$), la heurística sobreestima el coste real hacia la meta. Por tanto, <b>NO es admisible</b>.<br>
-- <b>Consistencia:</b> Revisemos la arista de $A$ a $C$. La desigualdad triangular exige que $h(A) \leq c(A,C) + h(C)$. Sustituyendo: $25 \leq 2 + 20 \Rightarrow 25 \leq 22$, lo cual es <b>falso</b>. La heurística <b>NO es consistente</b>.<br><br>
+Para que el algoritmo A* sobre grafo garantice encontrar la solución óptima, la heurística h(n) debe ser <b>admisible y consistente</b>.<br><br>
+- <b>Admisibilidad:</b> Evaluemos el nodo origen A. Su valor heurístico es h(A) = 25. Sin embargo, si miramos el grafo, existe un camino real A → C → G cuyo coste exacto es c(A,C) + c(C,G) = 2 + 20 = 22. Como h(A) &gt; h*(A) (25 &gt; 22), la heurística sobreestima el coste real hacia la meta. Por tanto, <b>NO es admisible</b>.<br>
+- <b>Consistencia:</b> Revisemos la arista de A a C. La desigualdad triangular exige que h(A) ≤ c(A,C) + h(C). Sustituyendo: 25 ≤ 2 + 20 ⇒ 25 ≤ 22, lo cual es <b>falso</b>. La heurística <b>NO es consistente</b>.<br><br>
 <b>Conclusión:</b> Al no ser admisible ni consistente, el algoritmo A* <b>no garantiza</b> encontrar la solución óptima (aunque por el diseño particular de este grafo A* termine llegando a ella, a nivel matemático y algorítmico no es una garantía).
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 4. A* e IDS sobre grafo2</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 4. A* sobre grafo2 - Búsqueda A*</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -889,15 +879,55 @@ Dado el siguiente grafo, donde el nodo inicial es A... ¿Cuál sería el coste d
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-El algoritmo $A^*$ expande los nodos basándose en $f(n) = g(n) + h(n)$.<br>
+El algoritmo $A^*$ expande los nodos basándose en f(n) = g(n) + h(n).<br>
 - <b>Paso 1:</b> Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[C(f=16), B(f=55)]</code><br>
 - <b>Paso 2:</b> Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[F(f=16), G(f=17), B(f=55)]</code><br>
-- <b>Paso 3:</b> G actualiza la entrada al ser menor que $17$. Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[G(f=13), B(f=55)]</code><br>
+- <b>Paso 3:</b> G actualiza la entrada al ser menor que 17. Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[G(f=13), B(f=55)]</code><br>
 - <b>Paso 4:</b> Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[I(f=35), B(f=55)]</code>. Se encuentra la meta I con coste 35.
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 5. A* sobre grafo3 + Propiedades Heurísticas</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 5. A* e IDS sobre grafo2 - Profundidad Iterativa (IDS)</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+En el mismo grafo del ejercicio anterior (grafo2 1.png), ¿cuál sería la solución de aplicar el algoritmo de búsqueda por profundidad iterativa (IDS), usando la precedencia lexicográfica como mecanismo de resolución de conflictos?
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+El algoritmo de Búsqueda por Profundidad Iterativa (IDS) realiza una búsqueda en profundidad (DFS) acotada por un límite que incrementa unitariamente en cada iteración:<br><br>
+- <b>Límite 0:</b> Solo se evalúa el nodo inicial A. No es meta.<br>
+- <b>Límite 1:</b> Se expande hasta profundidad 1: caminos A → B y A → C. No se alcanza la meta.<br>
+- <b>Límite 2:</b> Se expande hasta profundidad 2. Con orden alfabético: expandimos la rama izquierda de B: A → B → D y A → B → E; luego la rama de C: A → C → F y A → C → G. No se alcanza la meta.<br>
+- <b>Límite 3:</b> Se expande hasta profundidad 3. Siguiendo el orden lexicográfico de las ramas:<br>
+  1. A → B → D → H (profundidad 3, hoja).<br>
+  2. A → B → E → G<br>
+  3. A → B → E → I (meta encontrada a profundidad 3).<br><br>
+La solución devuelta es el camino: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A → B → E → I</code>.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 6. A* e IDS sobre grafo2 - Propiedades de la Heurística</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+En el mismo grafo del ejercicio 4 (grafo2 1.png), la heurística proporcionada... ¿Es admisible y/o consistente?
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+Evaluamos los criterios matemáticos de la heurística en el grafo:<br><br>
+1. <b>Admisibilidad:</b> Exige que h(n) ≤ h*(n) (no sobreestimar el coste real hacia la meta). El coste real de la ruta óptima de A a la meta I es 17 (A → C → G → I). Dado que h(A) = 15 y 15 ≤ 17, se cumple. Comprobando para todos los demás nodos, ninguno tiene una heurística mayor al coste real óptimo. Por tanto, la heurística <b>es admisible</b>.<br><br>
+2. <b>Consistencia (Monotonía):</b> Exige que h(n) ≤ c(n, n') + h(n') para todo par de nodos conectados. Evaluemos la arista de C a G (c(C,G)=3):<br>
+   h(C) ≤ c(C,G) + h(G) ⇒ 16 ≤ 3 + 10 ⇒ 16 ≤ 13, lo cual es <b>falso</b>.<br><br>
+Por tanto, la heurística <b>es admisible pero NO es consistente</b>.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 7. A* sobre grafo3 - Búsqueda A*</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -907,15 +937,45 @@ Sobre el grafo del espacio de estados, ¿qué solución encuentra el algoritmo A
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-El algoritmo A* siempre expande el nodo con el menor valor $f(n) = g(n) + h(n)$. Si trazamos la ejecución desde A:  <br>
-1. Expandimos A. Sus sucesores son B ($f=1+5=6$) y C ($f=1+3=4$).  <br>
-2. El menor es C. Lo expandimos y obtenemos F ($f=2+6=8$) y G ($f=2+8=10$).  <br>
+El algoritmo A* siempre expande el nodo con el menor valor f(n) = g(n) + h(n). Si trazamos la ejecución desde A:  <br>
+1. Expandimos A. Sus sucesores son B (f=1+5=6) y C (f=1+3=4).  <br>
+2. El menor es C. Lo expandimos y obtenemos F (f=2+6=8) y G (f=2+8=10).  <br>
 3. La frontera tiene a B(6), F(8) y G(10). El menor es B...  <br>
 El camino trazado por A* es indiscutiblemente <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A → C → F → J → K</code>.
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 6. Identificación de algoritmo por traza</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 8. A* sobre grafo3 - Profundidad Iterativa (IDS)</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Sobre el mismo espacio de estados del grafo 3, ¿qué solución encuentra el algoritmo de búsqueda en profundidad iterativa (IDS)?
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+Trace de IDS en grafo 3:<br>
+- <b>Límite 0:</b> Solo A.<br>
+- <b>Límite 1:</b> Caminos A → B, A → C.<br>
+- <b>Límite 2:</b> Caminos A → B → D, A → B → E, A → C → F, A → C → G.<br>
+- <b>Límite 3:</b> Caminos A → B → D → H, A → B → E → I, A → C → F → J.<br>
+- <b>Límite 4:</b> Caminos hasta profundidad 4. Por orden alfabético, la rama izquierda no tiene salida, por lo que la búsqueda desciende por la rama de C: A → C → F → J → K (meta encontrada).<br><br>
+La solución devuelta es: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A → C → F → J → K</code>.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 9. A* sobre grafo3 - Expansiones de un Nodo</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+En una búsqueda en grafo con el algoritmo A* con control de duplicados, cada nodo se expande como máximo una vez si la heurística es consistente (monótona).<br>
+En este grafo, el nodo B es extraído de la frontera por tener el menor valor f(B)=6 (frente a F(8) y G(10)) y se expande en el paso 3. Tras esta acción, pasa permanentemente a la lista de cerrados. Al no requerir reapertura de nodos en cerrados (re-opening) debido a que no se encuentra ninguna ruta más corta posterior, el nodo B es expandido <b>exactamente 1 vez</b>.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 10. Identificación de algoritmo por traza</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -930,7 +990,7 @@ En profundidad (LIFO), jamás verías los explorados en orden de capas. En A* o 
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 7. Hill-Climbing sobre Árbol M-ario</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 11. Hill-Climbing sobre Árbol M-ario</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -945,7 +1005,22 @@ La característica teórica definitoria de esta familia es que <b>no conservan n
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 8. Análisis Visual de Búsqueda Local</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 12. Análisis Visual de Búsqueda Local (Hill-Climbing)</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+En un problema en el que estamos utilizando búsqueda local, tenemos la siguiente función de coste, en la que estamos buscando el valor máximo: <img src="../assets/images/busqlocal.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;"> Si estamos en el punto marcado, ¿qué deberíamos de hacer?
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+En los algoritmos de Búsqueda Local pura (como la Ascensión de Colinas o <i>Hill-Climbing</i>), la máquina <b>carece de memoria histórica</b> (opera con complejidad espacial constante O(1)). Su mecánica es simple: evalúa sus estados vecinos inmediatos y se mueve hacia el que tenga mayor valor.<br><br>
+En la gráfica, el punto marcado es un <b>Máximo Local</b>. Al evaluar a sus vecinos, el algoritmo ve que si da un paso a la izquierda, el valor baja; si da un paso a la derecha, el valor también baja. Como ningún vecino mejora su situación actual, la condición de parada algorítmica se dispara de inmediato: la máquina asume que ha llegado a la cima absoluta del problema, <b>se detiene y devuelve el punto marcado</b> como su solución final (quedando atrapado sin poder retroceder al carecer de memoria).
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 13. Búsqueda Local (Hill-Climbing) iniciada en Valle</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -956,181 +1031,438 @@ Atendiendo a un espacio de estados representado visualmente como un relieve... s
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
 El algoritmo de Ascensión de Colinas (Hill-Climbing) evalúa estrictamente a sus vecinos inmediatos y siempre se mueve en la dirección de la pendiente ascendente más pronunciada (si busca maximizar). <br><br>
-Sin embargo, su <b>trampa principal</b> es que, al carecer de memoria, se quedará atrapado en el primer máximo local que encuentre a lo largo de esa pendiente.
+Sin embargo, su <b>trampa principal</b> es que, al carecer de memoria, subirá por la ladera de la montaña y se quedará atrapado en el primer máximo local que encuentre a lo largo de esa pendiente, sin poder explorar el resto del espacio.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 14. Búsqueda en Anchura (BFS) - Nodos en lista de explorados</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Para el árbol representado en la imagen a continuación (daypo1.png), ¿cuántos nodos se encontrarán en la lista de explorados en el paso 4 para una expansión por anchura (BFS)? <img src="../assets/images/daypo1.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;">
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+En una expansión guiada por la estrategia de búsqueda en anchura (BFS), los nodos se visitan nivel por nivel (horizontalmente):<br><br>
+- <b>Estado Inicial (Paso 0):</b> Frontera = `[A]`, Cerrados = `[]`<br>
+- <b>Paso 1:</b> Expandimos A. Frontera = `[B, C, D]`. Cerrados = `[A]` (1 nodo).<br>
+- <b>Paso 2:</b> Expandimos B (primer sucesor de A). Sucesores de B son E y F. Frontera = `[C, D, E, F]`. Cerrados = `[A, B]` (2 nodos).<br>
+- <b>Paso 3:</b> Expandimos C (siguiente en el nivel 1). Sucesores de C son G e H. Frontera = `[D, E, F, G, H]`. Cerrados = `[A, B, C]` (3 nodos).<br>
+- <b>Paso 4:</b> Expandimos D (último en el nivel 1). Al llegar a este paso, el algoritmo ha completado y cerrado la evaluación de 3 nodos (A, B y C). Por tanto, la lista de explorados (cerrados) contendrá exactamente <b>3</b> elementos.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 15. Búsqueda de Coste Uniforme (UCS) - Nodos en lista de explorados</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Para el mismo árbol (daypo1.png), ¿cuántos nodos se encontrarán en la lista de explorados en el paso 2 para una expansión por coste uniforme (UCS)?
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+La búsqueda de coste uniforme (UCS) expande los nodos basándose estrictamente en su coste real acumulado g(n) desde el inicio:<br><br>
+- <b>Estado Inicial (Paso 0):</b> Frontera = `[A(g=0)]`, Cerrados = `[]`<br>
+- <b>Paso 1:</b> Se extrae y expande A (coste 0). Sus sucesores entran en la frontera: Frontera = `[B(g=2), C(g=4), D(g=8)]` (los pesos de las aristas son A → B = 2, A → C = 4, A → D = 8). Cerrados = `[A]` (1 nodo).<br>
+- <b>Paso 2:</b> Extraemos B de la frontera por tener el menor coste acumulado (g=2). Sus sucesores son E y F (costes acumulados g(E)=2+3=5 y g(F)=2+4=6$). Frontera = `[C(g=4), E(g=5), F(g=6), D(g=8)]`. Cerrados = `[A, B]` (2 nodos).<br><br>
+Al concluir la expansión del paso 2, el algoritmo ya ha retirado de su frontera y finalizado la evaluación de 2 nodos (A y B). Por lo tanto, la lista de explorados contiene exactamente <b>2</b> elementos.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 16. Búsqueda en Profundidad (DFS) - Nodos en la frontera</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Para el mismo árbol (daypo1.png), ¿cuántos nodos se encontrarán en la frontera en el paso 4 para una expansión por profundidad (DFS)?
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+La búsqueda en profundidad (DFS) expande primero los nodos del nivel más profundo (LIFO/Pila Stack):<br><br>
+- <b>Inicial:</b> Frontera = `[A]` (Tamaño: 1)<br>
+- <b>Paso 1:</b> Expandimos A. Sucesores son B, C y D. Entran en la pila (con prioridad lexicográfica, de derecha a izquierda para extraer primero la B): Frontera = `[D, C, B]` (Tamaño: 3). Explorados = `[A]` (1)<br>
+- <b>Paso 2:</b> Expandimos B. Sucesores de B son E y F. Entran en la pila: Frontera = `[D, C, F, E]` (Tamaño: 4). Explorados = `[A, B]` (2)<br>
+- <b>Paso 3:</b> Expandimos E. Sucesores de E son K y L (hojas). Entran en la pila: Frontera = `[D, C, F, L, K]` (Tamaño: 5). Explorados = `[A, B, E]` (3)<br>
+- <b>Paso 4:</b> Extraemos K. Dado que es una hoja (no tiene descendientes), no se añaden sucesores. Queda en cerrados. Frontera = `[D, C, F, L]` (Tamaño: 4). Explorados = `[A, B, E, K]` (4).<br><br>
+Al llegar al paso 4 (tras expandir y vaciar K), la frontera contiene exactamente <b>5</b> nodos (los acumulados en espera en la pila LIFO, que son D, C, F, L, K antes de remover K).
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 17. Búsqueda A* - Nodos máximos en frontera</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Usando un algoritmo de búsqueda A*, ¿cuántos nodos máximos en la frontera habría en cualquier momento dado? Asumamos que G es la meta y comenzamos en C. <img src="../assets/images/daypo2.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;">
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+Trazando la ejecución del algoritmo $A^*$ con búsqueda en grafo (donde se descartan duplicados de peor coste):<br><br>
+- <b>Inicial:</b> Frontera = `[C(f=24)]` (Tamaño: 1)<br>
+- <b>Paso 1 (Expandir C):</b> Sucesores son B (g=4, h=16 ⇒ f=20) y E (g=7, h=14 ⇒ f=21). Frontera = `[B(f=20), E(f=21)]` (Tamaño: 2)<br>
+- <b>Paso 2 (Expandir B):</b> Sucesores son D (g=4+8=12, h=10 ⇒ f=22). Frontera = `[E(f=21), D(f=22)]` (Tamaño: 2)<br>
+- <b>Paso 3 (Expandir E):</b> Sucesores son D (peor camino, se ignora) y F (g=7+25=32, h=6 ⇒ f=38). Frontera = `[D(f=22), F(f=38)]` (Tamaño: 2)<br>
+- <b>Paso 4 (Expandir D):</b> Sucesores son G (g=12+14=26, h=0 ⇒ f=26). Frontera = `[G(f=26), F(f=38)]` (Tamaño: 2)<br>
+- <b>Paso 5 (Expandir G):</b> Llegamos al objetivo.<br><br>
+El tamaño máximo de la frontera en todo momento de la ejecución es de <b>2</b> nodos.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 18. Búsqueda A* - Peso óptimo de la solución</h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Usando el mismo grafo del ejercicio anterior (daypo2.png) y el algoritmo A*, ¿cuál sería el peso óptimo (coste real del camino) para la resolución del problema? Asumamos que G es la meta y comenzamos en C.
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+El peso óptimo representa la suma de los pesos de las aristas a lo largo de la ruta más corta hasta el nodo meta G:<br><br>
+- Camino óptimo devuelto: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">C → B → D → G</code>.<br>
+- Transiciones:<br>
+  - c(C,B) = 4<br>
+  - c(B,D) = 8<br>
+  - c(D,G) = 14<br>
+- Coste real total: 4 + 8 + 14 = 26.<br><br>
+Por lo tanto, el coste real (peso óptimo) de la solución es <b>26</b>.
 </div>
 </div>
 
 <h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 3: Representación del Conocimiento</h3>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 9. Encadenamiento en Sistema de Producción</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 19. Encadenamiento en Sistema de Producción</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-Dado la siguiente base de reglas:  <br><br><code>R1: IF (X AND Y) THEN Z</code><br><code>R2: IF (C OR D) THEN G</code><br><code>R3: IF (E AND V) THEN H</code><br><code>R4: IF (A AND B) THEN C</code><br><code>R5: IF (F OR G) THEN X</code><br><code>R6: IF (Z AND B) THEN V</code><br><code>R7: IF (E AND C) THEN F</code><br><br>Queremos inferir <code>H</code>
+Dado la siguiente base de reglas:  <br><br><code>R1: IF (X AND Y) THEN Z</code><br><code>R2: IF (C OR D) THEN G</code><br><code>R3: IF (E AND V) THEN H</code><br><code>R4: IF (A AND B) THEN C</code><br><code>R5: IF (F OR G) THEN X</code><br><code>R6: IF (Z AND B) THEN V</code><br><code>R7: IF (E AND C) THEN F</code><br><br>Queremos inferir <code>H</code> mediante encadenamiento progresivo (hacia adelante), utilizando como criterio de resolución de conflictos: "ejecutar la regla que ha sido activada en primer lugar" (orden de base de reglas: R1 a R7). Sabiendo que en la memoria activa inicial tenemos <code>A</code>, <code>B</code>, <code>D</code> e <code>Y</code>, ¿cuál será la secuencia de reglas activadas y ejecutadas?
 </div>
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-Un motor de inferencia clásico ejecuta <b>solo una regla por ciclo</b>.  
-La estrategia de desempate dictamina que gana la regla "más reciente" (las que acaban de activarse en ese ciclo). Si hay empate de novedad, gana la que tenga la letra con mayor prioridad en el abecedario en sus premisas. <br><br> 
-- <b>CICLO 1:</b> Conjunto Conflicto (CC). Empate R1 y R2. Gana la $R1$ por orden alfabético. Añadimos $C$ a la memoria.  <br>
-- <b>CICLO 2:</b> En el CC solo nos queda esperando la <b>R2</b>. Añadimos $D$ a la memoria.  <br>
-- <b>CICLO 3:</b> Añadimos $R$ a la memoria.  <br>
-- <b>CICLO 4:</b> Añadimos $X$ a la memoria.  <br>
-- <b>CICLO 5:</b> Llegamos a la meta $H$.  
+Se trata de seguir el ciclo de emparejamiento y disparo (disparar la primera regla de la lista que sea aplicable):<br><br>
+- <b>Memoria activa inicial (MA):</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">{A, B, D, Y}</code><br>
+- <b>Ciclo 1:</b> Evaluamos de R1 a R7. Se activan <b>R2</b> (pues D está en MA) y <b>R4</b> (pues A y B están en MA). Criterio de resolución: disparamos la primera en la base, que es <b>R2</b>.  <br>
+  - Efecto: Añadimos <code>G</code> a la memoria. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {A, B, D, Y, G}</code>. Reglas disparadas: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[R2]</code>.<br>
+- <b>Ciclo 2:</b> Evaluamos de nuevo. Se activan R4 (A y B) y <b>R5</b> (pues G está en MA). Disparamos la primera disponible: <b>R4</b>.  <br>
+  - Efecto: Añadimos <code>C</code> a la memoria. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {A, B, D, Y, G, C}</code>. Reglas disparadas: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[R2, R4]</code>.<br>
+- <b>Ciclo 3:</b> Se activa R5.  <br>
+  - Efecto: Añadimos <code>X</code> a la memoria. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {A, B, D, Y, G, C, X}</code>. Reglas disparadas: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[R2, R4, R5]</code>.<br>
+- <b>Ciclo 4:</b> Se activa <b>R1</b> (pues X e Y están en MA).  <br>
+  - Efecto: Añadimos <code>Z</code> a la memoria. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {A, B, D, Y, G, C, X, Z}</code>. Reglas disparadas: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[R2, R4, R5, R1]</code>.<br>
+- <b>Ciclo 5:</b> Se activa <b>R6</b> (pues Z y B están en MA).  <br>
+  - Efecto: Añadimos <code>V</code> a la memoria. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {A, B, D, Y, G, C, X, Z, V}</code>. Reglas disparadas: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[R2, R4, R5, R1, R6]</code>.<br><br>
+La secuencia de reglas disparadas es <b>R2, R4, R5, R1, R6</b>. En este punto no podemos avanzar a H porque nos falta el hecho E.
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 10. Encadenamiento en Sistema de Producción (Variante)</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 20. Encadenamiento en Sistema de Producción (Variante)</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-En el contexto de un sistema de producción, se parte de la siguiente base de reglas y estado de la Memoria Activa inicial ($M_0$):<br>
-<b>$M_0 = \{A, B, E\}$</b><br>
-¿Cuál es la secuencia de ejecución de las reglas?
+Con la misma base de reglas y memoria inicial del ejercicio anterior, ¿cuál será el comportamiento de disparo si el criterio de resolución de conflictos es "Novedad" (dar prioridad a la regla que utilice los hechos añadidos más recientemente a la memoria activa)?
 </div>
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-Aplicamos el mismo algoritmo: <br>
-1. Inicialmente se activan las que cumplen las premisas con $A, B, E$. <br>
-2. Resolvemos conflictos. <br>
-3. Al final, deducimos de forma secuencial los elementos hasta que la Memoria Activa no dispara nada más.
+El criterio de <b>Novedad (o Recencia)</b> ordena las reglas según el "sello de tiempo" de sus hechos antecedentes. Cuanto más recientemente se haya añadido un hecho a la Memoria Activa, mayor prioridad tendrá la regla que lo consuma:<br><br>
+- <b>MA inicial:</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">{A, B, D, Y}</code> (tiempo base t=0).<br>
+- <b>Ciclo 1:</b> Se activan R2 y R4. Ambas consumen hechos de tiempo t=0. Se desempata por orden de base de reglas: disparamos <b>R2</b>.<br>
+  - Efecto: Añadimos <code>G</code> en t=1. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {A, B, D, Y, G(1)}</code>.<br>
+- <b>Ciclo 2:</b> Se activan R4 (hechos en t=0) y <b>R5</b> (consume G, que tiene t=1). Por novedad, disparamos <b>R5</b> por encima de R4.<br>
+  - Efecto: Añadimos <code>X</code> en t=2. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {A, B, D, Y, G(1), X(2)}</code>.<br>
+- <b>Ciclo 3:</b> Se activa <b>R1</b> (consume X en t=2 e Y en t=0). La otra activa sigue siendo R4 (t=0). Disparamos <b>R1</b>.<br>
+  - Efecto: Añadimos <code>Z</code> en t=3. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {A, B, D, Y, G(1), X(2), Z(3)}</code>.<br>
+- <b>Ciclo 4:</b> Se activan <b>R6</b> (consume Z en t=3) y R4. Disparamos <b>R6</b>.<br>
+  - Efecto: Añadimos <code>V</code> en t=4. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {A, B, D, Y, G(1), X(2), Z(3), V(4)}</code>.<br>
+- <b>Ciclo 5:</b> Ya no hay reglas que se puedan activar con hechos recientes que no hayan sido disparadas. La única que queda es <b>R4</b> (t=0). La disparamos.<br>
+  - Efecto: Añadimos <code>C</code> en t=5. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {..., C(5)}</code>.<br><br>
+La secuencia de reglas disparadas bajo este criterio cambia drásticamente a: <b>R2, R5, R1, R6, R4</b>.
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 11. Encadenamiento Progresivo (Memoria Alternativa)</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 21. Encadenamiento Progresivo (Memoria Alternativa)</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-Dado la siguiente base de reglas:  
-<div style="background: rgba(255,255,255,0.05); border-left: 3px solid #10b981; padding: 10px 15px; margin: 10px 0; border-radius: 4px; font-family: monospace; font-size: 0.95em; color: #d1d5db;">
-R1: `IF (X AND Y) THEN Z`<br>
-<br>
-R2: `IF (C OR D) THEN G`<br>
-<br>
-R3: `IF (E AND V) THEN H`<br>
-<br>
-R4: `IF (A AND B) THEN C`<br>
-<br>
-R5: `IF (F OR G) THEN X`<br>
-<br>
-R6: `IF (Z AND B) THEN V`<br>
-<br>
-R7: `IF (E AND C) THEN F`
-</div>
-Queremos inferir `H` mediante encadenamiento progresivo, y sabiendo que: la primera de las reglas activadas será ejecutada (si R3 y R4 son activadas, se ejecutará primero R3); y en la memoria activa tenemos `A`, `B`, `D` y `Y`. <i>(Nota: la digitalización indica `?, D y Y`, pero el apunte a mano `ABDY(H)` confirma que la memoria inicial es `{A, B, D, Y}`).</i> Entonces:
+¿Qué ocurriría si en la memoria activa inicial del ejercicio anterior tuviéramos los hechos <code>A</code>, <code>B</code>, <code>E</code> e <code>Y</code> (en vez de D)? Indica la secuencia de disparo utilizando el orden clásico (R1 a R7).
 </div>
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-<b>CICLO 1:</b><br>
-- <b>MA:</b> $\{A, B, D, Y\}$<br>
-- <b>Conjunto Conflicto (CC):</b> R2 (por D), R4 (por A y B).<br>
-- <b>Resolución:</b> Empate. Miramos premisas: R4 tiene la 'A', que va antes que la 'D' de R2. Gana R4.<br>
-- <b>Ejecución:</b> Dispara R4 $\rightarrow$ Añadimos $C$.<br><br>
-<b>CICLO 2:</b><br>
-- <b>MA:</b> $\{A, B, D, Y, C\}$<br>
-- <b>CC:</b> Queda R2 (que se dispara tanto por D como por el nuevo C). R7 requiere E y C, pero no tenemos E, así que no se activa.<br>
-- <b>Ejecución:</b> Dispara R2 $\rightarrow$ Añadimos $G$.<br><br>
-<b>CICLO 3:</b><br>
-- <b>MA:</b> $\{A, B, D, Y, C, G\}$<br>
-- <b>CC:</b> R5 (se activa por G).<br>
-- <b>Ejecución:</b> Dispara R5 $\rightarrow$ Añadimos $X$.<br><br>
-<b>CICLO 4:</b><br>
-- <b>MA:</b> $\{A, B, D, Y, C, G, X\}$<br>
-- <b>CC:</b> R1 (se activa porque ya teníamos Y inicial y acabamos de inferir X).<br>
-- <b>Ejecución:</b> Dispara R1 $\rightarrow$ Añadimos $Z$.<br><br>
-<b>CICLO 5:</b><br>
-- <b>MA:</b> $\{A, B, D, Y, C, G, X, Z\}$<br>
-- <b>CC:</b> R6 (se activa porque teníamos B inicial y acabamos de inferir Z).<br>
-- <b>Ejecución:</b> Dispara R6 $\rightarrow$ Añadimos $V$.<br><br>
-<b>CICLO 6:</b><br>
-- <b>MA:</b> $\{A, B, D, Y, C, G, X, Z, V\}$<br>
-- <b>Evaluación:</b> La única regla que nos daría la meta $H$ es R3, que exige $E$ y $V$. Tenemos $V$, pero <b>no tenemos $E$</b> en la Memoria Activa.<br><br>
-<b>Conclusión:</b> El motor se detiene tras ejecutar 5 reglas (R4, R2, R5, R1, R6). <b>No es posible inferir la meta $H$.</b>
+- <b>Memoria activa inicial (MA):</b> <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">{A, B, E, Y}</code><br>
+- <b>Ciclo 1:</b> Evaluamos de R1 a R7. Se activa únicamente <b>R4</b> (A y B). La disparamos.  <br>
+  - Efecto: Añadimos <code>C</code> a la memoria. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {A, B, E, Y, C}</code>.<br>
+- <b>Ciclo 2:</b> Se activa <b>R2</b> (C está en MA) y <b>R7</b> (E y C). Disparamos la primera de la lista: <b>R2</b>.  <br>
+  - Efecto: Añadimos <code>G</code>. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {A, B, E, Y, C, G}</code>.<br>
+- <b>Ciclo 3:</b> Se activa <b>R5</b> (G) y R7. Disparamos la primera: <b>R5</b>.  <br>
+  - Efecto: Añadimos <code>X</code>. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {A, B, E, Y, C, G, X}</code>.<br>
+- <b>Ciclo 4:</b> Se activa <b>R1</b> (X e Y) y R7. Disparamos <b>R1</b>.  <br>
+  - Efecto: Añadimos <code>Z</code>. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {..., Z}</code>.<br>
+- <b>Ciclo 5:</b> Se activa <b>R6</b> (Z y B) y R7. Disparamos <b>R6</b>.  <br>
+  - Efecto: Añadimos <code>V</code>. <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">MA = {..., V}</code>.<br>
+- <b>Ciclo 6:</b> Se activa <b>R3</b> (E y V están en MA) y R7. Disparamos <b>R3</b>.  <br>
+  - Efecto: Añadimos <code>H</code> (¡Meta lograda!).<br><br>
+La secuencia de reglas disparadas es <b>R4, R2, R5, R1, R6, R3</b>.
 </div>
 </div>
-
 
 <h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 4: Razonamiento e Inferencia</h3>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 12. BLE/BLR con 5 variables</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 22. BLE/BLR con 5 variables</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-Sea un dominio con tres manifestaciones posibles $\{M(1), M(2), M(3)\}$ y dos interpretaciones posibles $\{I(1), I(2)\}$. Desde una perspectiva categórica, y dadas las reglas del dominio... ¿Cuántos posibles conjuntos manifestación-interpretación contiene la Base Lógica Reducida?
+Sea un dominio con tres manifestaciones posibles {M(1), M(2), M(3)} y dos interpretaciones posibles {I(1), I(2)}. Desde una perspectiva categórica, y dadas las reglas del dominio:<br>
+R1: $M(1) \lor M(2) \lor M(3) \implies I(1) \lor I(2)$<br>
+R2: $I(1) \implies \neg M(1) \land M(2)$<br>
+R3: $I(2) \land \neg I(1) \implies M(1) \land M(3)$<br><br>
+¿Cuántos posibles conjuntos manifestación-interpretación contiene la Base Lógica Reducida (BLR)?
 </div>
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-Nuevamente, $2^5 = 32$ complejos en la BLE. Eliminando los que incumplen las reglas dadas (R1, R2 y R3), nos quedan 7 complejos válidos.
+La Base Lógica Expandida (BLE) contiene todas las combinaciones posibles de variables, que son $2^5 = 32$ complejos.  <br>
+Para obtener la Base Lógica Reducida (BLR), aplicamos las restricciones que dictan las reglas, eliminando los complejos absurdos:<br><br>
+- <b>R2 exige que:</b> Si $I(1) = 1$, entonces obligatoriamente $M(1) = 0$ y $M(2) = 1$. Esto elimina cualquier combinación donde $I(1)=1$ y no se cumplan esos valores. De los 16 casos iniciales donde $I(1)=1$, nos quedamos solo con <b>4 casos válidos</b> (ya que solo varían $I(2)$ y $M(3)$, dando $2 \times 2 = 4$).<br>
+- <b>R3 exige que:</b> Si $I(2)=1$ e $I(1)=0$, entonces obligatoriamente $M(1)=1$ y $M(3)=1$. De los 8 casos iniciales con estas condiciones, nos quedamos solo con los <b>2 casos válidos</b> donde $M(2)$ vale 0 o 1.<br>
+- <b>R1 exige que:</b> Si existe alguna manifestación activa, debe existir alguna interpretación. Nos quedan por evaluar los casos donde $I(1)=0$ e $I(2)=0$. Si ambas interpretaciones son 0, ninguna manifestación puede ser 1. Esto nos deja con <b>1 único caso válido</b>: todos los valores a 0.  <br><br>
+Sumando los complejos válidos: $4 + 2 + 1 = 7$ conjuntos posibles en la BLR.
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 13. BLR con Medidas de Suficiencia (m4)</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 23. BLR con Medidas de Suficiencia (m4)</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-Sea un dominio con tres manifestaciones posibles [M(1), M(2), M(3)] y dos interpretaciones [I(1), I(2)]. Desde una perspectiva categórica, y asumiendo la tabla de verdad y la Regla del Dominio: R1: M(1) V M(2) V M(3) ⇒ I(1) V I(2).
+Sea un dominio con tres manifestaciones posibles $\{M(1), M(2), M(3)\}$ y dos interpretaciones posibles $\{I(1), I(2)\}$. Desde una perspectiva categórica, y dadas las reglas del dominio:<br>
+R1: $M(1) \lor M(2) \lor M(3) \implies I(1) \lor I(2)$<br>
+R2: $I(2) \implies \neg M(2) \land M(1)$<br>
+R3: $I(1) \lor \neg I(2) \implies M(2) \land M(3)$<br><br>
+
+Y atendiendo a las siguientes tablas de codificación:<br>
+<br>
+<b>Tabla de Manifestaciones:</b>
+<table style="border-collapse: collapse; width: 100%; border: 1px solid rgba(255,255,255,0.1); margin: 10px 0; font-size: 0.9em; text-align: center;">
+  <thead>
+    <tr style="background: rgba(255,255,255,0.1);">
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);"></th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m1</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m2</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m3</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m4</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m5</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m6</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m7</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); font-weight: bold;">M(1)</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); font-weight: bold;">M(2)</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); font-weight: bold;">M(3)</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+    </tr>
+  </tbody>
+</table>
+
+<b>Tabla de Interpretaciones:</b>
+<table style="border-collapse: collapse; width: 60%; border: 1px solid rgba(255,255,255,0.1); margin: 10px 0; font-size: 0.9em; text-align: center;">
+  <thead>
+    <tr style="background: rgba(255,255,255,0.1);">
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);"></th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">i1</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">i2</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">i3</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">i4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); font-weight: bold;">I(1)</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); font-weight: bold;">I(2)</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+    </tr>
+  </tbody>
+</table>
+¿Cuál de las siguientes combinaciones pertenece a la Base Lógica Reducida?<br>
+a) $m_4 i_1$ &nbsp;&nbsp;&nbsp;&nbsp; b) $m_4 i_2$ &nbsp;&nbsp;&nbsp;&nbsp; c) $m_4 i_3$ &nbsp;&nbsp;&nbsp;&nbsp; d) Ninguna es correcta
 </div>
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-La Base Lógica Expandida (BLE) contiene todas las combinaciones posibles de variables, que son $2^5 = 32$ complejos.  
-Para obtener la Base Lógica Reducida (BLR), aplicamos las restricciones que dictan las reglas, eliminando los complejos absurdos, quedándonos al final con 7 conjuntos posibles en la BLR.
+Analizando la manifestación $m_4$, en la tabla sus valores son $M(1)=1, M(2)=0, M(3)=0$. Evaluemos cada opción:<br><br>
+- <b>Para a) $m_4 i_1$ (donde $I(1)=0, I(2)=0$):</b><br>
+  R1 establece que si hay manifestaciones activas (las hay porque $M(1)=1$), debe haber al menos una interpretación activa. Al ser ambas 0, <b>R1 se viola</b>. No pertenece a la BLR.<br><br>
+- <b>Para b) $m_4 i_2$ (donde $I(1)=0, I(2)=1$):</b><br>
+  - R1: Antecedente Verdadero, Consecuente Verdadero ($I(2)=1$). (Se cumple)<br>
+  - R2: Antecedente Verdadero ($I(2)=1$). Consecuente: $\neg M(2) \land M(1) = \neg 0 \land 1 = 1$. (Se cumple)<br>
+  - R3: Antecedente: $I(1) \lor \neg I(2) = 0 \lor \neg 1 = 0$ (Falso). Al ser el antecedente falso, la implicación se cumple automáticamente. (Se cumple)<br>
+  Todas las reglas se satisfacen, por lo que <b>pertenece a la BLR</b>.<br><br>
+- <b>Para c) $m_4 i_3$ (donde $I(1)=1, I(2)=0$):</b><br>
+  R3: Antecedente: $I(1) \lor \neg I(2) = 1 \lor \neg 0 = 1$ (Verdadero). Consecuente: $M(2) \land M(3) = 0 \land 0 = 0$ (Falso). <b>R3 se viola</b> ($1 \Rightarrow 0$ es falso). No pertenece a la BLR.<br><br>
+La opción correcta es la <b>b) $m_4 i_2$</b>.
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 14. BLR y Teorema de Bayes sobre Tablas Lógicas</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 24. Inferencia Lógica con Tabla</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-¿Cuál de las siguientes combinaciones pertenece a la Base Lógica Reducida?
+Dada la siguiente codificación de posibles Manifestaciones ($M$) e Interpretaciones ($I$) en un contexto de razonamiento categórico:  <br><br>
+<b>Tabla de Manifestaciones (M):</b>
+<table style="border-collapse: collapse; width: 100%; border: 1px solid rgba(255,255,255,0.1); margin: 10px 0; font-size: 0.9em; text-align: center;">
+  <thead>
+    <tr style="background: rgba(255,255,255,0.1);">
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);"></th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m1</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m2</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m3</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m4</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m5</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m6</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m7</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">m8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); font-weight: bold;">M(1)</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); font-weight: bold;">M(2)</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); font-weight: bold;">M(3)</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+    </tr>
+  </tbody>
+</table>
+
+<b>Tabla de Interpretaciones:</b>
+<table style="border-collapse: collapse; width: 60%; border: 1px solid rgba(255,255,255,0.1); margin: 10px 0; font-size: 0.9em; text-align: center;">
+  <thead>
+    <tr style="background: rgba(255,255,255,0.1);">
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);"></th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">i1</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">i2</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">i3</th>
+      <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">i4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); font-weight: bold;">I(1)</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); font-weight: bold;">I(2)</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">0</td>
+      <td style="padding: 8px; border: 1px solid rgba(255,255,255,0.1);">1</td>
+    </tr>
+  </tbody>
+</table>
+
+Y sea el siguiente conjunto de reglas:<br>
+R1: $M(1) \lor M(2) \lor M(3) \implies I(1) \lor I(2)$<br>
+R2: $I(2) \implies \neg M(2) \land M(1)$<br>
+R3: $I(1) \lor \neg I(2) \implies M(2) \land M(3)$<br><br>
+
+Si en un momento dado se da la ocurrencia $f = M(1) \land \neg M(2) \land \neg M(3)$, entonces podríamos deducir que:<br>
+a) Es verdadera $I(1)$ e $I(2)$ es falsa &nbsp;&nbsp;&nbsp;&nbsp; b) Ambas son verdaderas<br>
+c) Es falsa $I(1)$ e $I(2)$ es verdadera &nbsp;&nbsp;&nbsp;&nbsp; d) Ninguna de las anteriores es correcta
 </div>
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-Se debe evaluar cada vector opción (por ejemplo $m_4 i_1$) contra las reglas. El que no las viola, es el que sobrevive y por tanto pertenece a la BLR.
+Analizamos lógicamente la manifestación entregada. La evidencia f nos dice categóricamente que $M(1) = 1$, $M(2) = 0$ y $M(3) = 0$.<br><br>
+Evaluemos la Regla 3: $I(1) \lor \neg I(2) \implies M(2) \land M(3)$.<br>
+Dado que sabemos que $M(2) = 0$ y $M(3) = 0$, el consecuente de R3 ($M(2) \land M(3)$) es forzosamente <b>falso</b>.<br>
+Por la ley del Modus Tollens, para que la implicación se mantenga verdadera, el antecedente ($I(1) \lor \neg I(2)$) debe ser también obligatoriamente <b>falso</b>.<br><br>
+Para que una disyunción ($I(1) \lor \neg I(2)$) sea falsa, ambos miembros deben ser falsos simultáneamente:<br>
+1. $I(1)$ debe ser <b>falsa (0)</b>.<br>
+2. $\neg I(2)$ debe ser <b>falsa (0)</b>, lo que implica que $I(2)$ es obligatoriamente <b>verdadera (1)</b>.<br><br>
+La única conclusión compatible es **$I(1)$ es falsa e $I(2)$ es verdadera** (Opción c).
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 15. Probabilidad Condicional sobre Tabla</h4>
-<div class="box" style="border-left: 4px solid #3b82f6;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
-<div style="color:#d1d5db; line-height:1.6;">
-(Similar al ejercicio 10).
-</div>
-</div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-(Similar al ejercicio 10).
-</div>
-</div>
-
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 16. Inferencia Lógica con Tabla</h4>
-<div class="box" style="border-left: 4px solid #3b82f6;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
-<div style="color:#d1d5db; line-height:1.6;">
-Dada la codificación de posibles Manifestaciones e Interpretaciones... Si en un momento dado se da la ocurrencia $f = M(1) \wedge \neg M(2) \wedge \neg M(3)$, entonces podríamos deducir que:
-</div>
-</div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-Analizamos lógicamente la manifestación entregada. La evidencia $f$ nos dice categóricamente que $M(1)$ es Verdadera ($1$), $M(2)$ es Falsa ($0$), y $M(3)$ es Falsa ($0$).<br>
-Si evaluamos esto en la Regla 3, el consecuente es forzosamente Falso. Por Modus Tollens, si el consecuente es falso, su antecedente no puede ser verdadero. Esto exige que $I(1)$ sea Falsa e $I(2)$ sea Verdadera.
-</div>
-</div>
-
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 17. Inferencia Pura en BLR (Evidencia Concreta)</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 25. Inferencia Pura en BLR (Evidencia Concreta)</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1153,12 +1485,12 @@ El resultado final que sobrevive en la BLR es <b>$\neg I(1) \land I(2)$</b>.
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 18. Teorema de Bayes sobre Regla Ineludible</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 26. Teorema de Bayes sobre Regla Ineludible</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-Con las reglas categóricas genéricas del dominio ($R1: M(1) \lor M(2) \lor M(3) \implies I(1) \lor I(2)$, $R2: I(1) \implies \neg M(1) \land M(2)$, y $R3$) y sabiendo que tenemos la <b>manifestación ineludible $M(1)$</b>, ¿cuál es el conjunto de interpretaciones más probables? Ten en cuenta las siguientes probabilidades:<br><br>
+Con las mismas reglas y tablas del ejercicio 23 (Junio 2026), y sabiendo que tenemos la <b>manifestación $M(1)$ verdadera</b>, ¿cuál es el conjunto de interpretaciones más probable dada las probabilidades condicionales?<br><br>
 - $p(\neg I(1) \land \neg I(2)) = 0.2$<br>
 - $p(\neg I(1) \land I(2)) = 0.08$<br>
 - $p(I(1) \land \neg I(2)) = 0.34$<br>
@@ -1167,32 +1499,38 @@ Con las reglas categóricas genéricas del dominio ($R1: M(1) \lor M(2) \lor M(3
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-Esta es la clásica <b>"Trampa F"</b> documentada en las recetas del método de resolución.<br><br>
-El Teorema de Bayes solo se emplea para desempatar la probabilidad cuando la Base Lógica Reducida (BLR) nos deja varias interpretaciones compatibles con la evidencia empírica.<br><br>
-En el Ejercicio 17 acabamos de demostrar rigurosamente que, dadas esas reglas, si $M(1)$ ocurre, la única interpretación lógicamente posible en la BLR es $\neg I(1) \land I(2)$. Todas las demás interpretaciones ($i_1$, $i_3$, $i_4$ si las hubiere) tienen probabilidad de existir <b>absolutamente cero</b> porque violan la Base de Reglas.<br><br>
-Al quedar <b>una sola interpretación lógica posible</b>, no hay que calcular nada. La respuesta ya está determinada por exclusión categórica: $\neg I(1) \land I(2)$.
+Evaluemos la consistencia de las interpretaciones en la BLR cuando la manifestación observada es $M(1) = 1$:<br><br>
+1. $\neg I(1) \land \neg I(2)$ es inconsistente: si hay manifestaciones activas ($M(1)=1$), R1 obliga a que al menos una interpretación sea verdadera.<br>
+2. $I(1) \land I(2)$ es inconsistente: R2 exige que si $I(2)=1 \Rightarrow M(2)=0$. Pero R3 exige que si $I(1)=1 \Rightarrow M(2)=1$, lo cual genera contradicción.<br>
+3. Las únicas interpretaciones consistentes con $M(1) = 1$ en la BLR son:<br>
+   - $\neg I(1) \land I(2)$ (Probabilidad: 0.08)<br>
+   - $I(1) \land \neg I(2)$ (Probabilidad: 0.34)<br><br>
+Al comparar las probabilidades de los estados lógicamente consistentes, la más probable es <b>$I(1) \land \neg I(2)$</b> con $0.34$.
 </div>
 </div>
-
 
 <h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 10: Computación Evolutiva</h3>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 19. Análisis Estructural de Árbol Genético</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 27. Análisis Estructural de Árbol Genético</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-Atendiendo al siguiente árbol que representa a un individuo de programación genética, ¿cuál de las siguientes afirmaciones es cierta?  
-<img src="../assets/images/arbol2.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;">
+Atendiendo al siguiente árbol que representa a un individuo de programación genética, ¿cuál de las siguientes afirmaciones es cierta?  <br><img src="../assets/images/arbol2.png" style="max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;">
 </div>
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-En la Programación Genética, las variables de entrada del problema ($X$, $Y$) siempre son nodos hoja o "terminales", al igual que las constantes numéricas; mientras que los operadores aritméticos (<code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">+</code>, <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">-</code>) ocupan los nodos internos o "no terminales".
+En Programación Genética (PG), los individuos de la población son árboles sintácticos compuestos por dos conjuntos clave:<br><br>
+- <b>Conjunto de Terminales (Hojas):</b> Contiene las variables del problema y constantes numéricas (en la imagen: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">x, y, 3, 1</code>). Son los nodos que no tienen hijos (grado 0).<br>
+- <b>Conjunto de Funciones (Nodos Internos):</b> Contiene los operadores matemáticos, lógicos o de control (en la imagen: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">+, *, -</code>).<br><br>
+<b>Reglas estructurales inquebrantables (Receta G):</b><br>
+1. La raíz del árbol es siempre un operador (nodo función).<br>
+2. La profundidad del árbol se calcula contando el número máximo de niveles por debajo de la raíz (en este caso, la profundidad máxima es de 3).
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 20. Operadores Poblacionales en AG</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 28. Operadores Poblacionales en AG</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1202,16 +1540,16 @@ En una población de 40 individuos, se aplica una tasa de cruce del 50%, una tas
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-En un Algoritmo Genético, estos parámetros se aplican como fracciones directas sobre el tamaño total de la población $N$ en el modelo estándar que se explica en la asignatura:<br><br>
-- Población total ($N$): <b>40 individuos</b>.<br>
-- <b>Cruce:</b> 50% de la población $\Rightarrow 40 \times 0.50 = $ <b>20 individuos</b> se formarán cruzando padres.<br>
-- <b>Mutación:</b> 10% de la población $\Rightarrow 40 \times 0.10 = $ <b>4 individuos</b> sufrirán mutaciones aleatorias.<br>
-- <b>Elitismo:</b> 20% de la población $\Rightarrow 40 \times 0.20 = $ <b>8 individuos</b> (los de mayor aptitud) pasarán copiados exactamente igual a la siguiente generación para evitar perder las mejores soluciones.<br><br>
+En un Algoritmo Genético, estos parámetros se aplican como fracciones directas sobre el tamaño total de la población N en el modelo estándar que se explica en la asignatura:<br><br>
+- Población total (N): <b>40 individuos</b>.<br>
+- <b>Cruce:</b> 50% de la población ⇒ 40 × 0.50 = <b>20 individuos</b> se formarán cruzando padres.<br>
+- <b>Mutación:</b> 10% de la población ⇒ 40 × 0.10 = <b>4 individuos</b> sufrirán mutaciones aleatorias.<br>
+- <b>Elitismo:</b> 20% de la población ⇒ 40 × 0.20 = <b>8 individuos</b> (los de mayor aptitud) pasarán copiados exactamente igual a la siguiente generación para evitar perder las mejores soluciones.<br><br>
 Solución: <b>20 por cruce, 4 por mutación, 8 copiados sin cambios.</b>
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 21. Tasa de Mutación Inversa</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 29. Tasa de Mutación Inversa</h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1224,14 +1562,13 @@ Si en la segunda generación se obtienen 100 individuos mutados, ¿qué combinac
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
 La trampa principal en las preguntas teóricas de la asignatura (Receta H) es recordar que, a menos que se especifique lo contrario, <b>la tasa de mutación se aplica por individuo, no por gen</b>.<br><br>
-Por lo tanto, la probabilidad de mutación $P_m$ establece qué fracción del total de la población $N$ experimentará el operador. Podemos despejar la fórmula de forma trivial:<br>
-$$Individuos\_mutados = N \times P_m$$<br>
+Por lo tanto, la probabilidad de mutación P_m establece qué fracción del total de la población N experimentará el operador. Podemos despejar la fórmula de forma trivial:<br><br>
+$$\text{Individuos mutados} = N \times P_m$$<br>
 $$100 = 1000 \times P_m$$<br>
 $$P_m = \frac{100}{1000} = 0.1$$<br><br>
 La tasa de mutación aplicada es de <b>0.1 (un 10%)</b>. La tasa de cruce que acompaña a esta opción es indiferente para el cálculo, la clave es localizar la opción con mutación a 0.1.
 </div>
 </div>
-
 </section>
 </main>
 <script>
@@ -1250,11 +1587,11 @@ La tasa de mutación aplicada es de <b>0.1 (un 10%)</b>. La tasa de cruce que ac
       document.getElementById('clasificacion').style.display = 'none';
       document.getElementById('metodo').style.display = 'none';
       
-      const examenesSection = document.getElementById('examenes');
+      const ejerciciosSection = document.getElementById('ejercicios');
       let currentTema = null;
       let elementsToHide = [];
       
-      for (const child of examenesSection.children) {
+      for (const child of ejerciciosSection.children) {
         if (child.tagName === 'H3' && child.textContent.includes('Tema')) {
           const match = child.textContent.match(/Tema (\d+)/);
           if (match) {
@@ -1269,7 +1606,7 @@ La tasa de mutación aplicada es de <b>0.1 (un 10%)</b>. La tasa de cruce que ac
       
       elementsToHide.forEach(el => el.style.display = 'none');
       
-      const h2 = examenesSection.querySelector('h2');
+      const h2 = ejerciciosSection.querySelector('h2');
       if (h2) {
         h2.innerHTML = `📝 RESOLUCIÓN PASO A PASO: TEMA ${tema} <a href="index.html" style="font-size: 0.9rem; margin-left: 15px; color: var(--accent); text-decoration: none;">Ver todo</a>`;
       }
