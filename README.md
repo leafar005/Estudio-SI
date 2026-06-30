@@ -1,9 +1,7 @@
 # Portal de Estudio SI — Sistemas Inteligentes
 
 Portal web estático de estudio avanzado e interactivo para dominar la asignatura de **Sistemas Inteligentes (SI)**. 
-Diseñado desde cero para fusionar teoría, práctica y resolución matemática de exámenes.
-
-> *"Como no apruebe esta oportunidad cortaré todo contacto y me iré a vivir a las montañas con monjes."*
+Diseñado desde cero para fusionar teoría, práctica y resolución matemática de exámenes. Como no apruebe esta oportunidad cortare todo contacto humano y me ire a vivir a las montañas con monjes.
 
 ---
 
