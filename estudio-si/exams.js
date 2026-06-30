@@ -1459,7 +1459,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_2024",
-    "question": "En una red SOM, ¿qué representa el parámetro <i>(omitido en texto/OCR, referido habitualmente a $\\alpha$)</i> en la fórmula de actualización de pesos?",
+    "question": "En una red SOM, ¿qué representa el parámetro $\\alpha$ en la fórmula de actualización de pesos?",
     "options": [
       "a) El tamaño del vecindario.",
       "b) La topología del vecindario.",
@@ -1467,7 +1467,7 @@ const EXAM_QUESTIONS = [
       "d) La tasa de aprendizaje.",
       "e) El parámetro no existe en la ecuación de la SOM."
     ],
-    "justification": "_(Asumiendo $\\alpha$ en los cuestionarios típicos)_  \n  \nEn la fórmula clásica de Kohonen $W_i(t+1) = W_i(t) + \\alpha(t) \\cdot h_{ci}(t) \\cdot [x(t)\n\n- W_i(t)]$, el parámetro $\\alpha(t)$ representa la <b>tasa de aprendizaje</b> (que decrece progresivamente con el tiempo). Si el símbolo omitido en el examen por fallo de escaneo se refería a $h_{ci}(t)$ o $\\sigma(t)$, la respuesta sería \"el tamaño del vecindario\" (opción a). Ante preguntas truncadas donde las opciones de respuesta no contienen ambas, se asume típicamente la tasa de aprendizaje.",
+    "justification": "En la fórmula clásica de Kohonen $W_i(t+1) = W_i(t) + \\alpha(t) \\cdot h_{ci}(t) \\cdot [x(t) - W_i(t)]$, el parámetro $\\alpha(t)$ representa la tasa de aprendizaje (que decrece progresivamente con el tiempo).",
     "correct": 3,
     "category": "autoorganizacion",
     "tags": [
@@ -1933,7 +1933,7 @@ const EXAM_QUESTIONS = [
       "c) Dependerá del factor de ramificación.",
       "d) Falso."
     ],
-    "justification": "Matemáticamente, en un árbol de búsqueda con un factor de ramificación constante $b$, el número de nodos hoja (frontera) en el nivel de profundidad $d$ (o iteración $i$) es $b^i$. La suma total de todos los nodos generados en las iteraciones previas es una progresión geométrica $\\sum_{k=0}^{i-1} b^k = \\frac{b^i\n\n- 1}{b\n\n- 1}$.  \n  \nPara que la base actual $b^i$ sea mayor que todos los nodos anteriores combinados $\\frac{b^i\n\n- 1}{b\n\n- 1}$, la inecuación exige estrictamente que el factor de ramificación $b$ sea mayor o igual a 2. Por ende, la afirmación no es un axioma absoluto, sino que depende matemáticamente del factor de ramificación.",
+    "justification": "Matemáticamente, en un árbol de búsqueda con un factor de ramificación constante $b$, el número de nodos hoja (frontera) en el nivel de profundidad $d$ (o iteración $i$) es $b^i$. La suma total de todos los nodos generados en las iteraciones previas es una progresión geométrica: $$\\sum_{k=0}^{i-1} b^k = \\frac{b^i - 1}{b - 1}$$. Para que la base actual $b^i$ sea mayor que todos los nodos anteriores combinados $\\frac{b^i - 1}{b - 1}$, la inecuación exige estrictamente que el factor de ramificación $b$ sea mayor o igual a 2 ($b \\geq 2$). Por ende, la afirmación no es un axioma absoluto, sino que depende matemáticamente del factor de ramificación.",
     "correct": 2,
     "category": "busqueda",
     "tags": [

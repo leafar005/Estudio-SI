@@ -851,7 +851,7 @@ const DAYPO_QUESTIONS = [
       "Con estos datos no es posible saber esa información, sería necesario consultar la matriz de pesos"
     ],
     "correct": 3,
-    "justification": "### Análisis de la pregunta\n\nEn el algoritmo de descenso de gradiente, el proceso de optimización busca los mínimos de la función de coste moviéndose en la dirección opuesta al gradiente. Cuando la pendiente (gradiente) es 0, significa que el algoritmo ha alcanzado un **punto estacionario**. \n\nEste punto puede ser el mínimo global, pero en funciones de coste complejas (típicas en redes neuronales, que suelen ser no convexas), es muy probable que se trate de un **mínimo local** o incluso de un punto de silla. Por tanto, **no podemos confirmar que el entrenamiento haya alcanzado el error mínimo absoluto (global)**, sino solo que se ha detenido en un óptimo local.\n\nLas otras opciones son incorrectas porque asumen erróneamente que una pendiente de 0 implica globalidad o asumen motivos de parada que no se deducen directamente de este hecho matemático.",
+    "justification": "En el algoritmo de descenso de gradiente, el proceso de optimización busca los mínimos de la función de coste moviéndose en la dirección opuesta al gradiente. Cuando la pendiente (gradiente) es 0, significa que el algoritmo ha alcanzado un **punto estacionario**. \n\nEste punto puede ser el mínimo global, pero en funciones de coste complejas (típicas en redes neuronales, que suelen ser no convexas), es muy probable que se trate de un **mínimo local** o incluso de un punto de silla. Por tanto, **no podemos confirmar que el entrenamiento haya alcanzado el error mínimo absoluto (global)**, sino solo que se ha detenido en un óptimo local.\n\nLas otras opciones son incorrectas porque asumen erróneamente que una pendiente de 0 implica globalidad o asumen motivos de parada que no se deducen directamente de este hecho matemático.",
     "tags": [
       "BLE/BLR",
       "RNA"
@@ -870,7 +870,7 @@ const DAYPO_QUESTIONS = [
       "Reducir el número de capas ocultas"
     ],
     "correct": 3,
-    "justification": "### Análisis de la pregunta\n\nSi el error obtenido tras el entrenamiento de un Perceptrón Multicapa (MLP) no es satisfactorio (por ejemplo, existe *underfitting* o el algoritmo no ha convergido adecuadamente), la acción correcta es **volver a entrenar la red modificando sus parámetros de aprendizaje o hiperparámetros**.\n\nEsto puede implicar:\n- Ajustar la **tasa de aprendizaje (learning rate)** o el **momento**.\n- Cambiar la arquitectura de la red (aumentando el número de neuronas o capas si el modelo es demasiado simple).\n- Alterar la inicialización de los pesos.\n\n*Por qué las otras son incorrectas:*\n- Disminuir el número de neuronas o reducir capas ocultas disminuiría la capacidad de la red para aprender un problema complejo, probablemente empeorando el error.\n- Disminuir los datos de entrenamiento reduce la información disponible, lo cual nunca es aconsejable.\n- Ajustar los \"pesos esperados de salida\" no tiene sentido teórico, ya que las salidas esperadas vienen dadas inamoviblemente por el dataset del problema.",
+    "justification": "Si el error obtenido tras el entrenamiento de un Perceptrón Multicapa (MLP) no es satisfactorio (por ejemplo, existe *underfitting* o el algoritmo no ha convergido adecuadamente), la acción correcta es **volver a entrenar la red modificando sus parámetros de aprendizaje o hiperparámetros**.\n\nEsto puede implicar:\n- Ajustar la **tasa de aprendizaje (learning rate)** o el **momento**.\n- Cambiar la arquitectura de la red (aumentando el número de neuronas o capas si el modelo es demasiado simple).\n- Alterar la inicialización de los pesos.\n\n*Por qué las otras son incorrectas:*\n- Disminuir el número de neuronas o reducir capas ocultas disminuiría la capacidad de la red para aprender un problema complejo, probablemente empeorando el error.\n- Disminuir los datos de entrenamiento reduce la información disponible, lo cual nunca es aconsejable.\n- Ajustar los \"pesos esperados de salida\" no tiene sentido teórico, ya que las salidas esperadas vienen dadas inamoviblemente por el dataset del problema.",
     "tags": [
       "BLE/BLR",
       "RNA"
@@ -889,7 +889,7 @@ const DAYPO_QUESTIONS = [
       "Sí, porque el error de entrenamiento se relaciona directamente con el error de la red"
     ],
     "correct": 2,
-    "justification": "### Análisis de la pregunta\n\nUn error bajo en el conjunto de entrenamiento indica únicamente que la red ha aprendido muy bien los patrones específicos que se le han enseñado. Sin embargo, **esto no garantiza su capacidad de generalización** frente a datos nunca antes vistos.\n\nLa red podría estar sufriendo de **sobreentrenamiento (overfitting)**, una situación en la que el modelo ha memorizado el ruido o las particularidades exactas de los datos de entrenamiento, pero fallará estrepitosamente ante nuevos patrones.\n\nPara confirmar que la red se comportará bien ante nuevos casos, es imprescindible evaluar su rendimiento utilizando conjuntos de datos independientes, concretamente el **conjunto de validación** y el **conjunto de test**.",
+    "justification": "Un error bajo en el conjunto de entrenamiento indica únicamente que la red ha aprendido muy bien los patrones específicos que se le han enseñado. Sin embargo, **esto no garantiza su capacidad de generalización** frente a datos nunca antes vistos.\n\nLa red podría estar sufriendo de **sobreentrenamiento (overfitting)**, una situación en la que el modelo ha memorizado el ruido o las particularidades exactas de los datos de entrenamiento, pero fallará estrepitosamente ante nuevos patrones.\n\nPara confirmar que la red se comportará bien ante nuevos casos, es imprescindible evaluar su rendimiento utilizando conjuntos de datos independientes, concretamente el **conjunto de validación** y el **conjunto de test**.",
     "tags": [
       "BLE/BLR"
     ],
@@ -907,7 +907,7 @@ const DAYPO_QUESTIONS = [
       "Usar una red con dos neuronas que se conectan con una tercera de salida"
     ],
     "correct": 4,
-    "justification": "### Análisis de la pregunta\n\nUn problema de clasificación binaria (2 salidas posibles) que **no es linealmente separable** (como el clásico problema lógico XOR) jamás puede ser resuelto por una red monocapa. Un solo perceptrón únicamente puede trazar un hiperplano (una línea recta en 2 dimensiones), lo cual es insuficiente.\n\nLa solución mínima viable es utilizar un **Perceptrón Multicapa (MLP)** que contenga al menos una capa oculta. En su forma más reducida para problemas como XOR, esto requiere **al menos dos neuronas en la capa oculta** (para trazar dos hiperplanos o semiespacios que acoten la región de interés), las cuales se conectan a **una tercera neurona de salida** que actúa como compuerta lógica para combinar (unir) esos semiespacios en una región no lineal.",
+    "justification": "Un problema de clasificación binaria (2 salidas posibles) que **no es linealmente separable** (como el clásico problema lógico XOR) jamás puede ser resuelto por una red monocapa. Un solo perceptrón únicamente puede trazar un hiperplano (una línea recta en 2 dimensiones), lo cual es insuficiente.\n\nLa solución mínima viable es utilizar un **Perceptrón Multicapa (MLP)** que contenga al menos una capa oculta. En su forma más reducida para problemas como XOR, esto requiere **al menos dos neuronas en la capa oculta** (para trazar dos hiperplanos o semiespacios que acoten la región de interés), las cuales se conectan a **una tercera neurona de salida** que actúa como compuerta lógica para combinar (unir) esos semiespacios en una región no lineal.",
     "tags": [
       "A*",
       "BLE/BLR",
@@ -927,7 +927,7 @@ const DAYPO_QUESTIONS = [
       "a), b) y c)"
     ],
     "correct": 3,
-    "justification": "### Análisis de la pregunta\n\nEn la arquitectura geométrica fundamental de un Perceptrón Multicapa (MLP) con una sola capa oculta (primera capa) y una capa de salida:\n\n1. **Las neuronas de la primera capa (oculta)** actúan trazando hiperplanos en el espacio de características original, lo que divide el espacio en diferentes **semiespacios**.\n2. **Las neuronas de la capa de salida** reciben estas divisiones y las combinan lógicamente (operando de forma análoga a un AND/OR matemático gracias a los pesos), lo que se describe teóricamente como **unir semiespacios** para conformar regiones cerradas o convexas de clasificación.\n\nPor tanto, las afirmaciones a) y b) describen con precisión el funcionamiento matemático de esta red, haciendo de la opción **\"a) y b)\"** la respuesta correcta.",
+    "justification": "En la arquitectura geométrica fundamental de un Perceptrón Multicapa (MLP) con una sola capa oculta (primera capa) y una capa de salida:\n\n1. **Las neuronas de la primera capa (oculta)** actúan trazando hiperplanos en el espacio de características original, lo que divide el espacio en diferentes **semiespacios**.\n2. **Las neuronas de la capa de salida** reciben estas divisiones y las combinan lógicamente (operando de forma análoga a un AND/OR matemático gracias a los pesos), lo que se describe teóricamente como **unir semiespacios** para conformar regiones cerradas o convexas de clasificación.\n\nPor tanto, las afirmaciones a) y b) describen con precisión el funcionamiento matemático de esta red, haciendo de la opción **\"a) y b)\"** la respuesta correcta.",
     "tags": [
       "A*",
       "BLE/BLR",
@@ -947,7 +947,7 @@ const DAYPO_QUESTIONS = [
       "Ninguna es correcta"
     ],
     "correct": 3,
-    "justification": "### Análisis de la pregunta\n\nEsta pregunta presenta un error evidente de formulación en el test original. El enunciado pide identificar la opción **incorrecta**, pero las tres primeras sentencias describen de manera teóricamente **correcta** la función jerárquica de las capas en un Perceptrón Multicapa (MLP) robusto:\n\n1. La primera capa oculta **crea semiespacios**.\n2. La segunda capa oculta **une esos semiespacios para formar regiones**.\n3. La capa de salida **une regiones** para formar áreas más complejas de la misma clase.\n\nAl ser las tres sentencias ciertas, la respuesta que se espera es \"Todas son correctas\". Hemos marcado esta pregunta como anómala (`was_incorrect: true`) ya que si el enunciado exige la opción falsa, responder \"Todas son correctas\" resulta lógicamente contradictorio; evidentemente, se pretendía preguntar *\"¿cuál de estas opciones sería correcta?\"*.",
+    "justification": "Esta pregunta presenta un error evidente de formulación en el test original. El enunciado pide identificar la opción **incorrecta**, pero las tres primeras sentencias describen de manera teóricamente **correcta** la función jerárquica de las capas en un Perceptrón Multicapa (MLP) robusto:\n\n1. La primera capa oculta **crea semiespacios**.\n2. La segunda capa oculta **une esos semiespacios para formar regiones**.\n3. La capa de salida **une regiones** para formar áreas más complejas de la misma clase.\n\nAl ser las tres sentencias ciertas, la respuesta que se espera es \"Todas son correctas\". Hemos marcado esta pregunta como anómala (`was_incorrect: true`) ya que si el enunciado exige la opción falsa, responder \"Todas son correctas\" resulta lógicamente contradictorio; evidentemente, se pretendía preguntar *\"¿cuál de estas opciones sería correcta?\"*.",
     "tags": [
       "A*",
       "BLE/BLR"
@@ -966,7 +966,7 @@ const DAYPO_QUESTIONS = [
       "Sí, porque el problema ha sido separado en las clases pertinente y el entrenamiento ha ido bien"
     ],
     "correct": 2,
-    "justification": "### Análisis de la pregunta\n\nEste es un ejemplo paradigmático de **sobreentrenamiento (overfitting)** por exceso de complejidad estructural.\n\nEl problema original es subyacentemente lineal (separable con una simple recta / una neurona). Al usar una arquitectura desmesurada (4 neuronas en la capa oculta), dotamos al modelo de demasiados grados de libertad. En lugar de aprender la frontera de decisión simple, la red **\"memorizará\" los datos de entrenamiento junto con todo el ruido** presente en ellos.\n\nEsto resultará en una precisión artificialmente perfecta (100%) durante el entrenamiento, pero la **capacidad de generalización será muy pobre** (fallará ante nuevos datos), ya que se ha ajustado a las anomalías en vez de al patrón general.",
+    "justification": "Este es un ejemplo paradigmático de **sobreentrenamiento (overfitting)** por exceso de complejidad estructural.\n\nEl problema original es subyacentemente lineal (separable con una simple recta / una neurona). Al usar una arquitectura desmesurada (4 neuronas en la capa oculta), dotamos al modelo de demasiados grados de libertad. En lugar de aprender la frontera de decisión simple, la red **\"memorizará\" los datos de entrenamiento junto con todo el ruido** presente en ellos.\n\nEsto resultará en una precisión artificialmente perfecta (100%) durante el entrenamiento, pero la **capacidad de generalización será muy pobre** (fallará ante nuevos datos), ya que se ha ajustado a las anomalías en vez de al patrón general.",
     "tags": [
       "BLE/BLR",
       "RNA"
@@ -985,7 +985,7 @@ const DAYPO_QUESTIONS = [
       "Una causa del sobreentrenamiento son muchos datos significativos en el subconjunto de entrenamiento"
     ],
     "correct": 4,
-    "justification": "### Análisis de la pregunta\n\nEl sobreentrenamiento (*overfitting*) se produce normalmente cuando la red es **demasiado compleja** (exceso de neuronas/capas), cuando se entrena durante **demasiados ciclos** (exceso de épocas memorizando), o cuando **faltan datos** en el subconjunto de entrenamiento.\n\nPor el contrario, disponer de **muchos datos significativos** y representativos en el conjunto de entrenamiento es precisamente la principal y mejor forma de **prevenir** el sobreentrenamiento, ya que obliga a la red a generalizar sobre una gran variedad de casos reales. \n\nDado que la pregunta pide señalar la afirmación **incorrecta**, la opción que señala que una gran cantidad de datos causa sobreentrenamiento es la respuesta a marcar.",
+    "justification": "El sobreentrenamiento (*overfitting*) se produce normalmente cuando la red es **demasiado compleja** (exceso de neuronas/capas), cuando se entrena durante **demasiados ciclos** (exceso de épocas memorizando), o cuando **faltan datos** en el subconjunto de entrenamiento.\n\nPor el contrario, disponer de **muchos datos significativos** y representativos en el conjunto de entrenamiento es precisamente la principal y mejor forma de **prevenir** el sobreentrenamiento, ya que obliga a la red a generalizar sobre una gran variedad de casos reales. \n\nDado que la pregunta pide señalar la afirmación **incorrecta**, la opción que señala que una gran cantidad de datos causa sobreentrenamiento es la respuesta a marcar.",
     "tags": [
       "A*",
       "RNA"
@@ -1004,7 +1004,7 @@ const DAYPO_QUESTIONS = [
       "Batch normalization"
     ],
     "correct": 0,
-    "justification": "### Análisis de la pregunta\n\nLa técnica de regularización **L1** (también conocida en estadística como Lasso) consiste en añadir a la función de coste original un término de penalización que es proporcional a la **suma de los valores absolutos de los pesos** de la red neuronal.\n\nLa principal característica matemática de la regularización L1 es que induce dispersión (*sparsity*), forzando a que los pesos de las conexiones menos importantes tiendan exactamente a cero, lo cual funciona también como un selector automático de características. \n\n*Nota:* La L2 utiliza la suma de los pesos al cuadrado.",
+    "justification": "La técnica de regularización **L1** (también conocida en estadística como Lasso) consiste en añadir a la función de coste original un término de penalización que es proporcional a la **suma de los valores absolutos de los pesos** de la red neuronal.\n\nLa principal característica matemática de la regularización L1 es que induce dispersión (*sparsity*), forzando a que los pesos de las conexiones menos importantes tiendan exactamente a cero, lo cual funciona también como un selector automático de características. \n\n*Nota:* La L2 utiliza la suma de los pesos al cuadrado.",
     "tags": [
       "RNA"
     ],
@@ -1022,7 +1022,7 @@ const DAYPO_QUESTIONS = [
       "Batch normalization"
     ],
     "correct": 1,
-    "justification": "### Análisis de la pregunta\n\nLa técnica de regularización **L2** (también conocida como *Weight Decay* clásico o regularización Ridge) consiste en sumar a la función de coste original un término proporcional a la **suma de los cuadrados de los pesos** (que es matemáticamente equivalente a los cuadrados de los valores absolutos).\n\nA diferencia de la L1, la regularización L2 no fuerza los pesos a ser exactamente cero, sino que penaliza enormemente los pesos muy grandes. Esto empuja a la red a distribuir el conocimiento a lo largo de múltiples conexiones pequeñas y uniformes, limitando la complejidad del modelo y previniendo que una sola neurona domine el comportamiento, lo cual es excelente contra el sobreentrenamiento.",
+    "justification": "La técnica de regularización **L2** (también conocida como *Weight Decay* clásico o regularización Ridge) consiste en sumar a la función de coste original un término proporcional a la **suma de los cuadrados de los pesos** (que es matemáticamente equivalente a los cuadrados de los valores absolutos).\n\nA diferencia de la L1, la regularización L2 no fuerza los pesos a ser exactamente cero, sino que penaliza enormemente los pesos muy grandes. Esto empuja a la red a distribuir el conocimiento a lo largo de múltiples conexiones pequeñas y uniformes, limitando la complejidad del modelo y previniendo que una sola neurona domine el comportamiento, lo cual es excelente contra el sobreentrenamiento.",
     "tags": [
       "RNA"
     ],
@@ -1040,7 +1040,7 @@ const DAYPO_QUESTIONS = [
       "Batch normalization"
     ],
     "correct": 4,
-    "justification": "### Análisis de la pregunta\n\nEsta pregunta del test original es conceptualmente errónea y presenta unas opciones que no concuerdan con el enunciado. La técnica que \"supervisa el entrenamiento sin interferir matemáticamente en la función de coste\" es la **Parada Temprana (Early Stopping) utilizando un Conjunto de Validación**.\n\nLa Parada Temprana evalúa el rendimiento en paralelo y detiene el proceso si detecta un aumento del error de validación, sin modificar los pesos directamente. Sin embargo, esta opción no está presente. El test original da por correcta la opción **\"Batch normalization\"**. \n\nLa normalización por lotes (Batch Normalization) estabiliza el aprendizaje escalando las activaciones de las capas intermedias, lo cual **sí interfiere** directamente en el modelo matemático. Se ha marcado con `was_incorrect: true` debido a que es una respuesta falsa propiciada por un error en la configuración del test de origen.",
+    "justification": "Esta pregunta del test original es conceptualmente errónea y presenta unas opciones que no concuerdan con el enunciado. La técnica que \"supervisa el entrenamiento sin interferir matemáticamente en la función de coste\" es la **Parada Temprana (Early Stopping) utilizando un Conjunto de Validación**.\n\nLa Parada Temprana evalúa el rendimiento en paralelo y detiene el proceso si detecta un aumento del error de validación, sin modificar los pesos directamente. Sin embargo, esta opción no está presente. El test original da por correcta la opción **\"Batch normalization\"**. \n\nLa normalización por lotes (Batch Normalization) estabiliza el aprendizaje escalando las activaciones de las capas intermedias, lo cual **sí interfiere** directamente en el modelo matemático. Se ha marcado con `was_incorrect: true` debido a que es una respuesta falsa propiciada por un error en la configuración del test de origen.",
     "tags": [
       "feedforward"
     ],
@@ -1058,7 +1058,7 @@ const DAYPO_QUESTIONS = [
       "Ninguna de las anteriores"
     ],
     "correct": 0,
-    "justification": "### Análisis de la pregunta\n\nEn el entrenamiento supervisado, la evaluación paralela del conjunto de validación sirve como termómetro de la generalización. \n\nSi durante el entrenamiento observamos que el error sobre el conjunto de entrenamiento sigue disminuyendo, pero **el error del conjunto de validación empieza a aumentar**, estamos ante el síntoma clínico e inequívoco de que **la red se está sobreentrenando (overfitting)**.\n\nEn ese punto de inflexión, la red deja de asimilar patrones generales válidos para cualquier dato y empieza a memorizar rígidamente las particularidades, atipicidades y el ruido exclusivos de los datos de entrenamiento.",
+    "justification": "En el entrenamiento supervisado, la evaluación paralela del conjunto de validación sirve como termómetro de la generalización. \n\nSi durante el entrenamiento observamos que el error sobre el conjunto de entrenamiento sigue disminuyendo, pero **el error del conjunto de validación empieza a aumentar**, estamos ante el síntoma clínico e inequívoco de que **la red se está sobreentrenando (overfitting)**.\n\nEn ese punto de inflexión, la red deja de asimilar patrones generales válidos para cualquier dato y empieza a memorizar rígidamente las particularidades, atipicidades y el ruido exclusivos de los datos de entrenamiento.",
     "tags": [
       "feedforward"
     ],
@@ -1076,7 +1076,7 @@ const DAYPO_QUESTIONS = [
       "Evaluar el entreno de la red y el de validación una vez aplicada una técnica de regularización"
     ],
     "correct": 1,
-    "justification": "### Análisis de la pregunta\n\nAnte una situación donde el error de validación comienza a aumentar (claro síntoma de sobreentrenamiento) y procedemos a detener la red, la pregunta cuestiona qué estrategia **NO sería correcta** adoptar a continuación.\n\nLa peor estrategia posible sería **seguir entrenando durante un número de ciclos muy alto**. Hacer esto ignoraría por completo la advertencia del conjunto de validación y obligaría a la red a continuar profundizando en la memorización de los datos de entrenamiento, empeorando drásticamente su capacidad de generalización. El resto de opciones representan tácticas válidas (como implementar regularización, ajustar criterios de parada, etc.).",
+    "justification": "Ante una situación donde el error de validación comienza a aumentar (claro síntoma de sobreentrenamiento) y procedemos a detener la red, la pregunta cuestiona qué estrategia **NO sería correcta** adoptar a continuación.\n\nLa peor estrategia posible sería **seguir entrenando durante un número de ciclos muy alto**. Hacer esto ignoraría por completo la advertencia del conjunto de validación y obligaría a la red a continuar profundizando en la memorización de los datos de entrenamiento, empeorando drásticamente su capacidad de generalización. El resto de opciones representan tácticas válidas (como implementar regularización, ajustar criterios de parada, etc.).",
     "tags": [
       "A*",
       "BLE/BLR"
@@ -1095,7 +1095,7 @@ const DAYPO_QUESTIONS = [
       "Validación + Entrenamiento"
     ],
     "correct": 1,
-    "justification": "### Análisis de la pregunta\n\nPara evaluar de forma completamente justa, objetiva y sin sesgos si una red neuronal está correctamente entrenada y posee una buena capacidad de generalización en entornos reales, **debemos examinar exclusivamente su rendimiento en el conjunto de Test**.\n\n- El conjunto de **Entrenamiento** solo muestra la capacidad de la red para memorizar lo que se le ha enseñado explícitamente.\n- El conjunto de **Validación**, aunque no se usa para ajustar los pesos, se utiliza para guiar decisiones de diseño e hiperparámetros (como la parada temprana), por lo que acumula cierto \"sesgo indirecto\".\n\nEl **Test** actúa como un juez externo, con datos que la red jamás ha visto en ninguna fase, proporcionando la métrica final y definitiva de rendimiento.",
+    "justification": "Para evaluar de forma completamente justa, objetiva y sin sesgos si una red neuronal está correctamente entrenada y posee una buena capacidad de generalización en entornos reales, **debemos examinar exclusivamente su rendimiento en el conjunto de Test**.\n\n- El conjunto de **Entrenamiento** solo muestra la capacidad de la red para memorizar lo que se le ha enseñado explícitamente.\n- El conjunto de **Validación**, aunque no se usa para ajustar los pesos, se utiliza para guiar decisiones de diseño e hiperparámetros (como la parada temprana), por lo que acumula cierto \"sesgo indirecto\".\n\nEl **Test** actúa como un juez externo, con datos que la red jamás ha visto en ninguna fase, proporcionando la métrica final y definitiva de rendimiento.",
     "tags": [
       "RNA"
     ],
@@ -1113,7 +1113,7 @@ const DAYPO_QUESTIONS = [
       "A partir del error de test podemos asegurar la capacidad especificadora de la red"
     ],
     "correct": 3,
-    "justification": "### Análisis de la pregunta\n\nLa regla de oro en el diseño de modelos de aprendizaje automático es que el **conjunto de Test es intocable y no se debe utilizar bajo ningún concepto para tomar ninguna decisión** durante las fases de entrenamiento, diseño o validación.\n\nSi usamos el error obtenido en Test para, por ejemplo, ajustar los hiperparámetros, decidir la arquitectura de la red o cambiar el ciclo de parada, estamos provocando lo que se conoce como **filtración de datos (data leakage)**. Esto contamina el conjunto de Test, ya que la red empieza a ajustarse indirectamente a él, invalidando su propósito original: ser una medida completamente virgen e imparcial de la capacidad de generalización final del modelo.",
+    "justification": "La regla de oro en el diseño de modelos de aprendizaje automático es que el **conjunto de Test es intocable y no se debe utilizar bajo ningún concepto para tomar ninguna decisión** durante las fases de entrenamiento, diseño o validación.\n\nSi usamos el error obtenido en Test para, por ejemplo, ajustar los hiperparámetros, decidir la arquitectura de la red o cambiar el ciclo de parada, estamos provocando lo que se conoce como **filtración de datos (data leakage)**. Esto contamina el conjunto de Test, ya que la red empieza a ajustarse indirectamente a él, invalidando su propósito original: ser una medida completamente virgen e imparcial de la capacidad de generalización final del modelo.",
     "tags": [
       "BLE/BLR",
       "Reglas"
