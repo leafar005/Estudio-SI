@@ -2160,10 +2160,10 @@ const DAYPO_QUESTIONS = [
     ],
     "trap": false
   },
-  {
+    {
     "category": "evolutiva",
     "source": "daypo",
-    "question": "Qué expresa este arbol?",
+    "question": "Qué expresa este arbol?  \n<img src=\"../assets/images/daypo3.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "$2 * (3 + x)$",
       "$3 * x + 2$",
