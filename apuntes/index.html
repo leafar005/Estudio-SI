@@ -478,6 +478,26 @@
   font-size: 1.05rem;
   color: #e2e8f0;
 }
+
+/* === BLOQUES NARRATIVOS — Hilo conductor entre secciones === */
+.narrative-block {
+  margin: 28px 0 32px 0;
+  padding: 18px 22px;
+  border-left: 3px solid rgba(255,255,255,0.13);
+  color: #c9d1d9;
+  line-height: 1.9;
+  font-size: 1.02rem;
+  background: rgba(255,255,255,0.018);
+  border-radius: 0 8px 8px 0;
+}
+.narrative-block p {
+  color: #c9d1d9;
+  margin-bottom: 0;
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.narrative-block strong { color: #e2e8f0; }
+.narrative-block em { color: #a8b4c0; }
 </style>
 </head>
 <body class="line-numbers">
@@ -501,6 +521,7 @@
 </div>
 <!-- TEMA 1 --><section class="theme-section">
 <h2 class="theme-title" id="t1-introducción-a-la-ia" style="border-bottom-color: var(--c-1); color: var(--c-1);">🤖 1. Introducción a la IA</h2>
+<div class="narrative-block"><p>La IA no es un concepto monolítico: es un paraguas que cubre formas radicalmente distintas de abordar el problema de la inteligencia. La distinción fundamental que hay que tener clara desde el principio es entre el paradigma <strong>simbólico</strong> (la máquina razona con reglas explícitas) y el <strong>conexionista</strong> (la máquina aprende patrones de los datos sin reglas escritas). Todo lo que viene en los temas siguientes se enmarca en uno de estos dos mundos. El tema 1 pone el mapa: antes de saber cómo resuelven los problemas los algoritmos, hay que entender qué tipo de entorno tienen delante y qué significa que un agente sea "inteligente".</p></div>
 <h3 class="subtheme-title" id="definiciones-y-fundamentos">Definiciones y Fundamentos</h3>
 <div class="grid-2">
 <div class="def-card" style="--theme-color: var(--c-1);"><div class="def-term">Definición IA (RAE)</div><div class="def-body">
@@ -526,6 +547,7 @@
 <p><em>Analogía:</em> El programa convencional es como un tren sobre raíles (sigue una ruta fija). El programa de IA es como un coche con GPS: se le da un destino pero calcula su ruta adaptándose a los obstáculos.</p>
 </div>
 <h3 class="subtheme-title" id="paradigmas-de-la-ia">Paradigmas de la IA</h3>
+<div class="narrative-block"><p>Las tres grandes familias de algoritmos de IA —simbólica, conexionista y evolutiva— no son enfoques intercambiables: cada uno brilla donde los demás fallan. El paradigma simbólico es explicable pero frágil ante la incertidumbre; el conexionista es robusto y aprende de datos masivos pero actúa como una caja negra; el evolutivo no garantiza el óptimo global pero navega espacios de búsqueda enormes donde los otros se atascan. Saber cuándo usar cada uno es la competencia central del ingeniero de IA.</p></div>
 <div class="grid-3">
 <div class="def-card" style="--theme-color: var(--c-1);"><div class="def-term">Paradigma Simbólico</div><div class="def-body">
 <p>Basado en <strong>conocimiento explícito</strong> (símbolos, reglas, hechos). Separa conocimiento y razonamiento (inferencia lógica). Tiene alta explicabilidad pero es frágil ante la incertidumbre.</p>
@@ -538,6 +560,7 @@
 </div></div>
 </div>
 <h3 class="subtheme-title" id="agentes-inteligentes">Agentes Inteligentes</h3>
+<div class="narrative-block"><p>El concepto de "agente" es el modelo computacional del tomador de decisiones. La jerarquía reactivo → basado en modelo → basado en metas → basado en utilidad no es arbitraria: cada nivel añade exactamente una capacidad nueva. El reactivo solo reacciona al presente; el basado en modelo recuerda el pasado; el basado en metas planifica el futuro; el basado en utilidad además cuantifica cuánto de bueno es ese futuro. Recuerda: solo el último sabe comparar entre dos metas igualmente alcanzables.</p></div>
 <div class="grid-2">
 <div class="def-card" style="--theme-color: var(--c-1);"><div class="def-term">Reactivo Simple</div><div class="def-body">
 <p>Selecciona la acción en base a percepciones actuales únicamente, ignorando el resto del historial. Su comportamiento está basado en simples reflejos (reglas condición-acción).</p>
@@ -619,6 +642,7 @@
 </div></div>
 </section><!-- TEMA 2 --><section class="theme-section">
 <h2 class="theme-title" id="t2-búsqueda" style="border-bottom-color: var(--c-2); color: var(--c-2);">🔍 2. Búsqueda</h2>
+<div class="narrative-block"><p>El tema de búsqueda es el corazón del paradigma simbólico: antes de que existiera el machine learning, los sistemas de IA resolvían problemas explorando sistemáticamente el espacio de posibilidades. La clave es entender que <strong>el espacio de estados representa el dominio</strong> (el mapa del mundo), mientras que <strong>el árbol de búsqueda es la exploración</strong> (el camino que va trazando el algoritmo sobre ese mapa). Son dos cosas distintas que el examen confunde deliberadamente.</p></div>
 <h3 class="subtheme-title" id="formulación-de-búsqueda">Formulación de Búsqueda</h3>
 <div class="box">
 <h4>Los 5 componentes formales de un problema de búsqueda</h4>
@@ -681,6 +705,7 @@
 </ul>
 </div></div>
 <h3 class="subtheme-title" id="comparativa-de-algoritmos">Comparativa de Algoritmos</h3>
+<div class="narrative-block"><p>Todos los algoritmos ciegos hacen lo mismo —explorar nodos— pero difieren en el <em>orden</em> en que los eligen. Esa diferencia de orden tiene consecuencias enormes en memoria y tiempo. BFS garantiza el óptimo pero devora RAM; DFS es barato en memoria pero puede perderse en ramas infinitas; UCS generaliza BFS para costes no uniformes; IDS es el compromiso óptimo: memoria de DFS con garantías de BFS. La tabla de propiedades no es para memorizar filas: es para entender por qué cada propiedad se deriva directamente del orden de extracción.</p></div>
 <table class="compare-table">
 <thead>
 <tr>
@@ -773,6 +798,7 @@
 </div></div>
 </div>
 <h3 class="subtheme-title" id="búsqueda-informada-heurística">Búsqueda Informada (Heurística)</h3>
+<div class="narrative-block"><p>Dar una heurística al agente es como darle un GPS al explorador: en lugar de probar todos los caminos a ciegas, puede estimar cuál parece más prometedor. El salto conceptual entre búsqueda ciega e informada es justamente este: la heurística <code>h(n)</code> inyecta conocimiento del dominio en el algoritmo de control. A* suma el pasado real <code>g(n)</code> con la estimación futura <code>h(n)</code> y es el único algoritmo que, con una heurística correctamente calibrada, garantiza encontrar el óptimo expandiendo el mínimo número de nodos posible.</p></div>
 <div class="def-card"><div class="def-term">Heurística Definición Formal</div><div class="def-body">
 <p>Una función matemática $h(n)$ que estima el coste del camino menos costoso desde el estado en el nodo $n$ hasta el estado meta. Integra conocimiento específico del dominio para guiar la búsqueda.<br/><br/><strong>Restricción fundamental:</strong> Si $n$ es un nodo meta, debe cumplirse forzosamente que $h(n) = 0$.</p>
 </div></div>
@@ -816,6 +842,7 @@
 <p>Si la heurística $h_2$ es mayor o igual que $h_1$ para todo nodo $n$ ($h_2(n) \ge h_1(n)$) sin pasarse del coste real, decimos que <strong>$h_2$ domina a $h_1$</strong>. <br/>En consecuencia, A* usando la heurística dominante ($h_2$) expandirá <strong>MENOS</strong> nodos en su búsqueda que usando $h_1$, siendo más eficiente.</p>
 </div></div>
 <h3 class="subtheme-title" id="búsqueda-local">Búsqueda Local</h3>
+<div class="narrative-block"><p>La búsqueda local rompe con el paradigma anterior: aquí <strong>el camino no importa, solo importa el estado final</strong>. Hill-Climbing no construye un árbol, no recuerda de dónde vino, no sabe cuánto queda. Solo compara el estado actual con sus vecinos inmediatos y sube si puede. Por eso consume memoria <code>O(1)</code> constante —un solo estado en memoria— pero queda atrapado en máximos locales: cuando todos sus vecinos son peores, se rinde sin poder saber si había una montaña más alta al otro lado del valle.</p></div>
 <div class="grid-2">
 <div class="def-card" style="--theme-color: var(--c-2);"><div class="def-term">Funcionamiento del Ascenso de Colinas</div><div class="def-body">
 <p>Es un algoritmo de búsqueda local muy sencillo e intuitivo:</p>
@@ -865,6 +892,7 @@
 </div></div>
 </section><!-- TEMA 3 --><section class="theme-section">
 <h2 class="theme-title" id="t3-representación-del-conocimiento" style="border-bottom-color: var(--c-3); color: var(--c-3);">🧠 3. Representación del conocimiento</h2>
+<div class="narrative-block"><p>Si el tema 2 era sobre cómo buscar soluciones dado un problema, el tema 3 es sobre cómo <strong>representar el conocimiento que necesitamos</strong> para que los algoritmos puedan razonar sobre él. La gran tensión de este tema es entre el paradigma <strong>declarativo</strong> (digo qué es verdad, el motor infiere el resto) y el <strong>procedimental</strong> (escribo reglas de si-entonces que el motor aplica paso a paso). Ambos viven juntos en los sistemas de producción, que son el modelo de representación más usado en los sistemas expertos clásicos.</p></div>
 <h3 class="subtheme-title" id="lógicas-de-representación">Lógicas de Representación</h3>
 <div class="grid-3">
 <div class="def-card" style="--theme-color: var(--c-3);"><div class="def-term">Lógica Proposicional</div><div class="def-body">
@@ -895,6 +923,7 @@
 </ul>
 </div></div>
 <h3 class="subtheme-title" id="sistemas-de-producción">Sistemas de Producción</h3>
+<div class="narrative-block"><p>Los sistemas de producción tienen una arquitectura que separa radicalmente el conocimiento del control: la Base de Hechos (qué es verdad ahora), la Base de Reglas (qué puede inferirse) y el Motor de Inferencias (cómo se aplican las reglas) son tres piezas completamente independientes. Esta separación es su principal virtud: añadir nuevas reglas de dominio no requiere tocar el motor. El motor es genérico y eterno; el conocimiento es modular y ampliable.</p></div>
 <div class="def-card"><div class="def-term">Componentes de un Sistema de Producción</div><div class="def-body">
 <ul>
 <li>🧠 <strong>Base de Conocimiento (KB):</strong> Describe el dominio del problema. Está dividida en dos esqueletos complementarios que deben ser estrictamente compatibles entre sí (ver detalle abajo).</li>
@@ -951,6 +980,7 @@
 </ol>
 </div>
 <h3 class="subtheme-title" id="mecanismos-de-razonamiento">Mecanismos de Razonamiento</h3>
+<div class="narrative-block"><p>Una vez que tienes las reglas y los hechos, ¿cómo razonas? El <strong>encadenamiento progresivo</strong> parte de los hechos conocidos y deduce hacia adelante: ideal cuando tienes mucha información inicial y quieres ver qué se puede inferir. El <strong>encadenamiento regresivo</strong> parte de la meta que quieres demostrar y trabaja hacia atrás: ideal cuando tienes una hipótesis concreta y quieres confirmarla o refutarla. La elección entre uno y otro depende de si tienes muchos datos iniciales o una meta concreta.</p></div>
 <table class="compare-table">
 <thead>
 <tr>
@@ -1058,6 +1088,7 @@
 <p>Es un algoritmo de inferencia proposicional. Evalúa la fórmula lógica en todos los <em>modelos posibles</em> (combinaciones de True/False para las variables) verificando que el entorno satisface las reglas. Si hay $n$ símbolos lógicos, hay $2^n$ modelos. Su complejidad temporal es <strong>$O(2^n)$</strong>, lo que lo hace totalmente <strong>inviable (co-NP-completo)</strong> para mundos con muchas variables.</p>
 </div></div>
 <h3 class="subtheme-title" id="solidez-y-completitud">Cualidades de un Algoritmo Inferencial</h3>
+<div class="narrative-block"><p>Cualquier algoritmo que pretenda "razonar" correctamente debe responder a dos preguntas críticas: ¿todo lo que deduce es verdad? (solidez) y ¿puede deducir todo lo que es verdad? (completitud). Un algoritmo puede ser sólido sin ser completo —nunca dice mentiras, pero puede perderse verdades—. La comprobación de modelos es completa pero computacionalmente inviable (<code>O(2ⁿ)</code>); el encadenamiento con cláusulas de Horn reduce eso a tiempo lineal, pagando el precio de restringir la expresividad.</p></div>
 <div class="grid-2">
 <div class="def-card" style="--theme-color: var(--c-3);"><div class="def-term">Solidez (Soundness / Truth-preserving)</div><div class="def-body">
 <p>Un algoritmo es <strong>sólido</strong> (sound) o <strong>preservador de verdad</strong> (truth-preserving) si solo deriva sentencias que están verdaderamente implicadas por la base de conocimiento (KB). Si <code>KB ⊢ᵢ α</code> entonces <code>KB ⊨ α</code>.<br/><em>Analogía:</em> detector de metales que nunca da falsas alarmas.</p>
@@ -1076,6 +1107,7 @@
 </div></div>
 </section><!-- TEMA 4 --><section class="theme-section">
 <h2 class="theme-title" id="t4-razonamiento" style="border-bottom-color: var(--c-4); color: var(--c-4);">⚖️ 4. Razonamiento</h2>
+<div class="narrative-block"><p>El tema 4 es la respuesta al problema que el tema 3 dejó sin resolver: ¿qué pasa cuando el conocimiento es <strong>incierto</strong>? Las reglas lógicas categóricas funcionan en mundos perfectos, pero en la realidad los sensores fallan, los datos son incompletos y la certeza absoluta no existe. El modelo categórico (BLE/BLR) establece qué combinaciones son <em>posibles</em> según las reglas del dominio. El modelo bayesiano añade la dimensión probabilística: de entre las combinaciones posibles, ¿cuál es la más <em>probable</em> dado lo que he observado?</p></div>
 <h3 class="subtheme-title" id="conceptos-de-inferencia-logica">Conceptos Lógicos e Inferencia</h3>
 <div class="grid-3">
 <div class="def-card" style="--theme-color: var(--c-4);"><div class="def-term">Fundamentos Lógicos</div><div class="def-body">
@@ -1120,6 +1152,7 @@
 </div></div>
 </div>
 <h3 class="subtheme-title" id="el-modelo-categórico">El Modelo Categórico</h3>
+<div class="narrative-block"><p>La BLE es el universo completo de lo posible: todas las combinaciones binarias de manifestaciones e interpretaciones, sin filtrar. La BLR es ese mismo universo después de eliminar todo lo que viola las reglas del dominio. El proceso es mecánico: para cada columna de la BLE, verificas cada regla —si alguna regla resulta falsa en esa columna (antecedente verdadero y consecuente falso), la columna se elimina. Lo que sobrevive es el espacio consistente de escenarios reales. Este filtrado usa implícitamente el <em>Modus Tollens</em>.</p></div>
 <div class="def-card"><div class="def-term">Base Lógica Expandida (BLE)</div><div class="def-body">
 <p>Es el conjunto teórico que contiene TODAS las combinaciones matemáticas posibles entre el conjunto de manifestaciones complejas $M$ y las interpretaciones complejas $I$. Es un producto cruzado exhaustivo ($BLE = M \times I$).<br/>
       Si hay $n$ manifestaciones atómicas y $m$ interpretaciones atómicas, el tamaño de la BLE está dado por la fórmula <strong>$2^{n+m}$</strong> combinaciones.</p>
@@ -1139,6 +1172,7 @@
 </ol>
 </div>
 <h3 class="subtheme-title" id="el-modelo-bayesiano">El Modelo Bayesiano</h3>
+<div class="narrative-block"><p>Aquí entra la probabilidad: dado que varias interpretaciones son categóricamente posibles, ¿cuál es la más probable dado lo que hemos observado? El Teorema de Bayes actualiza nuestra creencia inicial (probabilidad a priori) con la nueva evidencia observada (verosimilitud) para dar una probabilidad a posteriori. La trampa clave: el modelo categórico actúa <strong>antes</strong> que el bayesiano. Si una manifestación ineludible hace que solo una interpretación sea posible, las probabilidades son completamente irrelevantes.</p></div>
 <div class="grid-2">
 <div class="def-card" style="--theme-color: var(--c-4);"><div class="def-term">Corrección Bayesiana</div><div class="def-body">
 <p>Fórmula de actualización de creencias:<br/><br/>
@@ -1161,6 +1195,7 @@
 </div></div>
 </div>
 <h3 class="subtheme-title" id="redes-bayesianas-vs-redes-neuronales">Redes Bayesianas vs Redes Neuronales (Deep Learning)</h3>
+<div class="narrative-block"><p>Las redes bayesianas resuelven el problema de la explosión combinatoria del modelo directo: codifican las dependencias causales en un grafo dirigido acíclico y explotan la independencia condicional para factorizar los cálculos. El resultado es un modelo explicable —puedes trazar cada causa— que razona en ambas direcciones: de causas a efectos (predicción) y de efectos a causas (diagnóstico). Esa bidireccionalidad explicable es imposible con redes neuronales clásicas, que actúan como cajas negras.</p></div>
 <div class="grid-2">
 <div class="def-card" style="--theme-color: var(--c-4);"><div class="def-term">Redes Neuronales</div><div class="def-body">
 <p>Aprenden un único set de valores estáticos (pesos como punto estimado). Funcionan esencialmente como cajas negras (baja explicabilidad).</p>
@@ -1195,6 +1230,7 @@
 </div></div>
 </section><!-- TEMA 5 --><section class="theme-section">
 <h2 class="theme-title" id="t5-planificación" style="border-bottom-color: var(--c-5); color: var(--c-5);">📋 5. Planificación</h2>
+<div class="narrative-block"><p>La planificación es la evolución natural de la búsqueda: en lugar de resolver una instancia concreta de un problema, razona sobre <strong>clases de problemas</strong> usando representaciones simbólicas de las acciones. La diferencia clave es que las acciones ya no son simples aristas del grafo: son operadores con <em>precondiciones</em> (qué debe ser verdad para aplicarlas) y <em>postcondiciones</em> (qué cambia en el mundo al aplicarlas). Esto permite al agente razonar sobre qué hace cada acción sin enumerar todos los estados posibles explícitamente.</p></div>
 <h3 class="subtheme-title" id="paradigma-de-planificación">Paradigma de Planificación</h3>
 <div class="grid-2">
 <div class="def-card" style="--theme-color: var(--c-5);"><div class="def-term">Búsqueda Clásica</div><div class="def-body">
@@ -1265,6 +1301,7 @@
 </div></div>
 </section><!-- TEMA 6 --><section class="theme-section">
 <h2 class="theme-title" id="t6-sistemas-conexionistas" style="border-bottom-color: var(--c-6); color: var(--c-6);">🌐 6. Sistemas Conexionistas</h2>
+<div class="narrative-block"><p>El paradigma conexionista nace de una insatisfacción con el simbólico: las reglas explícitas son frágiles, difíciles de escribir para dominios complejos y no escalan. ¿Y si en lugar de programar el conocimiento, dejamos que la máquina lo <em>aprenda</em> de los datos? Los temas 7, 8, 9 y 10 son la materialización de esa idea. El tema 6 es el contexto histórico: las tres "primaveras" de la IA conexionista muestran que el progreso no fue lineal sino de avances y retrocesos, cada invierno provocado por una limitación computacional o matemática concreta.</p></div>
 <div class="grid-3">
 <div class="def-card"><div class="def-term" id="1ª-primavera-años-40-50">1ª Primavera (Años 40-50)</div><div class="def-body">
 <p><strong>Nacimiento de la IA:</strong> Arranca con aportes cibernéticos (1943) y neuronas formales. Hitos: Conferencia Dartmouth (1956), Perceptrón (1958), ADALINE (1959).</p>
@@ -1357,6 +1394,7 @@
 </div>
 </section><!-- TEMA 7 --><section class="theme-section">
 <h2 class="theme-title" id="t7-neurona-formal-y-arquitecturas-rna" style="border-bottom-color: var(--c-7); color: var(--c-7);">⚡ 7. Neurona Formal y Arquitecturas RNA</h2>
+<div class="narrative-block"><p>Una neurona artificial hace exactamente dos cosas, en este orden y nunca al revés. Primero <strong>combina sus entradas ponderadas</strong> (regla de propagación: cada entrada multiplicada por su peso, más el bias). Después <strong>decide cómo "disparar"</strong> esa combinación (función de transferencia). Los pesos son la memoria a largo plazo de la red —el conocimiento aprendido—; las activaciones son efímeras. El bias desplaza geométricamente el hiperplano de decisión para que no pase obligatoriamente por el origen, dando al modelo mucha más flexibilidad.</p></div>
 <div class="grid-3">
 <div class="def-card"><div class="def-term" id="zona-receptora">Zona Receptora</div><div class="def-body">
 <p><strong>Biológica:</strong> Árbol dendrítico.<br/><strong>Artificial:</strong> Entradas ($X_i$) y Pesos ($W_{ij}$), encargados de recibir la señal y ponderarla según el conocimiento aprendido.</p>
@@ -1422,6 +1460,7 @@
 <p>El bias actúa como un peso adicional para el cual la entrada siempre vale 1. Su función es determinar la <strong>predisposición intrínseca de una neurona a activarse</strong>. Geométricamente, <strong>desplaza el hiperplano de decisión</strong> en el espacio (moviendo la recta), permitiendo separar clases que no atraviesan el origen de coordenadas, y permitiendo que la neurona se active aunque ninguna entrada sea 1.</p>
 </div></div>
 <h3 class="subtheme-title" id="conceptos-avanzados-neurona">Conceptos del Entrenamiento Neuronal</h3>
+<div class="narrative-block"><p>Las funciones de activación no son una lista para memorizar: cada una existe porque resuelve un problema concreto. El escalón decide binariamente (sirve al perceptrón clásico). La lineal produce salidas continuas (sirve a ADALINE y a capas de salida de regresión). La sigmoide y la tanh son derivables y no lineales: imprescindibles para que el descenso de gradiente funcione en capas ocultas del MLP. Si usaras lineal en las capas ocultas, todas las capas colapsarían matemáticamente en una sola —quedarías otra vez con un perceptrón monocapa disfrazado de red profunda.</p></div>
 <div class="grid-3">
 <div class="def-card" style="--theme-color: var(--c-7);"><div class="def-term">Pérdida vs Coste</div><div class="def-body">
 <p>La <strong>Función de Pérdida (Loss Function)</strong> cuantifica el error para una <em>única instancia</em>. La <strong>Función de Coste (Cost Function)</strong> es la agregación (media o suma) de todos los errores sobre el <em>conjunto completo</em> de datos.</p>
@@ -1444,6 +1483,7 @@
 </div></div>
 </section><!-- TEMA 8 --><section class="theme-section">
 <h2 class="theme-title" id="t8-redes-feedforward-perceptrón-y-adaline" style="border-bottom-color: var(--c-8); color: var(--c-8);">➡️ 8. Redes Feedforward (Perceptrón y ADALINE)</h2>
+<div class="narrative-block"><p>El tema 8 es una historia con causa y efecto. El perceptrón (1958): una neurona, activación escalón, aprende solo cuando se equivoca. Funciona para problemas linealmente separables. Minsky y Papert (1969): XOR es imposible con una sola capa. Primer invierno de la IA. ADALINE (1960): la misma idea pero con activación lineal y regla delta por descenso de gradiente —aprende de manera más fina. La solución al XOR no fue cambiar la neurona: fue añadir capas ocultas, creando el MLP. Y con el MLP vino la retropropagación, que generaliza la regla delta a toda una red profunda.</p></div>
 <div class="grid-2">
 <div class="def-card"><div class="def-term" id="perceptrón-rosenblatt-1958">Perceptrón (Rosenblatt, 1958)</div><div class="def-body">
 <p>Posee una <strong>función de activación tipo umbral (escalón)</strong>. Emite y entrena a partir de respuestas discretas usando su regla de actualización únicamente cuando clasifica erróneamente el patrón. Pionero en clasificación binaria, pero con severas limitaciones ante espacios de decisión no lineales.</p>
@@ -1498,6 +1538,7 @@
 </div></div>
 </div>
 <h3 class="subtheme-title" id="conceptos-avanzados-feedforward">Clasificación Multiclase y Regularización</h3>
+<div class="narrative-block"><p>Una red que aprende demasiado bien los datos de entrenamiento es una red que ha memorizado ruido: el overfitting. La señal de alarma es el error de validación subiendo mientras el de entrenamiento sigue bajando. La regularización L1 (Lasso) y L2 (Ridge/Weight Decay) actúan directamente sobre la función de coste penalizando los pesos grandes: L1 fuerza muchos pesos a exactamente cero (selección de variables implícita); L2 penaliza los pesos enormes sin anularlos (control de magnitudes). El early stopping para el entrenamiento justo cuando el error de validación empieza a crecer, guardando la red en ese momento óptimo.</p></div>
 <div class="grid-3">
 <div class="def-card" style="--theme-color: var(--c-8);"><div class="def-term">Codificación One-Hot</div><div class="def-body">
 <p>En clasificación categórica (sin jerarquía natural), las salidas deben codificarse en formato One-Hot (un vector binario), empleando <strong>exactamente una neurona de salida por cada clase</strong> posible y evitando sesgos de magnitud.</p>
@@ -1514,6 +1555,7 @@
 </div></div>
 </section><!-- TEMA 9 --><section class="theme-section">
 <h2 class="theme-title" id="t9-redes-autoorganizativas" style="border-bottom-color: var(--c-9); color: var(--c-9);">🔄 9. Redes Autoorganizativas</h2>
+<div class="narrative-block"><p>El salto del tema 8 al 9 es conceptualmente profundo: <strong>quitamos el profesor</strong>. En el aprendizaje supervisado siempre había una salida deseada <code>d(t)</code>. En el SOM no existe ese "qué debería ser". La red aprende sola explorando la estructura interna de los datos. El mecanismo que reemplaza al error supervisado es la <strong>competición + distancia</strong>: las neuronas compiten por representar cada patrón de entrada, y la ganadora —y sus vecinas en la malla— acercan sus pesos hacia ese patrón. Los pesos de cada neurona son su "prototipo": el centroide del grupo de patrones que esa neurona representa.</p></div>
 <div class="def-card"><div class="def-term" id="aprendizaje-no-supervisado">Aprendizaje no supervisado</div><div class="def-body">
 <p>A diferencia del modelo supervisado, en este modelo <strong>no existe "salida deseada"</strong> ni un jefe que dicte el resultado. La red explora por sí sola la información buscando redundancia para agrupar (clustering) los datos en patrones o centroides usando simplemente distancias para auto-representar el espacio de las entradas.</p>
 </div></div>
@@ -1538,6 +1580,7 @@
 </ol>
 </div>
 <h3 class="subtheme-title" id="aplicaciones-som">Aplicaciones: Tipos de problemas que resuelve el SOM</h3>
+<div class="narrative-block"><p>El concepto verdaderamente nuevo del SOM es la <strong>vecindad topológica</strong>: las neuronas de salida tienen una relación espacial entre sí (están en una malla), y esa relación se preserva durante el entrenamiento. Entradas parecidas activan zonas próximas del mapa. Por eso el SOM tiene dos fases diferenciadas: <em>ordenación</em> con vecindarios grandes (la red se coloca grosamente sobre la nube de datos) y <em>convergencia</em> con vecindarios pequeños (ajuste fino de cada prototipo). Las neuronas muertas son el principal defecto del SOM clásico —razón por la que GCS y GNG permiten que la red crezca dinámicamente.</p></div>
 <div class="grid-4">
 <div class="def-card" style="--theme-color: var(--c-9);"><div class="def-term">Agrupamiento (Clustering)</div><div class="def-body">
 <p>Separar datos en grupos sin saber a priori cuántos existen. Se caracteriza cada grupo con los pesos de la BMU.</p>
@@ -1606,6 +1649,7 @@
 </div></div>
 </section><!-- TEMA 10 --><section class="theme-section">
 <h2 class="theme-title" id="t10-computacion-evolutiva" style="border-bottom-color: var(--c-10); color: var(--c-10);">🧬 10. Computación Evolutiva</h2>
+<div class="narrative-block"><p>El tema 10 cambia la metáfora biológica por completo. Los temas 7-9 imitaban el cerebro. El tema 10 imita la <strong>evolución</strong>: en lugar de neuronas que ajustan pesos, hay una <strong>población de soluciones</strong> que compiten, se reproducen y mutan generación tras generación. La función de fitness actúa de "juez natural": las soluciones más aptas tienen más probabilidad de reproducirse. El cruce <em>explota</em> las buenas características de dos padres; la mutación <em>explora</em> el espacio inyectando variabilidad aleatoria. Sin garantía de óptimo global, pero capaz de navegar espacios donde el gradiente no existe.</p></div>
 <h3 class="subtheme-title" id="componentes-algoritmo-genetico">Los 5 Componentes de un Algoritmo Genético</h3>
 <div class="box">
 <ol class="steps-list">
@@ -1656,6 +1700,7 @@
 </div></div>
 </div>
 <h3 class="subtheme-title" id="hibridacion-vida-artificial-cuantica">Hibridación, Vida Artificial y Cuántica</h3>
+<div class="narrative-block"><p>La Programación Genética usa exactamente el mismo motor evolutivo que los AG pero cambia la representación: en lugar de cadenas de bits, evoluciona <strong>árboles sintácticos</strong> que representan programas o fórmulas. El cruce intercambia subárboles (subprogramas); la mutación modifica operadores o constantes. Los algoritmos meméticos son la fusión entre AG y búsqueda local: el individuo mejora localmente (Hill-Climbing) antes de reproducirse, sobreescribiendo sus propios genes —eso es exactamente la herencia lamarckiana que los AG puros no contemplan.</p></div>
 <div class="grid-3">
 <div class="def-card"><div class="def-term">Algoritmos Meméticos (Lamarck)</div><div class="def-body">
 <p>Fusionan la exploración global del AG con la explotación local. Al inyectar una técnica de búsqueda local (ej. <em>Hill-Climbing</em>) y hacer que el individuo sobreescriba sus propios genes para heredar la mejora a su descendencia, se emula la <strong>Evolución Lamarckiana</strong> (herencia de caracteres adquiridos).</p>
@@ -1700,6 +1745,7 @@
 <p><strong>Función de Fitness:</strong> Determina cuáles son los mejores individuos de la población. Actúa de «juez»: evalúa la bondad de cada solución y establece la probabilidad de supervivencia y reproducción.</p>
 </div></div>
 <h3 class="subtheme-title" id="cuando-no-usar-ag">¿Cuándo NO usar un Algoritmo Genético?</h3>
+<div class="narrative-block"><p>Los AG brillan donde el gradiente no existe: espacios discretos, funciones no diferenciables, paisajes con muchos óptimos locales, problemas combinatorios. Pero si tu función de coste es suave, convexa y de pocos parámetros, el descenso de gradiente es órdenes de magnitud más rápido y garantiza el óptimo global. El AG es potente pero costoso computacionalmente y estocástico: nunca garantiza encontrar el óptimo. Usarlo para resolver una regresión lineal sería como usar un martillo neumático para clavar un cuadro.</p></div>
 <div class="callout-danger"><div class="callout-header">⚠️ Trampa de examen</div><div class="callout-body">
 <ol class="steps-list">
 <li><div class="step-body">Cuando necesitas <strong>garantizar matemáticamente</strong> que encontraste el óptimo global (los AG no lo garantizan, son estocásticos).</div></li>

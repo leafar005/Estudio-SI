@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumen — SI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/shared.css">
+  <script src="../shared/shared.js"></script>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #111827;
+      --bg-card: #1a1f35;
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --c-2: #8b5cf6;
+      --c-3: #10b981;
+      --c-4: #ef4444;
+      --c-5: #f59e0b;
+      --c-7: #ec4899;
+      --c-8: #14b8a6;
+      --c-9: #f97316;
+      --c-10: #8b5cf6;
+    }
+    body { margin: 0; padding: 0; display: flex; height: 100vh; overflow: hidden; font-family: 'Inter', sans-serif; background-color: var(--bg-primary); color: var(--text-primary); }
+    #sidebar { width: 320px; min-width: 320px; background: rgba(17, 24, 39, 0.95); border-right: 1px solid var(--border-subtle); display: flex; flex-direction: column; z-index: 50; transition: width 0.3s ease, min-width 0.3s ease, opacity 0.3s ease; }
+    #sidebar.collapsed { width: 0 !important; min-width: 0 !important; border: none !important; opacity: 0; overflow: hidden; padding: 0; margin: 0; }
+    .sidebar-header { padding: 24px; border-bottom: 1px solid var(--border-subtle); background: var(--bg-secondary); }
+    .back-btn { display: flex; align-items: center; gap: 10px; color: var(--text-primary); text-decoration: none; font-weight: 600; font-size: 0.95rem; background: var(--bg-card); padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border-subtle); transition: all 0.2s; }
+    .back-btn:hover { background: var(--accent); border-color: var(--accent); }
+    .sidebar-content { flex: 1; overflow-y: auto; padding: 20px 0; }
+    .nav-h2 { display: block; padding: 12px 24px 4px 24px; font-size: 0.85rem; font-weight: 800; color: #93c5fd; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
+    .nav-h3 { display: block; padding: 8px 24px 8px 36px; font-size: 0.8rem; color: var(--text-secondary); text-decoration: none; transition: all 0.2s; border-left: 3px solid transparent; cursor: pointer; }
+    .nav-h3:hover { color: var(--text-primary); background: rgba(255,255,255,0.03); }
+    .nav-h3.active { color: #fff; background: rgba(59, 130, 246, 0.15); border-left-color: var(--accent); font-weight: 600; }
+    #main-content { flex: 1; overflow-y: auto; padding: 20px 60px 60px 60px; scroll-behavior: smooth; position: relative; }
+    .toggle-btn { position: sticky; top: 0px; z-index: 99; margin-bottom: 20px; margin-left: -40px; background: var(--bg-card); border: 1px solid var(--border-subtle); color: var(--text-primary); padding: 10px 15px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; font-weight: 600; font-size: 0.9rem; }
+    .toggle-btn:hover { background: var(--accent); border-color: var(--accent); }
+    .content-container { max-width: 900px; margin: 0 auto; }
+    .page-title { font-size: 3.2rem; font-weight: 900; margin-bottom: 15px; background: linear-gradient(135deg, #fff 0%, #60a5fa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1; }
+    .page-subtitle { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 60px; line-height: 1.6; }
+    h2.theme-title { font-size: 2.2rem; font-weight: 800; margin: 80px 0 30px 0; padding-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,0.1); color: #fff; }
+    h3.subtheme-title { font-size: 1.4rem; font-weight: 700; margin: 45px 0 15px 0; color: #bfdbfe; }
+    
+    @media (max-width: 850px) {
+      body { flex-direction: column; height: auto; overflow-y: auto; }
+      #sidebar { width: 100%; min-width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-subtle); position: relative; z-index: 100; }
+      .sidebar-content { display: flex; flex-direction: row; overflow-x: auto; overflow-y: hidden; white-space: nowrap; padding: 10px 15px; -webkit-overflow-scrolling: touch; align-items: center; max-height: none; }
+      .nav-h2 { display: inline-block; padding: 8px 15px; margin-right: 10px; font-size: 0.8rem; background: rgba(59,130,246,0.1); border-radius: 8px; }
+      .nav-h3 { display: inline-block; padding: 8px 12px; font-size: 0.85rem; border-left: none; }
+      .nav-h3.active { background: rgba(59,130,246,0.2); border-radius: 8px; color: #fff; font-weight: 600; }
+      #main-content { overflow-y: visible; padding: 25px 15px; }
+      .toggle-btn { position: sticky; top: 0px; z-index: 99; margin-bottom: 20px; margin-left: -40px; background: var(--bg-card); border: 1px solid var(--border-subtle); color: var(--text-primary); padding: 10px 15px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; font-weight: 600; font-size: 0.9rem; }
+      .page-title { font-size: 2rem; }
+      .page-subtitle { font-size: 1rem; margin-bottom: 30px; }
+      h2.theme-title { font-size: 1.8rem; margin: 40px 0 20px 0; }
+    }
+
+    /* CUSTOM RESUMEN STYLES */
+    .map-box{background:rgba(0,0,0,0.22);border:1px solid var(--border-subtle);border-radius:14px;padding:28px;margin-bottom:14px;display:flex;justify-content:center;overflow-x:auto;}
+    .map-box svg{max-width:100%;height:auto;}
+    .intro{background:rgba(59,130,246,0.07);border:1px solid rgba(59,130,246,0.22);border-left:4px solid #3b82f6;border-radius:0 12px 12px 0;padding:16px 20px;margin-bottom:52px;color:#bfdbfe;line-height:1.85;font-size:1.01rem;}
+    .prose p{color:#d1d5db;line-height:1.87;margin-bottom:18px;font-size:1.02rem;}
+    .prose strong{color:#fff;}.prose em{color:#a5b4fc;}
+    .prose ul{margin:0 0 18px 0;padding-left:0;list-style:none;}
+    .prose ul li{color:#d1d5db;line-height:1.8;margin-bottom:7px;padding-left:20px;position:relative;font-size:1.01rem;}
+    .prose ul li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:700;}
+    .co{border-radius:0 11px 11px 0;padding:15px 19px;margin:22px 0;line-height:1.8;}
+    .co-hdr{display:flex;align-items:center;gap:7px;font-weight:800;font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;}
+    .co-body{font-size:.96rem;line-height:1.8;}.co-body strong{color:#fff;}
+    .co-danger{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-left:4px solid #ef4444;}
+    .co-danger .co-hdr{color:#fca5a5;}.co-danger .co-body{color:#fecaca;}
+    .co-key{background:rgba(250,204,21,0.06);border:1px solid rgba(250,204,21,0.18);border-left:4px solid #facc15;}
+    .co-key .co-hdr{color:#fef08a;}.co-key .co-body{color:#fef9c3;}
+    .co-tip{background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.18);border-left:4px solid #10b981;}
+    .co-tip .co-hdr{color:#6ee7b7;}.co-tip .co-body{color:#a7f3d0;}
+    .timeline{margin:22px 0 26px;}
+    .tl-item{display:flex;gap:15px;margin-bottom:17px;align-items:flex-start;}
+    .tl-dot{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;margin-top:2px;}
+    .tl-body{flex:1;color:#d1d5db;line-height:1.78;font-size:1.01rem;}
+    .tl-body strong{color:#fff;}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 26px;}
+    .gcard{background:rgba(255,255,255,0.03);border:1px solid var(--border-subtle);border-radius:11px;padding:16px 18px;}
+    .gcard-title{font-size:.73rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px;}
+    .gcard p{color:#d1d5db;font-size:.94rem;line-height:1.7;margin:0;}.gcard p strong{color:#fff;}
+    .chips{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0 22px;}
+    .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:9px;font-size:.84rem;font-weight:600;border:1px solid var(--border-subtle);background:rgba(255,255,255,0.04);color:#d1d5db;}
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="back-btn">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Volver al Portal
+      </a>
+    </div>
+    <div class="sidebar-content" id="nav-links">
+      <h2 class="nav-h2">Contenido</h2>
+    </div>
+  </div>
+
+  <div id="main-content">
+    <button id="toggle-btn" class="toggle-btn">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <div class="content-container">
+
+      <h1 class="page-title">Resumen Temas 7 a 10</h1>
+      <p class="page-subtitle">Una lectura narrativa de los cuatro temas subsimbólicos: cómo se conectan, por qué en ese orden, y dónde están las trampas de examen.</p>
+
+      <h3 class="subtheme-title" id="mapa">🗺️ Esquema general</h3>
+      <!-- MAP -->
+      <div class="map-box" id="mapa">
+        <svg viewBox="0 0 820 330" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:820px;">
+          <defs>
+            <marker id="a1" markerWidth="9" markerHeight="6" refX="9" refY="3" orient="auto">
+              <polygon points="0 0,9 3,0 6" fill="#6366f1" opacity="0.75"/>
+            </marker>
+            <marker id="a2" markerWidth="9" markerHeight="6" refX="9" refY="3" orient="auto">
+              <polygon points="0 0,9 3,0 6" fill="#4b5563"/>
+            </marker>
+          </defs>
+
+          <!-- outer bg -->
+          <rect x="6" y="6" width="808" height="318" rx="14" fill="rgba(0,0,0,0.2)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+          <!-- brain area -->
+          <rect x="22" y="18" width="548" height="294" rx="10" fill="rgba(99,102,241,0.03)" stroke="rgba(99,102,241,0.14)" stroke-width="1" stroke-dasharray="5,4"/>
+          <text x="38" y="37" fill="#818cf8" font-size="10.5" font-weight="700" font-family="Inter,sans-serif">INSPIRACIÓN: CEREBRO Y NEURONAS</text>
+
+          <!-- evo area -->
+          <rect x="584" y="18" width="218" height="294" rx="10" fill="rgba(139,92,246,0.03)" stroke="rgba(139,92,246,0.14)" stroke-width="1" stroke-dasharray="5,4"/>
+          <text x="600" y="37" fill="#a78bfa" font-size="10.5" font-weight="700" font-family="Inter,sans-serif">INSPIRACIÓN: EVOLUCIÓN</text>
+
+          <!-- T7 -->
+          <g transform="translate(120,163)">
+            <rect x="-88" y="-46" width="176" height="92" rx="12" fill="rgba(236,72,153,0.14)" stroke="#ec4899" stroke-width="1.6"/>
+            <text y="-18" text-anchor="middle" fill="#ec4899" font-size="11.5" font-weight="800" font-family="Inter,sans-serif">⚡ TEMA 7</text>
+            <text y="2" text-anchor="middle" fill="#fce7f3" font-size="13.5" font-weight="700" font-family="Inter,sans-serif">Neurona Formal</text>
+            <text y="20" text-anchor="middle" fill="#9ca3af" font-size="10.5" font-family="Inter,sans-serif">Base de todo · LTM / STM</text>
+            <text y="35" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="Inter,sans-serif">propagación → activación</text>
+          </g>
+
+          <!-- T8 -->
+          <g transform="translate(380,88)">
+            <rect x="-102" y="-46" width="204" height="92" rx="12" fill="rgba(20,184,166,0.12)" stroke="#14b8a6" stroke-width="1.6"/>
+            <text y="-18" text-anchor="middle" fill="#14b8a6" font-size="11.5" font-weight="800" font-family="Inter,sans-serif">➡️ TEMA 8</text>
+            <text y="2" text-anchor="middle" fill="#ccfbf1" font-size="13.5" font-weight="700" font-family="Inter,sans-serif">Aprendizaje Supervisado</text>
+            <text y="20" text-anchor="middle" fill="#9ca3af" font-size="10.5" font-family="Inter,sans-serif">Perceptrón → ADALINE → MLP</text>
+            <text y="35" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="Inter,sans-serif">tiene d(t) · descenso gradiente</text>
+          </g>
+
+          <!-- T9 -->
+          <g transform="translate(380,243)">
+            <rect x="-102" y="-46" width="204" height="92" rx="12" fill="rgba(249,115,22,0.12)" stroke="#f97316" stroke-width="1.6"/>
+            <text y="-18" text-anchor="middle" fill="#f97316" font-size="11.5" font-weight="800" font-family="Inter,sans-serif">🔄 TEMA 9</text>
+            <text y="2" text-anchor="middle" fill="#ffedd5" font-size="13.5" font-weight="700" font-family="Inter,sans-serif">Aprendizaje No Supervisado</text>
+            <text y="20" text-anchor="middle" fill="#9ca3af" font-size="10.5" font-family="Inter,sans-serif">SOM · GCS · GNG</text>
+            <text y="35" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="Inter,sans-serif">no hay d(t) · competición</text>
+          </g>
+
+          <!-- T10 -->
+          <g transform="translate(680,163)">
+            <rect x="-85" y="-54" width="170" height="108" rx="12" fill="rgba(139,92,246,0.14)" stroke="#8b5cf6" stroke-width="1.6"/>
+            <text y="-30" text-anchor="middle" fill="#8b5cf6" font-size="11.5" font-weight="800" font-family="Inter,sans-serif">🧬 TEMA 10</text>
+            <text y="-12" text-anchor="middle" fill="#ede9fe" font-size="13.5" font-weight="700" font-family="Inter,sans-serif">Comp. Evolutiva</text>
+            <text y="6" text-anchor="middle" fill="#9ca3af" font-size="10.5" font-family="Inter,sans-serif">Algoritmos Genéticos</text>
+            <text y="20" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="Inter,sans-serif">sin neuronas · población</text>
+            <text y="34" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="Inter,sans-serif">selección natural</text>
+          </g>
+
+          <!-- arrows T7→T8 -->
+          <line x1="208" y1="135" x2="278" y2="105" stroke="#6366f1" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#a1)" opacity=".72"/>
+          <text x="230" y="96" fill="#818cf8" font-size="9.5" font-weight="600" font-family="Inter,sans-serif" text-anchor="middle">supervisado</text>
+
+          <!-- arrows T7→T9 -->
+          <line x1="208" y1="190" x2="278" y2="225" stroke="#6366f1" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#a1)" opacity=".72"/>
+          <text x="230" y="240" fill="#818cf8" font-size="9.5" font-weight="600" font-family="Inter,sans-serif" text-anchor="middle">no supervisado</text>
+
+          <!-- T8 ↔ T9 same weights -->
+          <line x1="380" y1="134" x2="380" y2="197" stroke="#4b5563" stroke-width="1.2" stroke-dasharray="3,4" marker-end="url(#a2)" opacity=".55"/>
+          <text x="386" y="170" fill="#6b7280" font-size="9" font-family="Inter,sans-serif">LTM = pesos</text>
+
+          <!-- separator arrow -->
+          <line x1="500" y1="163" x2="590" y2="163" stroke="#4b5563" stroke-width="1.2" stroke-dasharray="3,4" opacity=".35" marker-end="url(#a2)"/>
+          <text x="545" y="155" fill="#6b7280" font-size="9" font-family="Inter,sans-serif" text-anchor="middle">otra metáfora</text>
+        </svg>
+      </div>
+
+      <div class="intro">
+        El esquema de arriba resume la idea central: <strong>todo nace del tema 7</strong> (la neurona), que se ramifica en dos formas de entrenar —supervisada vs no supervisada—, y el <strong>tema 10 es un mundo aparte</strong> que ni siquiera usa neuronas. Vamos a bajar a los detalles de cada uno, pero siempre enganchando con lo anterior.
+      </div>
+
+      <!-- ═══ T7 ═══ -->
+      <h3 class="subtheme-title" id="t7">Tema 7: Neurona Formal — la pieza que lo explica casi todo</h3>
+
+        <div class="prose">
+          <p>Si te quedas con una sola idea de los cuatro temas, que sea esta: una neurona artificial hace exactamente <strong>dos cosas, en este orden, y nunca al revés</strong>. Primero <strong>combina sus entradas (propagación)</strong>, y después <strong>decide cómo "disparar" esa combinación (activación)</strong>. Por eso el examen insiste tanto en que la regla de propagación va antes que la función de transferencia: no puedes decidir cómo activarte si todavía no sabes cuánta señal neta has recibido.</p>
+
+          <p>La analogía biológica no es decoración, es literalmente la estructura de la ecuación. La <strong>zona receptora</strong> (dendritas) son tus <strong>entradas $x_i$</strong> ponderadas por <strong>pesos $w_{ij}$</strong>; la <strong>zona integradora (soma)</strong> es donde <strong>se suman esas señales junto al bias $\theta_j$, dando $net_j$</strong>; y la <strong>zona emisora (axón)</strong> es la <strong>salida $y_j = f(net_j)$ que sale hacia otra neurona</strong>.</p>
+        </div>
+
+        <div class="fbox">$$net_j = \sum_i x_i \cdot w_{ij} + \theta_j \qquad \longrightarrow \qquad y_j = f(net_j)$$</div>
+
+        <div class="prose">
+          <p>Cada pieza tiene un porqué: los pesos son el "conocimiento aprendido" — excitatorio, inhibitorio y nulo no son tres conceptos sueltos, son simplemente el <em>signo y la magnitud</em> de ese mismo número $w$. El bias es lo que permite a la neurona activarse aunque todas las entradas sean 0: geométricamente mueve la frontera de decisión para que no esté obligada a pasar por el origen.</p>
+
+          <p><strong>Las funciones de activación existen porque resuelven un problema concreto</strong> que verás resurgir en el tema 8:</p>
+          <ul>
+            <li><strong>Escalón</strong> → decisiones binarias tipo sí/no (de ahí que el perceptrón la use).</li>
+            <li><strong>Lineal (purelin)</strong> → cuando la salida tiene que ser un número continuo, como en regresión o en ADALINE.</li>
+            <li><strong>Sigmoide / tanh</strong> → cuando necesitas relaciones no lineales, porque son derivables (imprescindible para gradiente) y aplastan la salida a un rango controlado. Las capas ocultas del MLP están obligadas a usarlas.</li>
+          </ul>
+        </div>
+
+        <div class="grid2">
+          <div class="gcard" style="border-left:3px solid #ec4899;">
+            <div class="gcard-title" style="color:#ec4899;">🧠 LTM — Memoria a Largo Plazo</div>
+            <p>El conocimiento permanente de la red vive en los <strong>pesos sinápticos $w_{ij}$</strong>, formados iteración a iteración durante el entrenamiento.</p>
+          </div>
+          <div class="gcard" style="border-left:3px solid #6366f1;">
+            <div class="gcard-title" style="color:#a5b4fc;">⚡ STM — Memoria a Corto Plazo</div>
+            <p>Las <strong>activaciones del momento</strong>: la reacción pasajera de las neuronas a un patrón concreto de entrada. Desaparecen con el siguiente.</p>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p>Estas dos ideas serán el hilo conductor en el T9: ahí los pesos siguen siendo la LTM, solo que en vez de "aprender por error" se ajustan por competición.</p>
+        </div>
+
+        <div class="co co-tip">
+          <div class="co-hdr">💡 Interpolación vs Extrapolación</div>
+          <div class="co-body">Las redes neuronales son excelentes interpoladoras (adivinan bien entre puntos conocidos) pero <strong>pésimas extrapoladoras</strong>: ante datos que caen fuera de los rangos que vieron en el entrenamiento, dan respuestas arbitrarias con total seguridad. Cuidado con los <strong>mínimos locales</strong>: el descenso de gradiente puede estancarse creyendo que ha llegado al fondo global.</div>
+        </div>
+
+        <div class="co co-danger">
+          <div class="co-hdr">⚠️ Trampa de examen — orden de procesamiento</div>
+          <div class="co-body">La secuencia es <strong>siempre: propagación primero, activación después</strong>. Además: la capa de entrada <strong>no computa nada</strong>, solo distribuye valores; el conocimiento reside en los <strong>pesos</strong>, no en las funciones de transferencia.</div>
+        </div>
+      
+
+      <!-- ═══ T8 ═══ -->
+      
+
+<!-- Fragmento 7.1: Precursores Biológicos e Históricos del Conexionismo -->
+<div class="prose">
+  <p><strong>Los Pilares del Conexionismo:</strong> El origen formal de las redes neuronales descansa sobre varios hitos clave frecuentemente evaluados en los exámenes:
+    <ul>
+      <li><strong>Santiago Ramón y Cajal:</strong> Postuló la doctrina de la neurona, demostrando que el sistema nervioso está compuesto por células individuales.</li>
+      <li><strong>McCulloch y Pitts (1943):</strong> Trasladaron el funcionamiento biológico a un modelo lógico-matemático (neurona formal binaria).</li>
+      <li><strong>Donald Hebb (1949):</strong> Formuló la regla del aprendizaje Hebbiano, indicando que el peso sináptico aumenta cuando las neuronas pre y post-sinápticas se activan juntas.</li>
+      <li><strong>Kenneth Craik y Norbert Wiener:</strong> Craik introdujo el concepto de modelos mentales cerebrales, y Wiener fundó la cibernética analizando los bucles de retroalimentación.</li>
+    </ul>
+  </p>
+</div>
+
+<!-- Fragmento 7.2: Taxonomía de Redes: Feedforward vs. Recurrentes (RNN) -->
+<div class="prose">
+  <p>Las redes neuronales artificiales se clasifican según su arquitectura y flujo de información:</p>
+  <ul>
+    <li><strong>Redes Feedforward (Hacia adelante):</strong> No presentan ciclos de retroalimentación. La información viaja en una sola dirección desde la entrada a la salida a través de capas estrictamente definidas. Procesan patrones estáticos de tamaño fijo.</li>
+    <li><strong>Redes Recurrentes (RNN):</strong> Presentan bucles de retroalimentación donde las conexiones pueden retroceder o conectarse lateralmente dentro del mismo nivel. No poseen una organización en capas tan rígida, albergan una memoria temporal interna (estado oculto) y son idóneas para modelar datos secuenciales o series temporales de longitud variable.</li>
+  </ul>
+</div>
+
+<h3 class="subtheme-title" id="t8">Tema 8: Aprendizaje Supervisado — cuando le pones un profesor a la red</h3>
+
+        <div class="prose">
+          <p>Aquí se construye en orden lógico: no es una lista de tres redes sueltas, es <strong>una historia con causa y efecto</strong>.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot" style="background:rgba(236,72,153,0.2);color:#ec4899;border:1.5px solid #ec4899;">1</div>
+            <div class="tl-body">
+              <strong>Perceptrón (Rosenblatt, 1958)</strong> — una sola neurona, activación escalón, actualiza pesos solo cuando se equivoca. Hay una salida deseada $d(t)$, y si tu predicción $y(t)$ no coincide, ajustas.
+              <div class="fbox" style="margin-top:10px;text-align:left;font-size:.94rem;">$w_i(t{+}1) = w_i(t) + \mu \cdot (d(t) - y(t)) \cdot x_i(t)$</div>
+              Minsky y Papert (1969) demostraron que una sola neurona solo puede trazar una recta de separación — el problema XOR lo deja fuera. Primer "invierno de la IA".
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot" style="background:rgba(20,184,166,0.2);color:#14b8a6;border:1.5px solid #14b8a6;">2</div>
+            <div class="tl-body">
+              <strong>ADALINE (Widrow &amp; Hoff, 1959-60)</strong> — cambia una sola cosa: activación <em>lineal</em> en vez de escalón. Al ser continua, puedes calcular un error continuo y aplicar descenso de gradiente real — la Regla Delta/LMS.
+              <div class="fbox" style="margin-top:10px;text-align:left;font-size:.94rem;">$\Delta w_j = \mu \cdot (d_k - y_k) \cdot x_{jk}$</div>
+              No resuelve XOR tampoco, pero su forma de aprender — por gradiente, no por error binario — es la que hereda el MLP.
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot" style="background:rgba(99,102,241,0.2);color:#818cf8;border:1.5px solid #6366f1;">3</div>
+            <div class="tl-body">
+              <strong>MLP — Perceptrón Multicapa</strong> — la solución real al XOR es <strong>añadir capas ocultas</strong>. La capa de entrada no computa; las capas ocultas necesitan activación <em>no lineal</em> obligatoriamente (si fuera lineal, varias capas lineales seguidas colapsarían en una sola); la capa de salida usa la activación que pida el problema.
+            </div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p>El resto del T8 es sobre <strong>cómo entrenar bien ese MLP sin que se autoengañe</strong>. División en entrenamiento (ajusta pesos), validación (mide el error sin tocar pesos, decide cuándo parar) y test (evaluación final, nunca visto). El <strong>overfitting</strong> es la red memorizando ruido: error de entrenamiento bajando hacia 0 mientras el de validación sube. El <strong>early stopping</strong> para cuando el error de validación empieza a subir, aunque el de entrenamiento siga bajando. La <strong>regularización L1</strong> fuerza muchos pesos a ser exactamente 0; la <strong>L2</strong> penaliza que se vuelvan demasiado grandes.</p>
+        </div>
+
+        <div class="co co-tip">
+          <div class="co-hdr">💡 Detalles de optimización</div>
+          <div class="co-body">Recuerda: la función de <strong>pérdida (loss)</strong> evalúa un solo ejemplo; la función de <strong>coste</strong> es la media de todo el conjunto. Para evitar que el ajuste dependa del orden de los datos, el <strong>Batch Gradient Descent (por lotes)</strong> acumula el error de <em>todos</em> los ejemplos antes de modificar los pesos una sola vez por iteración.</div>
+        </div>
+
+        <div class="co co-key">
+          <div class="co-hdr">🔑 La regla de oro de las capas ocultas</div>
+          <div class="co-body">Si usas función <strong>lineal en las capas ocultas</strong>, el MLP colapsa a un perceptrón monocapa, sin importar cuántas capas pongas. Las capas ocultas <strong>deben</strong> ser no lineales (sigmoide/tanh) para que la profundidad sirva de algo.</div>
+        </div>
+      
+
+      <!-- ═══ T9 ═══ -->
+      
+
+<!-- Fragmento 8.1: Selección del Número de Neuronas Ocultas -->
+<div class="prose">
+  <p><strong>Neuronas Ocultas:</strong> El número de neuronas en las capas ocultas de un Perceptrón Multicapa (MLP) <em>lo puede fijar el usuario libremente como quiera</em>. No está condicionado matemáticamente por la dimensión de las entradas o las salidas de la red. Es un hiperparámetro que se calibra mediante prueba y error para ajustarse a la complejidad de las fronteras de decisión no lineales de la tarea.</p>
+</div>
+
+<!-- Fragmento 8.2: Comportamiento Fenomenológico de la Tasa de Aprendizaje -->
+<div class="co co-danger">
+  <div class="co-hdr">⚠️ Trampa de examen — Oscilación de la Tasa de Aprendizaje</div>
+  <div class="co-body"><strong>Tasa de Aprendizaje ($\mu$ o $\eta$) muy alta:</strong> Si se entrena una RNA configurando una tasa de aprendizaje demasiado elevada, los pesos actualizarán trazando un <strong>zigzag caótico</strong> en torno al mínimo. El proceso de optimización rebotará sistemáticamente en las pendientes del gradiente, corriendo el riesgo de rebasar el mínimo (overshooting) e impedir la convergencia de la red. Una tasa baja estabiliza el descenso pero ralentiza críticamente el entrenamiento.</div>
+</div>
+
+<!-- Fragmento 8.3: Dirección del Vector Gradiente -->
+<div class="prose">
+  <p><strong>Sentido de la Actualización:</strong> El vector gradiente $\nabla E$ indica la dirección de <strong>máximo ascenso</strong> de la función de error. Por tanto, para minimizar el error, los pesos de las neuronas deben actualizarse en la <strong>dirección contraria</strong> a dicho gradiente. De ahí el signo de sustracción en la ecuación fundamental: $w_{nuevo} = w_{viejo} - \eta \cdot \nabla E$.</p>
+</div>
+
+<h3 class="subtheme-title" id="t9">Tema 9: Aprendizaje No Supervisado — cuando le quitas el profesor a la red</h3>
+
+        <div class="prose">
+          <p>El salto conceptual real entre el T8 y el T9 es este: <strong>ya no hay $d(t)$</strong>. No existe "salida correcta" que comparar. ¿Cómo aprende entonces la red sin un error que minimizar? La respuesta es <strong>competición + distancia</strong>, en vez de error + gradiente.</p>
+
+          <p>Sigue habiendo neuronas y pesos — esos pesos siguen siendo la LTM del T7 —, pero ahora el peso de cada neurona es directamente un <em>prototipo</em>: un punto en el espacio de entrada que esa neurona representa. El algoritmo SOM, paso a paso:</p>
+          <ul>
+            <li>Inicializas pesos al azar.</li>
+            <li>Metes un patrón de entrada.</li>
+            <li>Calculas la <strong>distancia euclídea</strong> de ese patrón a los pesos de todas las neuronas: $\tau_j = \sqrt{\sum_i (e_i - w_{ij})^2}$</li>
+            <li>La neurona más cercana gana — <strong>BMU, Best Matching Unit</strong>.</li>
+            <li>Mueves los pesos de la ganadora y de sus <strong>vecinas en la malla</strong> un poco hacia el patrón.</li>
+            <li>Repite, reduciendo la tasa de aprendizaje y el radio de vecindad.</li>
+          </ul>
+        </div>
+
+        <div class="co co-tip">
+          <div class="co-hdr">💡 El concepto verdaderamente nuevo: vecindad topológica</div>
+          <div class="co-body">En un MLP las neuronas de salida no tienen ninguna relación espacial entre sí. En un SOM sí — están en una malla, y esa malla <strong>preserva la topología</strong>: entradas parecidas activan zonas próximas del mapa. Por eso hay dos fases: <strong>ordenación</strong> (vecindarios grandes, ajuste grosero) y <strong>convergencia</strong> (vecindarios pequeños, ajuste fino).</div>
+        </div>
+
+        <div class="prose">
+          <p>Con esa misma idea de "agrupar sin profesor" se resuelven varios problemas que en el fondo son el mismo mecanismo aplicado distinto: <strong>clustering</strong> (agrupar sin saber cuántos grupos hay), <strong>prototipado</strong> (neurona = centroide), <strong>reducción de dimensionalidad</strong>, e incluso el <strong>problema del viajante (TSP)</strong> — cambias la malla 2D por un anillo 1D que se retuerce hasta pasar por todas las ciudades.</p>
+
+          <p>Para medir si un SOM entrenó bien hay <strong>dos métricas, no una</strong>: el <em>error de cuantización</em> (qué tan lejos están los datos de su BMU, en media) y el <em>error topográfico</em> (si datos parecidos caen en neuronas vecinas o no). El SOM clásico de Kohonen tiene un defecto por su topología fija: algunas neuronas quedan "muertas". <strong>GCS y GNG</strong> nacen para arreglar justo eso, dejando que la red crezca en vez de tener un tamaño congelado.</p>
+        </div>
+
+        <div class="co co-link">
+          <div class="co-hdr">🔗 Detalle de examen que conecta T7, T8 y T9</div>
+          <div class="co-body">ADALINE, SOM, GCS y GNG exigen que todos los patrones de entrada tengan el <strong>mismo tamaño fijo</strong>, porque el peso de cada neurona debe tener la misma dimensión que la entrada. Si los patrones tienen <strong>tamaño variable</strong>, ninguna de estas redes clásicas puede procesarlos directamente.</div>
+        </div>
+      
+
+      <!-- ═══ T10 ═══ -->
+      
+
+<!-- Fragmento 9.1: Estructura de Capas del SOM -->
+<div class="co co-danger">
+  <div class="co-hdr">⚠️ Trampa de examen — Capas Computacionales del SOM</div>
+  <div class="co-body"><strong>¿1 o 2 capas?:</strong> En la teoría formal, las redes Autoorganizativas (SOM) de Kohonen poseen <strong>una sola capa computacional</strong> (la capa competitiva de salida). La capa de entrada actúa puramente como bus pasivo que no realiza ningún cálculo sobre los datos. Considerar al SOM como una red de dos capas computacionales es un error teórico habitual en los cuestionarios de examen.</div>
+</div>
+
+<!-- Fragmento 9.2: Validación y Medición en un SOM -->
+<div class="prose">
+  <p><strong>Validación del SOM:</strong> El Error de Cuantización (QE) medio mide la distancia media de los datos a sus BMU respectivas. Sin embargo, <em>el QE por sí solo es insuficiente para validar un SOM</em> porque no evalúa si se mantiene la topología del espacio original. Es obligatorio combinarlo con métricas de <strong>preservación de la topología</strong> (como el error topográfico, que cuenta cuántas veces las dos BMU más cercanas no son vecinas en la rejilla).</p>
+</div>
+
+<!-- Fragmento 9.3: Comparativa y Flexibilidad de Modelos de Crecimiento (GCS vs. GNG) -->
+<div class="prose">
+  <p>Los algoritmos de aprendizaje no supervisado basados en el crecimiento de la red (redes autoorganizativas dinámicas) presentan diferencias fundamentales de diseño:</p>
+  <ul>
+    <li><strong>Growing Cell Structures (GCS):</strong> Utiliza <strong>dos tasas de aprendizaje constantes y diferenciadas</strong> ($\epsilon_b$ para la BMU y $\epsilon_n$ para sus vecinos) en lugar de una tasa decreciente temporal como en SOM. Su gran limitación es la <strong>rigidez estructural</strong> de sus mallas de simplejos (triángulos perfectos en 2D), lo que dificulta la eliminación de neuronas innecesarias sin quebrar la coherencia estructural.</li>
+    <li><strong>Growing Neural Gas (GNG):</strong> Elimina la rigidez del simplejo geométrico de GCS. Permite conectar libremente las neuronas mediante aristas temporales y eliminar fácilmente nodos aislados o aristas envejecidas (con un umbral de edad), adaptándose a distribuciones de datos complejas e inconexas de forma mucho más flexible.</li>
+  </ul>
+</div>
+
+<!-- Fragmento 9.4: Dinámica del Error (Recurso) en GCS -->
+<div class="prose">
+  <p><strong>Evolución del Error Local:</strong> En GCS, cada neurona tiene asignado un error de cuantización acumulado llamado <em>recurso</em>. Este recurso <strong>aumenta</strong> cuando la neurona resulta ganadora (BMU) para un patrón alejado, y <strong>disminuye</strong> paulatinamente debido a dos procesos: por un factor de decaimiento temporal y por la partición y redistribución que ocurre al insertar un nuevo nodo hijo en las zonas de mayor error.</p>
+</div>
+
+<h3 class="subtheme-title" id="t10">Tema 10: Computación Evolutiva — cuando dejas de imitar al cerebro</h3>
+
+        <div class="prose">
+          <p>Aquí el cambio no es de método de entrenamiento, es de <strong>inspiración biológica entera</strong>. Hasta ahora todo giraba en torno a neuronas, pesos y gradiente. La computación evolutiva tira esa metáfora y copia, en su lugar, la <strong>selección natural</strong>: poblaciones de soluciones candidatas que compiten, se cruzan y mutan generación tras generación.</p>
+
+          <p>Los <strong>5 componentes</strong> son siempre los mismos:</p>
+        </div>
+
+        <div class="chips">
+          <div class="chip" style="border-color:rgba(139,92,246,0.3);background:rgba(139,92,246,0.08);color:#c4b5fd;">🧬 Codificación (cromosoma)</div>
+          <div class="chip" style="border-color:rgba(139,92,246,0.3);background:rgba(139,92,246,0.08);color:#c4b5fd;">👥 Población inicial aleatoria</div>
+          <div class="chip" style="border-color:rgba(139,92,246,0.3);background:rgba(139,92,246,0.08);color:#c4b5fd;">⚖️ Función de fitness (juez)</div>
+          <div class="chip" style="border-color:rgba(139,92,246,0.3);background:rgba(139,92,246,0.08);color:#c4b5fd;">🔀 Cruce (explotación) + Mutación (exploración)</div>
+          <div class="chip" style="border-color:rgba(139,92,246,0.3);background:rgba(139,92,246,0.08);color:#c4b5fd;">🎛️ Parámetros: Pc ≈ 90%, Pm ≈ 5–10%</div>
+        </div>
+
+        <div class="prose">
+          <p>El ciclo: evalúas, compruebas si paras, si no seleccionas, cruzas, mutas, generas la siguiente población — y vuelta a empezar.</p>
+
+          <p>La <strong>Programación Genética</strong> no es un algoritmo distinto: es el mismo motor evolutivo cambiando solo la representación — en vez de cadenas de bits, <em>árboles sintácticos</em> donde las hojas son valores y los nodos internos son operadores. El <strong>modelo Steady-State</strong> solo sustituye 1 o 2 individuos por ciclo (en vez del 100% generacional), manteniendo más diversidad a costa de converger más despacio.</p>
+        </div>
+
+        <div class="co co-danger">
+          <div class="co-hdr">⚠️ Trampa de examen — Lamarck NO en AGs estándar</div>
+          <div class="co-body">Los AGs estándar se basan en <strong>Mendel + Darwin + Wallace</strong>. <strong>Lamarck</strong> (herencia de caracteres adquiridos) solo entra en los <strong>algoritmos meméticos</strong>, donde un individuo mejora por su cuenta (hill-climbing) y sobreescribe sus genes antes de reproducirse. La trampa clásica es incluirlo en los AGs estándar.</div>
+        </div>
+
+        <div class="co co-key">
+          <div class="co-hdr">🔑 Para cerrar el círculo con T7/T8</div>
+          <div class="co-body">La pregunta de <strong>"¿cuándo NO usar un AG?"</strong> tiene sentido porque ya conoces la alternativa. Si tu función de coste es suave, convexa y con pocos parámetros, el descenso de gradiente de ADALINE es muchísimo más rápido y preciso. El AG brilla donde el gradiente <strong>no existe o no sirve</strong>: espacios discretos, no diferenciables, con muchos óptimos locales.</div>
+        </div>
+      
+    
+
+
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleBtn = document.getElementById("toggle-btn");
+      const sidebar = document.getElementById("sidebar");
+      toggleBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("collapsed");
+      });
+
+      const navLinksContainer = document.getElementById("nav-links");
+      let headings = Array.from(document.querySelectorAll("#main-content h3.subtheme-title"));
+      
+      headings.forEach((heading) => {
+        const link = document.createElement("a");
+        link.href = "#" + heading.id;
+        link.className = "nav-h3";
+        link.textContent = heading.textContent.split('—')[0].trim();
+        
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = document.getElementById(heading.id);
+          const main = document.getElementById("main-content");
+          main.scrollTo({ top: target.offsetTop - 60, behavior: "smooth" });
+        });
+        navLinksContainer.appendChild(link);
+      });
+
+      const observerOptions = {
+        root: document.getElementById("main-content"),
+        rootMargin: "-10% 0px -75% 0px",
+        threshold: 0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            const activeLink = document.querySelector(`.nav-h3[href="#${id}"]`);
+            document.querySelectorAll(".nav-h3").forEach(l => l.classList.remove("active"));
+            if (activeLink) {
+              activeLink.classList.add("active");
+              activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          }
+        });
+      }, observerOptions);
+
+      headings.forEach(h => observer.observe(h));
+    });
+  </script>
+</body>
+</html>

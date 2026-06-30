@@ -123,6 +123,15 @@
         pool = shuffle(pool);
       }
 
+      // Orden Inteligente: si smart=1, reordena el pool priorizado por historial
+      const urlParamsSmart = new URLSearchParams(window.location.search);
+      const smartMode = (urlParamsSmart.get('smart') === '1'
+        || localStorage.getItem('si_smart_shuffle') === '1')
+        && mode !== 'exam' && mode !== 'category' && mode !== 'fallos';
+      if (smartMode) {
+        pool = smartShuffle(pool);
+      }
+
       if (mode === 'random') {
         const urlParams = new URLSearchParams(window.location.search);
         const numQuestions = parseInt(urlParams.get('num')) || 20;
@@ -136,6 +145,11 @@
       if (document.getElementById('quiz-screen')) {
         document.getElementById('quiz-screen').style.opacity = '1';
       }
+
+      // Mostrar u ocultar badge de Orden Inteligente
+      const smartBadge = document.getElementById('smart-badge');
+      if (smartBadge) smartBadge.style.display = smartMode ? 'inline-block' : 'none';
+
       renderQuestion();
     };
 
@@ -684,6 +698,63 @@
       [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
+  }
+
+  /**
+   * smartShuffle(pool) — Orden Inteligente
+   *
+   * Ordena el pool de preguntas por prioridad según el historial guardado:
+   *   Prioridad 0 (máxima): preguntas NUNCA vistas → van primero siempre
+   *   Prioridad 1: preguntas vistas y FALLADAS → refuerzo necesario
+   *   Prioridad 2: preguntas vistas y correctas hace más de 24h → repaso
+   *   Prioridad 3 (mínima): preguntas vistas y correctas recientes → al final
+   *
+   * Dentro de cada grupo, el orden es aleatorio.
+   */
+  function smartShuffle(pool) {
+    window.QuizStats.load();
+    const historyQuestions = window.QuizStats?.data?.historyQuestions || [];
+    const now = Date.now();
+    const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+
+    // Build a map: questionText → { lastSeen, isCorrect }
+    // historyQuestions is ordered newest-first, so first match = most recent
+    const seenMap = new Map();
+    for (const h of historyQuestions) {
+      const key = (h.text || '').trim();
+      if (key && !seenMap.has(key)) {
+        seenMap.set(key, { lastSeen: h.date, isCorrect: h.isCorrect });
+      }
+    }
+
+    function getPriority(q) {
+      const key = (q.question || '').trim().slice(0, 120); // use first 120 chars as key
+      // Also try matching by partial text (historyQuestions stores truncated text sometimes)
+      let entry = seenMap.get(key);
+      if (!entry) {
+        // Try to find a match by checking if the stored text starts with our key prefix
+        for (const [storedKey, val] of seenMap) {
+          if (storedKey.startsWith(key.slice(0, 60)) || key.startsWith(storedKey.slice(0, 60))) {
+            entry = val;
+            break;
+          }
+        }
+      }
+
+      if (!entry) return 0; // never seen → highest priority
+
+      if (!entry.isCorrect) return 1; // failed → second priority
+
+      const age = now - (entry.lastSeen || 0);
+      if (age > ONE_DAY_MS) return 2; // correct but old → third priority
+
+      return 3; // correct and recent → lowest priority
+    }
+
+    // Assign priority to each question, shuffle within groups, then sort
+    const withPriority = pool.map(q => ({ q, p: getPriority(q), r: Math.random() }));
+    withPriority.sort((a, b) => a.p !== b.p ? a.p - b.p : a.r - b.r);
+    return withPriority.map(x => x.q);
   }
 
   function formatTime(totalSeconds) {
