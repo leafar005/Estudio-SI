@@ -2778,7 +2778,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_junio_2026",
-    "question": "Dado el siguiente grafo, donde el nodo inicial es A, el valor numérico de cada nodo indica el resultado de evaluar una función heurística $h$, y el valor numérico de cada arista indica el coste de transición entre estados... ¿Cuál sería el coste de la solución devuelta por el algoritmo $A^\ast$?  \n<img src=\"../assets/images/grafo2 1.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
+    "question": "Dado el siguiente grafo, donde el nodo inicial es A, el valor numérico de cada nodo indica el resultado de evaluar una función heurística $h$, y el valor numérico de cada arista indica el coste de transición entre estados... ¿Cuál sería el coste de la solución devuelta por el algoritmo $A^\ast$?  \n<img src=\"../assets/images/grafo2.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "a) 22",
       "b) 26",
@@ -2795,7 +2795,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_junio_2026",
-    "question": "<div style=\"background:rgba(255,255,255,0.05); padding:10px; border-radius:5px; margin-bottom:15px; font-size: 0.9em; border-left: 3px solid #3b82f6; color: #9ca3af;\"><em>Contexto del ejercicio anterior:</em><br>\nDado el siguiente grafo, donde el nodo inicial es A, el valor numérico de cada nodo indica el resultado de evaluar una función heurística $h$, y el valor numérico de cada arista indica el coste de transición entre estados...\n</div>\nEn el mismo grafo de la pregunta anterior, ¿cuál sería la solución de aplicar el algoritmo de búsqueda por profundidad iterativa, usando la precedencia lexicográfica como mecanismo de resolución de conflictos?  \n<img src=\"../assets/images/grafo2 1.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
+    "question": "<div style=\"background:rgba(255,255,255,0.05); padding:10px; border-radius:5px; margin-bottom:15px; font-size: 0.9em; border-left: 3px solid #3b82f6; color: #9ca3af;\"><em>Contexto del ejercicio anterior:</em><br>\nDado el siguiente grafo, donde el nodo inicial es A, el valor numérico de cada nodo indica el resultado de evaluar una función heurística $h$, y el valor numérico de cada arista indica el coste de transición entre estados...\n</div>\nEn el mismo grafo de la pregunta anterior, ¿cuál sería la solución de aplicar el algoritmo de búsqueda por profundidad iterativa, usando la precedencia lexicográfica como mecanismo de resolución de conflictos?  \n<img src=\"../assets/images/grafo2.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "a) $A \\to C \\to G \\to I$",
       "b) $A \\to B \\to E \\to H \\to I$",
@@ -2812,7 +2812,7 @@ const EXAM_QUESTIONS = [
   },
   {
     "source": "examen_junio_2026",
-    "question": "En el mismo grafo, la heurística proporcionada...  \n<img src=\"../assets/images/grafo2 1.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
+    "question": "En el mismo grafo, la heurística proporcionada...  \n<img src=\"../assets/images/grafo2.png\" style=\"max-width:100%; max-height:300px; width:auto; border-radius:8px; margin: 15px auto; display:block;\">",
     "options": [
       "a) Es admisible y consistente",
       "b) No es admisible, pero sí consistente",
