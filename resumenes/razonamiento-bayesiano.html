@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Razonamiento Lógico y Bayesiano — SI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/shared.css">
+  <script src="../shared/shared.js"></script>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #111827;
+      --bg-card: #1a1f35;
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+    }
+    body { margin: 0; padding: 0; display: flex; height: 100vh; overflow: hidden; font-family: 'Inter', sans-serif; background-color: var(--bg-primary); color: var(--text-primary); }
+    #sidebar { width: 320px; min-width: 320px; background: rgba(17, 24, 39, 0.95); border-right: 1px solid var(--border-subtle); display: flex; flex-direction: column; z-index: 50; transition: width 0.3s ease, min-width 0.3s ease, opacity 0.3s ease; }
+    #sidebar.collapsed { width: 0 !important; min-width: 0 !important; border: none !important; opacity: 0; overflow: hidden; padding: 0; margin: 0; }
+    .sidebar-header { padding: 24px; border-bottom: 1px solid var(--border-subtle); background: var(--bg-secondary); }
+    .back-btn { display: flex; align-items: center; gap: 10px; color: var(--text-primary); text-decoration: none; font-weight: 600; font-size: 0.95rem; background: var(--bg-card); padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border-subtle); transition: all 0.2s; }
+    .back-btn:hover { background: var(--accent); border-color: var(--accent); }
+    .sidebar-content { flex: 1; overflow-y: auto; padding: 20px 0; }
+    .nav-h2 { display: block; padding: 12px 24px 4px 24px; font-size: 0.85rem; font-weight: 800; color: #93c5fd; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
+    .nav-h3 { display: block; padding: 8px 24px 8px 36px; font-size: 0.8rem; color: var(--text-secondary); text-decoration: none; transition: all 0.2s; border-left: 3px solid transparent; cursor: pointer; }
+    .nav-h3:hover { color: var(--text-primary); background: rgba(255,255,255,0.03); }
+    .nav-h3.active { color: #fff; background: rgba(59, 130, 246, 0.15); border-left-color: var(--accent); font-weight: 600; }
+    #main-content { flex: 1; overflow-y: auto; padding: 20px 60px 60px 60px; scroll-behavior: smooth; position: relative; }
+    .toggle-btn { position: sticky; top: 0px; z-index: 99; margin-bottom: 20px; margin-left: -40px; background: var(--bg-card); border: 1px solid var(--border-subtle); color: var(--text-primary); padding: 10px 15px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; font-weight: 600; font-size: 0.9rem; }
+    .toggle-btn:hover { background: var(--accent); border-color: var(--accent); }
+    .content-container { max-width: 900px; margin: 0 auto; }
+    .page-title { font-size: 3.2rem; font-weight: 900; margin-bottom: 15px; background: linear-gradient(135deg, #fff 0%, #60a5fa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1; }
+    .page-subtitle { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 60px; line-height: 1.6; }
+    h2.theme-title { font-size: 2.2rem; font-weight: 800; margin: 80px 0 30px 0; padding-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,0.1); color: #fff; }
+    h3.subtheme-title { font-size: 1.4rem; font-weight: 700; margin: 45px 0 15px 0; color: #bfdbfe; }
+    
+    @media (max-width: 850px) {
+      body { flex-direction: column; height: auto; overflow-y: auto; }
+      #sidebar { width: 100%; min-width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-subtle); position: relative; z-index: 100; }
+      .sidebar-content { display: flex; flex-direction: row; overflow-x: auto; overflow-y: hidden; white-space: nowrap; padding: 10px 15px; -webkit-overflow-scrolling: touch; align-items: center; max-height: none; }
+      .nav-h2 { display: inline-block; padding: 8px 15px; margin-right: 10px; font-size: 0.8rem; background: rgba(59,130,246,0.1); border-radius: 8px; }
+      .nav-h3 { display: inline-block; padding: 8px 12px; font-size: 0.85rem; border-left: none; }
+      .nav-h3.active { background: rgba(59,130,246,0.2); border-radius: 8px; color: #fff; font-weight: 600; }
+      #main-content { overflow-y: visible; padding: 25px 15px; }
+      .toggle-btn { position: sticky; top: 0px; margin-left: 0; margin-bottom: 15px; }
+      .page-title { font-size: 2rem; }
+      .page-subtitle { font-size: 1rem; margin-bottom: 30px; }
+      h2.theme-title { font-size: 1.8rem; margin: 40px 0 20px 0; }
+    }
+
+    /* CUSTOM STYLES */
+    .intro{background:rgba(59,130,246,0.07);border:1px solid rgba(59,130,246,0.22);border-left:4px solid #3b82f6;border-radius:0 12px 12px 0;padding:16px 20px;margin-bottom:52px;color:#bfdbfe;line-height:1.85;font-size:1.01rem;}
+    .prose p{color:#d1d5db;line-height:1.87;margin-bottom:18px;font-size:1.02rem;}
+    .prose strong{color:#fff;}.prose em{color:#a5b4fc;}
+    .prose ul{margin:0 0 18px 0;padding-left:0;list-style:none;}
+    .prose ul li{color:#d1d5db;line-height:1.8;margin-bottom:7px;padding-left:20px;position:relative;font-size:1.01rem;}
+    .prose ul li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:700;}
+    .co{border-radius:0 11px 11px 0;padding:15px 19px;margin:22px 0;line-height:1.8;}
+    .co-hdr{display:flex;align-items:center;gap:7px;font-weight:800;font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;}
+    .co-body{font-size:.96rem;line-height:1.8;}.co-body strong{color:#fff;}
+    .co-danger{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-left:4px solid #ef4444;}
+    .co-danger .co-hdr{color:#fca5a5;}.co-danger .co-body{color:#fecaca;}
+    .co-key{background:rgba(250,204,21,0.06);border:1px solid rgba(250,204,21,0.18);border-left:4px solid #facc15;}
+    .co-key .co-hdr{color:#fef08a;}.co-key .co-body{color:#fef9c3;}
+    .co-tip{background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.18);border-left:4px solid #10b981;}
+    .co-tip .co-hdr{color:#6ee7b7;}.co-tip .co-body{color:#a7f3d0;}
+    
+    .truth-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95rem; background: rgba(0,0,0,0.2); border-radius: 8px; overflow: hidden; }
+    .truth-table th, .truth-table td { padding: 12px 15px; text-align: center; border: 1px solid var(--border-subtle); color: #d1d5db; }
+    .truth-table th { background: rgba(255,255,255,0.05); font-weight: 700; color: #fff; }
+    .truth-table td.highlight { background: rgba(239,68,68,0.1); color: #fca5a5; font-weight: bold; }
+    .truth-table td.survive { background: rgba(16,185,129,0.1); color: #6ee7b7; font-weight: bold; }
+    
+    .rule-box { background: rgba(17, 24, 39, 0.8); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 8px; margin-bottom: 10px; font-family: monospace; font-size: 1.05rem; color: #93c5fd; display: flex; align-items: center; gap: 15px;}
+    .rule-id { background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.85rem;}
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="back-btn">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Volver al Portal
+      </a>
+    </div>
+    <div class="sidebar-content" id="nav-links">
+      <h2 class="nav-h2">Contenido</h2>
+    </div>
+  </div>
+
+  <div id="main-content">
+    <button id="toggle-btn" class="toggle-btn" aria-label="Toggle menu">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+    <div class="content-container">
+
+      <h1 class="page-title">Razonamiento Categórico y Corrección Bayesiana</h1>
+      <p class="page-subtitle">Resolución paso a paso del caso de urgencias médicas aplicando la Base Lógica Reducida (BLR) y el Teorema de Bayes.</p>
+
+      <div class="intro">
+        Este ejercicio clásico de razonamiento con incertidumbre nos pide actuar como el "médico de guardia". Tenemos síntomas (manifestaciones), enfermedades (interpretaciones) y unas reglas lógicas dadas por el conocimiento médico. A través de la <strong>Base Lógica Reducida</strong> filtraremos los casos imposibles, y con la <strong>Corrección Bayesiana</strong> afinaremos el porcentaje exacto de padecer una enfermedad ante la incertidumbre.
+      </div>
+
+      <h2 class="theme-title">1. Formalización del Conocimiento</h2>
+      
+      <div class="prose">
+        <p>Primero, definimos las variables de nuestro universo. En este problema, tenemos tres síntomas clínicos que forman el conjunto de manifestaciones ($M$), y dos enfermedades que forman el conjunto de interpretaciones ($I$).</p>
+        
+        <ul>
+          <li><strong>Manifestaciones:</strong> $m(1)$ fiebre alta, $m(2)$ diarrea, $m(3)$ tos.</li>
+          <li><strong>Interpretaciones:</strong> $i(1)$ gripe, $i(2)$ gastroenteritis.</li>
+        </ul>
+
+        <p>A partir del enunciado, el médico tiene las siguientes certezas lógicas (reglas de producción):</p>
+      </div>
+
+      <div class="rule-box"><span class="rule-id">R1</span> $i(1) \rightarrow m(1) \land m(3)$ <span style="color:#6b7280; font-family:Inter; font-size:0.9rem;">(La gripe se manifiesta a través de fiebre alta y tos)</span></div>
+      <div class="rule-box"><span class="rule-id">R2</span> $\neg i(1) \land i(2) \rightarrow m(2)$ <span style="color:#6b7280; font-family:Inter; font-size:0.9rem;">(Una gastroenteritis sin gripe se manifiesta por diarrea)</span></div>
+      <div class="rule-box"><span class="rule-id">R3</span> $m(1) \lor m(2) \lor m(3) \rightarrow i(1) \lor i(2)$ <span style="color:#6b7280; font-family:Inter; font-size:0.9rem;">(Cualquier síntoma indica la presencia de alguna enfermedad)</span></div>
+
+      <div class="co co-key">
+        <div class="co-hdr"><span>🧠</span> Concepto Teórico: Los Complejos</div>
+        <div class="co-body">
+          Un <strong>complejo</strong> es una combinación concreta de verdad o falsedad de todas las variables. Como hay 3 manifestaciones booleanas (2³ = 8 posibles estados) y 2 interpretaciones (2² = 4 posibles estados), tenemos los complejos $m_1$ a $m_8$ y los complejos $i_1$ a $i_4$. Nuestro objetivo es ver qué cruces de síntomas y enfermedades rompen las reglas médicas.
+        </div>
+      </div>
+
+      <h2 class="theme-title">2. Construcción de la Base Lógica Reducida (BLR)</h2>
+      
+      <div class="prose">
+        <p>La BLR es una matriz que cruza todos los complejos de manifestaciones ($m_1$ a $m_8$) con los de interpretaciones ($i_1$ a $i_4$). Marcamos con un <strong>0</strong> las casillas donde se incumple alguna regla médica, y con un <strong>1</strong> los casos "médicamente posibles".</p>
+      </div>
+
+      <h3 class="subtheme-title">Filtrando el Complejo $i_1$ (Sano: ni gripe ni gastro)</h3>
+      <div class="prose">
+        <p>En el complejo $i_1$, tanto $i(1)$ como $i(2)$ son Falsos. La regla <strong>R3</strong> dice que si hay algún síntoma, debe haber alguna enfermedad. Por tanto, es imposible estar enfermo (tener síntomas) si se tiene la interpretación $i_1$ (no tener ninguna enfermedad). <strong>Solo sobrevive el complejo $m_1$ (0,0,0: sin síntomas).</strong></p>
+      </div>
+
+      <h3 class="subtheme-title">Filtrando el Complejo $i_2$ (Solo Gastroenteritis)</h3>
+      <div class="prose">
+        <p>Aquí $i(1)=0$ y $i(2)=1$. La regla <strong>R2</strong> se activa de lleno: si se cumple $\neg i(1) \land i(2)$, entonces $m(2)$ debe ser 1 (tiene que haber diarrea sí o sí). Por tanto, <strong>eliminamos de la tabla todos los complejos donde $m(2)=0$</strong> (es decir, $m_1, m_2, m_5, m_6$).</p>
+      </div>
+
+      <h3 class="subtheme-title">Filtrando el Complejo $i_3$ y $i_4$ (Con Gripe)</h3>
+      <div class="prose">
+        <p>En ambos casos, el paciente tiene gripe ($i(1)=1$). La regla <strong>R1</strong> es implacable: si hay gripe, obligatoriamente hay fiebre $m(1)$ y tos $m(3)$. Es decir, $m(1)=1$ y $m(3)=1$. <strong>Solo sobreviven los complejos donde ambas se cumplen: $m_6$ (fiebre y tos) y $m_8$ (fiebre, tos y diarrea).</strong> Todas las demás combinaciones quedan anuladas (marcadas con 0) por violar la regla 1.</p>
+      </div>
+
+      <div class="prose">
+        <p>Tras aplicar todos estos filtros racionales, la <strong>Base Lógica Reducida</strong> resultante (casos que no violan las reglas) queda así:</p>
+      </div>
+
+      <table class="truth-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>m1 (000)</th>
+            <th>m3 (010)</th>
+            <th>m4 (011)</th>
+            <th>m7 (110)</th>
+            <th>m8 (111)</th>
+            <th>m6 (101)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>i1 (00)</strong></td>
+            <td class="survive">1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td><strong>i2 (01)</strong></td>
+            <td>0</td>
+            <td class="survive">1</td>
+            <td class="survive">1</td>
+            <td class="survive">1</td>
+            <td class="survive">1</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td><strong>i3 (10)</strong></td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td class="survive">1</td>
+            <td class="survive">1</td>
+          </tr>
+          <tr>
+            <td><strong>i4 (11)</strong></td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td class="survive">1</td>
+            <td class="survive">1</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 class="theme-title">3. Diagnóstico de los Pacientes (Razonamiento Categórico)</h2>
+
+      <div class="prose">
+        <p>Con la BLR calculada, el diagnóstico es trivial. Simplemente cruzamos los síntomas observados con la tabla para ver qué interpretaciones compatibles nos quedan.</p>
+      </div>
+
+      <h3 class="subtheme-title">Paciente 1: Tos y Diarreas, sin fiebre</h3>
+      <div class="prose">
+        <p>Se manifiesta $m(2)$ y $m(3)$, pero no $m(1)$. Esto es la manifestación binaria <code>011</code>, que corresponde al complejo <strong>$m_4$</strong>. Si miramos la columna de $m_4$ en la tabla, vemos que el único "1" está en la fila $i_2$.</p>
+      </div>
+      <div class="co co-tip">
+        <div class="co-hdr"><span>✅</span> Diagnóstico P1</div>
+        <div class="co-body">
+          <strong>Gastroenteritis pura ($i_2$).</strong> No hay duda, las reglas categóricas no permiten otra opción.
+        </div>
+      </div>
+
+      <h3 class="subtheme-title">Paciente 2: Fiebre alta y Tos, sin diarrea</h3>
+      <div class="prose">
+        <p>Se manifiesta $m(1)$ y $m(3)$, pero no $m(2)$. Esto es la manifestación <code>101</code>, que corresponde al complejo <strong>$m_6$</strong>. Si miramos su columna, tenemos "1" en las filas $i_3$ e $i_4$.</p>
+      </div>
+      <div class="co co-danger">
+        <div class="co-hdr"><span>⚠️</span> Incertidumbre en P2</div>
+        <div class="co-body">
+          El paciente 2 puede tener <strong>Gripe sin gastroenteritis ($i_3$)</strong> o <strong>Gripe con gastroenteritis ($i_4$)</strong>. Sabemos categóricamente que tiene gripe, pero las reglas lógicas no nos permiten asegurar nada acerca de la gastroenteritis. ¡Necesitamos estadística Bayesiana para desempatar!
+        </div>
+      </div>
+
+      <h2 class="theme-title">4. Corrección Bayesiana</h2>
+
+      <div class="prose">
+        <p>Ante la incertidumbre del Paciente 2 (complejo $m_6$), el médico recurre al historial estadístico del hospital para aplicar el <strong>Teorema de Bayes</strong>. Queremos saber la probabilidad posterior de cada interpretación dados los síntomas: $P(i_3 | m_6)$ frente a $P(i_4 | m_6)$.</p>
+        <p>Datos previos del hospital ($P(i)$):</p>
+        <ul>
+          <li>45% ni gripe ni gastro $\rightarrow P(i_1) = 0.45$</li>
+          <li>30% solo gastro $\rightarrow P(i_2) = 0.30$</li>
+          <li>20% solo gripe $\rightarrow P(i_3) = 0.20$</li>
+          <li>5% ambas $\rightarrow P(i_4) = 0.05$</li>
+        </ul>
+        <p>Probabilidades condicionadas dadas en la tabla de la base de datos:</p>
+        <ul>
+          <li>$P(m_6 | i_3) = 0.3$ (Si tienes solo gripe, hay 30% de dar el síntoma m6)</li>
+          <li>$P(m_6 | i_4) = 0.1$ (Si tienes ambas, hay un 10% de dar el síntoma m6)</li>
+        </ul>
+      </div>
+
+      <div class="co co-key">
+        <div class="co-hdr"><span>📊</span> Fórmula Bayesiana Simplificada</div>
+        <div class="co-body">
+          Como el denominador es el mismo para ambas (probabilidad total de manifestar m6), solo necesitamos calcular el numerador y normalizar:
+          $$ P(i_x | m_6) = \frac{P(m_6 | i_x) \cdot P(i_x)}{\sum P(m_6 | i_k) \cdot P(i_k)} $$
+        </div>
+      </div>
+
+      <div class="prose">
+        <p><strong>Cálculo para $i_3$ (Solo Gripe):</strong></p>
+        <p>Numerador = $0.3 \times 0.20 = 0.06$</p>
+        
+        <p><strong>Cálculo para $i_4$ (Ambas):</strong></p>
+        <p>Numerador = $0.1 \times 0.05 = 0.005$</p>
+
+        <p><strong>Normalización (Denominador Total):</strong></p>
+        <p>Suma = $0.06 + 0.005 = 0.065$</p>
+
+        <p><strong>Probabilidades Finales:</strong></p>
+        <ul>
+          <li>$P(i_3 | m_6) = 0.06 / 0.065 \approx 0.923$ <strong>(92.3%)</strong></li>
+          <li>$P(i_4 | m_6) = 0.005 / 0.065 \approx 0.076$ <strong>(7.6%)</strong></li>
+        </ul>
+      </div>
+
+      <div class="co co-tip">
+        <div class="co-hdr"><span>🏥</span> Conclusión Clínica</div>
+        <div class="co-body">
+          Tras aplicar la corrección estadística sobre los resultados de la lógica categórica, el médico puede determinar que hay un <strong>92% de probabilidad</strong> de que el segundo paciente padezca únicamente el virus de la gripe, por lo que puede descartar casi por completo el tratamiento contra la gastroenteritis.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('toggle-btn');
+    const sidebar = document.getElementById('sidebar');
+    btn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+    });
+
+    const navLinks = document.getElementById('nav-links');
+    const contentContainer = document.querySelector('.content-container');
+    const headings = contentContainer.querySelectorAll('h2.theme-title, h3.subtheme-title');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          document.querySelectorAll('.nav-h3').forEach(l => l.classList.remove('active'));
+          const id = entry.target.id;
+          if(id) {
+            const link = document.querySelector(`.nav-h3[href="#${id}"]`);
+            if(link) link.classList.add('active');
+          }
+        }
+      });
+    }, { rootMargin: '-20% 0px -80% 0px' });
+
+    headings.forEach((h, i) => {
+      if(!h.id) {
+        h.id = 'heading-' + i;
+      }
+      observer.observe(h);
+      const isH2 = h.tagName.toLowerCase() === 'h2';
+      const a = document.createElement('a');
+      a.href = '#' + h.id;
+      
+      let text = h.textContent.trim();
+      if(text.includes('—')){
+        text = text.split('—')[0].trim();
+      } else if(text.includes('-')){
+        text = text.split('-')[0].trim();
+      } else if(text.includes('.')) {
+        text = text.split('.')[1].trim();
+      }
+
+      a.textContent = text;
+      
+      if(isH2) {
+        a.className = 'nav-h2';
+      } else {
+        a.className = 'nav-h3';
+      }
+      
+      navLinks.appendChild(a);
+    });
+  </script>
+</body>
+</html>

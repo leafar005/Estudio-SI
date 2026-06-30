@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparativa de Búsquedas — SI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/shared.css">
+  <script src="../shared/shared.js"></script>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'dark', background: 'transparent' });
+  </script>
+  <style>
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #111827;
+      --bg-card: #1a1f35;
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+    }
+    body { margin: 0; padding: 0; display: flex; height: 100vh; overflow: hidden; font-family: 'Inter', sans-serif; background-color: var(--bg-primary); color: var(--text-primary); }
+    #sidebar { width: 320px; min-width: 320px; background: rgba(17, 24, 39, 0.95); border-right: 1px solid var(--border-subtle); display: flex; flex-direction: column; z-index: 50; transition: width 0.3s ease, min-width 0.3s ease, opacity 0.3s ease; }
+    #sidebar.collapsed { width: 0 !important; min-width: 0 !important; border: none !important; opacity: 0; overflow: hidden; padding: 0; margin: 0; }
+    .sidebar-header { padding: 24px; border-bottom: 1px solid var(--border-subtle); background: var(--bg-secondary); }
+    .back-btn { display: flex; align-items: center; gap: 10px; color: var(--text-primary); text-decoration: none; font-weight: 600; font-size: 0.95rem; background: var(--bg-card); padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border-subtle); transition: all 0.2s; }
+    .back-btn:hover { background: var(--accent); border-color: var(--accent); }
+    .sidebar-content { flex: 1; overflow-y: auto; padding: 20px 0; }
+    .nav-h2 { display: block; padding: 12px 24px 4px 24px; font-size: 0.85rem; font-weight: 800; color: #93c5fd; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
+    .nav-h3 { display: block; padding: 8px 24px 8px 36px; font-size: 0.8rem; color: var(--text-secondary); text-decoration: none; transition: all 0.2s; border-left: 3px solid transparent; cursor: pointer; }
+    .nav-h3:hover { color: var(--text-primary); background: rgba(255,255,255,0.03); }
+    .nav-h3.active { color: #fff; background: rgba(59, 130, 246, 0.15); border-left-color: var(--accent); font-weight: 600; }
+    #main-content { flex: 1; overflow-y: auto; padding: 20px 60px 60px 60px; scroll-behavior: smooth; position: relative; }
+    .toggle-btn { position: sticky; top: 0px; z-index: 99; margin-bottom: 20px; margin-left: -40px; background: var(--bg-card); border: 1px solid var(--border-subtle); color: var(--text-primary); padding: 10px 15px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; font-weight: 600; font-size: 0.9rem; }
+    .toggle-btn:hover { background: var(--accent); border-color: var(--accent); }
+    .content-container { max-width: 900px; margin: 0 auto; }
+    .page-title { font-size: 3.2rem; font-weight: 900; margin-bottom: 15px; background: linear-gradient(135deg, #fff 0%, #60a5fa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1; }
+    .page-subtitle { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 60px; line-height: 1.6; }
+    h2.theme-title { font-size: 2.2rem; font-weight: 800; margin: 80px 0 30px 0; padding-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,0.1); color: #fff; }
+    h3.subtheme-title { font-size: 1.4rem; font-weight: 700; margin: 45px 0 15px 0; color: #bfdbfe; }
+    
+    @media (max-width: 850px) {
+      body { flex-direction: column; height: auto; overflow-y: auto; }
+      #sidebar { width: 100%; min-width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-subtle); position: relative; z-index: 100; }
+      .sidebar-content { display: flex; flex-direction: row; overflow-x: auto; overflow-y: hidden; white-space: nowrap; padding: 10px 15px; -webkit-overflow-scrolling: touch; align-items: center; max-height: none; }
+      .nav-h2 { display: inline-block; padding: 8px 15px; margin-right: 10px; font-size: 0.8rem; background: rgba(59,130,246,0.1); border-radius: 8px; }
+      .nav-h3 { display: inline-block; padding: 8px 12px; font-size: 0.85rem; border-left: none; }
+      .nav-h3.active { background: rgba(59,130,246,0.2); border-radius: 8px; color: #fff; font-weight: 600; }
+      #main-content { overflow-y: visible; padding: 25px 15px; }
+      .toggle-btn { position: sticky; top: 0px; margin-left: 0; margin-bottom: 15px; }
+      .page-title { font-size: 2rem; }
+      .page-subtitle { font-size: 1rem; margin-bottom: 30px; }
+      h2.theme-title { font-size: 1.8rem; margin: 40px 0 20px 0; }
+    }
+
+    /* CUSTOM RESUMEN STYLES */
+    .intro{background:rgba(59,130,246,0.07);border:1px solid rgba(59,130,246,0.22);border-left:4px solid #3b82f6;border-radius:0 12px 12px 0;padding:16px 20px;margin-bottom:52px;color:#bfdbfe;line-height:1.85;font-size:1.01rem;}
+    .prose p{color:#d1d5db;line-height:1.87;margin-bottom:18px;font-size:1.02rem;}
+    .prose strong{color:#fff;}.prose em{color:#a5b4fc;}
+    .prose ul{margin:0 0 18px 0;padding-left:0;list-style:none;}
+    .prose ul li{color:#d1d5db;line-height:1.8;margin-bottom:7px;padding-left:20px;position:relative;font-size:1.01rem;}
+    .prose ul li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:700;}
+    .co{border-radius:0 11px 11px 0;padding:15px 19px;margin:22px 0;line-height:1.8;}
+    .co-hdr{display:flex;align-items:center;gap:7px;font-weight:800;font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;}
+    .co-body{font-size:.96rem;line-height:1.8;}.co-body strong{color:#fff;}
+    .co-danger{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-left:4px solid #ef4444;}
+    .co-danger .co-hdr{color:#fca5a5;}.co-danger .co-body{color:#fecaca;}
+    .co-key{background:rgba(250,204,21,0.06);border:1px solid rgba(250,204,21,0.18);border-left:4px solid #facc15;}
+    .co-key .co-hdr{color:#fef08a;}.co-key .co-body{color:#fef9c3;}
+    .co-tip{background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.18);border-left:4px solid #10b981;}
+    .co-tip .co-hdr{color:#6ee7b7;}.co-tip .co-body{color:#a7f3d0;}
+    .mermaid-box { background: rgba(0, 0, 0, 0.22); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 20px; display: flex; justify-content: center; overflow: hidden; margin: 30px 0; }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="back-btn">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Volver al Portal
+      </a>
+    </div>
+    <div class="sidebar-content" id="nav-links">
+      <h2 class="nav-h2">Contenido</h2>
+    </div>
+  </div>
+
+  <div id="main-content">
+    <button id="toggle-btn" class="toggle-btn" aria-label="Toggle menu">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+    <div class="content-container">
+
+      <h1 class="page-title">Comparativa de Búsquedas</h1>
+      <p class="page-subtitle">Simulación avanzada de los algoritmos ciegos y heurísticos sobre un árbol diseñado para provocar fallos específicos.</p>
+
+      <div class="intro">
+        El objetivo de este análisis es demostrar visualmente cómo los distintos algoritmos de búsqueda toman decisiones diferentes. Hemos diseñado un árbol con 4 metas ($G_1$ a $G_4$), donde cada algoritmo se verá tentado a escoger un camino distinto según su forma de evaluar la heurística ($h$) o el coste ($g$).
+      </div>
+
+      <h2 class="theme-title">🌳 El Grafo del Espacio de Estados</h2>
+      
+      <div class="prose">
+        <p>El nodo de inicio es <strong>$S$</strong>. Existen 4 ramas principales que llevan a metas distintas. <strong>Costes reales:</strong> Camino a $G_1$ (coste 8), a $G_2$ (coste 9), a $G_3$ (coste 7), a $G_4$ (coste 4, el óptimo).</p>
+      </div>
+
+      <div class="mermaid-box">
+        <div class="mermaid">
+        graph TD
+            S(("S (h=4)")) 
+            A(("A (h=3)"))
+            B(("B (h=2)"))
+            C(("C (h=1)"))
+            D(("D (h=1)"))
+            E(("E (h=1)"))
+            G1(("G1 (h=0)"))
+            G2(("G2 (h=0)"))
+            G3(("G3 (h=0)"))
+            G4(("G4 (h=0)"))
+
+            S -- "g=3" --> A
+            S -- "g=2" --> B
+            S -- "g=8" --> C
+            
+            A -- "g=2" --> D
+            A -- "g=5" --> G1
+            
+            B -- "g=1" --> E
+            
+            C -- "g=1" --> G2
+            
+            D -- "g=2" --> G3
+            E -- "g=1" --> G4
+
+            classDef meta fill:#10b981,stroke:#047857,stroke-width:3px,color:#fff,font-weight:bold;
+            classDef start fill:#3b82f6,stroke:#1d4ed8,stroke-width:3px,color:#fff,font-weight:bold;
+            classDef regular fill:#1e293b,stroke:#475569,stroke-width:2px,color:#e2e8f0;
+
+            class G1,G2,G3,G4 meta;
+            class S start;
+            class A,B,C,D,E regular;
+        </div>
+      </div>
+
+      <div class="co co-danger">
+        <div class="co-hdr">
+          <span>⚠️</span> La Trampa Múltiple
+        </div>
+        <div class="co-body">
+          - <strong>Avara:</strong> Se verá tentada por $C$ (la mejor heurística $h=1$), llevándola al peor coste total (9).<br>
+          - <strong>Profundidad:</strong> Caerá por la primera rama infinita (izquierda) llegando a $G_3$ (coste 7).<br>
+          - <strong>Anchura:</strong> Escogerá la meta más superficial $G_1$ o $G_2$ (nivel 2), llevándose un coste subóptimo de 8 o 9.<br>
+          - <strong>Solo A* y UCS</strong> llegarán a $G_4$ (el camino escondido de coste 4).
+        </div>
+      </div>
+
+      <div class="prose">
+        <p>A continuación, recorremos el árbol asumiendo que los empates se resuelven de izquierda a derecha.</p>
+      </div>
+
+      <h3 class="subtheme-title">1. Búsqueda en Anchura (BFS)</h3>
+      <div class="prose">
+        <p><em>Frontera FIFO (Cola)</em>. Avanza nivel por nivel barriendo horizontalmente.</p>
+        <ul>
+          <li><strong>Nivel 0:</strong> Expande $S$. Hijos: $A, B, C$.</li>
+          <li><strong>Nivel 1:</strong> Expande $A$. Hijos: $D, G_1$. Al generar $G_1$, detecta que es meta (si evalúa en generación) o espera a extraerla. Al extraerla en el nivel 2, se detiene.</li>
+        </ul>
+      </div>
+      <div class="co co-danger">
+        <div class="co-hdr"><span>🎯</span> Resultado BFS</div>
+        <div class="co-body">
+          Encuentra <strong>$G_1$</strong>. Camino: $S \rightarrow A \rightarrow G_1$. Coste: <strong>8</strong>. (Se queda con la meta más cercana a la raíz, ignorando los costes reales).
+        </div>
+      </div>
+
+      <h3 class="subtheme-title">2. Búsqueda en Profundidad (DFS)</h3>
+      <div class="prose">
+        <p><em>Frontera LIFO (Pila)</em>. Avanza siempre por la rama más a la izquierda hasta tocar fondo.</p>
+        <ul>
+          <li>Expande $S$. Apila $C, B, A$. Extrae $A$.</li>
+          <li>Expande $A$. Apila $G_1, D$. Extrae $D$.</li>
+          <li>Expande $D$. Apila $G_3$. Extrae $G_3$. ¡Es meta!</li>
+        </ul>
+      </div>
+      <div class="co co-danger">
+        <div class="co-hdr"><span>🎯</span> Resultado DFS</div>
+        <div class="co-body">
+          Encuentra <strong>$G_3$</strong>. Camino: $S \rightarrow A \rightarrow D \rightarrow G_3$. Coste: <strong>7</strong>. (Encuentra la primera meta del subárbol más a la izquierda).
+        </div>
+      </div>
+
+      <h3 class="subtheme-title">3. Profundidad Iterativa (IDS)</h3>
+      <div class="prose">
+        <p>Fuerza a DFS a comportarse como BFS usando límites de profundidad sucesivos.</p>
+        <ul>
+          <li><strong>Límite $L=1$:</strong> Explora $A, B, C$. Fracasa.</li>
+          <li><strong>Límite $L=2$:</strong> Explora $S \rightarrow A \rightarrow D$ y $S \rightarrow A \rightarrow G_1$. Encuentra $G_1$.</li>
+        </ul>
+      </div>
+      <div class="co co-danger">
+        <div class="co-hdr"><span>🎯</span> Resultado IDS</div>
+        <div class="co-body">
+          Encuentra <strong>$G_1$</strong>. Coste: <strong>8</strong>. Igual que BFS.
+        </div>
+      </div>
+
+      <h3 class="subtheme-title">4. Coste Uniforme (UCS)</h3>
+      <div class="prose">
+        <p><em>Prioridad por $g(n)$</em>. Expande el nodo más barato desde el origen.</p>
+        <ul>
+          <li>Frontera inicial: <code>[S(g=0)]</code></li>
+          <li>Expande $S$. Frontera: <code>[B(2), A(3), C(8)]</code></li>
+          <li>Expande $B(2)$. Frontera: <code>[E(3), A(3), C(8)]</code></li>
+          <li>Expande $E(3)$. Frontera: <code>[A(3), G_4(4), C(8)]</code></li>
+          <li>Expande $A(3)$. Frontera: <code>[G_4(4), D(5), G_1(8), C(8)]</code></li>
+          <li>Expande $G_4(4)$. ¡Es meta!</li>
+        </ul>
+      </div>
+      <div class="co co-tip">
+        <div class="co-hdr"><span>🎯</span> Resultado UCS</div>
+        <div class="co-body">
+          Encuentra <strong>$G_4$</strong>. Camino: $S \rightarrow B \rightarrow E \rightarrow G_4$. Coste: <strong>4</strong>. (Al centrarse en el gasto real, encuentra la ruta perfecta).
+        </div>
+      </div>
+
+      <h3 class="subtheme-title">5. Búsqueda Avara (Greedy Search)</h3>
+      <div class="prose">
+        <p><em>Prioridad por $h(n)$</em>. Se deja guiar 100% por la promesa de la heurística.</p>
+        <ul>
+          <li>Frontera: <code>[S(h=4)]</code>. Expande $S$.</li>
+          <li>Descubre $A(3), B(2), C(1)$. Expande <strong>$C$</strong> (menor heurística).</li>
+          <li>Descubre $G_2(0)$. Expande $G_2$. ¡Es meta!</li>
+        </ul>
+      </div>
+      <div class="co co-danger">
+        <div class="co-hdr"><span>🎯</span> Resultado Avara</div>
+        <div class="co-body">
+          Encuentra <strong>$G_2$</strong>. Camino $S \rightarrow C \rightarrow G_2$. Coste: <strong>9</strong>. (El nodo C parecía estar a solo 1 paso de la meta, pero la arista para llegar a él costaba 8. Avara obvia esto y termina con la peor ruta posible).
+        </div>
+      </div>
+
+      <h3 class="subtheme-title">6. Algoritmo A*</h3>
+      <div class="prose">
+        <p><em>Prioridad por $f(n) = g(n) + h(n)$</em>. El balance perfecto.</p>
+        <ul>
+          <li>Frontera: <code>[S]</code>. Expande $S$.</li>
+          <li>Calcula $f$: $f(A) = 3+3=6$, $f(B) = 2+2=4$, $f(C) = 8+1=9$.</li>
+          <li>Frontera: <code>[B(4), A(6), C(9)]</code>. Expande <strong>$B$</strong>.</li>
+          <li>Desde $B$ descubre $E$. $f(E) = (2+1)+1=4$. Frontera: <code>[E(4), A(6), C(9)]</code>.</li>
+          <li>Expande $E$. Descubre $G_4$. $f(G_4) = (2+1+1)+0=4$.</li>
+          <li>Frontera: <code>[G_4(4), A(6), C(9)]</code>. Expande $G_4$. ¡Es meta!</li>
+        </ul>
+      </div>
+      <div class="co co-tip">
+        <div class="co-hdr"><span>🎯</span> Resultado A*</div>
+        <div class="co-body">
+          Encuentra <strong>$G_4$</strong>. Camino $S \rightarrow B \rightarrow E \rightarrow G_4$. Coste: <strong>4</strong>. (Ha logrado la solución óptima sin expandir ni $A$ ni $C$, siendo totalmente eficiente).
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('toggle-btn');
+    const sidebar = document.getElementById('sidebar');
+    btn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+    });
+
+    const navLinks = document.getElementById('nav-links');
+    const contentContainer = document.querySelector('.content-container');
+    const headings = contentContainer.querySelectorAll('h2.theme-title, h3.subtheme-title');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          document.querySelectorAll('.nav-h3').forEach(l => l.classList.remove('active'));
+          const id = entry.target.id;
+          if(id) {
+            const link = document.querySelector(`.nav-h3[href="#${id}"]`);
+            if(link) link.classList.add('active');
+          }
+        }
+      });
+    }, { rootMargin: '-20% 0px -80% 0px' });
+
+    headings.forEach((h, i) => {
+      if(!h.id) {
+        h.id = 'heading-' + i;
+      }
+      observer.observe(h);
+      const isH2 = h.tagName.toLowerCase() === 'h2';
+      const a = document.createElement('a');
+      a.href = '#' + h.id;
+      
+      let text = h.textContent.trim();
+      if(text.includes('—')){
+        text = text.split('—')[0].trim();
+      } else if(text.includes('-')){
+        text = text.split('-')[0].trim();
+      } else if(text.includes('.')) {
+        text = text.split('.')[1].trim();
+      }
+
+      a.textContent = text;
+      
+      if(isH2) {
+        a.className = 'nav-h2';
+      } else {
+        a.className = 'nav-h3';
+      }
+      
+      navLinks.appendChild(a);
+    });
+  </script>
+</body>
+</html>
