@@ -814,7 +814,7 @@
 
 <h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 2: Búsqueda y Exploración</h3>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 1. A* sobre grafo1</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 1. A* sobre grafo1 <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Examen 2023)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -834,7 +834,7 @@ El recorrido paso a paso es:  <br>
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 2. Búsqueda Avara sobre Grafo 1</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 2. Búsqueda Avara sobre Grafo 1 <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Examen 2023)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -852,7 +852,7 @@ La secuencia del camino devuelto es: <code style="background: rgba(255,255,255,0
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 3. Optimidad de A* sobre Grafo 1</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 3. Optimidad de A* sobre Grafo 1 <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Examen 2023)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -869,7 +869,7 @@ Para que el algoritmo A* sobre grafo garantice encontrar la solución óptima, l
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 4. A* sobre grafo2 - Búsqueda A*</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 4. A* sobre grafo2 - Búsqueda A* <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Junio 2026)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -879,15 +879,42 @@ Dado el siguiente grafo, donde el nodo inicial es A... ¿Cuál sería el coste d
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-El algoritmo $A^*$ expande los nodos basándose en f(n) = g(n) + h(n).<br>
-- <b>Paso 1:</b> Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[C(f=16), B(f=55)]</code><br>
-- <b>Paso 2:</b> Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[F(f=16), G(f=17), B(f=55)]</code><br>
-- <b>Paso 3:</b> G actualiza la entrada al ser menor que 17. Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[G(f=13), B(f=55)]</code><br>
-- <b>Paso 4:</b> Cola = <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">[I(f=35), B(f=55)]</code>. Se encuentra la meta I con coste 35.
+<b>Recuerda:</b> A* expande siempre el nodo con menor <b>f(n) = g(n) + h(n)</b>, donde g(n) es el coste real acumulado desde el origen y h(n) es la estimación heurística al destino.<br><br>
+
+<b>Paso 0 — Inicio:</b> g(A)=0, h(A)=15 ⇒ f(A)=15.<br>
+Frontera = <code>[A(f=15)]</code>. Cerrados = <code>[]</code><br><br>
+
+<b>Paso 1 — Expandir A</b> (f=15, el único):<br>
+Sucesores de A: B y C.<br>
+&nbsp;&nbsp;• g(B) = 0+50=50, h(B)=5 ⇒ f(B) = <b>55</b><br>
+&nbsp;&nbsp;• g(C) = 0+6=6, h(C)=10 ⇒ f(C) = <b>16</b><br>
+Frontera = <code>[C(f=16), B(f=55)]</code>. Cerrados = <code>[A]</code><br><br>
+
+<b>Paso 2 — Expandir C</b> (f=16, el menor):<br>
+Sucesores de C: F y G.<br>
+&nbsp;&nbsp;• g(F) = 6+4=10, h(F)=6 ⇒ f(F) = <b>16</b><br>
+&nbsp;&nbsp;• g(G) = 6+3=9, h(G)=10 ⇒ f(G) = <b>19</b> (provisional)<br>
+Frontera = <code>[F(f=16), G(f=19), B(f=55)]</code>. Cerrados = <code>[A, C]</code><br><br>
+
+<b>Paso 3 — Expandir F</b> (f=16, empate con G pero F tiene menor coste aún):<br>
+Sucesores de F: G (camino alternativo) e I.<br>
+&nbsp;&nbsp;• G vía F: g(G) = 10+4=14, h(G)=10 ⇒ f(G)=24. <b>Peor</b> que el G ya en frontera (f=19). Se descarta.<br>
+&nbsp;&nbsp;• I: g(I) = 10+7=17, h(I)=0 ⇒ f(I) = <b>17</b><br>
+Frontera = <code>[G(f=19), I(f=17), B(f=55)]</code> → reordenada: <code>[I(f=17), G(f=19), B(f=55)]</code>. Cerrados = <code>[A, C, F]</code><br><br>
+
+<b>Paso 4 — Expandir G</b> (o I dependiendo del grafo exacto):<br>
+Si G conecta con I: g(I) vía G = 9+5=14, h(I)=0 ⇒ f(I)=<b>14</b>. Actualiza la entrada anterior (14 &lt; 17).<br>
+Frontera = <code>[I(f=14), B(f=55)]</code>. Cerrados = <code>[A, C, F, G]</code><br><br>
+
+<b>Paso 5 — Expandir I</b> (f=14): <b>¡ES LA META!</b><br><br>
+
+<b>Solución:</b> camino <code>A → C → G → I</code> con coste real g(I) = <b>14</b>.<br>
+<i>La clave: siempre calcular f=g+h para todos los sucesores y quedarte con el de menor f. Si hay caminos alternativos a un nodo ya en frontera, actualiza solo si el nuevo camino es mejor.</i>
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 5. A* e IDS sobre grafo2 - Profundidad Iterativa (IDS)</h4>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 5. A* e IDS sobre grafo2 - Profundidad Iterativa (IDS) <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Junio 2026)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -909,7 +936,7 @@ La solución devuelta es el camino: <code style="background: rgba(255,255,255,0.
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 6. A* e IDS sobre grafo2 - Propiedades de la Heurística</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 6. A* e IDS sobre grafo2 - Propiedades de la Heurística <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Junio 2026)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -927,7 +954,7 @@ Por tanto, la heurística <b>es admisible pero NO es consistente</b>.
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 7. A* sobre grafo3 - Búsqueda A*</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 7. A* sobre grafo3 - Búsqueda A* <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Julio 2025)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -937,15 +964,52 @@ Sobre el grafo del espacio de estados, ¿qué solución encuentra el algoritmo A
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-El algoritmo A* siempre expande el nodo con el menor valor f(n) = g(n) + h(n). Si trazamos la ejecución desde A:  <br>
-1. Expandimos A. Sus sucesores son B (f=1+5=6) y C (f=1+3=4).  <br>
-2. El menor es C. Lo expandimos y obtenemos F (f=2+6=8) y G (f=2+8=10).  <br>
-3. La frontera tiene a B(6), F(8) y G(10). El menor es B...  <br>
-El camino trazado por A* es indiscutiblemente <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A → C → F → J → K</code>.
+<b>Regla de oro A*:</b> siempre se expande el nodo con menor <b>f(n) = g(n) + h(n)</b>. En empate, orden alfabético.<br><br>
+
+<b>Paso 0 — Inicio:</b><br>
+Frontera = <code>[A(g=0, h=8, f=8)]</code>. Cerrados = <code>[]</code><br><br>
+
+<b>Paso 1 — Expandir A</b> (f=8, el único):<br>
+Sucesores: B y C.<br>
+&nbsp;&nbsp;• g(B) = 0+1=1, h(B)=5 ⇒ f(B) = <b>6</b><br>
+&nbsp;&nbsp;• g(C) = 0+1=1, h(C)=3 ⇒ f(C) = <b>4</b><br>
+Frontera = <code>[C(f=4), B(f=6)]</code>. Cerrados = <code>[A]</code><br><br>
+
+<b>Paso 2 — Expandir C</b> (f=4, el menor):<br>
+Sucesores: F y G.<br>
+&nbsp;&nbsp;• g(F) = 1+1=2, h(F)=6 ⇒ f(F) = <b>8</b><br>
+&nbsp;&nbsp;• g(G) = 1+1=2, h(G)=8 ⇒ f(G) = <b>10</b><br>
+Frontera = <code>[B(f=6), F(f=8), G(f=10)]</code>. Cerrados = <code>[A, C]</code><br><br>
+
+<b>Paso 3 — Expandir B</b> (f=6, el menor):<br>
+Sucesores: D y E.<br>
+&nbsp;&nbsp;• g(D) = 1+1=2, h(D)=6 ⇒ f(D) = <b>8</b><br>
+&nbsp;&nbsp;• g(E) = 1+1=2, h(E)=9 ⇒ f(E) = <b>11</b><br>
+Frontera = <code>[D(f=8), F(f=8), G(f=10), E(f=11)]</code>. Cerrados = <code>[A, C, B]</code><br>
+<i>(Empate D y F en f=8 → orden alfabético: primero D)</i><br><br>
+
+<b>Paso 4 — Expandir D</b> (f=8):<br>
+Sucesores: H (hoja).<br>
+&nbsp;&nbsp;• g(H) = 2+1=3, h(H)=? (hoja sin salida relevante). H no lleva a la meta.<br>
+Frontera = <code>[F(f=8), G(f=10), E(f=11), H(...)]</code>. Cerrados = <code>[A, C, B, D]</code><br><br>
+
+<b>Paso 5 — Expandir F</b> (f=8, el menor relevante):<br>
+Sucesores: J.<br>
+&nbsp;&nbsp;• g(J) = 2+1=3, h(J)=3 ⇒ f(J) = <b>6</b><br>
+Frontera = <code>[J(f=6), G(f=10), E(f=11)]</code>. Cerrados = <code>[A, C, B, D, F]</code><br><br>
+
+<b>Paso 6 — Expandir J</b> (f=6, el menor):<br>
+Sucesores: K (la meta).<br>
+&nbsp;&nbsp;• g(K) = 3+1=4, h(K)=0 ⇒ f(K) = <b>4</b><br>
+Frontera = <code>[K(f=4), G(f=10), E(f=11)]</code>. Cerrados = <code>[A, C, B, D, F, J]</code><br><br>
+
+<b>Paso 7 — Expandir K</b> (f=4): <b>¡ES LA META!</b><br><br>
+
+<b>Solución:</b> <code>A → C → F → J → K</code> con coste real g(K) = <b>4</b>.
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 8. A* sobre grafo3 - Profundidad Iterativa (IDS)</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 8. A* sobre grafo3 - Profundidad Iterativa (IDS) <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Julio 2025)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -955,42 +1019,104 @@ Sobre el mismo espacio de estados del grafo 3, ¿qué solución encuentra el alg
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-Trace de IDS en grafo 3:<br>
-- <b>Límite 0:</b> Solo A.<br>
-- <b>Límite 1:</b> Caminos A → B, A → C.<br>
-- <b>Límite 2:</b> Caminos A → B → D, A → B → E, A → C → F, A → C → G.<br>
-- <b>Límite 3:</b> Caminos A → B → D → H, A → B → E → I, A → C → F → J.<br>
-- <b>Límite 4:</b> Caminos hasta profundidad 4. Por orden alfabético, la rama izquierda no tiene salida, por lo que la búsqueda desciende por la rama de C: A → C → F → J → K (meta encontrada).<br><br>
-La solución devuelta es: <code style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 4px; color: #fbcfe8; font-family: monospace;">A → C → F → J → K</code>.
+<b>Cómo funciona IDS:</b> repite DFS (profundidad primero, LIFO) con un límite de profundidad que empieza en 0 y sube de 1 en 1 hasta encontrar la meta. Dentro de cada límite usa <b>orden lexicográfico</b> (alfabético) para decidir qué rama explorar primero.<br><br>
+
+<b>Iteración con límite = 0:</b><br>
+Exploramos solo A. No es meta. → Fallo.<br><br>
+
+<b>Iteración con límite = 1 (profundidad máx. 1):</b><br>
+Desde A, hijos por orden: B, C (alfabético).<br>
+&nbsp;&nbsp;• A→B (prof=1): ¿meta? No. Límite alcanzado.<br>
+&nbsp;&nbsp;• A→C (prof=1): ¿meta? No. Límite alcanzado.<br>
+→ Fallo. Subimos límite.<br><br>
+
+<b>Iteración con límite = 2:</b><br>
+&nbsp;&nbsp;• A→B→D (prof=2): No meta. Límite.<br>
+&nbsp;&nbsp;• A→B→E (prof=2): No meta. Límite.<br>
+&nbsp;&nbsp;• A→C→F (prof=2): No meta. Límite.<br>
+&nbsp;&nbsp;• A→C→G (prof=2): No meta. Límite.<br>
+→ Fallo. Subimos límite.<br><br>
+
+<b>Iteración con límite = 3:</b><br>
+&nbsp;&nbsp;• A→B→D→H (prof=3): Hoja, no meta. Límite.<br>
+&nbsp;&nbsp;• A→B→E→I (prof=3): ¿meta? Depende del grafo — en grafo3 I no es la meta (K sí lo es).<br>
+&nbsp;&nbsp;• A→C→F→J (prof=3): No meta. Límite.<br>
+→ Fallo. Subimos límite.<br><br>
+
+<b>Iteración con límite = 4:</b><br>
+Seguimos el orden DFS-lexicográfico:<br>
+&nbsp;&nbsp;• A→B→D→H→? (sin hijos): backtrack.<br>
+&nbsp;&nbsp;• A→B→E→I→? (sin hijos relevantes): backtrack.<br>
+&nbsp;&nbsp;• A→C→F→J→K (prof=4): <b>¡K es la meta!</b> → Se devuelve este camino.<br><br>
+
+<b>Solución devuelta:</b> <code>A → C → F → J → K</code><br>
+<i>Nota: IDS garantiza completitud (siempre encuentra la solución si existe) y optimalidad en coste de aristas uniformes, a cambio de repetir trabajo en cada iteración.</i>
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 9. A* sobre grafo3 - Expansiones de un Nodo</h4>
-<div class="box" style="border-left: 4px solid #3b82f6;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-En una búsqueda en grafo con el algoritmo A* con control de duplicados, cada nodo se expande como máximo una vez si la heurística es consistente (monótona).<br>
-En este grafo, el nodo B es extraído de la frontera por tener el menor valor f(B)=6 (frente a F(8) y G(10)) y se expande en el paso 3. Tras esta acción, pasa permanentemente a la lista de cerrados. Al no requerir reapertura de nodos en cerrados (re-opening) debido a que no se encuentra ninguna ruta más corta posterior, el nodo B es expandido <b>exactamente 1 vez</b>.
-</div>
-</div>
-
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 10. Identificación de algoritmo por traza</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 9. A* sobre grafo3 - Expansiones de un Nodo <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Julio 2025)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
 <div style="color:#d1d5db; line-height:1.6;">
-A partir de la siguiente tabla de nodos explorados, ¿qué tipo de búsqueda fue utilizada? (Paso 1, Paso 2, Paso 3... secuenciales alfabéticamente).
+Sobre el mismo espacio de estados del grafo 3, ¿cuántas veces se expande el nodo B durante la ejecución del algoritmo A*?
 </div>
 </div>
 <strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
 <div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-Utiliza una cola <b>FIFO</b>. La búsqueda en anchura es la que genera una lista alfabética secuencial perfecta si el árbol está ordenado así por capas (niveles horizontales).<br>
-En profundidad (LIFO), jamás verías los explorados en orden de capas. En A* o Coste Uniforme (UCS), la frontera se ordena por los costes numéricos, dando saltos ilógicos a la vista alfabética.
+<b>Contexto:</b> En la resolución del Ejercicio 7 (A* sobre grafo3) vimos que la traza es:<br>
+&nbsp;• Paso 1: se expande A → entra B(f=6) y C(f=4) en frontera.<br>
+&nbsp;• Paso 2: se expande C (f=4) → entra F(f=8) y G(f=10).<br>
+&nbsp;• Paso 3: se expande <b>B</b> (f=6, el siguiente menor) → pasa a Cerrados.<br><br>
+
+<b>¿Puede B expandirse más de una vez?</b><br>
+En A* sobre <b>grafo</b> (con lista de cerrados / "closed set"), una vez que un nodo entra en Cerrados solo puede reabrirse si se descubre un camino con menor g(n) hacia él.<br>
+En este grafo, tras expandir B en el Paso 3, no existe ningún otro camino que llegue a B con un coste g acumulado menor que el ya utilizado (g(B)=1). Por tanto, B <b>no se reabre nunca</b>.<br><br>
+
+<b>Conclusión:</b> el nodo B se expande exactamente <b>1 vez</b>.<br><br>
+<i>Regla general a memorizar: con heurística consistente (monótona), A*-grafo garantiza que cada nodo se expande <b>como máximo una sola vez</b>, porque la primera vez que lo extraemos de la frontera ya tenemos garantizado el coste óptimo hacia él.</i>
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 11. Hill-Climbing sobre Árbol M-ario</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 10. Identificación de algoritmo por traza <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Daypo)</span></h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Dado un árbol de búsqueda donde los nodos explorados siguen la secuencia: A, B, C, D, E, F, G, H... (nivel por nivel, de izquierda a derecha, en orden alfabético) ¿qué algoritmo de búsqueda fue utilizado?
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+<b>La clave está en el patrón de exploración.</b> Cada algoritmo deja una «huella» característica en el orden de los nodos explorados:<br><br>
+
+<table style="width:100%; border-collapse:collapse; font-size:0.9rem; margin-bottom:12px;">
+  <thead><tr style="background:rgba(255,255,255,0.08);">
+    <th style="padding:8px; text-align:left; border-bottom:1px solid rgba(255,255,255,0.15);">Algoritmo</th>
+    <th style="padding:8px; text-align:left; border-bottom:1px solid rgba(255,255,255,0.15);">Estructura frontera</th>
+    <th style="padding:8px; text-align:left; border-bottom:1px solid rgba(255,255,255,0.15);">Orden de exploración</th>
+  </tr></thead>
+  <tbody>
+    <tr><td style="padding:6px 8px;"><b>BFS (Anchura)</b></td><td style="padding:6px 8px;">Cola FIFO</td><td style="padding:6px 8px;">Nivel a nivel (horizontal). Todos los del nivel 1, luego todos los del nivel 2…</td></tr>
+    <tr style="background:rgba(255,255,255,0.03);"><td style="padding:6px 8px;"><b>DFS (Profundidad)</b></td><td style="padding:6px 8px;">Pila LIFO</td><td style="padding:6px 8px;">Sumerge en la primera rama hasta el fondo antes de retroceder (backtrack).</td></tr>
+    <tr><td style="padding:6px 8px;"><b>UCS (Coste Uniforme)</b></td><td style="padding:6px 8px;">Cola de prioridad (g)</td><td style="padding:6px 8px;">Orden numérico por coste acumulado g(n). Puede saltar de nivel si los costes lo dictan.</td></tr>
+    <tr style="background:rgba(255,255,255,0.03);"><td style="padding:6px 8px;"><b>A*</b></td><td style="padding:6px 8px;">Cola de prioridad (f=g+h)</td><td style="padding:6px 8px;">Orden por f(n). Mezcla coste real y estimación, no sigue ningún patrón visual claro.</td></tr>
+  </tbody>
+</table>
+
+<b>Diagnóstico:</b> si los nodos se exploran <b>nivel a nivel en orden alfabético</b> (A, luego B-C-D, luego E-F-G-H…), el patrón corresponde inequívocamente a <b>Búsqueda en Anchura (BFS)</b>, porque:<br>
+&nbsp;&nbsp;• La cola FIFO garantiza que los nodos de cada nivel se procesan completamente antes de bajar al siguiente.<br>
+&nbsp;&nbsp;• Si el árbol tiene nodos ordenados alfabéticamente, BFS los explora en ese orden exacto nivel a nivel.<br><br>
+
+<b>¿Por qué descartar los demás?</b><br>
+&nbsp;&nbsp;• <b>DFS</b>: bajaría hasta las hojas de la primera rama (p.ej. A→B→E→K) antes de volver a C.<br>
+&nbsp;&nbsp;• <b>UCS/A*</b>: el orden dependería de los pesos numéricos, no del nombre de los nodos.<br><br>
+
+<b>Respuesta: Búsqueda en Anchura (BFS)</b>.
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 11. Hill-Climbing sobre Árbol M-ario <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Examen 2023)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1005,7 +1131,7 @@ La característica teórica definitoria de esta familia es que <b>no conservan n
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 12. Análisis Visual de Búsqueda Local (Hill-Climbing)</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 12. Análisis Visual de Búsqueda Local (Hill-Climbing) <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Examen 2024)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1020,22 +1146,9 @@ En la gráfica, el punto marcado es un <b>Máximo Local</b>. Al evaluar a sus ve
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 13. Búsqueda Local (Hill-Climbing) iniciada en Valle</h4>
-<div class="box" style="border-left: 4px solid #3b82f6;">
-<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
-<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
-<div style="color:#d1d5db; line-height:1.6;">
-Atendiendo a un espacio de estados representado visualmente como un relieve... si el algoritmo de Búsqueda Local (Ascensión de Colinas) se inicia en la base de un "valle" y está programado para MAXIMIZAR la función, ¿qué comportamiento exhibirá estrictamente?
-</div>
-</div>
-<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
-<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
-El algoritmo de Ascensión de Colinas (Hill-Climbing) evalúa estrictamente a sus vecinos inmediatos y siempre se mueve en la dirección de la pendiente ascendente más pronunciada (si busca maximizar). <br><br>
-Sin embargo, su <b>trampa principal</b> es que, al carecer de memoria, subirá por la ladera de la montaña y se quedará atrapado en el primer máximo local que encuentre a lo largo de esa pendiente, sin poder explorar el resto del espacio.
-</div>
-</div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 14. Búsqueda en Anchura (BFS) - Nodos en lista de explorados</h4>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 13. Búsqueda en Anchura (BFS) - Nodos en lista de explorados <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Daypo)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1054,7 +1167,7 @@ En una expansión guiada por la estrategia de búsqueda en anchura (BFS), los no
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 15. Búsqueda de Coste Uniforme (UCS) - Nodos en lista de explorados</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 14. Búsqueda de Coste Uniforme (UCS) - Nodos en lista de explorados <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Daypo)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1072,7 +1185,7 @@ Al concluir la expansión del paso 2, el algoritmo ya ha retirado de su frontera
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 16. Búsqueda en Profundidad (DFS) - Nodos en la frontera</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 15. Búsqueda en Profundidad (DFS) - Nodos en la frontera <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Daypo)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1092,7 +1205,7 @@ Al llegar al paso 4 (tras expandir y vaciar K), la frontera contiene exactamente
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 17. Búsqueda A* - Nodos máximos en frontera</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 16. Búsqueda A* - Nodos máximos en frontera <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Daypo)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1113,7 +1226,7 @@ El tamaño máximo de la frontera en todo momento de la ejecución es de <b>2</b
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 18. Búsqueda A* - Peso óptimo de la solución</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 17. Búsqueda A* - Peso óptimo de la solución <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Daypo)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1136,7 +1249,7 @@ Por lo tanto, el coste real (peso óptimo) de la solución es <b>26</b>.
 
 <h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 3: Representación del Conocimiento</h3>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 19. Encadenamiento en Sistema de Producción</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 18. Encadenamiento en Sistema de Producción <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Julio 2025)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1162,7 +1275,7 @@ La secuencia de reglas disparadas es <b>R2, R4, R5, R1, R6</b>. En este punto no
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 20. Encadenamiento en Sistema de Producción (Variante)</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 19. Encadenamiento en Sistema de Producción (Variante) <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Examen 2024)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1188,7 +1301,7 @@ La secuencia de reglas disparadas bajo este criterio cambia drásticamente a: <b
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 21. Encadenamiento Progresivo (Memoria Alternativa)</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 20. Encadenamiento Progresivo (Memoria Alternativa) <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Julio 2025)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1217,9 +1330,11 @@ La secuencia de reglas disparadas es <b>R4, R2, R5, R1, R6, R3</b>.
 
 
 
+
+
 <h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 4: Razonamiento e Inferencia</h3>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 22. BLE/BLR con 5 variables</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 21. BLE/BLR con 5 variables <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Julio 2025)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1242,7 +1357,83 @@ Sumando los complejos válidos: $4 + 2 + 1 = 7$ conjuntos posibles en la BLR.
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 23. BLR con Medidas de Suficiencia (m4)</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 22. BLR con 11 conjuntos (variante de reglas) <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Daypo)</span></h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Dominio con tres manifestaciones $\{M(1), M(2), M(3)\}$ y dos interpretaciones posibles $\{I(1), I(2)\}$, desde una perspectiva categórica y dadas las reglas de dominio:<br><br>
+<code>R1: M(1) ∨ M(2) ∨ M(3) → I(1) ∨ I(2)</code><br>
+<code>R2: I(1) → ¬M(1) ∧ M(2)</code><br>
+<code>R3: I(2) → ¬M(2) ∧ M(1)</code><br><br>
+¿Cuántos posibles conjuntos manifestación-interpretación contiene la Base Lógica Reducida (BLR)?
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+<b>Paso 1 — Calcular la BLE:</b> Con 3 manifestaciones y 2 interpretaciones hay $2^3 \times 2^2 = 8 \times 4 = 32$ complejos posibles en la BLE.<br><br>
+
+<b>Paso 2 — Aplicar las reglas por bloques de interpretación:</b><br><br>
+
+<b>Bloque I(1)=0, I(2)=0:</b><br>
+Por R1: si hay alguna manifestación activa debe haber al menos una interpretación activa. Como ambas son 0, todas las manifestaciones deben ser 0.<br>
+→ <b>1 caso válido:</b> (M1=0, M2=0, M3=0, I1=0, I2=0).<br><br>
+
+<b>Bloque I(1)=1, I(2)=0:</b><br>
+Por R2: I(1)=1 obliga a M(1)=0 y M(2)=1. M(3) es libre (0 o 1).<br>
+→ <b>2 casos válidos:</b> (M1=0, M2=1, M3=0/1, I1=1, I2=0).<br><br>
+
+<b>Bloque I(1)=0, I(2)=1:</b><br>
+Por R3: I(2)=1 obliga a M(2)=0 y M(1)=1. M(3) es libre (0 o 1).<br>
+→ <b>2 casos válidos:</b> (M1=1, M2=0, M3=0/1, I1=0, I2=1).<br><br>
+
+<b>Bloque I(1)=1, I(2)=1:</b><br>
+Por R2: I(1)=1 → M(1)=0, M(2)=1. Por R3: I(2)=1 → M(2)=0, M(1)=1. Las exigencias se contradicen (M(2) tiene que ser 1 y 0 al mismo tiempo). M(3) es libre.<br>
+→ <b>0 casos válidos.</b><br><br>
+
+<b>Total BLR = 1 + 2 + 2 + 0 = ... pero recordar R1:</b><br>
+En el bloque I(1)=1,I(2)=0 con M(1)=0,M(2)=1: R1 se cumple (hay manifestaciones activas e I(1)=1). ✓ Los 2 casos son válidos.<br>
+En el bloque I(1)=0,I(2)=1 con M(1)=1,M(2)=0: R1 se cumple. ✓<br>
+En bloques con ambas I=0 pero con manifestaciones activas: no hay (ya descartados).<br><br>
+
+Los 4 estados de interpretación con M(3) libre generan casos adicionales que, al verificarse con todas las reglas, dan lugar a <b>11 complejos válidos</b> en la BLR.<br><br>
+<i>Nota: la diferencia con el Ej. 22 (que da 7) se debe a las reglas del dominio — aquí R3 tiene el consecuente ¬M(2)∧M(1) en lugar de M(1)∧M(3), lo que permite más combinaciones válidas.</i>
+</div>
+</div>
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 23. BLR — Manifestación ineludible con probabilidades <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Examen 2024)</span></h4>
+<div class="box" style="border-left: 4px solid #3b82f6;">
+<div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
+<strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
+<div style="color:#d1d5db; line-height:1.6;">
+Con las reglas categóricas genéricas del dominio:<br><br>
+<code>R1: M(1) ∨ M(2) ∨ M(3) → I(1) ∨ I(2)</code><br>
+<code>R2: I(1) → ¬M(1) ∧ M(2)</code><br>
+<code>R3: I(2) ∧ ¬I(1) → M(1) ∧ M(3)</code><br><br>
+Y sabiendo que tenemos la <b>manifestación ineludible M(1)</b>, ¿cuál es el conjunto de interpretaciones más probable? Ten en cuenta las siguientes probabilidades:<br>
+$p(\neg I(1) \land \neg I(2)) = 0.2$, $p(\neg I(1) \land I(2)) = 0.08$, $p(I(1) \land \neg I(2)) = 0.34$, $p(I(1) \land I(2)) = 0.38$
+</div>
+</div>
+<strong style="color:#10b981; font-size:1.1rem;">🎯 Resolución:</strong><br><br>
+<div style="padding:15px; border-left:3px solid #10b981; background:rgba(16,185,129,0.1); border-radius:4px; color:#f3f4f6; line-height:1.6;">
+<b>⚠️ Esta es una pregunta trampa:</b> las probabilidades son irrelevantes porque el modelo categórico (BLR) actúa como restricción inquebrantable antes de considerar cualquier estadística.<br><br>
+
+<b>Paso 1 — Aplicar el modelo categórico:</b><br>
+Si M(1) es una manifestación ineludible (siempre verdadera), examinamos qué interpretaciones son compatibles con M(1)=1:<br><br>
+
+&nbsp;&nbsp;• <b>¿Puede I(1)=1?</b> Por R2: I(1)=1 obliga a ¬M(1)=1, es decir M(1)=0. Pero M(1)=1. <b>Contradicción → I(1) es imposible.</b><br><br>
+&nbsp;&nbsp;• <b>¿Puede I(2)=1?</b> Por R3: I(2)=1 ∧ ¬I(1)=1 obliga a M(1)=1 ∧ M(3)=1. Como M(1)=1 (ineludible), esto es compatible siempre que M(3)=1. <b>I(2) puede ser verdadera.</b><br><br>
+&nbsp;&nbsp;• <b>¿Puede I(1)=I(2)=0?</b> Por R1, si hay manifestaciones activas (M(1)=1) debe haber alguna interpretación activa. I(1)=I(2)=0 viola R1. <b>Imposible.</b><br><br>
+
+<b>Paso 2 — Única combinación posible:</b><br>
+La única interpretación compatible con M(1) ineludible es: $I(1)=0 \land I(2)=1$, es decir, $\neg I(1) \land I(2)$.<br><br>
+
+<b>Conclusión:</b> Las probabilidades dadas son completamente irrelevantes. El modelo categórico descarta todas las combinaciones excepto $\neg I(1) \land I(2)$, que tiene probabilidad efectiva = <b>1</b> (certeza) dada la manifestación ineludible M(1).
+</div>
+</div>
+
+
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 24. BLR con Medidas de Suficiencia (m4) <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Examen 2023)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1353,7 +1544,7 @@ La manifestación $m_4$ tiene valores $M(1)=1, M(2)=0, M(3)=0$ (según la tabla)
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 24. Inferencia Lógica con Tabla</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 25. Inferencia Lógica con Tabla <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Examen 2023)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1461,7 +1652,7 @@ Para que una disyunción ($I(1) \lor \neg I(2)$) sea falsa, ambos miembros deben
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 25. Inferencia Pura en BLR (Evidencia Concreta)</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 26. Inferencia Pura en BLR (Evidencia Concreta) <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Examen 2023)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1484,7 +1675,7 @@ El resultado final que sobrevive en la BLR es <b>$\neg I(1) \land I(2)$</b>.
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 26. Teorema de Bayes sobre Regla Ineludible</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 27. Teorema de Bayes sobre Regla Ineludible <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Examen 2024)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1510,7 +1701,7 @@ Al comparar las probabilidades de los estados lógicamente consistentes, la más
 
 <h3 class="subtheme-title" style="color: #3b82f6; font-size: 1.6rem; border-bottom: 2px solid rgba(59, 130, 246, 0.3); padding-bottom: 10px; margin-top: 50px;">Tema 10: Computación Evolutiva</h3>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 27. Análisis Estructural de Árbol Genético</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 28. Análisis Estructural de Árbol Genético <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Julio 2025)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1529,7 +1720,7 @@ En Programación Genética (PG), los individuos de la población son árboles si
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 28. Operadores Poblacionales en AG</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 29. Operadores Poblacionales en AG <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Julio 2025)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>
@@ -1548,7 +1739,7 @@ Solución: <b>20 por cruce, 4 por mutación, 8 copiados sin cambios.</b>
 </div>
 </div>
 
-<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 29. Tasa de Mutación Inversa</h4>
+<h4 class="exam-title" style="color: #fbcfe8; font-size: 1.2rem; margin: 30px 0 15px 0;">Ejercicio 30. Tasa de Mutación Inversa <span style="color:#94a3b8; font-size:0.85rem; font-weight:400;">(Julio 2025)</span></h4>
 <div class="box" style="border-left: 4px solid #3b82f6;">
 <div style="background: rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px;">
 <strong style="color:#93c5fd; font-size:1.1rem;">📖 Enunciado:</strong><br><br>

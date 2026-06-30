@@ -291,7 +291,7 @@ const DAYPO_QUESTIONS = [
       "Es la multiplicación entre la entrada por el peso que tiene"
     ],
     "correct": 3,
-    "justification": "La función de pérdida (loss function) se calcula para evaluar el error de un **único ejemplo** en concreto ($E_k = \\frac{1}{2}(d_k - y_k)^2$), mientras que la función de coste (cost function) es la sumatoria o promedio acumulado de todas esas funciones de pérdida sobre el **conjunto completo** de ejemplos de entrenamiento. Por lo tanto, afirmar que son la misma es **falso**. Las opciones C y 4 también contienen afirmaciones falsas, lo que evidencia una redacción ambigua en el test original. Cabe destacar que la opción A describe la definición estrictamente verdadera y matemática de la función, por lo que marcarla respondiendo a 'cuál es falsa' es incorrecto.",
+    "justification": "La función de pérdida (loss function) se calcula para evaluar el error de un **único ejemplo** en concreto ($E_k = \\frac{1}{2}(d_k - y_k)^2$), mientras que la función de coste (cost function) es la sumatoria o promedio acumulado de todas esas funciones de pérdida sobre el **conjunto completo** de ejemplos de entrenamiento. Por lo tanto, afirmar que son la misma es **falso**. Las opciones C y E también contienen afirmaciones falsas, lo que evidencia una redacción ambigua en el test original. Cabe destacar que la opción A describe la definición estrictamente verdadera y matemática de la función, por lo que marcarla respondiendo a 'cuál es falsa' es incorrecto.",
     "tags": [
       "neurona"
     ],
@@ -2514,7 +2514,7 @@ const DAYPO_QUESTIONS = [
       "Selecciona una acción en base a un estado interno que mide qué tan beneficioso es un estado"
     ],
     "correct": 3,
-    "justification": "El **agente basado en utilidad** es el tipo de agente más avanzado presentado en la teoría. A diferencia del agente basado en metas, que solo distingue entre estados que cumplen o no un objetivo (éxito/fracaso), el agente basado en utilidad utiliza una función matemática de utilidad que asigna un valor numérico a la \"bondad\" de cada estado. De esta forma, selecciona la acción que maximiza dicha utilidad (por ejemplo, entre varias rutas para llegar a un destino, escoge la que minimiza el consumo de gasolina y peajes). Por ello, la opción correcta es la D. Las opciones A, 1 y 2 describen al agente reactivo simple, agente basado en modelos y agente basado en metas, respectivamente.",
+    "justification": "El **agente basado en utilidad** es el tipo de agente más avanzado presentado en la teoría. A diferencia del agente basado en metas, que solo distingue entre estados que cumplen o no un objetivo (éxito/fracaso), el agente basado en utilidad utiliza una función matemática de utilidad que asigna un valor numérico a la \"bondad\" de cada estado. De esta forma, selecciona la acción que maximiza dicha utilidad (por ejemplo, entre varias rutas para llegar a un destino, escoge la que minimiza el consumo de gasolina y peajes). Por ello, la opción correcta es la D. Las opciones A, B y C describen al agente reactivo simple, agente basado en modelos y agente basado en metas, respectivamente.",
     "tags": [
       "introduccion"
     ],
@@ -2583,7 +2583,7 @@ const DAYPO_QUESTIONS = [
       "Mantiene un estado interno con el efecto de sus acciones"
     ],
     "correct": 2,
-    "justification": "El **agente basado en metas** hereda las capacidades del agente basado en modelos (por tanto, mantiene un estado interno y puede medir el efecto de sus acciones en el entorno, haciendo correctas las opciones B y 3). Además, incorpora información sobre sus objetivos para planificar qué secuencias de acciones le llevarán a conseguirlos (opción A correcta). Lo que **deja de utilizar** son las reglas estáticas y fijas de \"condición-acción\" que definen a los agentes reactivos. Sus decisiones ahora son dinámicas basadas en la pregunta \"¿qué pasará si realizo esta acción y me acerca a la meta?\". Por tanto, la opción C es la incorrecta.",
+    "justification": "El **agente basado en metas** hereda las capacidades del agente basado en modelos (por tanto, mantiene un estado interno y puede medir el efecto de sus acciones en el entorno, haciendo correctas las opciones B y D). Además, incorpora información sobre sus objetivos para planificar qué secuencias de acciones le llevarán a conseguirlos (opción A correcta). Lo que **deja de utilizar** son las reglas estáticas y fijas de \"condición-acción\" que definen a los agentes reactivos. Sus decisiones ahora son dinámicas basadas en la pregunta \"¿qué pasará si realizo esta acción y me acerca a la meta?\". Por tanto, la opción C es la incorrecta.",
     "tags": [
       "Reglas",
       "Planificación"
@@ -3184,7 +3184,7 @@ const DAYPO_QUESTIONS = [
       "Todas son correctas"
     ],
     "correct": 3,
-    "justification": "La respuesta correcta es la **D** (Todas son correctas). La búsqueda de profundidad limitada soluciona el defecto principal de la búsqueda en profundidad (perderse en ramas o caminos infinitos) al **fijar un límite ($l$) a la profundidad máxima** permitida (opciones A y 2). Sin embargo, este límite introduce un riesgo: si la meta se encuentra a una profundidad mayor que el límite establecido ($l < d$), **el algoritmo nunca llegará a ella**, perdiendo su completitud (opción B). Por tanto, todas las afirmaciones describen correctamente sus características.",
+    "justification": "La respuesta correcta es la **D** (Todas son correctas). La búsqueda de profundidad limitada soluciona el defecto principal de la búsqueda en profundidad (perderse en ramas o caminos infinitos) al **fijar un límite ($l$) a la profundidad máxima** permitida (opciones A y C). Sin embargo, este límite introduce un riesgo: si la meta se encuentra a una profundidad mayor que el límite establecido ($l < d$), **el algoritmo nunca llegará a ella**, perdiendo su completitud (opción B). Por tanto, todas las afirmaciones describen correctamente sus características.",
     "tags": [
       "A*",
       "BLE/BLR",
@@ -3273,7 +3273,7 @@ const DAYPO_QUESTIONS = [
       "La búsqueda A* ocurre cuando la f(n) considera el coste máximo total del camino a un nodo solución"
     ],
     "correct": 3,
-    "justification": "La respuesta correcta (la afirmación falsa) es la **D**. La búsqueda A* ocurre cuando $f(n) = g(n) + h(n)$. Esta función $f(n)$ estima el coste **mínimo** total del camino hacia la solución que pasa por el nodo $n$, no el coste *máximo*. Las opciones A y 1 describen correctamente la búsqueda avara ($f(n) = h(n)$ centrada en el coste mínimo estimado futuro) y la opción C define matemáticamente A* de forma correcta.",
+    "justification": "La respuesta correcta (la afirmación falsa) es la **D**. La búsqueda A* ocurre cuando $f(n) = g(n) + h(n)$. Esta función $f(n)$ estima el coste **mínimo** total del camino hacia la solución que pasa por el nodo $n$, no el coste *máximo*. Las opciones A y B describen correctamente la búsqueda avara ($f(n) = h(n)$ centrada en el coste mínimo estimado futuro) y la opción C define matemáticamente A* de forma correcta.",
     "tags": [
       "A*"
     ],
